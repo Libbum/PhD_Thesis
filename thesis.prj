@@ -1,0 +1,121 @@
+17 Patch Control
+
+0
+0
+1
+thesis.tex
+31
+11
+1
+
+thesis.tex
+TeX
+135278587 0 -1 1598 -1 586 865 0 1730 702 0 1 328 0 -1 -1 0 0 0 -1 -1 0 1 0 586 -1  0 -1 0
+preamble.tex
+TeX
+17838075 0 -1 278 -1 287 0 0 865 702 0 1 368 68 -1 -1 0 0 71 -1 -1 71 1 0 287 -1  0 -1 0
+draftfinal.tex
+TeX
+17838075 0 -1 238 -1 236 865 0 1730 702 0 1 120 136 -1 -1 0 0 68 -1 -1 68 1 0 236 -1  0 0 0
+timpapers.bib
+BibTeX
+1049586 0 26 1 26 1 865 0 1730 702 0 1 40 442 -1 -1 0 0 -1 -1 -1 -1 1 0 1 26  0 -1 0
+library.bib
+BibTeX:UNIX
+1147890 2 967 842 967 1 865 0 1730 702 0 1 40 323 -1 -1 0 0 49 0 0 49 1 0 1 967  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\Bishop-thesis.tex
+TeX:UNIX
+1159163 1 -1 1057 -1 1214 865 0 1730 702 0 1 224 374 -1 -1 0 0 -1 -1 -1 -1 1 0 1214 -1  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\draftfinal.tex
+TeX:UNIX
+1159163 0 -1 2121 -1 502 865 0 1730 702 0 1 152 272 -1 -1 0 0 -1 -1 -1 -1 1 0 502 -1  0 0 0
+:\cygwin\home\Genesis\Bishop-thesis\preamble.tex
+TeX:UNIX
+1159163 0 -1 6396 -1 1715 0 0 865 702 0 1 352 357 -1 -1 0 0 -1 -1 -1 -1 1 0 1715 -1  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\README.tex
+TeX
+1060859 0 -1 0 -1 13437 865 0 1730 702 0 1 520 646 -1 -1 0 0 27 -1 -1 27 1 0 13437 -1  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\publicationlist.tex
+TeX
+1060859 1 -1 110 -1 119 865 0 1730 702 0 1 240 34 -1 -1 0 0 -1 -1 -1 -1 1 0 119 -1  0 -1 0
+publications.tex
+TeX
+1060859 0 -1 45 -1 476 0 0 865 702 0 1 40 306 -1 -1 0 0 476 -1 -1 476 1 0 476 -1  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\transmon.tex
+TeX
+1060859 0 -1 80 -1 2922 873 0 1747 719 0 1 400 255 -1 -1 0 0 -1 -1 -1 -1 1 0 2922 -1  0 -1 0
+thesis.toc
+TeX:AUX
+1060850 0 8 38 8 37 873 0 1747 719 0 0 312 136 -1 -1 0 0 -1 -1 -1 -1 1 0 37 8  0 0 0
+:\cygwin\home\Genesis\Honours Thesis\preamble.tex
+TeX:UNIX
+1159163 4 -1 1775 -1 1774 865 0 1730 702 0 1 200 510 -1 -1 0 0 117 -1 -1 117 1 0 1774 -1  0 -1 0
+:\cygwin\home\Genesis\Bishop-thesis\macros.tex
+TeX
+1060859 0 -1 1565 -1 2506 873 0 1747 719 0 1 88 0 -1 -1 0 0 -1 -1 -1 -1 1 0 2506 -1  0 -1 0
+macros.tex
+TeX
+1060859 0 -1 59 -1 472 873 0 1747 719 0 1 312 187 -1 -1 0 0 -1 -1 -1 -1 1 0 472 -1  0 0 0
+:\cygwin\home\Genesis\Honours Thesis\DuBois-thesis.tex
+TeX:UNIX
+1159163 0 -1 2657 -1 2489 873 0 1747 719 0 1 272 1207 -1 -1 0 0 7 -1 -1 7 1 0 2489 -1  0 -1 0
+startappendices.tex
+TeX:UNIX
+1159163 0 -1 0 -1 0 865 0 1730 702 0 1 40 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1  0 0 0
+:\cygwin\home\Genesis\Bishop-thesis\startappendices.tex
+TeX:UNIX
+1159163 0 -1 0 -1 0 865 0 1730 702 0 1 40 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1  0 0 0
+:\cygwin\home\Genesis\Bishop-thesis\title.tex
+TeX:UNIX
+1159163 0 -1 0 -1 573 865 0 1730 702 0 1 384 187 -1 -1 0 0 -1 -1 -1 -1 1 0 573 -1  0 -1 0
+title.tex
+TeX
+1060859 0 -1 662 -1 426 865 0 1730 702 0 1 328 255 -1 -1 0 0 -1 -1 -1 -1 1 0 426 -1  0 -1 0
+:\cygwin\home\Genesis\Honours Thesis\title.tex
+TeX:UNIX
+1159163 1 -1 273 -1 1071 865 0 1730 702 0 1 176 544 -1 -1 0 0 -1 -1 -1 -1 1 0 1071 -1  0 -1 0
+introduction.tex
+TeX
+1060859 8 -1 24 -1 0 865 0 1730 702 0 1 40 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1  0 -1 0
+thesis.bbl
+TeX:AUX
+1060850 0 12 859 12 1 873 0 1747 719 0 0 24 204 -1 -1 0 0 -1 -1 -1 -1 1 0 1 12  0 0 0
+thesis.aux
+TeX:AUX
+269496306 0 70 36 43 116 225 225 1747 719 0 0 944 731 -1 -1 0 0 -1 -1 -1 -1 1 0 116 43  0 0 0
+:\cygwin\home\Genesis\Honours Thesis\macros.tex
+TeX
+1060859 0 -1 0 -1 935 0 0 874 719 0 1 224 -1750 -1 -1 0 0 -1 -1 -1 -1 1 0 935 -1  0 -1 0
+:\cygwin\home\Genesis\Honours Thesis\publicationlist.tex
+TeX
+1060859 0 -1 94 -1 191 0 0 874 719 0 1 168 85 -1 -1 0 0 -1 -1 -1 -1 1 0 191 -1  0 -1 0
+summary.tex
+TeX
+1060859 0 -1 0 -1 17 958 0 1916 719 0 1 176 0 -1 -1 0 0 -1 -1 -1 -1 1 0 17 -1  0 -1 0
+acknowledge.tex
+TeX
+1060859 1 -1 9 -1 17 958 0 1916 719 0 1 176 0 -1 -1 0 0 -1 -1 -1 -1 1 0 17 -1  0 -1 0
+:\Program Files\WinEdt Team\WinEdt 8\Macros\LaTeXify\Install.edt
+ASCII:EDT
+269494138 0 0 1 0 1 25 25 1716 519 1 0 72 0 -1 -1 0 0 -1 -1 -1 -1 1 0 1 0  0 0 0
+:\Program Files\WinEdt Team\WinEdt 8\Macros\LaTeX3\Install.edt
+ASCII:EDT
+269494138 0 0 1 0 1 0 0 1641 610 1 0 72 0 -1 -1 0 0 -1 -1 -1 -1 1 0 1 0  0 0 0
+
+*thesis.tex
+>
+*preamble.tex
+>
+*draftfinal.tex
+*macros.tex
+<
+*title
+*declaration
+*acknowledge
+*publications
+*summary
+*introduction
+*levfulljour
+*timpapers
+*startappendices
+<

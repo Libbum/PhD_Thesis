@@ -1,0 +1,88 @@
+\input{preamble.tex}
+
+
+\begin{document}
+
+  \frontmatter
+    \ifdraft{}{%                     
+    \include{title}                  
+    \include{declaration}}   
+
+    \begin{singlespace}  %Double space is default at present. Check style guide though
+    \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
+    \tableofcontents     % must be first
+    %\listoffigures       % other lists must follow immediately from ToC
+    %\listoftables      % other lists must follow immediately if present
+    \microtypesetup{protrusion=true}
+    \end{singlespace}
+   
+    \include{acknowledge}
+    \include{publications}
+    \include{summary}
+
+  \mainmatter
+    \include{introduction}
+
+    \chapter{Junction Models}
+    123456789
+    \section{How a junction is built in experiment}
+    \section{DFT and MM theory}
+    \section{Model construction}
+    \subsection{Al slabs in DFT}
+    \subsection{Amorphous AlO$_{x}$ in MM}
+    \subsection{DFT MD and optimisation}
+    \section{Analysis of structures}
+    \subsection{Stoichiometry}
+    \subsection{Density}
+    \subsection{$G(r)$}
+    In section \cref{sec:2d}
+    \chapter{Microscopic TLS model}
+    \section{Concept and background}
+    \section{Potential configuration}
+    \chapter{Implementation and connection to experiment}\label{ch:impliementation}
+    \lofchap{Implementation}%
+    \thumb{Implementation}%
+    \section{2D model}\label{sec:2d}
+    \subsection{Methods of implementation}
+    We did some stuff here which you should find pleasing I hope DuBois \etal~\cite{DuBois2013} works.
+    \subsection{Defects as Perturbed Bond Angles in a Lattice (1D)}
+    \subsection{TLS Defect Confined in 2 Dimensions}
+    \subsection{TLS Defect Confined in 3 Dimensions}
+    \subsection{Charge Dipoles}
+    \subsection{Qubit Coupling}
+    \section{3D}
+    \subsection{Methods of implementation}
+    \subsection{Potential Landscape analysis}
+    \subsection{Comparative results with 2D model}
+    \chapter{Identification and statistics of modelled TLSs}
+    \section{Nearest neighbour and angle classification}
+    \subsection{A and B type defect identification in a lattice}
+    \section{Voronoi classification}
+    \subsection{sphereocylinder variable limitation scheme}
+    \chapter{Tunnelling model duality}
+    \section{STM and GTM background theory}
+    \section{Calculating duals from 2D model}
+    \section{Experiment comparison and transport ramifications}
+    \chapter{Strain response and phonon coupling}
+    \section{Configurational analysis, comparison with experiment}
+    \section{Strain gradient and phonon coupling}
+    \section{T$_1$ and T$_2$ analysis/descussion}
+    \chapter{Conclusions}
+
+    \bibliographystyle{utphysLSB}
+    \begin{singlespace} % bibliography need not be doublespaced
+    \newcommand{\maybebackrefprint}{ \backrefprint}
+    \renewcommand*{\bibpreamble}{\thumb{Bibliography}}%XXX this is nasty hack! (But so is fact that \thumb is needed anywhere...)
+    \bibliography{levfulljour,timpapers}
+    \end{singlespace}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% APPENDICES
+  \include{startappendices}
+    \chapter{Oxygen vacancy investigation}
+    \chapter{Source code}
+
+  \backmatter
+   
+
+\end{document}
