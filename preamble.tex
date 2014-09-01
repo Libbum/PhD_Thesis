@@ -12,7 +12,7 @@
 \usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage{xunicode} %Extra unicode options for xetex
-\usepackage{babel} 
+\usepackage{babel}
 \usepackage{eqparbox}
 \usepackage[rgb]{xcolor}
 %\usepackage[final]{graphicx}
@@ -66,8 +66,8 @@
 %\usepackage{csquotes}
 \usepackage{textcase}
 \usepackage{fancyhdr}
-\DeclareRobustCommand*{\sclspaced}[1]{\MakeTextLowercase{#1}} %Minion pro specific - fix when skolar
-\DeclareRobustCommand*{\scuspaced}[1]{\MakeTextUppercase{#1}}
+\DeclareRobustCommand*{\sclspaced}[1]{\addfontfeature{LetterSpace=20.0}{\MakeTextLowercase{#1}}} %Minion pro specific - fix when skolar
+\DeclareRobustCommand*{\scuspaced}[1]{\addfontfeature{LetterSpace=20.0}{\MakeTextUppercase{#1}}}
 \fancyhf{}
 \setlength{\unitlength}{22mm}
 \newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}
@@ -124,7 +124,7 @@
 \usepackage[final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
 
-%\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update 
+%\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update
 \let\oldphantomsection\phantomsection
 % Set up back references:
     \backrefparscanfalse
@@ -140,7 +140,7 @@
       \or\backrefcitedsinglestring{#2}%
       \else\backrefcitedmultistring{#2}%
       \fi}
-      
+
 \usepackage[english]{cleveref} % after hyperref
 \crefname{equation}{}{equations}
 \crefname{figure}{figure}{figures}
@@ -163,4 +163,4 @@
 \def\pagenumbering#1{\gdef\thepage{\csname @#1\endcsname \c@page}}
 \makeatother
 
-\input{macros.tex} % shared so that psfrag for figures can use it
+\input{macros.tex} % shared so that psfrag for figures can use it 

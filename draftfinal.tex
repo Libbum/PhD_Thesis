@@ -7,10 +7,10 @@
 \includeonly{ % comment out lines so as to speed up compilation when working on specific chapter(s):
     title,
 %    nomenclature,
-    declaration,
-    acknowledge,
+  %  declaration,
+ %   acknowledge,
     publications,
-    summary,
+ %   summary,
     introduction,
     startappendices,
 %    qmhist,
@@ -36,8 +36,8 @@
 
 \makeatletter
 \newcommand{\headfoot}{%
-    \fancyhead[L]{\leftmark}%
-    \fancyhead[R]{\thepage}%
+    \fancyhead[L]{\addfontfeature{Numbers=Lining}{\leftmark}}% Normal numbers
+    \fancyhead[R]{\addfontfeature{Numbers=Lining}{\thepage}}%
     \renewcommand{\headrulewidth}{0pt} % no lines
     \renewcommand{\chaptermark}[1]{\markboth {\scuspaced{\if@mainmatter\@chapapp\ \thechapter. \ \fi ##1}}{}}
     \renewcommand{\tocetcmark} [1]{\markboth {\scuspaced{##1}}{}}

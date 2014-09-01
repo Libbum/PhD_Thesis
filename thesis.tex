@@ -4,9 +4,9 @@
 \begin{document}
 
   \frontmatter
-    \ifdraft{}{%                     
-    \include{title}                  
-    \include{declaration}}   
+    \ifdraft{}{%
+    \include{title}
+    \include{declaration}}
 
     \begin{singlespace}  %Double space is default at present. Check style guide though
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
@@ -15,7 +15,7 @@
     %\listoftables      % other lists must follow immediately if present
     \microtypesetup{protrusion=true}
     \end{singlespace}
-   
+
     \include{acknowledge}
     \include{publications}
     \include{summary}
@@ -35,7 +35,7 @@
     \subsection{Stoichiometry}
     \subsection{Density}
     \subsection{$G(r)$}
-    In section \cref{sec:2d}
+    In \cref{sec:2d}
     \chapter{Microscopic TLS model}
     \section{Concept and background}
     \section{Potential configuration}
@@ -69,11 +69,11 @@
     \section{T$_1$ and T$_2$ analysis/descussion}
     \chapter{Conclusions}
 
-    \bibliographystyle{utphysLSB}
+    \bibliographystyle{utphys}
     \begin{singlespace} % bibliography need not be doublespaced
     \newcommand{\maybebackrefprint}{ \backrefprint}
     \renewcommand*{\bibpreamble}{\thumb{Bibliography}}%XXX this is nasty hack! (But so is fact that \thumb is needed anywhere...)
-    \bibliography{levfulljour,timpapers}
+    \bibliography{../library}
     \end{singlespace}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,6 +83,6 @@
     \chapter{Source code}
 
   \backmatter
-   
+
 
 \end{document}
