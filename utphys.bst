@@ -331,11 +331,11 @@ FUNCTION {format.lab.names}
   s #1 "{vv~}{ll}" format.name$
   s num.names$ duplicate$
   #2 >
-    { pop$ " et~al." * }
+    { pop$ " {\em et~al.}" * }
     { #2 <
         'skip$
         { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-            { " et~al." * }
+            { " {\em et~al.}" * }
             { " and " * s #2 "{vv~}{ll}" format.name$ * }
           if$
         }
@@ -436,7 +436,7 @@ FUNCTION {format.editors}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { "``" title "t" change.case$ * ",''" * }
+    { "``" title "t" change.case$ * "''," * } %TCD - remove American convention
   if$
 }
 
