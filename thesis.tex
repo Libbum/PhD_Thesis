@@ -23,22 +23,8 @@
   \mainmatter
     \include{introduction}
 
-    \chapter{Junction Models}
-    123456789
-    \section{How a junction is built in experiment}
-    \section{DFT and MM theory}
-    \section{Model construction}
-    \subsection{Al slabs in DFT}
-    \subsection{Amorphous AlO$_{x}$ in MM}
-    \subsection{DFT MD and optimisation}
-    \section{Analysis of structures}
-    \subsection{Stoichiometry}
-    \subsection{Density}
-    \subsection{$G(r)$}
-    In \cref{sec:2d}
-    \chapter{Microscopic TLS model}
-    \section{Concept and background}
-    \section{Potential configuration}
+    \include{junctions}
+    \include{tlsmodel}
     \chapter{Implementation and connection to experiment}\label{ch:impliementation}
     \lofchap{Implementation}%
     \thumb{Implementation}%
@@ -53,6 +39,7 @@
     \section{3D}
     \subsection{Methods of implementation}
     \subsection{Potential Landscape analysis}
+    \subsubsection{Cluster analysis on a known grid}
     \subsection{Comparative results with 2D model}
     \chapter{Identification and statistics of modelled TLSs}
     \section{Nearest neighbour and angle classification}

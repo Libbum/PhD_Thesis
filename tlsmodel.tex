@@ -1,0 +1,83 @@
+\chapter{Microscopic TLS model}
+\section{Concept and background}
+\section{Potential configuration}
+
+\section{Finite Grid}
+
+This all comes from \cite{Mathews2004} essentially.
+
+\subsection{Derivation}
+
+Later, for now - here it is: Centered formula of $\mathcal{O}(h^{6})$.
+\begin{equation}
+f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
+\end{equation}
+
+\subsection{Error Analysis}
+The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically. An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
+
+A quantum harmonic oscillator takes the form
+
+\begin{equation}
+\hat{H} = \frac{\hat{p}^2}{2m}+\frac{1}{2}mw^2\hat{x}^2
+\end{equation}
+
+where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator. Two operators, $\hat{x} = x$ for position and $\hat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete system 
+ 
+\begin{equation}
+\hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}mw^2x^2.
+\end{equation}
+
+...
+
+We differentiate to the 8th order
+
+\begin{equation}
+\Psi_0^{(8)}(x) = \left(\frac{1}{\pi}\right)^{\frac{1}{4}}\left(x^8-28x^6+210x^4-420x^2+105\right)e^{-\frac{x^2}{2}}
+\label{eq:7pt}
+\end{equation}
+
+To find $M$ we know that
+\begin{equation}
+ \left|\Psi_0^{(8)}(x)\right| \leq M
+\end{equation}
+so
+\begin{equation}
+M = \mathrm{max}\left(\left|\Psi_0^{(8)}(x)\right|, \quad -4.5 \leq x \leq 4.5\right) = 78.8682
+\end{equation}
+for our purposes.
+
+
+Now, take \cref{eq:7pt} and do something (figure this out later)?
+
+\begin{equation}
+180f^{\prime\prime}(x)h^2+\frac{9}{28}f^{(8)}(x)h^8
+\end{equation}
+\begin{equation}
+  f^{\prime\prime}(x)=-\frac{f^{(8)}(x)h^6}{560}
+\end{equation}
+
+Thus
+\begin{equation}
+  E(f,h) = \frac{1088\epsilon}{180h^2}-\frac{f^{(8)}(\epsilon)h^6}{560}
+\end{equation}
+where the left term is the round off error and the right term is the truncation error and the equation to minimise is
+\begin{equation}
+  \left|E(f,h)\right| \leq \frac{27^2\epsilon}{45h^2}-\frac{Mh^6}{560}
+\end{equation}
+therefore (if $g(x) = 0$)
+\begin{equation}
+  \frac{27^2\epsilon}{45h^2}=\frac{Mh^6}{560}
+\end{equation}
+simplifying to $152320\epsilon = 45Mh^8$ and solving for $h$ we find
+\begin{equation}
+  h = \left(\frac{30464\epsilon}{9M}\right)^{1/8} \approx 0.1100149
+\end{equation}
+if $\epsilon = 0.5\;\times\;10^{-9}$ and $M = 78.8682$.
+
+So our optimal step size is $0.1$.
+
+What's actually more useful for us is to know the precision of 7pt central difference with the current step size, so
+\begin{equation}
+\epsilon = \frac{\left(9*78.8682*h^8\right)}{30464} = 2.33\;\times\;10^{-10}
+\end{equation}

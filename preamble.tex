@@ -1,16 +1,23 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
 \documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
 \usepackage{ifdraft}
-\usepackage{fontspec} %There are options I'll need for ligatures etc.. Read the doc.
+
+\usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
+\let\equation\gather \let\endequation\endgather
+\usepackage{amssymb} 
+
+\usepackage{mathspec}
+%\usepackage{fontspec} %There are options I'll need for ligatures etc.. Read the doc.
 \setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \setsansfont{Helvetica LT Std}
 \setmonofont{PragmataPro}
-\defaultfontfeatures{ Scale = MatchLowercase }
+%\defaultfontfeatures{ Scale = MatchLowercase }
+
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 
 \usepackage{ragged2e}  % load early, so things pick it up. [newcommands] to replace old ver
-\usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
-\let\equation\gather \let\endequation\endgather
+
 \usepackage{xunicode} %Extra unicode options for xetex
 \usepackage{babel}
 \usepackage{eqparbox}
