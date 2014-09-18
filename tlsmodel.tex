@@ -12,14 +12,79 @@
 \section{Finite Grid}
 The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically. Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment via a finite difference method. 
 
-Finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations. If the ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$.
+Finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations. If the ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$, which takes the form
+
+\begin{equation}
+f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},
+\end{equation}
+where $h$ is some step size. For an overview of these algorithms, see \onlinecite{Mathews2004}.
   
-For a general discussion of these methods, see \onlinecite{Mathews2004} and \onlinecite{Holoborodko2009}. Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire. A higher order treatment was required.
+Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire. A higher order treatment was required.
 
 \subsection{Derivation}
-Following the discussion in \onlinecite{Holoborodko2009}, to calculate the numerical derivative of the function $f(x)$ one can approximate the local region about any point $x^*$ by an appropriate polynomial $P_m(x)$. Derivatives of the polynomial are assumed to be equal to the derivative of the original function: $f'(x^*)\approx P'_m(x^*)$ and $f''(x^*)\approx P''_m(x^*)$ \etc
+Following the discussion in \onlinecite{Holoborodko2009}: to calculate the numerical derivative of the function $f(x)$ one can approximate the local region about any point $x^*$ by an appropriate polynomial $P_m(x)$. Derivatives of the polynomial are assumed to be equal to the derivative of the original function: $f\,'(x^*)\approx P\,'_m(x^*)$ and $f\,''(x^*)\approx P\,''_m(x^*)$ \etc
 
+Sampling $f(x)$ at $N$ abscissas (where $N$ is odd) equidistant from $x^*$ such that 
 
+\begin{equation}
+f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathds{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
+\end{equation}
+
+and interpolating points $\{(x_k,f_k)\}$ by a polynomial of degree $N-1$
+\begin{equation}
+P_{N-1}(x)=\sum_{j=0}^{N-1} a_j x^j,
+\end{equation}
+
+a solution can be found by obtaining the set of coefficients $\{a_j\}$ for the system of linear equations
+\begin{equation}
+\left\{P_{N-1}(x_k)=f_x\right\}.
+\label{eq:ploylinset}
+\end{equation}
+
+For reasons outlined \emph{vide infra} in \cref{sec:cdifferr}, a centered formula of order $\mathcal{O}(h^6)$ is needed to obtain the error tolerance required to solve \cref{eq:OHam}, thus a $N=7$ point calculation. 
+
+The interpolating parabola \cref{eq:ploylinset} are
+
+\begin{align}
+&\begin{cases}
+    P_7(-3h) &= \quad f_{-3}\\
+    P_7(-2h) &= \quad f_{-2}\\
+    P_7(-h) &= \quad f_{-1}\\
+    P_7(0) &= \quad f_{0}\\
+    P_7(h) &= \quad f_{1}\\
+    P_7(2h) &= \quad f_{2}\\
+    P_7(3h) &= \quad f_{3}
+  \end{cases} \nonumber \displaybreak[0]\\[0.2cm]
+  \Rrightarrow
+  &\begin{cases}
+    a_0 - 3a_1h + 9a_2h^3 - 27a_3h^3 + 81a_4h^4 - 243a_5h^5 + 729a_6h^6 &= f_{-3}\\
+    a_0 - 2a_1h + 4a_2h^2 - 8a_3h^3 + 16a_4h^4 - 32a_5h^5 + 64a_6h^6 &= f_{-2}\\
+    a_0 - a_1h + a_2h^2 - a_3h^3 + a_4h^4 - a_5h^5 + a_6h^6 &= f_{-1}\\
+    a_0 &= f_{0}\\
+    a_0 + a_1h + a_2h^2 + a_3h^3 + a_4h^4 + a_5h^5 + a_6h^6 &= f_{1}\\
+    a_0 + 2a_1h + 4a_2h^2 + 8a_3h^3 + 16a_4h^4 + 32a_5h^5 + 64a_6h^6 &= f_{2}\\
+    a_0 + 3a_1h + 9a_2h^3 + 27a_3h^3 + 81a_4h^4 + 243a_5h^5 + 729a_6h^6 &= f_{3}
+  \end{cases}
+\end{align}
+
+Solving this set of simultaneous equations for $\{a_j\}$ yields
+\begin{equation}
+\begin{cases}
+a_0 &= f_{0}\\[0.3cm]
+a_1 &= \dfrac{-f_{-3}+9f_{-2}-45f_{-1}+45f_{1}-9f_{2}+f_{3}}{12h}\\[0.3cm]
+a_2 &= \dfrac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{360h^2}\\[0.3cm]
+&\vdots
+\end{cases}
+\end{equation}
+
+Assuming $x^* = 0$ for simplicity, it's clear that $f\,'(0) \approx P\,'_7(0) = a_1$ and therefore
+
+\begin{equation}
+\begin{split}
+f\,''(0)&\approx P\,''_7(0)=2a_2\\
+&=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6}).
+\end{split}
+\end{equation}
 
 Higher order central difference is given by
 
@@ -29,12 +94,12 @@ Higher order central difference is given by
 
 Later, for now - here it is: Centered formula of $\mathcal{O}(h^{6})$.
 \begin{equation}
-f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
+f\,''(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
 \end{equation}
 
 where $f_k = f(x_0 + kh)$.
 
-\subsection{Error Analysis}
+\subsection{Error Analysis}\label{sec:cdifferr}
 An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
 
 The hamiltonian of particle in a one dimensional quantum harmonic oscillator is
