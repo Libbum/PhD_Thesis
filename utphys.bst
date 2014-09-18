@@ -399,7 +399,11 @@ FUNCTION {format.eprint}
 FUNCTION {format.url}
 { url empty$
     { "" }
-    {"\url{" url * "}" *}
+    { doi empty$  %TCD - if there's a DOI we don't want the URL
+        {"\url{" url * "}" *}
+        { "" }
+        if$
+    }
   if$
 }
 

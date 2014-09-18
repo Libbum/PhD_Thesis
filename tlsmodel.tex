@@ -4,28 +4,35 @@
 
 \section{Finite Grid}
 
-This all comes from \cite{Mathews2004} essentially.
+This all comes from \cite{Mathews2004} and \cite{Holoborodko2009} essentially.
 
 \subsection{Derivation}
+Higher order central difference is given by 
+
+\begin{equation}
+\delta^n_h[f](x) = \sum_{i = 0}^{n} (-1)^i \binom{n}{i} f\left(x + \left(\frac{n}{2} - i\right) h\right)
+\end{equation}
 
 Later, for now - here it is: Centered formula of $\mathcal{O}(h^{6})$.
 \begin{equation}
 f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
 \end{equation}
 
+where $f_k = f(x_0 + kh)$.
+
 \subsection{Error Analysis}
 The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically. An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
 
-A quantum harmonic oscillator takes the form
+The hamiltonian of particle in a one dimensional quantum harmonic oscillator is
 
 \begin{equation}
-\hat{H} = \frac{\hat{p}^2}{2m}+\frac{1}{2}mw^2\hat{x}^2
+\widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}mw^2\widehat{x}^2
 \end{equation}
 
-where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator. Two operators, $\hat{x} = x$ for position and $\hat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete system 
+where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator. Two operators, $\widehat{x} = x$ for position and $\widehat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete Schr\"{o}dinger equation, which (after separation of variables) takes its time independent form:
  
 \begin{equation}
-\hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}mw^2x^2.
+-\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}mw^2x^2 \Psi = E\Psi.
 \end{equation}
 
 ...
