@@ -62,11 +62,15 @@
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
 \usepackage{sectsty} % load before fncychap
-\sectionfont{\fontfamily{phv}\fontseries{m}\fontsize{15}{17}\selectfont}
-\subsectionfont{\fontfamily{phv}\fontseries{m}\fontsize{13}{15}\selectfont}
-\usepackage[Sonny]{fncychap} % only Sonny works?
-    \ChNameVar{\Large\fontfamily{phv}\selectfont}
-    \ChTitleVar{\Large\fontfamily{phv}\selectfont}
+\sectionfont{\fontspec{Helvetica LT Std}\fontsize{15}{17}\selectfont}
+\subsectionfont{\fontspec{Helvetica LT Std}\fontsize{13}{15}\selectfont}
+%\sectionfont{\fontfamily{phv}\fontseries{m}\fontsize{15}{17}\selectfont}
+%\subsectionfont{\fontfamily{phv}\fontseries{m}\fontsize{13}{15}\selectfont}
+\usepackage[Sonny]{fncychap} % TODO: Change this
+    \ChNameVar{\Large\fontspec{Helvetica LT Std}\selectfont}
+    \ChTitleVar{\Large\fontspec{Helvetica LT Std}\selectfont}
+    %\ChNameVar{\Large\fontfamily{phv}\selectfont}
+    %\ChTitleVar{\Large\fontfamily{phv}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
 \usepackage[font={small},labelfont={bf},margin=15pt]{caption} % load after babel. also replaces hypcap.
 \usepackage{threeparttable}
@@ -74,8 +78,7 @@
 %\usepackage{csquotes}
 \usepackage{textcase}
 \usepackage{fancyhdr}
-\DeclareRobustCommand*{\sclspaced}[1]{\addfontfeature{LetterSpace=20.0}{\MakeTextLowercase{#1}}} %Minion pro specific - fix when skolar
-\DeclareRobustCommand*{\scuspaced}[1]{\addfontfeature{LetterSpace=20.0}{\MakeTextUppercase{#1}}}
+\DeclareRobustCommand*{\sclspaced}[1]{\addfontfeature{LetterSpace=20.0,Numbers=Lining}{\MakeTextLowercase{#1}}} \DeclareRobustCommand*{\scuspaced}[1]{\addfontfeature{LetterSpace=20.0,Letters= SmallCaps,Numbers=Lining}{#1}}
 \fancyhf{}
 \setlength{\unitlength}{22mm}
 \newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}

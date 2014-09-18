@@ -2,12 +2,26 @@
 \section{Concept and background}
 \section{Potential configuration}
 
-\section{Finite Grid}
 
-This all comes from \cite{Mathews2004} and \cite{Holoborodko2009} essentially.
+\begin{equation}
+    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r})
+    \label{eq:OHam}
+\end{equation}
+
+
+\section{Finite Grid}
+The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically. Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment via a finite difference method. 
+
+Finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations. If the ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$.
+  
+For a general discussion of these methods, see \onlinecite{Mathews2004} and \onlinecite{Holoborodko2009}. Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire. A higher order treatment was required.
 
 \subsection{Derivation}
-Higher order central difference is given by 
+Following the discussion in \onlinecite{Holoborodko2009}, to calculate the numerical derivative of the function $f(x)$ one can approximate the local region about any point $x^*$ by an appropriate polynomial $P_m(x)$. Derivatives of the polynomial are assumed to be equal to the derivative of the original function: $f'(x^*)\approx P'_m(x^*)$ and $f''(x^*)\approx P''_m(x^*)$ \etc
+
+
+
+Higher order central difference is given by
 
 \begin{equation}
 \delta^n_h[f](x) = \sum_{i = 0}^{n} (-1)^i \binom{n}{i} f\left(x + \left(\frac{n}{2} - i\right) h\right)
@@ -21,7 +35,7 @@ f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}
 where $f_k = f(x_0 + kh)$.
 
 \subsection{Error Analysis}
-The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically. An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
+An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
 
 The hamiltonian of particle in a one dimensional quantum harmonic oscillator is
 
@@ -30,7 +44,7 @@ The hamiltonian of particle in a one dimensional quantum harmonic oscillator is
 \end{equation}
 
 where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator. Two operators, $\widehat{x} = x$ for position and $\widehat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete Schr\"{o}dinger equation, which (after separation of variables) takes its time independent form:
- 
+
 \begin{equation}
 -\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}mw^2x^2 \Psi = E\Psi.
 \end{equation}
