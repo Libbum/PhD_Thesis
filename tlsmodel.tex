@@ -69,12 +69,12 @@ The interpolating parabola \cref{eq:ploylinset} are
 
 Solving this set of simultaneous equations for $\{a_j\}$ yields
 \begin{equation}
-\begin{cases}
-a_0 &= f_{0}\\[0.3cm]
-a_1 &= \dfrac{-f_{-3}+9f_{-2}-45f_{-1}+45f_{1}-9f_{2}+f_{3}}{12h}\\[0.3cm]
-a_2 &= \dfrac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{360h^2}\\[0.3cm]
+\begin{dcases}
+a_0 &= f_{0}\\
+a_1 &= \frac{-f_{-3}+9f_{-2}-45f_{-1}+45f_{1}-9f_{2}+f_{3}}{12h}\\
+a_2 &= \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{360h^2}\\
 &\vdots
-\end{cases}
+\end{dcases}
 \end{equation}
 
 Assuming $x^* = 0$ for simplicity, it's clear that $f\,'(0) \approx P\,'_7(0) = a_1$ and therefore
@@ -82,22 +82,50 @@ Assuming $x^* = 0$ for simplicity, it's clear that $f\,'(0) \approx P\,'_7(0) = 
 \begin{equation}
 \begin{split}
 f\,''(0)&\approx P\,''_7(0)=2a_2\\
-&=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6}).
+&=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+E_{trunc}(f,h).
+\label{eq:cdiffe}
 \end{split}
 \end{equation}
 
-Higher order central difference is given by
+The truncation error $E_{trunc}(f,h)$ is a consequence of pruning the interpolating parabola to the $(N-1)th$ degree. The above method, whilst concise and practical for obtaining the $N$ point central formula, is not the entire picture and does not contain the necessary framework to derive the truncation error. An alternative, more general approach is to start with Taylor expansions about $x$ for $f(x_k)$~\cite{Mathews2004}. For second derivative solutions, $N+1$ degree expansions are required.
+
+{\mathindent=0.2cm
+\begin{align}
+f(x+h) = f(x)&+f\,'(x)h+\frac{f\,^{''}(x)h^2}{2!}+\frac{f\,^{(3)}(x)h^3}{3!}+\frac{f\,^{(4)}(x)h^4}{4!}+\frac{f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{f\,^{(6)}(x)h^6}{6!}+\frac{f\,^{(7)}(x)h^7}{7!}+\frac{f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+f(x-h) = f(x)&-f\,'(x)h+\frac{f\,^{''}(x)h^2}{2!}-\frac{f\,^{(3)}(x)h^3}{3!}+\frac{f\,^{(4)}(x)h^4}{4!}-\frac{f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{f\,^{(6)}(x)h^6}{6!}-\frac{f\,^{(7)}(x)h^7}{7!}+\frac{f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+f(x+2h) = f(x)&+2f\,'(x)h+\frac{4f\,^{''}(x)h^2}{2!}+\frac{8f\,^{(3)}(x)h^3}{3!}+\frac{16f\,^{(4)}(x)h^4}{4!}+\frac{32f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{64f\,^{(6)}(x)h^6}{6!}+\frac{128f\,^{(7)}(x)h^7}{7!}+\frac{256f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+f(x-2h) = f(x)&-2f\,'(x)h+\frac{4f\,^{''}(x)h^2}{2!}-\frac{8f\,^{(3)}(x)h^3}{3!}+\frac{16f\,^{(4)}(x)h^4}{4!}-\frac{32f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{64f\,^{(6)}(x)h^6}{6!}-\frac{128f\,^{(7)}(x)h^7}{7!}+\frac{256f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+f(x+3h) = f(x)&+3f\,'(x)h+\frac{9f\,^{''}(x)h^2}{2!}+\frac{27f\,^{(3)}(x)h^3}{3!}+\frac{81f\,^{(4)}(x)h^4}{4!}+\frac{243f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{729f\,^{(6)}(x)h^6}{6!}+\frac{2187f\,^{(7)}(x)h^7}{7!}+\frac{6561f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+f(x-3h) = f(x)&-3f\,'(x)h+\frac{9f\,^{''}(x)h^2}{2!}-\frac{27f\,^{(3)}(x)h^3}{3!}+\frac{81f\,^{(4)}(x)h^4}{4!}-\frac{243f\,^{(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{729f\,^{(6)}(x)h^6}{6!}-\frac{2187f\,^{(7)}(x)h^7}{7!}+\frac{6561f\,^{(8)}(x)h^8}{8!}+\mathcal{O}(h^9)
+\end{align}
+}
+
+If $f \in C^N [a,b]$, then it follows that $\{x_k\} \in [a,b]$. Furthermore, $\exists c = c(x) \in [a,b]$ such that $E_{trunc}(f,h)$ in \cref{eq:cdiffe} can be defined as
 
 \begin{equation}
-\delta^n_h[f](x) = \sum_{i = 0}^{n} (-1)^i \binom{n}{i} f\left(x + \left(\frac{n}{2} - i\right) h\right)
+E_{trunc}(f,h) = \frac{h^6f\,^{(6)}(c)}{num}=\mathcal{O}(h^{6}).
 \end{equation}
 
-Later, for now - here it is: Centered formula of $\mathcal{O}(h^{6})$.
-\begin{equation}
-f\,''(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
-\end{equation}
 
-where $f_k = f(x_0 + kh)$.
+%Not sure if I can be arsed looking into solving it this way too.
+%Higher order central difference is given by
+
+%\begin{equation}
+%\delta^n_h[f](x) = \sum_{i = 0}^{n} (-1)^i \binom{n}{i} f\left(x + \left(\frac{n}{2} - %i\right) h\right)
+%\end{equation}
+
+%Later, for now - here it is: Centered formula of $\mathcal{O}(h^{6})$.
+%\begin{equation}
+%f\,''(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
+%\end{equation}
+
+%where $f_k = f(x_0 + kh)$.
 
 \subsection{Error Analysis}\label{sec:cdifferr}
 An accurate error in computing value is unobtainable directly. However, in particular limits the potential behaves as a harmonic oscillator - which has a simple analytic solution and can serve as an analogue.
