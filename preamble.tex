@@ -22,13 +22,18 @@
 \usepackage{babel}
 \usepackage{eqparbox}
 \usepackage[rgb]{xcolor}
+\usepackage[mode=buildnew]{standalone} %-enable-write18 in pdflatex options
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\usetikzlibrary{shapes,arrows}
 %\usepackage[final]{graphicx}
 \usepackage{url}
 \urlstyle{rm} 
 \usepackage[sort&compress,mcite]{natbib}
 \usepackage{bibentry} % for permissions
 %choose cite formatting:
-%\renewcommand*{\citenumfont}[1]{\liningfigures{#1}} % oldstyle looks wrong to me in brackets.
+\renewcommand*{\citenumfont}[1]{\addfontfeature{Numbers=Lining}{#1}} % oldstyle looks wrong to me in brackets. TODO: This isn't fixing the issue
 \citestyle{plain}           % numbers in square brackets
 %\citestyle{nature}         % superscript.
 %choose a number formatting for the biblist:
@@ -122,6 +127,41 @@
     \addtocontents{lof}{\protect\addvspace{-10pt}}% Undo the unconditional 10pt skip from latex
     \addcontentsline{lof}{lofchapter}{\protect\numberline{\thechapter}#1}%
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% VERSIONING/CHANGE TRACKING
+\usepackage[shadow,obeyDraft,colorinlistoftodos,textsize=small]{todonotes}
+\usepackage{fixme}
+\newcommand*\timFXtodo[3]{\todo[caption={#2}]{\begin{singlespace}#2\end{singlespace}}}
+\FXRegisterLayout*[marginclue,marginnote,margin]{todo}{\timFXtodo}
+\fxsetup{todo}
+%\newcommand{\FXUser}[2]{\todo[caption={#2}]{\begin{singlespace}#2\end{singlespace}}}
+\newcommand*{\xxx}[1]{\fxnote{#1}}
+\newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
+% svn-multi tracks revs of all the files (even graphics files), makes a nice table. (Set the 'svn:keywords' property on files to include 'Id')
+%I don't have the energy to make it work for the preamble, bibliography, figures, etc
+% \usepackage[subgroups,table]{svn-multi} % [autokw] doesn't work for me :-(
+% \svnid{$Id: preamble.tex 474 2010-07-23 01:07:53Z lsb $}%
+% \usepackage[iso]{datetime}\let\thistime=\currenttime
+% \usepackage[time]{prelim2e} % uses draft/final. Puts date footer. Time also with [scrtime], now broken...
+% \renewcommand*{\PrelimWords}{Preliminary version -- svn: r\svnrev}
+% Must be after natbib.
+\ifdraft{%
+%\usepackage{ocg}
+%\newcommand*{\showkeyslabelformat}[1]{%
+%    \begin{ocg}{labels}{lab}{1}\fbox{\normalfont\small\ttfamily#1}\end{ocg}}
+\usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
+\makeatletter
+\def\SK@@ref#1>#2\SK@{%
+    \leavevmode\vbox to\z@{%
+        \begin{ocg}{references}{refs}{0}%
+        \vss
+        \SK@refcolor
+        \rlap{\vrule\raise .75em%
+            \hbox{\underbar{\normalfont\footnotesize\ttfamily#2}}}%
+        \end{ocg}}}%
+\makeatother
+}{} % ifdraft
 
 %%%%%%%%%%%%%%%%%%%%%%
 %% MICROTYPOGRAPHY
