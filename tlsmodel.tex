@@ -94,7 +94,7 @@ f\,''(0)&\approx P\,''_7(0)=2a_2\\
 
 \subsection{Truncation Error}\label{sec:truncerr}
 
-The truncation error $\cramped{E_{trunc}(f,h)}$ is a consequence of curtailing the interpolating parabola to the $(N-1)th$ degree. The above method, whilst concise and practical for obtaining the $N$ point central formula, is not the entire picture and does not contain the necessary framework to derive the truncation error. An alternative, more general approach is to start with Taylor expansions about $x$ for $f(x_k)$~\cite{Mathews2004}. For second derivative solutions, $N+1$ degree expansions are required in the form $f(x) = P_7(x)+E_7(x)$.
+The truncation error $\cramped{E_{trunc}(f,h)}$ is a consequence of curtailing the interpolating parabola to the $(N-1)th$ degree. The above method, whilst concise and practical for obtaining the $N$ point central formula, is not the entire picture. An alternative, more general approach is to start with Taylor expansions about $x$ for $f(x_k)$~\cite{Mathews2004}. For second derivative solutions, $N+1$ degree expansions are required in the form $f(x) = P_7(x)+E_7(x)$.
 
 %{\mathindent=0.2cm
 \begin{align}
@@ -192,50 +192,40 @@ The hamiltonian of particle in a one dimensional quantum harmonic oscillator can
 where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator. Two operators, $\widehat{x} = x$ for position and $\widehat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete Schr\"{o}dinger equation, which (after separation of variables) takes its time independent form:
 
 \begin{equation}
--\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}mw^2x^2 \Psi = E\Psi.
+-\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}mw^2x^2 \Psi = E\Psi,
 \end{equation}
 
-...
+with the family of solutions for the wavefunctions
+\begin{equation}\psi_n(x) = \frac{1}{\sqrt{2^n\,n!}}\left(\frac{m\omega}{\pi \hbar}\right)^{1/4}e^{
+- \frac{m\omega x^2}{2 \hbar}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x \right),\qquad n = 0,1,2,\ldots\\
+H_n(x)=(-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right)
+\end{equation}
 
-We differentiate to the 8th order
+Selecting the ground state ($n=0$) and differentiating to the eighth degree and use a nondimesional unit scheme such that energy is in units of $\cramped{E=\hbar\omega}$ and distance in units of $\cramped{x=\sqrt{\hbar/(m\omega)}}$
 
 \begin{equation}
 \Psi_0^{(8)}(x) = \left(\frac{1}{\pi}\right)^{\frac{1}{4}}\left(x^8-28x^6+210x^4-420x^2+105\right)e^{-\frac{x^2}{2}}
-\label{eq:7pt}
+\label{eq:wfndimless}
 \end{equation}
 
-To find $M$ we know that
-\begin{equation}
- \left|\Psi_0^{(8)}(x)\right| \leq M
-\end{equation}
-so
-\begin{equation}
-M = \mathrm{max}\left(\left|\Psi_0^{(8)}(x)\right|, \quad -4.5 \leq x \leq 4.5\right) = 78.8682
-\end{equation}
-for our purposes.
-
-
-Now, take \cref{eq:7pt} and do something (figure this out later)?
+A value of $x$ with any unit can be given to \cref{eq:wfndimless} and the result will be mapped to an appropriate corresponding unit. Using $\Lambda$\xxx{section discussing $\Lambda$} and a grid range of $4.5 \; \AA$ can be applied to find a maximum value for the truncation bound
 
 \begin{equation}
-180f^{\prime\prime}(x)h^2+\frac{9}{28}f^{(8)}(x)h^8
+M = \mathrm{max}_{[-4.5,4.5]}\left(\abs{\Psi_0^{(8)}(x)}\right) = 78.8682,
 \end{equation}
-\begin{equation}
-  f^{\prime\prime}(x)=-\frac{f^{(8)}(x)h^6}{560}
-\end{equation}
+with an associated energy of $E = 1/2 \; \mu eV$.
+\xxx{This isn't correct. Need to convert out to real units properly}
+\begin{figure}[htp]
+\centering
+\resizebox{0.5\columnwidth}{!}{\includestandalone{figures/f8c}}
+\caption{\label{fig:mexhatproj}$\Psi_0^{(8)}(x)$ \cref{eq:wfndimless} over the range $[-4.5,4.5]$.}
+\end{figure}
 
-Thus
-\begin{equation}
-  E(f,h) = \frac{1088\epsilon}{180h^2}-\frac{f^{(8)}(\epsilon)h^6}{560}
-\end{equation}
-where the left term is the round off error and the right term is the truncation error and the equation to minimise is
-\begin{equation}
-  \left|E(f,h)\right| \leq \frac{272\epsilon}{45h^2}-\frac{Mh^6}{560}
-\end{equation}
-therefore (if $g(x) = 0$)
-\begin{equation}
-  \frac{27^2\epsilon}{45h^2}=\frac{Mh^6}{560}
-\end{equation}
+\xxx{Assuming the above is correct, below follows.}
+
+
+...
+
 simplifying to $152320\epsilon = 45Mh^8$ and solving for $h$ we find
 \begin{equation}
   h = \left(\frac{30464\epsilon}{9M}\right)^{1/8} \approx 0.1100149

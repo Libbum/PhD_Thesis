@@ -2,7 +2,7 @@
 \documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
 \usepackage{ifdraft}
 
-\usepackage{mathtools}    % amsmath equation env has funny spacing with hyperref :-( so...
+\usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage{amssymb} 
 \usepackage{dsfont}
@@ -14,8 +14,8 @@
 \setmonofont{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
 
-\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
-
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro} %TODO: Can't get Angstrom symbol atm.
+\setmathrm{Minion Pro}
 \usepackage{ragged2e}  % load early, so things pick it up. [newcommands] to replace old ver
 
 \usepackage{xunicode} %Extra unicode options for xetex
