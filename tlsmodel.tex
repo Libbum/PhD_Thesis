@@ -264,7 +264,7 @@ As discussed in \xxx{section discussing $\Lambda$ and GR}, an appropriate grid r
 Using the above conversion, an appropriate range for the truncation bound can now be found.
 
 \begin{align}
--a &= b = \frac{\sqrt{\hbar}}{\sqrt[4]{m_{oxy}}}\cdot 4.5\!\times\!10^{-10} = 11.45\\
+-a &= b = \frac{\sqrt{\hbar}}{\sqrt[4]{m_{oxy}}}\cdot 4.5\ten{-10} = 11.45\\
 \therefore M &= \mathrm{max}_{[-11.45,11.45]}\left(\abs{\Psi_0^{(8)}(x)}\right) = 78.87
 \end{align}
 
@@ -272,17 +272,13 @@ The final requirement for \cref{eq:stepgen} is an acceptable error magnitude $\e
 
 ...
 
-if $1$ Hz converted to μeV is acceptable  $\epsilon = 4.14\!\times\!10^{-9}$
+if $1$ Hz converted to μeV is acceptable  $\epsilon = 4.14\ten{-9}$
 \begin{equation}
-h = \left(\frac{30464\cdot4.14\!\times\!10^{-9}}{27\cdot78.87}\right)^{1/8}=0.13 \approx 0.1\label{eq:stepopti}
+h = \left(\frac{30464\cdot4.14\ten{-9}}{27\cdot78.87}\right)^{1/8}=0.13 \approx 0.1\label{eq:stepopti}
 \end{equation}
 (although we publish $1$ kHz, as we wish to be well above this actual limit).
 
-\begin{figure}[htp]
-\centering
-\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmapprox}}
-\caption{\label{fig:harmapprox}SM vs Harmonic}
-\end{figure}
+
 
 
 .... (New stuff to put in)....
@@ -294,4 +290,23 @@ V(x) &= \frac{1}{2}m\omega^2\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\\
      &= \frac{1}{2}k\hat{x}^2
 \end{align}
 
-can be connected to the Streitz Mintmire potential through the relationship $V(x_{max})=V_{SM}(x_{max})$, where at a maximum distance $x_{max}$, the harmonic potential . 
+can be connected to the Streitz Mintmire potential through the relationship $V(x_{max})=V_{SM}(x_{max})$, where at a maximum distance $x_{max}$, the harmonic potential is equivalent to Streitz Mintmire. As discussed in \xxx{Section on $\Lambda$}, $V_{SM}$ is measured in [μeV] with $x$ in [Å], whereas $V$ is measured in [J] against [m]. Unit transformations will therefore need to be carried through this derivation.
+
+\begin{equation}
+V_{SM}(x_{max})\cdot10^6\cdot1.602\ten{-19} = \frac{1}{2}k\left(x_{max}\cdot10^{-10}\right)^2\\
+\therefore k = \frac{2\!\times\!10^6\cdot1.602\ten{-19}}{10^{-20}}\frac{V_{SM}(x_{max})}{x_{max}^2}.
+\end{equation}
+
+Taking a slice of potential space for an arbitrary cluster configuration, $V_{SM}$ is calculated at a maximum value of $x$
+
+\begin{equation}
+\frac{V_{SM}(x_{max})}{x_{max}^2} = \frac{3.696\ten{7}}{1.5^2} = 1.643\ten{7} \left[\frac{\text{μeV}}{\text{Å}^2}\right]
+\end{equation}
+
+
+\begin{figure}[htp]
+\centering
+\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmapprox}}
+\caption{\label{fig:harmapprox}SM vs Harmonic}
+\end{figure}
+
