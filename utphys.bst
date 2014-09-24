@@ -1082,8 +1082,7 @@ FUNCTION {misc}
       if$
       blank.sep
     }
-  if$
-  howpublished capitalize output
+  if$ %howpublished capitalize output %TCD - Assume URL
   format.date output
   new.block
   format.url output
