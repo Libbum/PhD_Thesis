@@ -136,7 +136,7 @@
 %\newcommand{\FXUser}[2]{\todo[caption={#2}]{\begin{singlespace}#2\end{singlespace}}}
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
-\usepackage[markifdraft]{gitinfo2} 
+\usepackage[markifdraft]{gitinfo2}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
 \renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\fontspec{Idealist Sans}{ \gitBranch\,@\,\gitAbbrevHash{}
 \textbullet{} (\gitAuthorDate)}}
@@ -167,8 +167,8 @@
 %% HYPERLINKS/PDF
 %% these packages must come last:
 
-%TODO: Find out where hyperref is throwing unicode errors (its not in the bib, maybe the bst?)
-\usepackage[xetex,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
+%Make sure titles use \texorpdfstring
+\usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
 
 %\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update
