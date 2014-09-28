@@ -142,7 +142,7 @@ If $f \in \mathds{C}^N [a,b]$, then it follows that $\{x_k\} \in [a,b]$.
 Furthermore, $\exists c = \{c_k\} \in [a,b]$ such that if $f^{(8)}(x)$ has one sign and its magnitude does not change rapidly, $c \in [x-3h,x+2h]$
 
 \begin{equation}
- 13824f\,^{(8)}(c_1)-26244f\,^{(8)}(c_3)-540f\,^{(8)}(c_1) = -12960f\,^{(8)}(c).\label{eq:ctrunc}
+ 13824f\,^{(8)}(c_2)-26244f\,^{(8)}(c_3)-540f\,^{(8)}(c_1) = -12960f\,^{(8)}(c).\label{eq:ctrunc}
 \end{equation}
 
 Equation \cref{eq:ctrunc} can now be substituted into \cref{eq:truncsim} and the result solved for $f\,''(x)$
@@ -203,14 +203,14 @@ However, the functional form does not differ from a harmonic oscillator far away
 The hamiltonian of particle in a one dimensional quantum harmonic oscillator can be described as
 
 \begin{equation}
-\widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}mw^2\widehat{x}^2\label{eq:hamho}
+\widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}m\omega^2\widehat{x}^2\label{eq:hamho}
 \end{equation}
 
 where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator.
 Two operators, $\widehat{x} = x$ for position and $\widehat{p} = -i\hbar \frac{\partial}{\partial x}$ for momentum describe the complete Schr\"{o}dinger equation, which (after separation of variables) takes its time independent form:
 
 \begin{equation}
--\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}mw^2x^2 \Psi = E\Psi,
+-\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}m\omega^2x^2 \Psi = E\Psi,
 \end{equation}
 
 with the family of solutions for the wavefunctions
@@ -219,15 +219,13 @@ with the family of solutions for the wavefunctions
 H_n(x)=(-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right)
 \end{equation}
 
-Selecting the ground state ($n=0$) and differentiating to the eighth degree
+Selecting the ground state ($n=0$) and differentiating to the eighth degree, the equation that will satisfy the truncation bound is
 
 \begin{align}
 \MoveEqLeft \Psi_0^{(8)}(x) = \nonumber\\
 &\left(\frac{m\omega}{\hbar^2}\right)^4\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}\left[(m\omega x^2)^4-28 (m\omega x^2)^3\hbar\right.\nonumber\\
-&\left.+210(m\omega x^2)^2\hbar ^2-420m\omega x^2\hbar^3+105\hbar^4\right]e^{-\frac{m\omega x^2}{2\hbar}}
+&\left.+210(m\omega x^2)^2\hbar ^2-420m\omega x^2\hbar^3+105\hbar^4\right]e^{-\frac{m\omega x^2}{2\hbar}}.
 \end{align}
-
-...
 
 The harmonic potential term
 
@@ -237,7 +235,7 @@ V(x) &= \frac{1}{2}m\omega^2\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\label{eq
 \end{align}
 
 can be connected to the Streitz Mintmire potential through the relationship $V(x_{max})=V_{SM}(x_{max})$, where at a maximum distance $x_{max}$, the harmonic potential is equivalent to Streitz Mintmire.
-As discussed in \xxx{Section on $\Lambda$}, $V_{SM}$ is measured in [μeV] with $x$ in [Å], whereas $V$ is measured in [J] against [m].
+As discussed in \xxx{Section on units}, $V_{SM}$ is measured in [μeV] with $x$ in [Å], whereas $V$ is measured in [J] against [m].
 Unit transformations will therefore need to be carried through this derivation.
 
 \begin{equation}
@@ -251,9 +249,9 @@ Taking a slice of potential space for an arbitrary cluster configuration, $V_{SM
 \frac{V_{SM}(x_{max})}{x_{max}^2} = \frac{3.696\ten{7}}{1.5^2} = 1.643\ten{7} \left[\frac{\text{μeV}}{\text{Å}^2}\right],
 \end{equation}
 
-yielding a value for $k = 526.321$. Using the relationship in \cref{eq:vharm} for $\omega$ (where  $\cramped{m=m_{oxy}=2.657\ten{-26}}$ kg), $\omega=1.408\ten{14}$ and a complete equivalency has been found.
-
-
+yielding a value for $k = 526.321$.
+Using the relationship in \cref{eq:vharm} for $\omega$ (where  $\cramped{m=m_{oxy}=2.657\ten{-26}}$ kg), $\omega=1.408\ten{14}$ and a complete equivalency has been found.
+\Cref{fig:harmapprox} shows the approximation for this case.
 
 \begin{figure}[htp]
 \centering
@@ -261,60 +259,11 @@ yielding a value for $k = 526.321$. Using the relationship in \cref{eq:vharm} fo
 \caption{\label{fig:harmapprox}SM vs Harmonic}
 \end{figure}
 
+As discussed in \xxx{section discussing $\Lambda$ and GR}, an appropriate grid range which captures all of the important physics of the investigated clusters is $\pm 4.5$ Å around a central origin.
 
-%Selecting the ground state ($n=0$) and differentiating to the eighth degree and use a nondimesional unit scheme such that energy is in units of $\cramped{E_n \left[\hbar\omega\right]}$ and distance in units of $\cramped{x \left[\sqrt{\hbar/(m\omega)}\right]}$
-%
-%\begin{equation}
-%\Psi_0^{(8)}(x) = \left(\frac{1}{\pi}\right)^{\frac{1}{4}}\left(x^8-28x^6+210x^4-420x^2+105\right)e^{-\frac{x^2}{2}}
-%\label{eq:wfndimless}
-%\end{equation}
-%
-%with an associated energy of $E_0 = 1/2$.
-
-%%% COSH
-
-%An approximation of the harmonic oscillator using the Hamiltonian \cref{eq:hamho} is valid near the minimum of any potential function.
-%Expanding a general potential $V(x)$ around a minimum $x^*$ gives the Taylor series
-%
-%\begin{equation}
-%V(x) = V_0 +(x-x^*)\left.\frac{\partial V}{\partial x}\right|_{x=x^*}+\frac{1}{2}(x-x^*)^2\left.\frac{\partial V}{\partial^2 x^2}\right|_{x=x^*}+\cdots
-%\end{equation}
-%
-%With a few assumptions, it can be seen from this expansion why the potential can be approximated by a parabola.
-%$V_0$ can be taken to zero as an arbitrary constant and the derivative is zero at critical points so the second term is also zero.
-%Assuming the variation in the vicinity of the critical point is small all higher terms can be neglected, leaving just the second term.
-%
-%Using another arbitrary potential, for example a hyperbolic cosine, a hamiltonian of the form
-%
-%\begin{equation}
-%\widehat{H} = \frac{\widehat{p}^2}{2m}+V_0\cosh(x)\label{eq:hamcosh}
-%\end{equation}
-%
-%with a critical point at $x=0$ has the Taylor expansion
-%\begin{equation}
-%\left.V_0\cosh(x)\right|_{x=0} = V_0+V_0x\sinh(0)+\frac{V_0}{2}x^2\cosh(0)+\mathcal{O}(x^3)
-%\end{equation}
-%
-%such that \cref{eq:hamcosh} can be approximated to
-%
-%\begin{align}
-%\widehat{H} &\approx \frac{\widehat{p}^2}{2m}+\frac{V_0}{2}x^2+V_0\label{eq:hamtexp}\\
-%\therefore E_n &\approx \left(n+\frac{1}{2}\right)\hbar\sqrt{\frac{V_0}{m}}+V_0
-%\end{align}
-%
-%As $V_0 \rightarrow 0$ (as it is only an arbitrary scaling constant) it becomes clear that for this potential the dimensionless conversion to the framework of \cref{eq:wfndimless} for energy approximates to $\cramped{E_n \left[\hbar\sqrt{1/m}\right]}$, which through the transformation $\cramped{\omega \approx \sqrt{1/m}}$, the conversion in distance is $\cramped{x \left[\sqrt{\hbar}/\sqrt[4]{m}\right]}$.
-%This unit basis removes the dependency on $\omega$, which has no dual in \cref{eq:OHam}.
-
-%%% END COSH
-...
-
-As discussed in \xxx{section discussing $\Lambda$ and GR}, an appropriate grid range which captures all if the important physics of the investigated clusters is $\pm 4.5$ Å around a central origin.
-Using the above conversion, an appropriate range for the truncation bound can now be found.
-
-\begin{align}
--a &= b = \frac{\sqrt{\hbar}}{\sqrt[4]{m_{oxy}}}\cdot 4.5\ten{-10} = 11.45\\
-\therefore M &= \mathrm{max}_{[-11.45,11.45]}\left(\abs{\Psi_0^{(8)}(x)}\right) = 78.87
-\end{align}
+\begin{equation}
+M = \mathrm{max}_{[-4.5 \text{Å},4.5 \text{Å}]}\left(\abs{\Psi_0^{(8)}(x)}\right) = 5.411\ten{17}
+\end{equation}
 
 The final requirement for \cref{eq:stepgen} is an acceptable error magnitude $\epsilon$.
 

@@ -27,8 +27,62 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
-%\usetikzlibrary{shapes,arrows}
-%\usepackage[final]{graphicx}
+
+%%%TIKZMARK
+
+\makeatletter
+\tikzset{%
+  remember picture with id/.style={%
+    remember picture,
+    overlay,
+    save picture id=#1,
+  },
+  save picture id/.code={%
+    \edef\pgf@temp{#1}%
+    \immediate\write\pgfutil@auxout{%
+      \noexpand\savepointas{\pgf@temp}{\pgfpictureid}}%
+  },
+  if picture id/.code args={#1#2#3}{%
+    \@ifundefined{save@pt@#1}{%
+      \pgfkeysalso{#3}%
+    }{
+      \pgfkeysalso{#2}%
+    }
+  }
+}
+
+\def\savepointas#1#2{%
+  \expandafter\gdef\csname save@pt@#1\endcsname{#2}%
+}
+\def\tmk@labeldef#1,#2\@nil{%
+  \def\tmk@label{#1}%
+  \def\tmk@def{#2}%
+}
+
+\tikzdeclarecoordinatesystem{pic}{%
+  \pgfutil@in@,{#1}%
+  \ifpgfutil@in@%
+    \tmk@labeldef#1\@nil
+  \else
+    \tmk@labeldef#1,(0pt,0pt)\@nil
+  \fi
+  \@ifundefined{save@pt@\tmk@label}{%
+    \tikz@scan@one@point\pgfutil@firstofone\tmk@def
+  }{%
+  \pgfsys@getposition{\csname save@pt@\tmk@label\endcsname}\save@orig@pic%
+  \pgfsys@getposition{\pgfpictureid}\save@this@pic%
+  \pgf@process{\pgfpointorigin\save@this@pic}%
+  \pgf@xa=\pgf@x
+  \pgf@ya=\pgf@y
+  \pgf@process{\pgfpointorigin\save@orig@pic}%
+  \advance\pgf@x by -\pgf@xa
+  \advance\pgf@y by -\pgf@ya
+  }%
+}
+\newcommand\tikzmark[2][]{%
+\tikz[remember picture with id=#2] #1;}
+\makeatother
+
 \usepackage{url}
 \urlstyle{rm}
 \usepackage[sort&compress,mcite]{natbib}
@@ -70,9 +124,14 @@
 \subsectionfont{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
 %\sectionfont{\fontfamily{phv}\fontseries{m}\fontsize{15}{17}\selectfont}
 %\subsectionfont{\fontfamily{phv}\fontseries{m}\fontsize{13}{15}\selectfont}
-\usepackage[Sonny]{fncychap} % TODO: Change this
-    \ChNameVar{\Large\fontspec{Idealist Sans}\selectfont}
-    \ChTitleVar{\Large\fontspec{Idealist Sans}\selectfont}
+
+%%% Chapter headers
+\input{header.tex}
+
+%\usepackage[Sonny]{fncychap} % TODO: Change this
+ %   \ChNameVar{\Large\fontspec{Idealist Sans}\selectfont}
+ %   \ChTitleVar{\Large\fontspec{Idealist Sans}\selectfont}
+
     %\ChNameVar{\Large\fontfamily{phv}\selectfont}
     %\ChTitleVar{\Large\fontfamily{phv}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
