@@ -2,18 +2,46 @@
 
 \section{Defects in Corundum}
 Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
-The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium -- oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
-Experimental identification of defects like the $F-$ and $F^+-$ electron centres~\cite{Kotomin1989} and observations of defect mobility~\cite{Kulis1991} motivated further theoretical study.
+The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium---oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
+Experimental identification of defects like the $F$ and $F^+$ electron centres~\cite{Kotomin1989} and observations of defect mobility~\cite{Kulis1991} motivated further theoretical study.
 
-Intrinsic defects (such as self-trapped and defect-trapped holes, or oxygen and $V^{2-}$, $V^-$ aluminium vacancies) as well as impurities of transition-metal ions like Co, Fe, Mg, Mn or Ti are all possible~\cite{Jacobs1994}, although impurities are not considered further here due to our sole interest in contaminant free structures.
-\citeauthor{Jacobs1994} also suggests that oxygen vacancies are mobile throughout the lattice, as effective charges of an oxygen at a saddle point between aluminium atoms is similar to one on a normal lattice site.
-However, this result is speculative for us, as simple Buckingham pair potentials are used to obtain this result (the rest of the defect calculations in the paper use a self-consistent Hartree-Fock LCAO pseudopotential).
+Intrinsic defects (such as self-trapped and defect-trapped holes, or oxygen and aluminium vacancies) as well as impurities of transition-metal ions like Co, Fe, Mg, Mn or Ti are all possible~\cite{Jacobs1994}.
+\citeauthor{Jacobs1994} also suggest that oxygen vacancies are mobile throughout the lattice, as effective charges of an oxygen at a saddle point between aluminium atoms is similar to one on a normal lattice site.
 
-DFT studies of single oxygen vacancies soon followed, using 120 atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
-Singly occupied defect levels (the $F^+$ center) are also discussed by introduction a positive background charge to the calculation.
+DFT studies of single oxygen vacancies soon followed, using $120$ atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
+Singly occupied defect levels (the $F^+$ center) are also discussed by introducing a positive background charge into the calculation.
 
-Still to discuss: \cite{Xu1997,Heuer1999,Matsunaga2003,Carrasco2004,Perevalov2010,Pustovarov2011,Elliot2013}
+Further investigations into point defects began to classify systems such as the Schottky-type (two Al$^{3+}$ and three O$^{2-}$ vacancies) and Frenkel-type (\eg one interstitial Al$^{3+}$ and one Al$^{3+}$ vacancy) defects, where the Schottky-type was found to be the dominant class~\cite{Mohapatra1978}.
+However, further theoretical studies found oxygen Frenkel defects to have the lower formation energy~\cite{Catlow1982}, which precipitated many discussions concerning the appropriateness of empirical potentials fitted to bulk properties in describing defects.
+DFT studies aligned this discussion with experimental data showing formation energies of the classes to be Schottky<Al Frenkel<O Frenkel~\cite{Matsunaga2003}.
+In addition, \citeauthor{Matsunaga2003} calculate formation energies and band structures for aluminium and oxygen, vacancy and interstitial defects; as well as an in-depth discussion on lattice deformation about each defect.
+Formation energies are dependent on the chemical potential of the oxygen in the local environment, although for a wide range of this value it was found that energies were ranked as $V_{Al}^{3-}<O_{i}^{2-}<V_{O}^{2+}<Al_{i}^{3+}$ (\ie aluminium vacancy, oxygen interstitial, oxygen vacancy, aluminium interstitial).
+All of which are stable in their ionised states, and additional electronic defects compensate defect charges only at very high temperatures.
 
-\section{Defects in Amorphous Aluminium}
+Implanting dopants like Ti$^{4+}$ and Mg$^{2+}$ into corundum to create certain defect classes can be used to study this high temperature oxygen diffusion through the lattice.
+If bivalent dopant concentrations dominate, the predominant transport method is through oxygen vacancies.
+On the other hand, high tetravalent impurity concentration produces  oxygen interstitials as the prevalent mechanism for transport~\cite{Heuer1999}.
 
-(testing citeauthor) \citeauthor{Momida2011} said some good stuff as did \citeauthor{Blochl1994}.
+Surface point defects (interstitial and vacancies) have also been compared to their bulk counterparts~\cite{Carrasco2004}, showing that relative formation costs are similar (\ie the cost of an aluminium versus oxygen vacancy), although the surface defects require much less energy to form and electronic delocalisation is larger on the surface than in the bulk.
+This suggests surface defects may play an an important role as nucleation centers when bonding to metals (such as aluminium in our case).
+
+\section{Deficiency Defects in Amorphous Aluminium}
+
+It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion,\xxx{Make sure this is discussed before here} such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
+ALD works by exposing a substrate to a heat source, then alternating pulses of water and trimethylaluminium.
+Each pulse is separated by a nitrogen gas flush to assure no gas phase mixing between the pulses.
+Ligand exchange between the water and trimethylaluminium at the substrate generates growth of the oxide~\cite{George2010}. 
+Recent experiments show promising results in terms of using this process to build Josephson junctions -- overcoming the lack of hydroxyl groups on metal surface which assist nucleation~\cite{Elliot2013}.
+However; it is possible that this process generates oxygen deficient lattices with parameters comparable to an oxygen vacancy in corundum~\cite{Perevalov2010}.
+
+Although ALD is not presently used in Josephson junction fabrication, the process is actively being studied as a fabrication method to create resistive random access memory. 
+It is well known that oxygen diffusion methods can create low stoichiometries (\ie $x<1.5$) of amorphous AlO$_{\text{x}}$~\cite{Park2002, Tan2005}, whereas this is not the goal for ALD. 
+Hence, research into single oxygen vacancies in ALD grown AlO$_{\text{1.5}}$ provide a good intermediary between the discussion of crystalline defects above, and the topic of this thesis (clusters forming two-level defects in amorphous aluminium oxides).
+
+Single oxygen vacancies denoted as $V_{O}^0$: a fully-occupied state, $V_{O}^{1+}$:
+half-filled state, and $V_{O}^{2+}$: an empty state have been introduced into a DFT based model of ALD grown AlO$_{\text{1.5}}$~\cite{Momida2011} ($V_{O}^0$ and $V_{O}^{1+}$ are also denoted as the $F$ and $F^+$ centers elsewhere in the literature).
+The defect was placed at a random site in the amorphous lattice and the density of states was calculated.
+This process was then repeated a number of times to generate an appropriate level of statistics.
+Relative to the bulk valence band edge, these states appear in the band gap between $0.51\!-\!2.51$, $1.30\!-\!3.58$, and $2.39\!-\!3.64$ eV respectively.
+Figure 2 in \onlinecite{Momida2011} is of particular interest, comparing the difference between the relatively stable and localised $V_{O}^0$ wavefunction and the $V_{O}^{2+}$ wavefunction -- which is delocalised throughout the lattice. 
+Furthermore, lattice configurations for each of the defects are also presented, which may be useful for defect classification in this work.
