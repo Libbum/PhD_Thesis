@@ -4,6 +4,7 @@
 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
+\usepackage[version=3]{mhchem} %Chemical formula
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{mathspec}
@@ -270,7 +271,7 @@
 \def\pagenumbering#1{\gdef\thepage{\csname @#1\endcsname \c@page}}
 \makeatother
 
-\input{macros.tex} % shared so that psfrag for figures can use it 
+\input{macros.tex} % shared so that psfrag for figures can use it
 
 %% Extra stuff
 \hyphenation{tri-methyl-aluminium}
