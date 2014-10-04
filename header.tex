@@ -306,22 +306,14 @@
   \ifthenelse{\equal{#2}{Bibliography}}{}{\ifthenelse{\equal{#1}{A}}{#1}{\ifthenelse{\equal{#1}{B}}{#1}{\ifthenelse{#1>0}{#1}{}}}}
 }
 
-%TODO: Outer Page Margins. Eg:
-%\titleformat{name=\section,page=even}[leftmargin]
-%{\filleft\scshape}{\thesection}{.5em}{}
-%\titleformat{name=\section,page=odd}[rightmargin]
-%{\filright\scshape}{\thesection}{.5em}{}
-
-%TODO: Spruce up TOC with titletoc
-%\usepackage{titletoc}
-%\titlecontents{chapter}[0pt]{\addvspace{1pc}\itshape}{\contentsmargin{0pt}\bfseries\makebox[0pt][r]{\huge\thecontentslabel\enspace}\large}{\contentsmargin{0pt}\large}{\quad\thepage}[\addvspace{.5pc}]
-
-\usepackage[explicit]{titlesec}
-
-\titleformat{\chapter}[display]%command[shape]
-  {\normalfont\sffamily\LARGE}
-  {}{0pt} %No label, just run it in the tikz image directly
-  {\begin{tikzpicture}[remember picture,overlay]%beforecode
+\makechapterstyle{voronoi}{
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+\renewcommand\printchapternum{}
+\renewcommand\chapnumfont{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}}%
+\renewcommand\chaptitlefont{\normalfont\sffamily\LARGE} %
+\renewcommand\afterchapternum{}
+\renewcommand{\printchaptertitle}[1]{\begin{tikzpicture}[remember picture,overlay]
     \node[yshift=-4.7cm] at (current page.north west)
       {\begin{tikzpicture}[remember picture, overlay, scale=0.43]
         \clip (0,-4) rectangle (50,11);
@@ -458,10 +450,20 @@
         \shadedraw[draw=white,thin,left color=c264,right color=c211] (49.6,0.1) -- (50.000000,3.787879) -- (49.242424,1.183712) -- cycle;
         \shadedraw[draw=white,thin,left color=c170,right color=c211] (49.6,0.1) -- (50.000000,3.787879) -- (51,-1.5) -- cycle;
         \shadedraw[draw=white,thin,left color=c294,right color=c212] (49.6,0.1) -- (48.537879,-1) -- (51,-1.5) -- cycle;}
-        \node[anchor=east,xshift=.95\paperwidth,yshift=1.5cm,rectangle,rounded corners=20pt,inner sep=11pt,fill=white,fill opacity=0.6,text opacity=1] {#1};
-        \node[anchor=east,xshift=.95\paperwidth,yshift=2.75cm] {\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont\color{white}\isMainMatter{\thechapter}{#1}};
-       \end{tikzpicture}
-      };
-   \end{tikzpicture}}
+        \node[anchor=east,xshift=.95\paperwidth,yshift=1.5cm,rectangle,rounded corners=20pt,inner sep=11pt,fill=white,fill opacity=0.6,text opacity=1] {\chaptitlefont ##1};
+        \node[anchor=east,xshift=.95\paperwidth,yshift=2.75cm] {\chapnumfont \color{white}\isMainMatter{\thechapter}{##1}};
+      \end{tikzpicture}};
+    \end{tikzpicture}}
+\renewcommand\printchapternonum{}
+}
 
-\titlespacing*{\chapter}{0cm}{0cm}{0cm}
+
+%TODO: Outer Page Margins. Eg:
+%\titleformat{name=\section,page=even}[leftmargin]
+%{\filleft\scshape}{\thesection}{.5em}{}
+%\titleformat{name=\section,page=odd}[rightmargin]
+%{\filright\scshape}{\thesection}{.5em}{}
+
+%TODO: Spruce up TOC with titletoc
+%\usepackage{titletoc}
+%\titlecontents{chapter}[0pt]{\addvspace{1pc}\itshape}{\contentsmargin{0pt}\bfseries\makebox[0pt][r]{\huge\thecontentslabel\enspace}\large}{\contentsmargin{0pt}\large}{\quad\thepage}[\addvspace{.5pc}]
