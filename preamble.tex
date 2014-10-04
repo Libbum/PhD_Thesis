@@ -73,10 +73,15 @@
 %Section headers
 \setsecheadstyle{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
 \setsubsecheadstyle{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
-
 \usepackage{emptypage} % no page numbers or headers on empty pages
-%TODO: Should be able to use memoir to emulate this. Currently breaks if removed or warns if in use.
-\usepackage[font={small},labelfont={bf},margin=15pt]{caption} % load after babel. also replaces hypcap.
+
+%Figure captions
+\captiondelim{--- }
+\captionnamefont{\small\bfseries}
+\captiontitlefont{\small}
+\captionstyle{\centerlastline}
+\changecaptionwidth
+\captionwidth{0.925\textwidth}
 
 \usepackage{threeparttable} %TODO: wtf
 \usepackage{booktabs} %TODO: wtf
@@ -141,27 +146,13 @@
 %\newcommand{\FXUser}[2]{\todo[caption={#2}]{\begin{SingleSpace}#2\end{SingleSpace}}}
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
+
+\ifdraft{%
+\usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
 \renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\fontspec{Idealist Sans}{ \gitBranch\,@\,\gitAbbrevHash{}
 \textbullet{} (\gitAuthorDate)}}
-
-
-\ifdraft{%
-%\usepackage{ocg}
-%\newcommand*{\showkeyslabelformat}[1]{%
-%    \begin{ocg}{labels}{lab}{1}\fbox{\normalfont\small\ttfamily#1}\end{ocg}}
-\usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
-%\makeatletter
-%\def\SK@@ref#1>#2\SK@{%
-%    \leavevmode\vbox to\z@{%
-%        \begin{ocg}{references}{refs}{0}%
-%        \vss
-%        \SK@refcolor
-%        \rlap{\vrule\raise .75em%
-%            \hbox{\underbar{\normalfont\footnotesize\ttfamily#2}}}%
-%        \end{ocg}}}%
-%\makeatother
 }{} % ifdraft
 
 %%%%%%%%%%%%%%%%%%%%%%
