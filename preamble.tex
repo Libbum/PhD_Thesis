@@ -1,5 +1,6 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
-\documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
+\documentclass[fleqn,USenglish,\classoptions,\draftfinal]{memoir}
+%\documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
 \usepackage{ifdraft}
 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
@@ -29,60 +30,7 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
 
-%%%TIKZMARK
-
-\makeatletter
-\tikzset{%
-  remember picture with id/.style={%
-    remember picture,
-    overlay,
-    save picture id=#1,
-  },
-  save picture id/.code={%
-    \edef\pgf@temp{#1}%
-    \immediate\write\pgfutil@auxout{%
-      \noexpand\savepointas{\pgf@temp}{\pgfpictureid}}%
-  },
-  if picture id/.code args={#1#2#3}{%
-    \@ifundefined{save@pt@#1}{%
-      \pgfkeysalso{#3}%
-    }{
-      \pgfkeysalso{#2}%
-    }
-  }
-}
-
-\def\savepointas#1#2{%
-  \expandafter\gdef\csname save@pt@#1\endcsname{#2}%
-}
-\def\tmk@labeldef#1,#2\@nil{%
-  \def\tmk@label{#1}%
-  \def\tmk@def{#2}%
-}
-
-\tikzdeclarecoordinatesystem{pic}{%
-  \pgfutil@in@,{#1}%
-  \ifpgfutil@in@%
-    \tmk@labeldef#1\@nil
-  \else
-    \tmk@labeldef#1,(0pt,0pt)\@nil
-  \fi
-  \@ifundefined{save@pt@\tmk@label}{%
-    \tikz@scan@one@point\pgfutil@firstofone\tmk@def
-  }{%
-  \pgfsys@getposition{\csname save@pt@\tmk@label\endcsname}\save@orig@pic%
-  \pgfsys@getposition{\pgfpictureid}\save@this@pic%
-  \pgf@process{\pgfpointorigin\save@this@pic}%
-  \pgf@xa=\pgf@x
-  \pgf@ya=\pgf@y
-  \pgf@process{\pgfpointorigin\save@orig@pic}%
-  \advance\pgf@x by -\pgf@xa
-  \advance\pgf@y by -\pgf@ya
-  }%
-}
-\newcommand\tikzmark[2][]{%
-\tikz[remember picture with id=#2] #1;}
-\makeatother
+\input{tikzmark.tex}
 
 \usepackage{url}
 \urlstyle{rm}
@@ -97,11 +45,12 @@
 \usepackage{bibunitsLSB}    % a problematic package. maybe matters whether before/after natbib?
 
 % Thesis-specific formatting
-\ifdblspc\usepackage{setspace} % before geometry, so that heightrounded works right.
-\else
+%TODO: Memoir screws this if
+%\ifdblspc\usepackage{setspace} % before geometry, so that heightrounded works right.
+%\else
 \newenvironment{singlespace}{}{}
 \newenvironment{singlespace*}{}{}
-\fi
+%\fi
 \usepackage[\geomoptions]{geometry} % showframe?
 \usepackage{tocbibind} % put things in the table of contents.
 
@@ -120,14 +69,16 @@
 \widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
-\usepackage{sectsty} % load before fncychap
-\sectionfont{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
-\subsectionfont{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
-%\sectionfont{\fontfamily{phv}\fontseries{m}\fontsize{15}{17}\selectfont}
-%\subsectionfont{\fontfamily{phv}\fontseries{m}\fontsize{13}{15}\selectfont}
+
+%TODO: Memoir fucks this
+%\usepackage{sectsty} % load before fncychap
+%\sectionfont{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
+%\subsectionfont{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
+
 
 %%% Chapter headers
-\input{header.tex}
+%TODO: Memoir fucks this
+%\input{header.tex}
 
 %\usepackage[Sonny]{fncychap} % TODO: Change this
  %   \ChNameVar{\Large\fontspec{Idealist Sans}\selectfont}
@@ -141,9 +92,15 @@
 \usepackage{booktabs}
 %\usepackage{csquotes}
 \usepackage{textcase}
-\usepackage{fancyhdr}
+
+%TODO: Memoir fucks this
+%\usepackage{fancyhdr}
+
 \DeclareRobustCommand*{\sclspaced}[1]{\addfontfeature{LetterSpace=20.0,Numbers=Lining}{\MakeTextLowercase{#1}}} \DeclareRobustCommand*{\scuspaced}[1]{\addfontfeature{LetterSpace=20.0,Letters= SmallCaps,Numbers=Lining}{#1}}
-\fancyhf{}
+
+%TODO: Memoir fucks this
+%\fancyhf{}
+
 \setlength{\unitlength}{22mm}
 \newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}
 \newcommand{\rblob}{%
@@ -178,8 +135,11 @@
 \nothumb
 \newcounter{lframe}
 \newcounter{rframe}
-\pagestyle{fancy} % use the fancy header
-\headfoot
+
+%TODO: Memoir fucks this
+%\pagestyle{fancy} % use the fancy header
+%\headfoot
+
 %%%    %\pagestyle{headings} % use ordinary header
 % Chapter headings in the list of figures:
 \newcommand{\lofchap}[1]{%
