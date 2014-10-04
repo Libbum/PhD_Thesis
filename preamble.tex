@@ -1,6 +1,5 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
 \documentclass[USenglish,\classoptions,\draftfinal]{memoir}
-%\documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
 \usepackage{ifdraft}
 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
@@ -48,7 +47,7 @@
 \newenvironment{SingleSpace*}{}{}
 \fi
 \usepackage[\geomoptions]{geometry} % showframe?
-\usepackage{tocbibind} % put things in the table of contents.
+\usepackage{tocbibind} % put things in the table of contents. %TODO: May be able to memoir native this
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
@@ -83,18 +82,29 @@
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
 
-\usepackage{threeparttable} %TODO: wtf
-\usepackage{booktabs} %TODO: wtf
-%\usepackage{csquotes}
-\usepackage{textcase} %TODO: wtf
-
-%set header and footer styles
+%Header and footer styles
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
 \makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
 \makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
 \pagestyle{thesis}
 
+%Table of Contents (And List of Figures)
+\renewcommand*{\cftchapterfont}{\bfseries}
+\renewcommand*{\cftchapterleader}{\bfseries\cftdotfill{\cftchapterdotsep}}
+\renewcommand*{\cftchapterpagefont}{\bfseries}
+\renewcommand*{\cftchaptername}{SOMETHING }
+\renewcommand{\cftchapteraftersnum}{::}
+\renewcommand{\cftchapteraftersnumb}{\\}
+%\renewcommand{\cftdot}{\ensuremath{--}}
+
+% Chapter headings in the list of figures: TODO: May be able to native this.
+\newcommand{\lofchap}[1]{%
+    \addtocontents{lof}{\protect\addvspace{-10pt}}% Undo the unconditional 10pt skip from latex
+    \addcontentsline{lof}{lofchapter}{\protect\numberline{\thechapter}#1}%
+}
+
+%TODO: wtf
 \setlength{\unitlength}{22mm}
 \newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}
 \newcommand{\rblob}{%
@@ -130,11 +140,6 @@
 \newcounter{lframe}
 \newcounter{rframe}
 
-% Chapter headings in the list of figures:
-\newcommand{\lofchap}[1]{%
-    \addtocontents{lof}{\protect\addvspace{-10pt}}% Undo the unconditional 10pt skip from latex
-    \addcontentsline{lof}{lofchapter}{\protect\numberline{\thechapter}#1}%
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERSIONING/CHANGE TRACKING
@@ -143,10 +148,10 @@
 \newcommand*\timFXtodo[3]{\todo[caption={#2}]{\begin{SingleSpace}#2\end{SingleSpace}}}
 \FXRegisterLayout*[marginclue,marginnote,margin]{todo}{\timFXtodo}
 \fxsetup{todo}
-%\newcommand{\FXUser}[2]{\todo[caption={#2}]{\begin{SingleSpace}#2\end{SingleSpace}}}
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
 
+%Additionals if we're in draft mode
 \ifdraft{%
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
@@ -199,7 +204,6 @@
 \Crefformat{figure}{#2Figure~#1#3}
 \crefformat{table}{#2table~#1#3}
 \Crefformat{table}{#2Table~#1#3}
-
 
 % controversial: cancel resetting page numbers at end of \frontmatter, for easier pdf navigation:
 \makeatletter
