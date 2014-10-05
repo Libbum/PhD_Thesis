@@ -90,18 +90,15 @@
 \pagestyle{thesis}
 
 %Table of Contents (And List of Figures)
-\renewcommand*{\cftchapterfont}{\bfseries}
-\renewcommand*{\cftchapterleader}{\bfseries\cftdotfill{\cftchapterdotsep}}
-\renewcommand*{\cftchapterpagefont}{\bfseries}
-\renewcommand*{\cftchaptername}{SOMETHING }
-\renewcommand{\cftchapteraftersnum}{::}
-\renewcommand{\cftchapteraftersnumb}{\\}
-%\renewcommand{\cftdot}{\ensuremath{--}}
+\renewcommand{\cftchapterfont}{\bfseries\addfontfeature{LetterSpace=10.0}}
+\renewcommand*{\cftchapterformatpnum}{\bfseries\large}
+\renewcommand{\cftchapterpresnum}{\HUGE}
+\renewcommand\cftchapteraftersnumb{\large\enspace\textperiodcentered\enspace}
+\renewcommand\chapternumberlinebox[2]{#2}
+\renewcommand{\cftfigureindent}{1.5em}
 
-% Chapter headings in the list of figures: TODO: May be able to native this.
-\newcommand{\lofchap}[1]{%
-    \addtocontents{lof}{\protect\addvspace{-10pt}}% Undo the unconditional 10pt skip from latex
-    \addcontentsline{lof}{lofchapter}{\protect\numberline{\thechapter}#1}%
+\newcommand{\lofchap}[1]{%alias for chapter headings in list of figures
+    \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}%
 }
 
 %TODO: wtf
