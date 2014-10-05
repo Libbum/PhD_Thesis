@@ -1,5 +1,5 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
-\documentclass[fleqn,USenglish,\classoptions,\draftfinal]{book}
+\documentclass[USenglish,\classoptions,\draftfinal]{memoir}
 \usepackage{ifdraft}
 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
@@ -7,14 +7,12 @@
 \usepackage[version=3]{mhchem} %Chemical formula
 \usepackage{amssymb}
 \usepackage{dsfont}
-\usepackage{mathspec}
-%\usepackage{fontspec} %There are options I'll need for ligatures etc.. Read the doc.
+\usepackage{mathspec} %loads fontspec
 \setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \setsansfont{Idealist Sans}
 \setmonofont{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
-
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
 \usepackage{fix-cm} %Computer Modern is used in a few places and throws errors.
@@ -28,61 +26,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
-
-%%%TIKZMARK
-
-\makeatletter
-\tikzset{%
-  remember picture with id/.style={%
-    remember picture,
-    overlay,
-    save picture id=#1,
-  },
-  save picture id/.code={%
-    \edef\pgf@temp{#1}%
-    \immediate\write\pgfutil@auxout{%
-      \noexpand\savepointas{\pgf@temp}{\pgfpictureid}}%
-  },
-  if picture id/.code args={#1#2#3}{%
-    \@ifundefined{save@pt@#1}{%
-      \pgfkeysalso{#3}%
-    }{
-      \pgfkeysalso{#2}%
-    }
-  }
-}
-
-\def\savepointas#1#2{%
-  \expandafter\gdef\csname save@pt@#1\endcsname{#2}%
-}
-\def\tmk@labeldef#1,#2\@nil{%
-  \def\tmk@label{#1}%
-  \def\tmk@def{#2}%
-}
-
-\tikzdeclarecoordinatesystem{pic}{%
-  \pgfutil@in@,{#1}%
-  \ifpgfutil@in@%
-    \tmk@labeldef#1\@nil
-  \else
-    \tmk@labeldef#1,(0pt,0pt)\@nil
-  \fi
-  \@ifundefined{save@pt@\tmk@label}{%
-    \tikz@scan@one@point\pgfutil@firstofone\tmk@def
-  }{%
-  \pgfsys@getposition{\csname save@pt@\tmk@label\endcsname}\save@orig@pic%
-  \pgfsys@getposition{\pgfpictureid}\save@this@pic%
-  \pgf@process{\pgfpointorigin\save@this@pic}%
-  \pgf@xa=\pgf@x
-  \pgf@ya=\pgf@y
-  \pgf@process{\pgfpointorigin\save@orig@pic}%
-  \advance\pgf@x by -\pgf@xa
-  \advance\pgf@y by -\pgf@ya
-  }%
-}
-\newcommand\tikzmark[2][]{%
-\tikz[remember picture with id=#2] #1;}
-\makeatother
+\input{tikzmark.tex}
 
 \usepackage{url}
 \urlstyle{rm}
@@ -97,13 +41,12 @@
 \usepackage{bibunitsLSB}    % a problematic package. maybe matters whether before/after natbib?
 
 % Thesis-specific formatting
-\ifdblspc\usepackage{setspace} % before geometry, so that heightrounded works right.
+\ifdblspc\OnehalfSpacing % before geometry, so that heightrounded works right.
 \else
-\newenvironment{singlespace}{}{}
-\newenvironment{singlespace*}{}{}
+\newenvironment{SingleSpace}{}{}
+\newenvironment{SingleSpace*}{}{}
 \fi
 \usepackage[\geomoptions]{geometry} % showframe?
-\usepackage{tocbibind} % put things in the table of contents.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
@@ -120,30 +63,44 @@
 \widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
-\usepackage{sectsty} % load before fncychap
-\sectionfont{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
-\subsectionfont{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
-%\sectionfont{\fontfamily{phv}\fontseries{m}\fontsize{15}{17}\selectfont}
-%\subsectionfont{\fontfamily{phv}\fontseries{m}\fontsize{13}{15}\selectfont}
 
-%%% Chapter headers
+%Chapter headers
 \input{header.tex}
+\chapterstyle{voronoi}
 
-%\usepackage[Sonny]{fncychap} % TODO: Change this
- %   \ChNameVar{\Large\fontspec{Idealist Sans}\selectfont}
- %   \ChTitleVar{\Large\fontspec{Idealist Sans}\selectfont}
-
-    %\ChNameVar{\Large\fontfamily{phv}\selectfont}
-    %\ChTitleVar{\Large\fontfamily{phv}\selectfont}
+%Section headers
+\setsecheadstyle{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
+\setsubsecheadstyle{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
-\usepackage[font={small},labelfont={bf},margin=15pt]{caption} % load after babel. also replaces hypcap.
-\usepackage{threeparttable}
-\usepackage{booktabs}
-%\usepackage{csquotes}
-\usepackage{textcase}
-\usepackage{fancyhdr}
-\DeclareRobustCommand*{\sclspaced}[1]{\addfontfeature{LetterSpace=20.0,Numbers=Lining}{\MakeTextLowercase{#1}}} \DeclareRobustCommand*{\scuspaced}[1]{\addfontfeature{LetterSpace=20.0,Letters= SmallCaps,Numbers=Lining}{#1}}
-\fancyhf{}
+
+%Figure captions
+\captiondelim{--- }
+\captionnamefont{\small\bfseries}
+\captiontitlefont{\small}
+\captionstyle{\centerlastline}
+\changecaptionwidth
+\captionwidth{0.925\textwidth}
+
+%Header and footer styles
+\nouppercaseheads
+\copypagestyle{thesis}{headings}
+\makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
+\makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
+\pagestyle{thesis}
+
+%Table of Contents (And List of Figures)
+\renewcommand{\cftchapterfont}{\bfseries\addfontfeature{LetterSpace=10.0}}
+\renewcommand*{\cftchapterformatpnum}{\bfseries\large}
+\renewcommand{\cftchapterpresnum}{\HUGE}
+\renewcommand\cftchapteraftersnumb{\large\enspace\textperiodcentered\enspace}
+\renewcommand\chapternumberlinebox[2]{#2}
+\renewcommand{\cftfigureindent}{1.5em}
+
+\newcommand{\lofchap}[1]{%alias for chapter headings in list of figures
+    \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}%
+}
+
+%TODO: wtf
 \setlength{\unitlength}{22mm}
 \newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}
 \newcommand{\rblob}{%
@@ -178,46 +135,25 @@
 \nothumb
 \newcounter{lframe}
 \newcounter{rframe}
-\pagestyle{fancy} % use the fancy header
-\headfoot
-%%%    %\pagestyle{headings} % use ordinary header
-% Chapter headings in the list of figures:
-\newcommand{\lofchap}[1]{%
-    \addtocontents{lof}{\protect\addvspace{-10pt}}% Undo the unconditional 10pt skip from latex
-    \addcontentsline{lof}{lofchapter}{\protect\numberline{\thechapter}#1}%
-}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERSIONING/CHANGE TRACKING
 \usepackage[shadow,obeyDraft,colorinlistoftodos,textsize=small]{todonotes}
 \usepackage{fixme}
-\newcommand*\timFXtodo[3]{\todo[caption={#2}]{\begin{singlespace}#2\end{singlespace}}}
+\newcommand*\timFXtodo[3]{\todo[caption={#2}]{\begin{SingleSpace}#2\end{SingleSpace}}}
 \FXRegisterLayout*[marginclue,marginnote,margin]{todo}{\timFXtodo}
 \fxsetup{todo}
-%\newcommand{\FXUser}[2]{\todo[caption={#2}]{\begin{singlespace}#2\end{singlespace}}}
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
+
+%Additionals if we're in draft mode
+\ifdraft{%
+\usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
 \renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\fontspec{Idealist Sans}{ \gitBranch\,@\,\gitAbbrevHash{}
 \textbullet{} (\gitAuthorDate)}}
-
-
-\ifdraft{%
-%\usepackage{ocg}
-%\newcommand*{\showkeyslabelformat}[1]{%
-%    \begin{ocg}{labels}{lab}{1}\fbox{\normalfont\small\ttfamily#1}\end{ocg}}
-\usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
-%\makeatletter
-%\def\SK@@ref#1>#2\SK@{%
-%    \leavevmode\vbox to\z@{%
-%        \begin{ocg}{references}{refs}{0}%
-%        \vss
-%        \SK@refcolor
-%        \rlap{\vrule\raise .75em%
-%            \hbox{\underbar{\normalfont\footnotesize\ttfamily#2}}}%
-%        \end{ocg}}}%
-%\makeatother
 }{} % ifdraft
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +200,6 @@
 \Crefformat{figure}{#2Figure~#1#3}
 \crefformat{table}{#2table~#1#3}
 \Crefformat{table}{#2Table~#1#3}
-
 
 % controversial: cancel resetting page numbers at end of \frontmatter, for easier pdf navigation:
 \makeatletter

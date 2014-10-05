@@ -4,20 +4,22 @@
 \begin{document}
 
   \frontmatter
-    \begin{singlespace}
-    \fixmelist  % only draft mode
-    \end{singlespace}
+    \begin{SingleSpace}
+    \listoffixmes  % only draft mode
+    \clearpage
+    \end{SingleSpace}
     \ifdraft{}{%
     \include{title}
     \include{declaration}}
 
-    \begin{singlespace}  %Double space is default at present. Check style guide though
+    \begin{SingleSpace}  %Double space is default at present. Check style guide though
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
     \tableofcontents     % must be first
-    %\listoffigures       % other lists must follow immediately from ToC
+    \clearpage
+    \listoffigures       % other lists must follow immediately from ToC
     %\listoftables      % other lists must follow immediately if present
     \microtypesetup{protrusion=true}
-    \end{singlespace}
+    \end{SingleSpace}
 
     \include{acknowledge}
     \include{publications}
@@ -28,43 +30,43 @@
 
     \include{junctions}
     \include{tlsmodel}
-    \chapter{Implementation and connection to experiment}\label{ch:impliementation}
-    \lofchap{Implementation}%
-    \thumb{Implementation}%
-    \section{2D model}\label{sec:2d}
-    \subsection{Methods of implementation}
-
-    \subsection{Defects as Perturbed Bond Angles in a Lattice (1D)}
-    \subsection{TLS Defect Confined in 2 Dimensions}
-    \subsection{TLS Defect Confined in 3 Dimensions}
-    \subsection{Charge Dipoles}
-    \subsection{Qubit Coupling}
-    \section{3D}
-    \subsection{Methods of implementation}
-    \subsection{Potential Landscape analysis}
-    \subsubsection{Cluster analysis on a known grid}
-    \subsection{Comparative results with 2D model}
-    \chapter{Identification and statistics of modelled TLSs}
-    \section{Nearest neighbour and angle classification}
-    \subsection{A and B type defect identification in a lattice}
-    \section{Voronoi classification}
-    \subsection{sphereocylinder variable limitation scheme}
-    \chapter{Tunnelling model duality}
-    \section{STM and GTM background theory}
-    \section{Calculating duals from 2D model}
-    \section{Experiment comparison and transport ramifications}
-    \chapter{Strain response and phonon coupling}
-    \section{Configurational analysis, comparison with experiment}
-    \section{Strain gradient and phonon coupling}
-    \section{\texorpdfstring{T$_1$ and T$_2$}{T₁ and T₂} analysis/discussion}
-    \chapter{Conclusions}
+  %  \chapter{Implementation and connection to experiment}\label{ch:impliementation}
+%    \lofchap{Implementation}%
+%    \thumb{Implementation}%
+%    \section{2D model}\label{sec:2d}
+%    \subsection{Methods of implementation}
+%
+%    \subsection{Defects as Perturbed Bond Angles in a Lattice (1D)}
+%    \subsection{TLS Defect Confined in 2 Dimensions}
+%    \subsection{TLS Defect Confined in 3 Dimensions}
+%    \subsection{Charge Dipoles}
+%    \subsection{Qubit Coupling}
+%    \section{3D}
+%    \subsection{Methods of implementation}
+%    \subsection{Potential Landscape analysis}
+%    \subsubsection{Cluster analysis on a known grid}
+%    \subsection{Comparative results with 2D model}
+%    \chapter{Identification and statistics of modelled TLSs}
+%    \section{Nearest neighbour and angle classification}
+%    \subsection{A and B type defect identification in a lattice}
+%    \section{Voronoi classification}
+%    \subsection{sphereocylinder variable limitation scheme}
+%    \chapter{Tunnelling model duality}
+%    \section{STM and GTM background theory}
+%    \section{Calculating duals from 2D model}
+%    \section{Experiment comparison and transport ramifications}
+%    \chapter{Strain response and phonon coupling}
+%    \section{Configurational analysis, comparison with experiment}
+%    \section{Strain gradient and phonon coupling}
+%    \section{\texorpdfstring{T$_1$ and T$_2$}{T₁ and T₂} analysis/discussion}
+%    \chapter{Conclusions}
 
     \bibliographystyle{utphys}
-    \begin{singlespace} % bibliography need not be doublespaced
+    \begin{SingleSpace} % bibliography need not be doublespaced
     \newcommand{\maybebackrefprint}{ \backrefprint}
     \renewcommand*{\bibpreamble}{\thumb{Bibliography}}%XXX this is nasty hack! (But so is fact that \thumb is needed anywhere...)
     \bibliography{../library}
-    \end{singlespace}
+    \end{SingleSpace}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% APPENDICES
