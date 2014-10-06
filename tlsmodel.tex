@@ -226,56 +226,48 @@ Selecting the ground state ($n=0$) and differentiating to the eighth degree, the
 \MoveEqLeft \Psi_0^{(8)}(x) = \nonumber\\
 &\left(\frac{m\omega}{\hbar^2}\right)^4\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}\left[(m\omega x^2)^4-28 (m\omega x^2)^3\hbar\right.\nonumber\\
 &\left.+210(m\omega x^2)^2\hbar ^2-420m\omega x^2\hbar^3+105\hbar^4\right]e^{-\frac{m\omega x^2}{2\hbar}}.
+\label{eq:eightwfn}
 \end{align}
 
-The harmonic potential term
+The functional form of \cref{eq:eightwfn} indicates a maximal value at $x=0$ such that
+
+\begin{equation}
+M = \lim_{x \to 0} \abs{\Psi_0^{(8)}(x)} = \abs{105\left(\frac{m\omega}{\hbar^2}\right)^4\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}}
+\label{eq:Mlimit}
+\end{equation}
+recalling $M = \mathrm{max}_{[a,b]}\left(\abs{f\,^{(8)}(c)}\right)$.
+
+An approximation of the harmonic oscillator using the Hamiltonian \cref{eq:hamho} is valid near the minimum of any potential function, thus
 
 \begin{align}
 V(x) &= \frac{1}{2}m\omega^2\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\label{eq:vharm}\\
      &= \frac{1}{2}k\hat{x}^2
 \end{align}
 
-can be connected to the Streitz Mintmire potential through the relationship $V(x_{max})=V_{SM}(x_{max})$, where at a maximum distance $x_{max}$, the harmonic potential is equivalent to Streitz Mintmire.
+can be connected to the Streitz Mintmire potential through the relationship $V(x_{0})=V_{SM}(x_{0})$, if Streitz Mintmire has one local minima at $x=0$.
+
 As discussed in \xxx{Section on units}, $V_{SM}$ is measured in [μeV] with $x$ in [Å], whereas $V$ is measured in [J] against [m].
-Unit transformations will therefore need to be carried through this derivation.
-
-\begin{equation}
-V_{SM}(x_{max})\cdot10^6\cdot1.602\ten{-19} = \frac{1}{2}k\left(x_{max}\cdot10^{-10}\right)^2\\
-\therefore k = \frac{2\!\times\!10^6\cdot1.602\ten{-19}}{10^{-20}}\frac{V_{SM}(x_{max})}{x_{max}^2}.
-\end{equation}
-
-Taking a slice of potential space for an arbitrary cluster configuration, $V_{SM}$ is calculated at a maximum value of $x$
-
-\begin{equation}
-\frac{V_{SM}(x_{max})}{x_{max}^2} = \frac{3.696\ten{7}}{1.5^2} = 1.643\ten{7} \left[\frac{\text{μeV}}{\text{Å}^2}\right],
-\end{equation}
-
-yielding a value for $k = 526.321$.
-Using the relationship in \cref{eq:vharm} for $\omega$ (where  $\cramped{m=m_{oxy}=2.657\ten{-26}}$ kg), $\omega=1.408\ten{14}$ and a complete equivalency has been found.
-\Cref{fig:harmapprox} shows the approximation for this case.
+Converting a Streitz Mintmire configuration to this unit scheme and fitting a parabola to the minima, a value of $k=938$ is found.
+\Cref{fig:harmsm} shows the fit for this value, which is comparatively representational to a large range of cluster configurations.
 
 \begin{figure}[htp]
 \centering
-\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmapprox}}
-\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmapprox}SM vs Harmonic}
+\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmsm}}
+\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmsm}A parabolic fit to the minima of a 1D Strietz Mintmire potential.}
 \end{figure}
 
-As discussed in \xxx{section discussing $\Lambda$ and GR}, an appropriate grid range which captures all of the important physics of the investigated clusters is $\pm 4.5$ Å around a central origin.
-
+The associated angular frequency is therefore
 \begin{equation}
-M = \mathrm{max}_{[-4.5 \text{Å},4.5 \text{Å}]}\left(\abs{\Psi_0^{(8)}(x)}\right) = 5.411\ten{17}
+\omega=\sqrt{\frac{938}{2.65\ten{-26}}}=1.879\ten{14}
 \end{equation}
-
-The final requirement for \cref{eq:stepgen} is an acceptable error magnitude $\epsilon$.
+using the mass of an oxygen atom, which can now be used to solve \cref{eq:Mlimit} for $M = 1.847\ten{98}$.
+The final term yet to be discussed from \cref{eq:cdifferrtot} is $\epsilon$.
+This value is the floating-point relative accuracy of the platform and software under which the central difference is being performed.
+On various \texttt{Linux} distributions and \texttt{Windows 7}, \texttt{Matlab 2014b} provides two values for $\epsilon$: single precision $\epsilon_s = 1.192\ten{-7}$ and double $\epsilon_d = 2.220\ten{-16}$.
 
 ...
 
-if $1$ Hz converted to μeV is acceptable  $\epsilon = 4.14\ten{-9}$
-\begin{equation}
-h = \left(\frac{30464\cdot4.14\ten{-9}}{27\cdot78.87}\right)^{1/8}=0.13 \approx 0.1\label{eq:stepopti}
-\end{equation}
-(although we publish $1$ kHz, as we wish to be well above this actual limit).
-
+More complex error analysis to be found in \cite{Mathur2012}
 
 
 
