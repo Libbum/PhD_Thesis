@@ -21,6 +21,7 @@
 \usepackage{xunicode} %Extra unicode options for xetex
 \usepackage{babel}
 \usepackage{eqparbox}
+\usepackage{nomenlev}\makenomen %Lev Bishop's nomenclature package
 \usepackage[rgb]{xcolor}
 \usepackage[mode=buildmissing]{standalone} %TODO: buildnew doesn't work for xelatex. Find out what to do with this.
 \usepackage{tikz}
@@ -132,6 +133,7 @@
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
 
+%TODO: Get this working again
 %\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update
 \let\oldphantomsection\phantomsection
 % Set up back references:
