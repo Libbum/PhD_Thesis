@@ -93,7 +93,7 @@ Assuming $x^* = 0$ for simplicity, it's clear that $f\,'(0) \approx P\,'_7(0) = 
 \begin{equation}
 \begin{split}
 f\,''(0)&\approx P\,''_7(0)=2a_2\\
-&=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+E_{trunc}(f,h).
+&=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{E}_{trunc}(f,h).
 \label{eq:cdiffe}
 \end{split}
 \end{equation}
@@ -155,7 +155,7 @@ f\,''(x) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{18
 resulting in the truncation error
 
 \begin{equation}
-E_{trunc}(f,h) = -\frac{f\,^{(8)}(c)h^6}{560} = \mathcal{O}(h^6).\label{eq:etrunc}
+\mathcal{E}_{trunc}(f,h) = -\frac{f\,^{(8)}(c)h^6}{560} = \mathcal{O}(h^6).\label{eq:etrunc}
 \end{equation}
 
 \subsection{Round-off Error and Step Size Optimisation}\label{sec:cdiffstep}
@@ -164,13 +164,13 @@ Computers also introduce floating point round-off errors into the mix, thus trun
 Let $f_k = y_k +e_k$, where $e_k$ is defined as the error in computing $f(x_k)$. With this treatment, \cref{eq:sptetrunc} can be expanded to
 \begin{align}
 \MoveEqLeft f\,''(x_0) = \nonumber\\
-&\frac{2y_{-3}-27y_{-2}+270y_{-1}-490y_{0}+270y_{1}-27y_{2}+2y_{3}}{180h^{2}}+E(f,h),\label{eq:sptye}
+&\frac{2y_{-3}-27y_{-2}+270y_{-1}-490y_{0}+270y_{1}-27y_{2}+2y_{3}}{180h^{2}}+\mathcal{E}(f,h),\label{eq:sptye}
 \end{align}
 
 where the error term now includes both round-off and truncation errors
 
 \begin{align}
-\MoveEqLeft E(f,h) = \nonumber\\
+\MoveEqLeft \mathcal{E}(f,h) = \nonumber\\
 &\frac{2e_{-3}-27e_{-2}+270e_{-1}-490e_{0}+270e_{1}-27e_{2}+2e_{3}}{180h^{2}}-\frac{f\,^{(8)}(c)h^6}{560}.
 \end{align}
 
@@ -178,7 +178,7 @@ Each error $e_k$ is assumed to be cumulative and of the same magnitude $\epsilon
 To bound the error, a second assumption can be imposed on the truncation such that $\abs{f\,^{(8)}(c)} \leq M$ to introduce the condition
 
 \begin{equation}
-\abs{E(f,h)} \leq \frac{272\epsilon}{45h^2}+\frac{Mh^6}{560}.\label{eq:cdifferrtot}
+\abs{\mathcal{E}(f,h)} \leq \frac{272\epsilon}{45h^2}+\frac{Mh^6}{560}.\label{eq:cdifferrtot}
 \end{equation}
 
 It's clear from \cref{eq:cdifferrtot} that the truncation and round-off errors are inversely proportional (but not equal) for any choice of $h$, which is commonly referred to as the \emph{step-size dilemma}.
@@ -212,6 +212,7 @@ Two operators, $\widehat{x} = x$ for position and $\widehat{p} = -i\hbar \frac{\
 
 \begin{equation}
 -\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}m\omega^2x^2 \Psi = E\Psi,
+\label{eq:hamti}
 \end{equation}
 
 with the family of solutions for the wavefunctions
@@ -256,14 +257,41 @@ Converting a Streitz Mintmire configuration to this unit scheme and fitting a pa
 \caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmsm}A parabolic fit to the minima of a 1D Strietz Mintmire potential.}
 \end{figure}
 
-The associated angular frequency is therefore 
+The associated angular frequency is therefore
 \begin{equation}
 \omega=\sqrt{\frac{938}{2.65\ten{-26}}}=1.879\ten{14}
 \end{equation}
-using the mass of an oxygen atom, which can now be used to solve \cref{eq:Mlimit} for $M = 1.847\ten{98}$. 
-The final term yet to be discussed from \cref{eq:cdifferrtot} is $\epsilon$. 
+using the mass of an oxygen atom, which can now also be used to solve \cref{eq:Mlimit} for $M = 1.847\ten{98}$.
+The final term yet to be discussed from \cref{eq:cdifferrtot} is $\epsilon$.
 This value is the floating-point relative accuracy of the platform and software under which the central difference is being performed.
-On various \texttt{Linux} distributions and \texttt{Windows 7}, \texttt{Matlab 2014b} provides two values for $\epsilon$: single precision $\epsilon_s = 1.192\ten{-7}$ and double $\epsilon_d = 2.220\ten{-16}$.
+On various \texttt{Linux} distributions and \texttt{Windows 7}, \texttt{Matlab 2014b} provides two values for $\epsilon$: single precision $\epsilon_s = 1.192\ten{-7}$ and double $\epsilon_d = 2.220\ten{-16}$, for which double is the standard when memory and computational limitations are not a concern (an embedded processor may use single precision for instance).
+
+All the components needed to find the optimal step size are now available. 
+Recall \cref{eq:stepgen}
+\begin{equation}
+h = \left(\frac{30464\cdot 2.220\ten{-16}}{27\cdot 1.847\ten{98}}\right)^{1/8} = 1.385\ten{-14} \text{m} \approx 1\ten{-4} \text{Å}.
+\end{equation}
+
+Unfortunately, the solution is not as simple as that. 
+The error calculated using \cref{eq:cdifferrtot} represents the error in $\cramped{\frac{\partial^2 \Psi}{\partial x^2}}$ from \cref{eq:hamti}, not the total error, nor the error in the energy $E$.
+
+\xxx{Everything below here is sketchy as fuck}
+\begin{equation}
+\mathcal{E}_{tot} = \abs{\frac{\hbar^2}{2m}\mathcal{E}_T}+\abs{\mathcal{E}_V}
+\end{equation}
+
+is a closer representation of the complete error in \cref{eq:hamti}, where $\mathcal{E}_T$ and $\mathcal{E}_V$ are the errors associated with the kinetic and potential terms of the hamiltonian. 
+The potential only suffers from roundoff errors, hence $\mathcal{E}_V = \mathcal{O}(\epsilon)$.
+Considering \cref{eq:cdifferrtot} takes round off into account, $\mathcal{E}_{tot} \approx \mathcal{E}_T$ (with the kinetic scaling factor).
+\Cref{fig:errvh} shows how $\mathcal{E}$ behaves over a range of $h$.
+Truncation error dominates at large values, whereas roundoff error takes hold at small values. 
+Note that while the double precision optimal value is a smaller (thus more computationally intensive) value, the error in the result is much smaller than the single precision result. 
+
+\begin{figure}[htp]
+\centering
+\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/Errvh}}
+\caption[Step size optimisation for single and double precision floats]{\label{fig:errvh}Step size optimisation for single and double precision floats against the kinetic energy error $\mathcal{E}_T$.}
+\end{figure}
 
 ...
 
