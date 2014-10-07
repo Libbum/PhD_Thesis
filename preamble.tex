@@ -101,43 +101,6 @@
     \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}%
 }
 
-%TODO: wtf
-\setlength{\unitlength}{22mm}
-\newcommand{\doblob}{\rule[-.1\unitlength]{2\unitlength}{.5\unitlength}}
-\newcommand{\rblob}{%
-    \begin{picture}(0,0)
-        \put(1.05,-\value{thumbcount}){\blob}
-    \end{picture}}
-\newcommand\lblob{%
-    \begin{picture}(0,0)
-        \put(-3.05,-\value{thumbcount}){\blob}
-    \end{picture}
-}
-\newcounter{thumbcount}
-\makeatletter
-\newcommand\overview{}
-\newcommand*{\listofthumbs}{%
-    \cleardoublepage
-    \thispagestyle{overview}%
-    \@starttoc{thb}
-    \mbox{}\newpage}
-\makeatother
-\newcommand*{\thumbwrite}[2]{\addtocontents{thb}{\string\thumbitem{#1}{#2}}}
-\newcommand*{\thumbitem}[2]{\expandafter\gdef\expandafter\overview\expandafter{\overview
-    \begin{picture}(0,0)
-        \put(0.75,-#2){\llap{\Large{#1}}}
-        \put(1.05,-#2){\doblob}
-    \end{picture}}}
-\newcommand*{\thumb}[1]{%
-    \let\blob=\doblob
-    \stepcounter{thumbcount}%
-    \thumbwrite{#1}{\arabic{thumbcount}}}
-\newcommand*{\nothumb}{\let\blob=\relax}
-\nothumb
-\newcounter{lframe}
-\newcounter{rframe}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERSIONING/CHANGE TRACKING
 \usepackage[shadow,obeyDraft,colorinlistoftodos,textsize=small]{todonotes}
