@@ -311,13 +311,14 @@
 \renewcommand\printchaptername{}
 \renewcommand\printchapternum{}
 \renewcommand\chapnumfont{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}}%
-\renewcommand\chaptitlefont{\normalfont\sffamily\LARGE} %
+\renewcommand\chaptitlefont{\normalfont\sansfont\LARGE} %
 \renewcommand\afterchapternum{}
 \renewcommand{\printchaptertitle}[1]{\begin{tikzpicture}[remember picture,overlay]
     \node[yshift=-4.7cm] at (current page.north west)
       {\begin{tikzpicture}[remember picture, overlay, scale=0.43]
         \clip (0,-4) rectangle (50,11);
-        \ifdraft{}{ %Don't worry about building if in draft mode
+        \ifdraftdoc
+        \else%\ifdraft{}{ %Don't worry about building if in draft mode
         \shadedraw[draw=white,thin,left color=c3,right color=c4] (41.998106,0.852273) -- (45.359848,2.935606) -- (45.975379,2.178030) -- cycle;
         \shadedraw[draw=white,thin,left color=c5,right color=c6] (22.632576,2.367424) -- (23.011364,4.971591) -- (26.515152,4.261364) -- cycle;
         \shadedraw[draw=white,thin,left color=c7,right color=c8] (22.632576,2.367424) -- (24.668561,0.000000) -- (26.515152,4.261364) -- cycle;
@@ -449,10 +450,12 @@
         \shadedraw[draw=white,thin,left color=c170,right color=c166] (48.537879,-1) -- (52,-2) -- (48,-4) -- cycle;
         \shadedraw[draw=white,thin,left color=c264,right color=c211] (49.6,0.1) -- (50.000000,3.787879) -- (49.242424,1.183712) -- cycle;
         \shadedraw[draw=white,thin,left color=c170,right color=c211] (49.6,0.1) -- (50.000000,3.787879) -- (51,-1.5) -- cycle;
-        \shadedraw[draw=white,thin,left color=c294,right color=c212] (49.6,0.1) -- (48.537879,-1) -- (51,-1.5) -- cycle;}
+        \shadedraw[draw=white,thin,left color=c294,right color=c212] (49.6,0.1) -- (48.537879,-1) -- (51,-1.5) -- cycle;
+        \fi
         \node[anchor=east,xshift=.95\paperwidth,yshift=1.5cm,rectangle,rounded corners=20pt,inner sep=11pt,fill=white,fill opacity=0.6,text opacity=1] {\chaptitlefont ##1};
         \node[anchor=east,xshift=.95\paperwidth,yshift=2.75cm] {\chapnumfont \color{white}\isMainMatter{\thechapter}{##1}};
       \end{tikzpicture}};
     \end{tikzpicture}}
 \renewcommand\printchapternonum{}
+\setlength{\afterchapskip}{-20pt}
 }

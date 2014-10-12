@@ -2,16 +2,16 @@
 
 
 \begin{document}
-
   \frontmatter
     \begin{SingleSpace}
     \listoffixmes  % only draft mode
     \clearpage
     \end{SingleSpace}
-    \ifdraft{}{%
+    \ifdraftdoc
+    \else
     \include{title}
-    \include{declaration}}
-
+    \include{declaration}
+    \fi
     \begin{SingleSpace}  %Double space is default at present. Check style guide though
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
     \tableofcontents     % must be first

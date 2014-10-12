@@ -1,7 +1,8 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
 \documentclass[USenglish,\classoptions,\draftfinal]{memoir}
-\usepackage{ifdraft}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage[version=3]{mhchem} %Chemical formula
@@ -10,7 +11,9 @@
 \usepackage{mathspec} %loads fontspec
 \setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
-\setsansfont{Idealist Sans}
+\newfontfamily\sansfont{Idealist Sans}
+\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
+%\setsansfont{\sansfont}
 \setmonofont{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
@@ -27,21 +30,28 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
-\usepgfplotslibrary{colorbrewer}
-\input{tikzmark.tex}
+%Colorbrewer Set1 of length 5 colours
+\definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\definecolor{Set1-5-3}{RGB}{77,175,74} %Green
+\definecolor{Set1-5-4}{RGB}{152,78,163} %Purple
+\definecolor{Set1-5-5}{RGB}{255,127,0} %Orange
+%\input{tikzmark.tex} %Currently not using this.
 
 \usepackage{url}
 \urlstyle{rm}
 \usepackage[sort&compress,mcite]{natbib}
 \usepackage{bibentry} % for permissions
 %choose cite formatting:
-\renewcommand*{\citenumfont}[1]{\addfontfeature{Numbers=Lining}{#1}} % oldstyle looks wrong to me in brackets. TODO: This isn't fixing the issue
+\renewcommand*{\citenumfont}[1]{\skolarlining#1} % oldstyle looks wrong to me in brackets.
 \citestyle{plain}           % numbers in square brackets
 %\citestyle{nature}         % superscript.
 %choose a number formatting for the biblist:
 \renewcommand*{\bibnumfmt}[1]{\eqparbox[t]{bblnm}{\hfill#1.}}
 \usepackage{bibunitsLSB}    % a problematic package. maybe matters whether before/after natbib?
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FORMATTING
 % Thesis-specific formatting
 \ifdblspc\OnehalfSpacing % before geometry, so that heightrounded works right.
 \else
@@ -49,9 +59,6 @@
 \newenvironment{SingleSpace*}{}{}
 \fi
 \usepackage[\geomoptions]{geometry} % showframe?
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% FORMATTING
 % I have lots of big figures, so allow pages with only a few lines of text
 \renewcommand{\topfraction}{0.9}
 \renewcommand{\bottomfraction}{0.6}
@@ -63,34 +70,44 @@
 \renewcommand{\dblfloatpagefraction}{0.7}
 % flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
 \widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
-\usepackage{fnbreak}% warn about footnotes broken across pages, or:
-%\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
 
-%Chapter headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHAPTER HEADERS
 \input{header.tex}
 \chapterstyle{voronoi}
+% Chapter precies
+\setlength{\prechapterprecisshift}{-1\baselineskip}
+\renewcommand{\precistocformat}{\leftskip3em \noindent}
 
-%Section headers
-\setsecheadstyle{\fontspec{Idealist Sans}\fontsize{15}{17}\selectfont}
-\setsubsecheadstyle{\fontspec{Idealist Sans}\fontsize{13}{15}\selectfont}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION HEADERS
+\setsecheadstyle{\sansfont\fontsize{15}{17}\selectfont}
+\setsubsecheadstyle{\sansfont\fontsize{13}{15}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
 
-%Figure captions
-\captiondelim{--- }
-\captionnamefont{\small\bfseries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIGURE CAPTIONS
+\captiondelim{\color{black}--- }
+\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} %TODO: Setup tables like this as well
 \captiontitlefont{\small}
 \captionstyle{\centerlastline}
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
 
-%Header and footer styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADER AND FOOTER
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
 \makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
 \makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
 \pagestyle{thesis}
 
-%Table of Contents (And List of Figures)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLES
+%TODO: Setup tables similar to mountain I thinks (once I have a table to look at)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ToC, LoT, LoF
 \renewcommand{\cftchapterfont}{\bfseries\addfontfeature{LetterSpace=10.0}}
 \renewcommand*{\cftchapterformatpnum}{\bfseries\large}
 \renewcommand{\cftchapterpresnum}{\HUGE}
@@ -103,6 +120,92 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FOOTNOTES, MARPAR, SIDENOTES
+% TODO: These are really thin, may want to increase the margin if these are used a lot.
+\usepackage{fnbreak}% warn about footnotes broken across pages, or:
+%\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
+\marginparmargin{outer}
+\setmarginnotes{0.6em}{5em}{2em}
+\footnotesinmargin
+%Set footnote symbols to wiley style and override colour
+\makeatletter
+\renewcommand*{\@fnsymbol}[1]{\color{Set1-5-3}{\ensuremath{%
+\ifcase#1\or *\or **\or \dagger\or \ddagger\or
+\mathsection\or \mathparagraph\or \|\or \dagger\dagger
+\or \ddagger\ddagger \else\@ctrerr\fi}}}
+\makeatother
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\setlength{\footmarkwidth}{-1sp}
+\setlength{\footmarksep}{0em}
+\renewcommand{\foottextfont}{\footnotesize\color{Set1-5-3}}
+\sideparmargin{outer}
+\renewcommand{\sideparfont}{\small}
+\renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EPIGRAPHS
+%% This sets up the verso quote page only. 
+\epigraphposition{center}
+\setlength{\epigraphwidth}{300pt}
+\newlength{\quotelength}
+\newlength{\quoteheight}
+\setlength{\epigraphrule}{0pt}
+\newcommand*{\openquote}{%
+  \tikz[remember picture,overlay,xshift=-5pt,yshift=-20pt]
+  \node (OQ) {\fontsize{90}{90}\selectfont\color{gray!30}{“}};%
+}
+\newcommand*{\closequote}{%
+  \tikz[remember picture,overlay,xshift=\quotelength,yshift=\quoteheight]
+  \node (CQ) {\fontsize{90}{90}\selectfont\color{gray!30}{”}};%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EMPTY PAGE STYLES
+%This should only be called before a chapter heading - it prints a quote on the verso page.
+\newcommand{\versoquote}[2]{
+    \settowidth{\quotelength}{#1}
+    %This is a bit of a bitch - we need to print the close quote before the actual text 
+    %so that it isn't displayed on top of it...
+    \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
+        \addtolength{\quotelength}{-15pt}
+        \setlength{\quoteheight}{-20pt}
+    }{%Quote is longer than one line
+        \setlength{\quotelength}{285pt}
+        \settototalheight{\quoteheight}{\parbox{\epigraphwidth}{\begin{flushleft}\small#1\end{flushleft}}}
+        \setlength{\quoteheight}{-\quoteheight}
+        \addtolength{\quoteheight}{15pt}
+    }
+    \cleartoevenpage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
+    \vspace*{\fill}
+}
+%This should only be called before a chapter heading - it prints a tikz figure on the verso page.
+\newcommand{\versoimage}{
+    \cleartoevenpage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+    %TODO: Make a nice picture for this.
+    \tikzstyle{every node}=[circle, draw, fill=black!50,
+                        inner sep=0pt, minimum width=4pt]
+                        %  Tutte's 8-cage from texample for testing
+    \begin{tikzpicture}[thick,scale=0.8]
+        \draw \foreach \x in {0,36,...,324}
+        {
+            (\x:2) node {}  -- (\x+108:2)
+            (\x-10:3) node {} -- (\x+5:4)
+            (\x-10:3) -- (\x+36:2)
+            (\x-10:3) --(\x+170:3)
+            (\x+5:4) node {} -- (\x+41:4)
+        };
+    \end{tikzpicture}
+    \end{center}
+    \vspace*{\fill}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERSIONING/CHANGE TRACKING
 \usepackage[shadow,obeyDraft,colorinlistoftodos,textsize=small]{todonotes}
 \usepackage{fixme}
@@ -112,14 +215,15 @@
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
 
-%Additionals if we're in draft mode
-\ifdraft{%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DRAFT MODE ADDITIONS
+\ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
-\renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\fontspec{Idealist Sans}{ \gitBranch\,@\,\gitAbbrevHash{}
+\renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\sansfont{ \gitBranch\,@\,\gitAbbrevHash{}
 \textbullet{} (\gitAuthorDate)}}
-}{} % ifdraft
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%
 %% MICROTYPOGRAPHY
@@ -174,5 +278,6 @@
 
 \input{macros.tex} % shared so that psfrag for figures can use it
 
-%% Extra stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXTRA STUFF
 \hyphenation{tri-methyl-aluminium}
