@@ -2,7 +2,7 @@
 \documentclass[USenglish,\classoptions,\draftfinal]{memoir}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% FONTS 
+%% FONTS
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage[version=3]{mhchem} %Chemical formula
@@ -13,7 +13,6 @@
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \newfontfamily\sansfont{Idealist Sans}
 \newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
-%\setsansfont{\sansfont}
 \setmonofont{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
@@ -29,7 +28,7 @@
 \usepackage[mode=buildmissing]{standalone} %TODO: buildnew doesn't work for xelatex. Find out what to do with this.
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.10}
+\pgfplotsset{compat=1.11}
 %Colorbrewer Set1 of length 5 colours
 \definecolor{Set1-5-1}{RGB}{228,26,28} %Red
 \definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
@@ -144,7 +143,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EPIGRAPHS
-%% This sets up the verso quote page only. 
+%% This sets up the verso quote page only.
 \epigraphposition{center}
 \setlength{\epigraphwidth}{300pt}
 \newlength{\quotelength}
@@ -164,7 +163,7 @@
 %This should only be called before a chapter heading - it prints a quote on the verso page.
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
-    %This is a bit of a bitch - we need to print the close quote before the actual text 
+    %This is a bit of a bitch - we need to print the close quote before the actual text
     %so that it isn't displayed on top of it...
     \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
         \addtolength{\quotelength}{-15pt}
