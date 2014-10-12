@@ -10,6 +10,7 @@
 \setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \newfontfamily\sansfont{Idealist Sans}
+\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
 %\setsansfont{\sansfont}
 \setmonofont{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
@@ -28,19 +29,19 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
 %Colorbrewer Set1 of length 5 colours
-\definecolor{Set1-5-1}{RGB}{228,26,28}
-\definecolor{Set1-5-2}{RGB}{55,126,184}
-\definecolor{Set1-5-3}{RGB}{77,175,74}
-\definecolor{Set1-5-4}{RGB}{152,78,163}
-\definecolor{Set1-5-5}{RGB}{255,127,0}
-%\input{tikzmark.tex}
+\definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\definecolor{Set1-5-3}{RGB}{77,175,74} %Green
+\definecolor{Set1-5-4}{RGB}{152,78,163} %Purple
+\definecolor{Set1-5-5}{RGB}{255,127,0} %Orange
+%\input{tikzmark.tex} %Currently not using this.
 
 \usepackage{url}
 \urlstyle{rm}
 \usepackage[sort&compress,mcite]{natbib}
 \usepackage{bibentry} % for permissions
 %choose cite formatting:
-\renewcommand*{\citenumfont}[1]{\addfontfeature{Numbers=Lining}{#1}} % oldstyle looks wrong to me in brackets. TODO: This isn't fixing the issue
+\renewcommand*{\citenumfont}[1]{\skolarlining#1} % oldstyle looks wrong to me in brackets.
 \citestyle{plain}           % numbers in square brackets
 %\citestyle{nature}         % superscript.
 %choose a number formatting for the biblist:
@@ -83,8 +84,8 @@
 \usepackage{emptypage} % no page numbers or headers on empty pages
 
 %Figure captions
-\captiondelim{--- }
-\captionnamefont{\small\bfseries}
+\captiondelim{\color{black}--- }
+\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} %TODO: Setup tables like this as well
 \captiontitlefont{\small}
 \captionstyle{\centerlastline}
 \changecaptionwidth
