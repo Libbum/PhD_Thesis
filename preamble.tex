@@ -1,6 +1,8 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
 \documentclass[USenglish,\classoptions,\draftfinal]{memoir}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS 
 \usepackage{mathtools}    %loads amsmath. equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage[version=3]{mhchem} %Chemical formula
@@ -48,6 +50,8 @@
 \renewcommand*{\bibnumfmt}[1]{\eqparbox[t]{bblnm}{\hfill#1.}}
 \usepackage{bibunitsLSB}    % a problematic package. maybe matters whether before/after natbib?
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FORMATTING
 % Thesis-specific formatting
 \ifdblspc\OnehalfSpacing % before geometry, so that heightrounded works right.
 \else
@@ -55,9 +59,6 @@
 \newenvironment{SingleSpace*}{}{}
 \fi
 \usepackage[\geomoptions]{geometry} % showframe?
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% FORMATTING
 % I have lots of big figures, so allow pages with only a few lines of text
 \renewcommand{\topfraction}{0.9}
 \renewcommand{\bottomfraction}{0.6}
@@ -70,20 +71,22 @@
 % flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
 \widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 
-%Chapter headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHAPTER HEADERS
 \input{header.tex}
 \chapterstyle{voronoi}
-
-%Chapter precies
+% Chapter precies
 \setlength{\prechapterprecisshift}{-1\baselineskip}
 \renewcommand{\precistocformat}{\leftskip3em \noindent}
 
-%Section headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION HEADERS
 \setsecheadstyle{\sansfont\fontsize{15}{17}\selectfont}
 \setsubsecheadstyle{\sansfont\fontsize{13}{15}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
 
-%Figure captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIGURE CAPTIONS
 \captiondelim{\color{black}--- }
 \captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} %TODO: Setup tables like this as well
 \captiontitlefont{\small}
@@ -91,14 +94,20 @@
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
 
-%Header and footer styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADER AND FOOTER
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
 \makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
 \makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
 \pagestyle{thesis}
 
-%Table of Contents (And List of Figures)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLES
+%TODO: Setup tables similar to mountain I thinks (once I have a table to look at)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ToC, LoT, LoF
 \renewcommand{\cftchapterfont}{\bfseries\addfontfeature{LetterSpace=10.0}}
 \renewcommand*{\cftchapterformatpnum}{\bfseries\large}
 \renewcommand{\cftchapterpresnum}{\HUGE}
@@ -110,7 +119,9 @@
     \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}%
 }
 
-%Footnotes, margin paragraphs, sidenotes etc TODO: These are really thin, may want to increase the margin if these are used a lot.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FOOTNOTES, MARPAR, SIDENOTES
+% TODO: These are really thin, may want to increase the margin if these are used a lot.
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
 \marginparmargin{outer}
@@ -131,7 +142,9 @@
 \renewcommand{\sideparfont}{\small}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
 
-%Epigraphs - This sets up the verso quote page only. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EPIGRAPHS
+%% This sets up the verso quote page only. 
 \epigraphposition{center}
 \setlength{\epigraphwidth}{300pt}
 \newlength{\quotelength}
@@ -146,10 +159,13 @@
   \node (CQ) {\fontsize{90}{90}\selectfont\color{gray!30}{”}};%
 }
 
-%Empty page styling
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EMPTY PAGE STYLES
 %This should only be called before a chapter heading - it prints a quote on the verso page.
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
+    %This is a bit of a bitch - we need to print the close quote before the actual text 
+    %so that it isn't displayed on top of it...
     \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
         \addtolength{\quotelength}{-15pt}
         \setlength{\quoteheight}{-20pt}
@@ -162,7 +178,7 @@
     \cleartoevenpage
     \thispagestyle{empty}
     \vspace*{\fill}
-    \epigraph{\openquote\closequote #1}{---#2} 
+    \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
     \vspace*{\fill}
 }
 %This should only be called before a chapter heading - it prints a tikz figure on the verso page.
@@ -199,7 +215,8 @@
 \newcommand*{\xxx}[1]{\fxnote{#1}}
 \newcommand*{\fixmelist}{\listoffixmes} % or listoftodos (nice color, missing figures)
 
-%Additionals if we're in draft mode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DRAFT MODE ADDITIONS
 \ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
@@ -261,5 +278,6 @@
 
 \input{macros.tex} % shared so that psfrag for figures can use it
 
-%% Extra stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXTRA STUFF
 \hyphenation{tri-methyl-aluminium}
