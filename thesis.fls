@@ -1,0 +1,570 @@
+PWD C:/Cygwin/home/Genesis/sync/Latex/Thesis
+INPUT C:/Users/Genesis/AppData/Local/MiKTeX/2.9/miktex/data/le/xetex/xelatex.fmt
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.tex
+OUTPUT thesis.log
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/preamble.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/preamble.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/draftfinal.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/draftfinal.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/memoir.cls
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/memoir.cls
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifetex/ifetex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifetex/ifetex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifetex/ifetex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/plain/ifetex/ifetex.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fleqn.clo
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fleqn.clo
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/misc/etex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/misc/etex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/misc/etex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/mem12.clo
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/mem12.clo
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/mempatch.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/mempatch.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/mempatch.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/mathtools/mathtools.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/mathtools/mathtools.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/mathtools/mhsetup.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/mathtools/mhsetup.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/mhchem/mhchem.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/mhchem/mhchem.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/twoopt.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/twoopt.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/graphics.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/graphics.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/xelatex/xetex-def/xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/xelatex/xetex-def/xetex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3unicode-data.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3unicode-data.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3xdvipdfmx.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3xdvipdfmx.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/dstroke/dsfont.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/dstroke/dsfont.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/xelatex/mathspec/mathspec.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/xelatex/mathspec/mathspec.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-patches.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-patches.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-xetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-xetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/xelatex/xunicode/xunicode.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/xelatex/xunicode/xunicode.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/tipa/t3enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/euenc/eu1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkeyval.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkvutils.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fix-cm.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fix-cm.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/ragged2e.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/ragged2e.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/everysel.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/everysel.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel/babel.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel/babel.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel/switch.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/bblopts.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/bblopts.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/babel-english/english.ldf
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/babel-english/english.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel/babel.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/config/language.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/config/language.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel/xebabel.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/eqparbox/eqparbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/eqparbox/eqparbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/environ/environ.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/environ/environ.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/trimspaces/trimspaces.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/trimspaces/trimspaces.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenlev.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenlev.sty
+OUTPUT thesis.nlo
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/color.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/color.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/standalone/standalone.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/standalone/standalone.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/currfile/currfile.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/currfile/currfile.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/filehook/filehook.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/filehook/filehook.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/filehook/filehook-memoir.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/filehook/filehook-memoir.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/gincltex/gincltex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/gincltex/gincltex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/gincltex/gincltex.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/svn-prov/svn-prov.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/svn-prov/svn-prov.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/adjustbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/adjustbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/adjcalc.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/adjcalc.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/trimclip.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/trimclip.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/collectbox/collectbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/collectbox/collectbox.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/tc-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/adjustbox/tc-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifoddpage/ifoddpage.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifoddpage/ifoddpage.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ifoddpage/ifoddpage.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ltxmisc/varwidth.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ltxmisc/varwidth.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ltxmisc/varwidth.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/basiclayer/pgf.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/basiclayer/pgf.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfutil-common.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfutil-common-lists.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfutil-latex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/everyshi.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/ms/everyshi.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgf.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathcalc.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathutil.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathparser.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmathfloat.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgffor.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgffor.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/math/pgfmath.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgf/math/pgfmath.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/math/pgfmath.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgfplots/pgfplots.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/pgfplots/pgfplots.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.revision.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.revision.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotscore.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_trig_format.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-dvipdfmx.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/util/pgfplotscolor.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotsstackedplots.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.scaling.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.errorbars.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.markers.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplotsticks.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgfplots/pgfplots.paths.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/url/url.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/url/url.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/natbib.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/natbib.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/natbib/bibentry.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/natbib/bibentry.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bibunitsLSB.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bibunitsLSB.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/header.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/header.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/emptypage/emptypage.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/emptypage/emptypage.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/fnbreak/fnbreak.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/fnbreak/fnbreak.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/todonotes/todonotes.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/todonotes/todonotes.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshadows.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshadows.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/fixme/fixme.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/fixme/fixme.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype-xetex.def
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-generic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-generic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/auxhook.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/auxhook.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/pd1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/pd1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/hyperref.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/hyperref.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/puenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/puenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/stringenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/stringenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/backref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/backref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/zapfding/pzdr.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/memhfixc.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/memoir/memhfixc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hxetex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hxetex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/hypcap.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/hypcap.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/cleveref/cleveref.sty
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/cleveref/cleveref.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/macros.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/macros.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleE.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleE.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/declaration.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/declaration.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/acknowledge.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/acknowledge.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenclature.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenclature.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/summary.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/summary.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
+OUTPUT thesis.aux
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/tipa/t3cmr.fd
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/tipa/t3cmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/nameref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/nameref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/gettitlestring.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/gettitlestring.sty
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.out
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.out
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.out
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.out
+OUTPUT thesis.out
+OUTPUT titleL.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/se-ascii-print.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/se-ascii-print.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/se-ascii-print.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ot1pzc.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ot1pzc.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/zapfchan/pzcmi7t.tfm
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.toc
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.toc
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.lof
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.lof
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/sf.pdf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/sf.pdf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.lot
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.lot
+OUTPUT publications.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.aux
+OUTPUT bu1.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.bbl
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.bbl
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.brf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.brf
+OUTPUT thesis.brf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu1.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
+OUTPUT introduction.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+OUTPUT junctions.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/mexhatproj.pdf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/mexhatproj.pdf
+OUTPUT tlsmodel.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.tex
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/mexhatproj.pdf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/mexhatproj.pdf
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/dstroke/udsrom.fd
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/tex/latex/dstroke/udsrom.fd
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/fonts/tfm/public/dstroke/dsrom12.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/fonts/tfm/public/dstroke/dsrom8.tfm
+INPUT C:/Users/Genesis/AppData/Roaming/MiKTeX/2.9/fonts/tfm/public/dstroke/dsrom8.tfm
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/harmsm.pdf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/figures/harmsm.pdf
+OUTPUT bu.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.bbl
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.bbl
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.brf
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.brf
+OUTPUT thesis.toc
+OUTPUT thesis.lof
+OUTPUT thesis.lot
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/thesis.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleE.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleE.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/titleL.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/declaration.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/declaration.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/acknowledge.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/acknowledge.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/publications.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenclature.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/nomenclature.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/summary.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/summary.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/introduction.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/junctions.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/tlsmodel.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
+INPUT C:/Cygwin/home/Genesis/sync/Latex/Thesis/bu.aux
