@@ -13,7 +13,7 @@
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \newfontfamily\sansfont{Idealist Sans}
 \newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
-\setmonofont{PragmataPro}
+\setmonofont[Scale=MatchLowercase]{PragmataPro}
 %\defaultfontfeatures{ Scale = MatchLowercase }
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
@@ -160,13 +160,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EMPTY PAGE STYLES
-%This should only be called before a chapter heading - it prints a quote on the verso page.
+%This should only be called before a chapter heading and only to fill a blank page probably...
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
     %This is a bit of a bitch - we need to print the close quote before the actual text
     %so that it isn't displayed on top of it...
     \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
-        \addtolength{\quotelength}{-15pt}
+        \addtolength{\quotelength}{-15pt} %TODO: Maybe override this to center the entire quote
         \setlength{\quoteheight}{-20pt}
     }{%Quote is longer than one line
         \setlength{\quotelength}{285pt}

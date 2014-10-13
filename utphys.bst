@@ -1,5 +1,5 @@
 % UT Physics bibliographic style, ver. 2.2. Based on:
-% Modified Tim 2014-09-01 (marked TCD) to add named authors and other \cite capability
+% Modified Tim 2014-09-01 -- 2014-10-13 (marked TCD) to add named authors and other \cite capability as well as correct hyperref response
 % Modified Lev 2009-16-06 (marked LSB) to fix problem when article month given....
 % and fix "et.~al." in editors field
 % and switch off issue no.
@@ -397,13 +397,9 @@ FUNCTION {format.eprint}
 }
 
 FUNCTION {format.url}
-{ url empty$
-    { "" }
-    { doi empty$  %TCD - if there's a DOI we don't want the URL
-        {"\url{" url * "}" *}
-        { "" }
-        if$
-    }
+{ url empty$ not eprint empty$ doi empty$ and and
+    {"\url{" url * "}" *}
+    { "" } %TCD - if there's a DOI or arXiv we don't want the URL
   if$
 }
 
