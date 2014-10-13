@@ -124,9 +124,11 @@
 \renewcommand\cftchapteraftersnumb{\large\enspace\textperiodcentered\enspace}
 \renewcommand\chapternumberlinebox[2]{#2}
 \renewcommand{\cftfigureindent}{1.5em}
+\renewcommand{\cfttableindent}{1.5em}
 
-\newcommand{\lofchap}[1]{%alias for chapter headings in list of figures
-    \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}%
+\newcommand{\loftchap}[1]{%alias for chapter headings in list of figures and tables
+    \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}
+    \addcontentsline{lot}{chapter}{\protect\numberline{\thechapter}#1}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -230,6 +232,7 @@
 \ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
+\renewcommand{\gitMarkFormat}{\color{gray}\small\sansfont}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
 \renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\sansfont{ \gitBranch\,@\,\gitAbbrevHash{}
 \textbullet{} (\gitAuthorDate)}}
