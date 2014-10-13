@@ -5,8 +5,10 @@
 \section{Introdump from NJP}
 Superconducting qubits and Josephson junction based quantum devices in general are often limited by decoherence sources.
 A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
+\nomdef{ATLS}{TLS}{Two level system}
 Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
 Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{deSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the Josephson junction (JJ) transparency~\cite{Ku2005}.
+\nomdef{AJJ}{JJ}{Josephson junction}
 Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results - rendering them presently indistinguishable.
 It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
 Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
@@ -48,13 +50,14 @@ The model in this work therefore only attempts to describe TLSs that are strongl
 Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
 The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium---oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
 Experimental identification of defects like the $F$
- \nomdref{C}{$F$}{An electron sitting in a vacancy defect}{sec:cordef}
+\nomdref{CF}{$F$}{An electron sitting in a vacancy defect}{sec:cordef}
 and $F^+$ electron centres~\cite{Kotomin1989} and observations of defect mobility~\cite{Kulis1991} motivated further theoretical study.
 
 Intrinsic defects (such as self-trapped and defect-trapped holes, or oxygen and aluminium vacancies) as well as impurities of transition-metal ions like \ce{Co}, \ce{Fe}, \ce{Mg}, \ce{Mn} or \ce{Ti} are all possible~\cite{Jacobs1994}.
 \citeauthor{Jacobs1994} also suggest that oxygen vacancies are mobile throughout the lattice, as effective charges of an oxygen at a saddle point between aluminium atoms is similar to one on a normal lattice site.
 
-DFT studies of single oxygen vacancies soon followed, using $120$ atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
+DFT\xxx{Make sure this is defined before here} studies of single oxygen vacancies soon followed, using $120$ atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
+\nomdef{ADFT}{DFT}{Density Functional Theory}
 Singly occupied defect levels (the $F^+$ center) are also discussed by introducing a positive background charge into the calculation.
 
 Further investigations into point defects began to classify systems such as the Schottky-type (two \ce{Al^3+} and three \ce{O^2-} vacancies) and Frenkel-type (\eg one interstitial \ce{Al^3+} and one \ce{Al^3+} vacancy) defects, where the Schottky-type was found to be the dominant class~\cite{Mohapatra1978}.
@@ -71,9 +74,10 @@ On the other hand, high tetravalent impurity concentration produces  oxygen inte
 Surface point defects (interstitial and vacancies) have also been compared to their bulk counterparts~\cite{Carrasco2004}, showing that relative formation costs are similar (\ie the cost of an aluminium versus oxygen vacancy), although the surface defects require much less energy to form and electronic delocalisation is larger on the surface than in the bulk.
 This suggests surface defects may play an an important role as nucleation centers when bonding to metals (such as aluminium in our case).
 
-\section[toclisting][headlisting]{Deficiency Defects in Amorphous Aluminium}
-
+\section[toclisting][headlisting]{Deficiency Defects in Amorphous Aluminium}\label{sec:defdef}
+%TODO: Fix these overrides
 It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion,\xxx{Make sure this is discussed before here} such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
+\nomdref{AALD}{ALD}{Atomic Layer Deposition}{sec:defdef}
 ALD works by exposing a substrate to a heat source, then alternating pulses of water and trimethylaluminium.
 Each pulse is separated by a nitrogen gas flush to assure no gas phase mixing between the pulses.
 Ligand exchange between the water and trimethylaluminium at the substrate generates growth of the oxide~\cite{George2010}.
