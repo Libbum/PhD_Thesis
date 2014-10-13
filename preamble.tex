@@ -11,7 +11,7 @@
 \usepackage{mathspec} %loads fontspec
 \setromanfont{Skolar PE}[Ligatures={TeX, Common}, Numbers=OldStyle]
 \setsansfont{Idealist Sans}[ %This needs to be overridden to drop warnings in compile (there are no bold and italic versions)
-    Extension = .otf, 
+    Extension = .otf,
     UprightFont = idealist-sans.regular,
     BoldFont = idealist-sans.regular,
     ItalicFont = idealist-sans.regular,
@@ -57,17 +57,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
 % Thesis-specific formatting
-\OnehalfSpacing 
+\OnehalfSpacing
 %Trim to a4, cutting top and fore-edge only
 \settrimmedsize{297mm}{210mm}{*}
-\setlength{\trimtop}{\stockheight} 
-\addtolength{\trimtop}{-\paperheight} 
-\setlength{\trimedge}{\stockwidth} 
-\addtolength{\trimedge}{-\paperwidth} 
+\setlength{\trimtop}{\stockheight}
+\addtolength{\trimtop}{-\paperheight}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
 
-%400 pt is of order 77 characters wide - optimal is 66 chars, but there's too 
+%400 pt is of order 77 characters wide - optimal is 66 chars, but there's too
 %much math going on in a line and too much wide equations to allow that here
-\settypeblocksize{634pt}{400pt}{*} 
+\settypeblocksize{634pt}{400pt}{*}
 \setulmargins{4cm}{*}{*}
 \setlrmargins{*}{*}{1.618} %Golden ratio mofos
 \marginparmargin{outer}
@@ -109,7 +109,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FIGURE CAPTIONS
 \captiondelim{\textcolor{black}{--- }}
-\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} 
+\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}}
 \captiontitlefont{\small}
 \captionstyle{\centerlastline}
 \changecaptionwidth
@@ -206,7 +206,7 @@
         \addtolength{\quoteheight}{15pt}
     }
     \checkoddpage %Will only clear if we're on an odd page
-    \ifoddpage\cleartoevenpage\fi 
+    \ifoddpage\cleartoevenpage\fi
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
@@ -214,7 +214,7 @@
 }
 \newcommand{\versoimage}{
     \checkoddpage %Will only clear if we're on an odd page
-    \ifoddpage\cleartoevenpage\fi 
+    \ifoddpage\cleartoevenpage\fi
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
