@@ -2,6 +2,9 @@
 \begin{SingleSpace}
 \vspace*{1cm}
 \begin{center}
+\tikz[remember picture,overlay]
+  \node[xshift=0.5\paperwidth,yshift=0.3\paperwidth,opacity=0.4] at (current page.south) {\resizebox{2\paperwidth}{!}{\includestandalone{figures/sf}}};
+  
 \addfontfeature{Ligatures={Discretionary,Common,TeX},Style=Historic}{
 {\Large On Pedantic Figures} \\
 
