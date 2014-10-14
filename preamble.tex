@@ -199,20 +199,7 @@
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
-    %TODO: Make a nice picture for this.
-    \tikzstyle{every node}=[circle, draw, fill=black!50,
-                        inner sep=0pt, minimum width=4pt]
-                        %  Tutte's 8-cage from texample for testing
-    \begin{tikzpicture}[thick,scale=0.8]
-        \draw \foreach \x in {0,36,...,324}
-        {
-            (\x:2) node {}  -- (\x+108:2)
-            (\x-10:3) node {} -- (\x+5:4)
-            (\x-10:3) -- (\x+36:2)
-            (\x-10:3) --(\x+170:3)
-            (\x+5:4) node {} -- (\x+41:4)
-        };
-    \end{tikzpicture}
+    \resizebox{0.5\columnwidth}{!}{\includestandalone{figures/sf}}
     \end{center}
     \vspace*{\fill}
 }
