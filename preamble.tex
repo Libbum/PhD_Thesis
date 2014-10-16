@@ -9,12 +9,11 @@
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{mathspec} %loads fontspec
-\setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
+\setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE} %TODO: Fix the \addfontfeature{x){y} -> {\addfontfeature{x)y} everywhere
 %\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
 \newfontfamily\sansfont{Idealist Sans}
 \newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
 \setmonofont[Scale=MatchLowercase]{PragmataPro}
-%\defaultfontfeatures{ Scale = MatchLowercase }
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
 \usepackage{fix-cm} %Computer Modern is used in a few places and throws errors.
@@ -27,6 +26,7 @@
 \usepackage[rgb]{xcolor}
 \usepackage[mode=buildmissing]{standalone} %TODO: buildnew doesn't work for xelatex. Find out what to do with this.
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
 %Colorbrewer Set1 of length 5 colours
