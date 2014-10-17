@@ -297,3 +297,27 @@ More complex error analysis to be found in \cite{Mathur2012}
   \item Connect both to real units, find $C_n$ \etc, then total error
   \item Be fucking done with this shit.
 \end{enumerate}
+
+\section{Finite Grid}
+The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic in all regions.
+Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
+A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
+Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model by \citeauthor{Ocampo2012} to calculate an optimised three-finite-burn lunar-escape-trajectory~\cite{Ocampo2012}.
+
+On the simpler end of the spectrum, finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
+If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$, which takes the form
+\nomdef{AODE}{ODE}{Ordinary Differential Equation}
+\nomdef{APDE}{PDE}{Partial Differential Equation}
+\begin{equation}
+f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},\label{eq:simplecdiff}
+\end{equation}
+where $h$ is some step size.
+The step size controls the accuracy of the computed derivative, which is unfortunately bound by two factors.
+If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, a step size too large mathematical truncation 
+
+
+For an overview of these algorithms, see \onlinecite{Mathews2004}.
+
+Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire.
+A higher order treatment was required.
+
