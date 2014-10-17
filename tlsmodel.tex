@@ -1,4 +1,4 @@
-\versoquote{When a person is determined to believe something, the very absurdity of the doctrine confirms them in their faith.}{Junius}
+%\versoquote{When a person is determined to believe something, the very absurdity of the doctrine confirms them in their faith.}{Junius}
 \chapter{Microscopic TLS Model}
 \chapterprecis{The Microscopic TLS Model chapter}%TODO: Fill this in.
 \loftchap{Microscopic TLS Model}
@@ -284,4 +284,16 @@ On various \texttt{Linux} distributions and \texttt{Windows 7}, \texttt{Matlab 2
 More complex error analysis to be found in \cite{Mathur2012}
 
 
+\section{New version of this section}
 
+\begin{enumerate}
+  \item New introduction based off of \citeauthor{Mathur2012}'s first chapter
+  \item Discuss inherent errors and issues with finding an optimum step size
+  \item Quick overview of AutoDX, mostly cite \cite{Mathur2012} rather than going into too much detail of the algo, although make sure maths is complete
+  \item Approximate \cref{eq:OHam} with harmonic oscillator (using \cref{fig:harmsm} subsection), obtaining an analytic expression for $\Psi$, so we can apply AutoDX to $\nabla^2$ (using a simple $\mathcal{O}(h^2)$). Will need to use the dimensionless equation b.c. the real value one borks (too many orders of mag I think).
+  \item Discuss memory constraints. Need to make larger step size without cutting out accuracy
+  \item Derive seven point
+  \item Compare $h_{opt}$ and $\abs{TE_n}$ with 3 point
+  \item Connect both to real units, find $C_n$ \etc, then total error
+  \item Be fucking done with this shit.
+\end{enumerate}
