@@ -1,5 +1,5 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
-\documentclass[USenglish,\classoptions,\draftfinal]{memoir}
+\documentclass[USenglish,fleqn,twoside,openright,12pt,\paperoptions,\draftfinal]{memoir}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FONTS
@@ -57,15 +57,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
 % Thesis-specific formatting
-\OnehalfSpacing % before geometry, so that heightrounded works right.
-
+\OnehalfSpacing 
 %Trim to a4, cutting top and fore-edge only
 \settrimmedsize{297mm}{210mm}{*}
-\setlength{\trimtop}{\stockheight} % \trimtop = \stockheight
-\addtolength{\trimtop}{-\paperheight} % - \paperheight
-\setlength{\trimedge}{\stockwidth} % \trimedge = \stockwidth
-\addtolength{\trimedge}{-\paperwidth} % - \paperwidth
-
+\setlength{\trimtop}{\stockheight} 
+\addtolength{\trimtop}{-\paperheight} 
+\setlength{\trimedge}{\stockwidth} 
+\addtolength{\trimedge}{-\paperwidth} 
 
 \settypeblocksize{634pt}{448.13pt}{*}
 \setulmargins{4cm}{*}{*}
@@ -75,14 +73,16 @@
 \setheaderspaces{*}{2\onelineskip}{*}
 \checkandfixthelayout
 
+%Add sheet numbers to stock for printers
 \newcommand*{\trimseqpage}{%
 \begin{picture}(0,0)
 \unitlength 1mm
 \put(0,2){\makebox(0,0)[b]{Sheet: \thesheetsequence\ of \thelastsheet}}
 \end{picture}}
 \let\tmarktm\trimseqpage
-
+%Set trim style
 \trimLmarks
+
 % I have lots of big figures, so allow pages with only a few lines of text
 %\renewcommand{\topfraction}{0.9}
 %\renewcommand{\bottomfraction}{0.6}
@@ -260,6 +260,7 @@
 %% these packages must come last:
 
 %Make sure titles use \texorpdfstring
+\newcommand*{\hyperoptions}{colorlinks=true, linkcolor=[rgb]{1,0,0}, urlcolor=Set1-5-2, citecolor=[rgb]{0,0.5,0},} %Blue is from colorbrewer
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
 
