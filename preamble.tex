@@ -9,11 +9,16 @@
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{mathspec} %loads fontspec
-\setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE} %TODO: Fix the \addfontfeature{x){y} -> {\addfontfeature{x)y} everywhere
-%\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
-\newfontfamily\sansfont{Idealist Sans}
-\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
-\setmonofont[Scale=MatchLowercase]{PragmataPro}
+\setromanfont{Skolar PE}[Ligatures={TeX, Common}, Numbers=OldStyle]
+\setsansfont{Idealist Sans}[ %This needs to be overridden to drop warnings in compile (there are no bold and italic versions)
+    Extension = .otf, 
+    UprightFont = idealist-sans.regular,
+    BoldFont = idealist-sans.regular,
+    ItalicFont = idealist-sans.regular,
+    ]
+\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE} %Cannot just addfontfeature this yet - fontspec not ready (see docs)
+\newfontface\header[LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining]{Skolar PE}
+\setmonofont{PragmataPro}[Scale=MatchLowercase]
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
 \usepackage{fix-cm} %Computer Modern is used in a few places and throws errors.
@@ -80,14 +85,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION HEADERS
-\setsecheadstyle{\sansfont\fontsize{15}{17}\selectfont}
-\setsubsecheadstyle{\sansfont\fontsize{13}{15}\selectfont}
+\setsecheadstyle{\sffamily\fontsize{15}{17}\selectfont}
+\setsubsecheadstyle{\sffamily\fontsize{13}{15}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FIGURE CAPTIONS
 \captiondelim{\textcolor{black}{--- }}
-\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} \captiontitlefont{\small}
+\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} 
+\captiontitlefont{\small}
 \captionstyle{\centerlastline}
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
@@ -111,8 +117,8 @@
 %% HEADER AND FOOTER
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
-\makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
-\makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
+\makeevenhead{thesis}{{\thepage}}{}{{\header\leftmark}}
+\makeoddhead{thesis}{{\header\rightmark}}{}{{\thepage}}
 \pagestyle{thesis}
 
 
@@ -187,7 +193,7 @@
         \setlength{\quoteheight}{-\quoteheight}
         \addtolength{\quoteheight}{15pt}
     }
-    \cleartoevenpage
+    \cleartoevenpage %TODO: This may be causing some issues, but will have to check much later on in time when we actually have content.
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
@@ -219,9 +225,9 @@
 \ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
-\renewcommand{\gitMarkFormat}{\color{gray}\small\sansfont}
+\renewcommand{\gitMarkFormat}{\color{gray}\small\sffamily}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
-\renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\sansfont{ \gitBranch\,@\,\gitAbbrevHash{}
+\renewcommand{\gitMark}{Branch\textrm{:} \gitBranch\,@\,\gitAbbrevHash}
 \textbullet{} (\gitAuthorDate)}}
 \fi
 
