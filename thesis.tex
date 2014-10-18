@@ -9,14 +9,16 @@
     \end{SingleSpace}
     \ifdraftdoc
     \else
-    \include{title}
+    \include{titleE} %English, Modern
+    \include{titleL} %Latin, Legacy
+    %\include{titleP} %Principia copy
     \include{declaration}
     \fi
     \begin{SingleSpace}  %Double space is default at present. Check style guide though
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
     \tableofcontents     % must be first
     \clearpage
-    \listoffigures 
+    \listoffigures
     \clearpage         % other lists must follow immediately from ToC
     \listoftables      % other lists must follow immediately if present
     \microtypesetup{protrusion=true}
