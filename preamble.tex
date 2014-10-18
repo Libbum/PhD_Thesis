@@ -198,7 +198,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EMPTY PAGE STYLES
-%This should only be called before a chapter heading and only to fill a blank page probably...
+\strictpagecheck %Don't fuck around the page checking
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
     %This is a bit of a bitch - we need to print the close quote before the actual text
@@ -212,15 +212,16 @@
         \setlength{\quoteheight}{-\quoteheight}
         \addtolength{\quoteheight}{15pt}
     }
-    \cleartoevenpage %TODO: Put in an override to ignore this when not needed.
+    \checkoddpage %Will only clear if we're on an odd page
+    \ifoddpage\cleartoevenpage 
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
     \vspace*{\fill}
 }
-%This should only be called before a chapter heading - it prints a tikz figure on the verso page.
 \newcommand{\versoimage}{
-    \cleartoevenpage %TODO: Put in an override to ignore this when not needed.
+    \checkoddpage %Will only clear if we're on an odd page
+    \ifoddpage\cleartoevenpage 
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
