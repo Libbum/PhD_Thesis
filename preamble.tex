@@ -57,23 +57,43 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
 % Thesis-specific formatting
-\ifdblspc\OnehalfSpacing % before geometry, so that heightrounded works right.
-\else
-\newenvironment{SingleSpace}{}{}
-\newenvironment{SingleSpace*}{}{}
-\fi
-\usepackage[\geomoptions]{geometry} % showframe?
+\OnehalfSpacing % before geometry, so that heightrounded works right.
+
+%Trim to a4, cutting top and fore-edge only
+\settrimmedsize{297mm}{210mm}{*}
+\setlength{\trimtop}{\stockheight} % \trimtop = \stockheight
+\addtolength{\trimtop}{-\paperheight} % - \paperheight
+\setlength{\trimedge}{\stockwidth} % \trimedge = \stockwidth
+\addtolength{\trimedge}{-\paperwidth} % - \paperwidth
+
+
+\settypeblocksize{634pt}{448.13pt}{*}
+\setulmargins{4cm}{*}{*}
+\setlrmargins{*}{*}{1.5}
+\setmarginnotes{17pt}{51pt}{\onelineskip}
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+\checkandfixthelayout
+
+\newcommand*{\trimseqpage}{%
+\begin{picture}(0,0)
+\unitlength 1mm
+\put(0,2){\makebox(0,0)[b]{Sheet: \thesheetsequence\ of \thelastsheet}}
+\end{picture}}
+\let\tmarktm\trimseqpage
+
+\trimLmarks
 % I have lots of big figures, so allow pages with only a few lines of text
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\bottomfraction}{0.6}
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{2}
-\renewcommand{\textfraction}{0.07}
-\renewcommand{\floatpagefraction}{0.7}
-\renewcommand{\dblfloatpagefraction}{0.7}
-% flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
-\widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
+%\renewcommand{\topfraction}{0.9}
+%\renewcommand{\bottomfraction}{0.6}
+%\setcounter{topnumber}{2}
+%\setcounter{bottomnumber}{2}
+%\setcounter{totalnumber}{2}
+%\renewcommand{\textfraction}{0.07}
+%\renewcommand{\floatpagefraction}{0.7}
+%\renewcommand{\dblfloatpagefraction}{0.7}
+%% flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
+%\widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CHAPTER HEADERS
@@ -120,7 +140,6 @@
 \makeevenhead{thesis}{{\thepage}}{}{{\header\leftmark}}
 \makeoddhead{thesis}{{\header\rightmark}}{}{{\thepage}}
 \pagestyle{thesis}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ToC, LoT, LoF
@@ -193,7 +212,7 @@
         \setlength{\quoteheight}{-\quoteheight}
         \addtolength{\quoteheight}{15pt}
     }
-    \cleartoevenpage %TODO: This may be causing some issues, but will have to check much later on in time when we actually have content.
+    \cleartoevenpage %TODO: Put in an override to ignore this when not needed.
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
@@ -201,7 +220,7 @@
 }
 %This should only be called before a chapter heading - it prints a tikz figure on the verso page.
 \newcommand{\versoimage}{
-    \cleartoevenpage
+    \cleartoevenpage %TODO: Put in an override to ignore this when not needed.
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
