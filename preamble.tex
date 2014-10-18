@@ -1,5 +1,5 @@
 \input{draftfinal.tex} % separate file cos it's gonna change frequently
-\documentclass[USenglish,\classoptions,\draftfinal]{memoir}
+\documentclass[USenglish,fleqn,twoside,openright,12pt,\paperoptions,\draftfinal]{memoir}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FONTS
@@ -9,12 +9,16 @@
 \usepackage{amssymb}
 \usepackage{dsfont}
 \usepackage{mathspec} %loads fontspec
-\setromanfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Skolar PE}
-%\setmainfont[RawFeature={+ss02,+cv01,+ss05,+dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond} %Good for old school s
-\newfontfamily\sansfont{Idealist Sans}
-\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE}
-\setmonofont[Scale=MatchLowercase]{PragmataPro}
-%\defaultfontfeatures{ Scale = MatchLowercase }
+\setromanfont{Skolar PE}[Ligatures={TeX, Common}, Numbers=OldStyle]
+\setsansfont{Idealist Sans}[ %This needs to be overridden to drop warnings in compile (there are no bold and italic versions)
+    Extension = .otf, 
+    UprightFont = idealist-sans.regular,
+    BoldFont = idealist-sans.regular,
+    ItalicFont = idealist-sans.regular,
+    ]
+\newfontfamily\skolarlining[Numbers=Lining]{Skolar PE} %Cannot just addfontfeature this yet - fontspec not ready (see docs)
+\newfontface\header[LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining]{Skolar PE}
+\setmonofont{PragmataPro}[Scale=MatchLowercase]
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
 \usepackage{fix-cm} %Computer Modern is used in a few places and throws errors.
@@ -27,6 +31,7 @@
 \usepackage[rgb]{xcolor}
 \usepackage[mode=buildmissing]{standalone} %TODO: buildnew doesn't work for xelatex. Find out what to do with this.
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
 %Colorbrewer Set1 of length 5 colours
@@ -52,23 +57,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
 % Thesis-specific formatting
-\ifdblspc\OnehalfSpacing % before geometry, so that heightrounded works right.
-\else
-\newenvironment{SingleSpace}{}{}
-\newenvironment{SingleSpace*}{}{}
-\fi
-\usepackage[\geomoptions]{geometry} % showframe?
-% I have lots of big figures, so allow pages with only a few lines of text
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\bottomfraction}{0.6}
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{2}
-\renewcommand{\textfraction}{0.07}
-\renewcommand{\floatpagefraction}{0.7}
-\renewcommand{\dblfloatpagefraction}{0.7}
-% flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
-\widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
+\OnehalfSpacing 
+%Trim to a4, cutting top and fore-edge only
+\settrimmedsize{297mm}{210mm}{*}
+\setlength{\trimtop}{\stockheight} 
+\addtolength{\trimtop}{-\paperheight} 
+\setlength{\trimedge}{\stockwidth} 
+\addtolength{\trimedge}{-\paperwidth} 
+
+%400 pt is of order 77 characters wide - optimal is 66 chars, but there's too 
+%much math going on in a line and too much wide equations to allow that here
+\settypeblocksize{634pt}{400pt}{*} 
+\setulmargins{4cm}{*}{*}
+\setlrmargins{*}{*}{1.618} %Golden ratio mofos
+\marginparmargin{outer}
+\sideparmargin{outer}
+\setmarginnotes{10pt}{105pt}{\onelineskip}
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+\setlength{\topskip}{1.6\topskip}
+\checkandfixthelayout
+\sloppybottom  %Overcomes orphaned windows. No need to provide a strict window penalty and a ragged bottom
+
+%For title pages
+\newlength{\calign}
+
+%Add sheet numbers to stock for printers
+\newcommand*{\trimseqpage}{%
+\begin{picture}(0,0)
+\unitlength 1mm
+\put(0,2){\makebox(0,0)[b]{Sheet: \thesheetsequence\ of \thelastsheet}}
+\end{picture}}
+\let\tmarktm\trimseqpage
+%Set trim style
+\trimLmarks
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CHAPTER HEADERS
@@ -80,14 +102,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION HEADERS
-\setsecheadstyle{\sansfont\fontsize{15}{17}\selectfont}
-\setsubsecheadstyle{\sansfont\fontsize{13}{15}\selectfont}
+\setsecheadstyle{\sffamily\fontsize{15}{17}\selectfont}
+\setsubsecheadstyle{\sffamily\fontsize{13}{15}\selectfont}
 \usepackage{emptypage} % no page numbers or headers on empty pages
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FIGURE CAPTIONS
 \captiondelim{\textcolor{black}{--- }}
-\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} \captiontitlefont{\small}
+\captionnamefont{\small\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}} 
+\captiontitlefont{\small}
 \captionstyle{\centerlastline}
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
@@ -111,10 +134,9 @@
 %% HEADER AND FOOTER
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
-\makeevenhead{thesis}{\addfontfeature{Numbers=Lining}{\thepage}}{}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\leftmark}}
-\makeoddhead{thesis}{\addfontfeature{LetterSpace=20.0,Letters=SmallCaps,Numbers=Lining}{\rightmark}}{}{\addfontfeature{Numbers=Lining}{\thepage}}
+\makeevenhead{thesis}{{\thepage}}{}{{\header\leftmark}}
+\makeoddhead{thesis}{{\header\rightmark}}{}{{\thepage}}
 \pagestyle{thesis}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ToC, LoT, LoF
@@ -133,11 +155,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FOOTNOTES, MARPAR, SIDENOTES
-% TODO: These are really thin, may want to increase the margin if these are used a lot.
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
-\marginparmargin{outer}
-\setmarginnotes{0.6em}{5em}{2em}
 \footnotesinmargin
 %Set footnote symbols to wiley style and override colour
 \makeatletter
@@ -150,7 +169,6 @@
 \setlength{\footmarkwidth}{-1sp}
 \setlength{\footmarksep}{0em}
 \renewcommand{\foottextfont}{\footnotesize\color{Set1-5-3}}
-\sideparmargin{outer}
 \renewcommand{\sideparfont}{\small}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
 
@@ -173,7 +191,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EMPTY PAGE STYLES
-%This should only be called before a chapter heading and only to fill a blank page probably...
+\strictpagecheck %Don't fuck around the page checking
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
     %This is a bit of a bitch - we need to print the close quote before the actual text
@@ -187,32 +205,20 @@
         \setlength{\quoteheight}{-\quoteheight}
         \addtolength{\quoteheight}{15pt}
     }
-    \cleartoevenpage
+    \checkoddpage %Will only clear if we're on an odd page
+    \ifoddpage\cleartoevenpage\fi 
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
     \vspace*{\fill}
 }
-%This should only be called before a chapter heading - it prints a tikz figure on the verso page.
 \newcommand{\versoimage}{
-    \cleartoevenpage
+    \checkoddpage %Will only clear if we're on an odd page
+    \ifoddpage\cleartoevenpage\fi 
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
-    %TODO: Make a nice picture for this.
-    \tikzstyle{every node}=[circle, draw, fill=black!50,
-                        inner sep=0pt, minimum width=4pt]
-                        %  Tutte's 8-cage from texample for testing
-    \begin{tikzpicture}[thick,scale=0.8]
-        \draw \foreach \x in {0,36,...,324}
-        {
-            (\x:2) node {}  -- (\x+108:2)
-            (\x-10:3) node {} -- (\x+5:4)
-            (\x-10:3) -- (\x+36:2)
-            (\x-10:3) --(\x+170:3)
-            (\x+5:4) node {} -- (\x+41:4)
-        };
-    \end{tikzpicture}
+    \resizebox{0.5\columnwidth}{!}{\includestandalone{figures/sf}}
     \end{center}
     \vspace*{\fill}
 }
@@ -232,10 +238,9 @@
 \ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
-\renewcommand{\gitMarkFormat}{\color{gray}\small\sansfont}
+\renewcommand{\gitMarkFormat}{\color{gray}\small\sffamily}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
-\renewcommand{\gitMark}{Branch\fontspec{Skolar PE}{:}\sansfont{ \gitBranch\,@\,\gitAbbrevHash{}
-\textbullet{} (\gitAuthorDate)}}
+\renewcommand{\gitMark}{Branch\rmfamily : \sffamily\gitBranch\,@\,\gitAbbrevHash{} \textbullet{} (\gitAuthorDate)}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -247,6 +252,7 @@
 %% these packages must come last:
 
 %Make sure titles use \texorpdfstring
+\newcommand*{\hyperoptions}{colorlinks=true, linkcolor=[rgb]{1,0,0}, urlcolor=Set1-5-2, citecolor=[rgb]{0,0.5,0},} %Blue is from colorbrewer
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
 
