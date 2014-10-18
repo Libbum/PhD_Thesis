@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% New School
+\thispagestyle{empty}
+\newgeometry{left=2cm,right=2cm,bottom=2cm,top=2cm} %TODO: Fix the geometry, need to check binding offset
+%TODO: May be easier to put the font in tikz too if binding offset etc turns out to be too hard.
+\begin{SingleSpace}
+\begin{center}
+\tikz[remember picture,overlay]
+  \node[xshift=0.5\paperwidth,yshift=0.4\paperwidth,opacity=0.4] at (current page.south) {\resizebox{2\paperwidth}{!}{\includestandalone{figures/sf}}};
+
+{\fontsize{35}{35}\selectfont On a Delocalised Oxygen Model of Two-Level System Defects in Josephson Junctions} \\
+\vfill
+    {\Large A thesis presented to the\\
+    School of Applied Sciences\\
+    of\\
+    RMIT University\\
+    in Candidacy for the Degree of\\
+    Doctor of Philosophy (Applied Physics)}\\
+\vfill
+    {\Large by\\
+    Timothy Charles DuBois\\
+    Theoretical Chemical and Quantum Physics Group}\\
+\vspace{2cm}
+    {\large Primary Supervisor: Doctor Jared Cole\\
+    Secondary Supervisor: Professor Salvy Russo}\\
+\vspace{2cm}
+    February 2015\\
+\end{center}
+\end{SingleSpace}
+\restoregeometry
+\clearpage
