@@ -79,6 +79,9 @@
 \checkandfixthelayout
 \sloppybottom  %Overcomes orphaned windows. No need to provide a strict window penalty and a ragged bottom
 
+%For title pages
+\newlength{\calign}
+
 %Add sheet numbers to stock for printers
 \newcommand*{\trimseqpage}{%
 \begin{picture}(0,0)
@@ -88,20 +91,6 @@
 \let\tmarktm\trimseqpage
 %Set trim style
 \trimLmarks
-
-% I have lots of big figures, so allow pages with only a few lines of text
-%\renewcommand{\topfraction}{0.9}
-%\renewcommand{\bottomfraction}{0.6}
-%\setcounter{topnumber}{2}
-%\setcounter{bottomnumber}{2}
-%\setcounter{totalnumber}{2}
-%\renewcommand{\textfraction}{0.07}
-%\renewcommand{\floatpagefraction}{0.7}
-%\renewcommand{\dblfloatpagefraction}{0.7}
-
-%TODO: 3.5 Sloppy bottom
-%% flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
-%\widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CHAPTER HEADERS
