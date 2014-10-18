@@ -65,13 +65,19 @@
 \setlength{\trimedge}{\stockwidth} 
 \addtolength{\trimedge}{-\paperwidth} 
 
-\settypeblocksize{634pt}{448.13pt}{*}
+%400 pt is of order 77 characters wide - optimal is 66 chars, but there's too 
+%much math going on in a line and too much wide equations to allow that here
+\settypeblocksize{634pt}{400pt}{*} 
 \setulmargins{4cm}{*}{*}
-\setlrmargins{*}{*}{1.5}
-\setmarginnotes{17pt}{51pt}{\onelineskip}
+\setlrmargins{*}{*}{1.618} %Golden ratio mofos
+\marginparmargin{outer}
+\sideparmargin{outer}
+\setmarginnotes{10pt}{105pt}{\onelineskip}
 \setheadfoot{\onelineskip}{2\onelineskip}
 \setheaderspaces{*}{2\onelineskip}{*}
+\setlength{\topskip}{1.6\topskip}
 \checkandfixthelayout
+\sloppybottom  %Overcomes orphaned windows. No need to provide a strict window penalty and a ragged bottom
 
 %Add sheet numbers to stock for printers
 \newcommand*{\trimseqpage}{%
@@ -92,6 +98,8 @@
 %\renewcommand{\textfraction}{0.07}
 %\renewcommand{\floatpagefraction}{0.7}
 %\renewcommand{\dblfloatpagefraction}{0.7}
+
+%TODO: 3.5 Sloppy bottom
 %% flushbottom is in principle better than raggedbottom for twoside, but my life is too short to try to make this kind of document (lots of figures, section headings, equations) layout properly in LaTeX with flushbottom. the stretchy topskip is a trick to get (slightly) better pagebreaks:
 %\widowpenalty=10000 \raggedbottom  \addtolength{\topskip}{0pt plus 10pt}
 
@@ -158,11 +166,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FOOTNOTES, MARPAR, SIDENOTES
-% TODO: These are really thin, may want to increase the margin if these are used a lot.
 \usepackage{fnbreak}% warn about footnotes broken across pages, or:
 %\interfootnotelinepenalty=10000 % ...prevent split footnotes completely
-\marginparmargin{outer}
-\setmarginnotes{0.6em}{5em}{2em}
 \footnotesinmargin
 %Set footnote symbols to wiley style and override colour
 \makeatletter
@@ -175,7 +180,6 @@
 \setlength{\footmarkwidth}{-1sp}
 \setlength{\footmarksep}{0em}
 \renewcommand{\foottextfont}{\footnotesize\color{Set1-5-3}}
-\sideparmargin{outer}
 \renewcommand{\sideparfont}{\small}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
 
@@ -213,7 +217,7 @@
         \addtolength{\quoteheight}{15pt}
     }
     \checkoddpage %Will only clear if we're on an odd page
-    \ifoddpage\cleartoevenpage 
+    \ifoddpage\cleartoevenpage\fi 
     \thispagestyle{empty}
     \vspace*{\fill}
     \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
@@ -221,7 +225,7 @@
 }
 \newcommand{\versoimage}{
     \checkoddpage %Will only clear if we're on an odd page
-    \ifoddpage\cleartoevenpage 
+    \ifoddpage\cleartoevenpage\fi 
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
@@ -247,8 +251,7 @@
 \usepackage[markifdraft]{gitinfo2}
 \renewcommand{\gitMarkFormat}{\color{gray}\small\sffamily}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
-\renewcommand{\gitMark}{Branch\textrm{:} \gitBranch\,@\,\gitAbbrevHash}
-\textbullet{} (\gitAuthorDate)}}
+\renewcommand{\gitMark}{Branch\rmfamily : \sffamily\gitBranch\,@\,\gitAbbrevHash{} \textbullet{} (\gitAuthorDate)}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%
