@@ -3,6 +3,9 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
 \usepgfplotslibrary{colorbrewer}
+\usepackage{mathspec}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
 \begin{document}
 \begin{tikzpicture}
 
@@ -355,4 +358,4 @@ legend style={at={(axis cs:0,0)},anchor=north}
 \addlegendentry{$V(x)$}
 \end{axis}
 \end{tikzpicture}%
-\end{document}
+\end{document} 
