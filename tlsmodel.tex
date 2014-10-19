@@ -29,20 +29,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \end{figure}
 
 \section{Finite Grid}
-The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically.
-Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment via a finite difference method.
 
-Finite difference algorithms are useful for boundary value problems (to which the forward and backward methods are usually applied), and for ordinary and partial differential equations.
-If the ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$, which takes the form
-
-\begin{equation}
-f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},\label{eq:simplecdiffold}
-\end{equation}
-where $h$ is some step size.
-For an overview of these algorithms, see \onlinecite{Mathews2004}.
-
-Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire.
-A higher order treatment was required.
 
 \subsection{Derivation}
 Following the discussion in \onlinecite{Holoborodko2009}: to calculate the numerical derivative of the function $f(x)$ one can approximate the local region about any point $x^*$ by an appropriate polynomial $P_m(x)$.
@@ -62,7 +49,6 @@ P_{N-1}(x)=\sum_{j=0}^{N-1} a_j x^j,
 a solution can be found by obtaining the set of coefficients $\{a_j\}$ for the system of linear equations
 \begin{equation}
 \left\{P_{N-1}(x_k)=f_x\right\}.
-\label{eq:ploylinset}
 \end{equation}
 
 For reasons outlined \emph{vide infra} in \cref{sec:cdiffstep}, a centered formula of order $\mathcal{O}(h^6)$ is needed to obtain the error tolerance required to solve \cref{eq:OHam}, thus a $N=7$ point calculation.
@@ -342,9 +328,58 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section{The Central Difference Method}
+\section{Understanding Finite Difference Methods}
 
-%For an overview of these algorithms, see \onlinecite{Mathews2004}.
+All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms
+
+\begin{equation}
+    f(x) = f(x^*) + f\,'(x)(x-x*) + \cdots + R_n.
+\end{equation}
+
+The discarded, higher order remainder terms $R_n$, are considered to contribute a negligible error to the approximation assuming a sufficiently small step size $h$.
+
+\begin{equation}
+    R_n = \sum_{m=n}^\infty \frac{f\,^{(m)}(x^*)}{m!}(x-x^*)^m
+\end{equation}
+
+It can be shown using the integral calculus derivation of the Taylor series that the $n^{th}$ derivative can be bound over the interval $[x^*, x]$, \ie $a\leq f\,^{(n)}(x) \leq c$~\cite{Greenberg1978}.
+Furthermore, $\exists b \in [a,c]$ such that the remainder can be written as
+
+\begin{equation}
+   R_n = b \frac{(x-x^*)^n}{n!}.
+\end{equation}
+
+The Intermediate Value Theorem can be invoked at this stage to posit some point $\xi \in [x^*,x]$ exists for which $f\,^{(n)}(\xi)$ will equal the unknown parameter $b$.
+$R_n$ in this form is called the Lagrange remainder.
+While there is no known method to determine a value of $\xi$ exactly for a general function, it is useful to express the $n^{th}$ order Taylor series in terms of the Lagrange remainder:
+
+\begin{equation}
+    f(x) = \sum_{m=0}^n \frac{f\,^{(m)}(x^*)}{m!}(x-x^*)^m + \frac{f\,^{(n+1)}(\xi)}{(n+1)!}(x-x^*)^{n+1}, \quad \xi \in [x^*,x].
+\end{equation}
+
+...
+
+Mathews2004 Holoborodko2009 Cyrus1968 Mathur2012
+
+Following the discussion in \onlinecite{Holoborodko2009}: to calculate the numerical derivative of the function $f(x)$ one can approximate the local region about any point $x^*$ by an appropriate polynomial $P_m(x)$.
+Derivatives of the polynomial are assumed to be equal to the derivative of the original function: $f\,'(x^*)\approx P\,'_m(x^*)$ and $f\,''(x^*)\approx P\,''_m(x^*)$ \etc
+
+Sampling $f(x)$ at $N$ abscissas (where $N$ is odd) equidistant from $x^*$ such that
+
+\begin{equation}
+f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathds{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
+\end{equation}
+
+and interpolating points $\{(x_k,f_k)\}$ by a polynomial of degree $N-1$
+\begin{equation}
+P_{N-1}(x)=\sum_{j=0}^{N-1} a_j x^j,
+\end{equation}
+
+a solution can be found by obtaining the set of coefficients $\{a_j\}$ for the system of linear equations
+\begin{equation}
+\left\{P_{N-1}(x_k)=f_x\right\}.
+\label{eq:ploylinset}
+\end{equation}
 
 
 
