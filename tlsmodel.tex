@@ -88,7 +88,7 @@ The interpolating parabola \cref{eq:ploylinset} are
     a_0 &= f_{0}\\
     a_0 + a_1h + a_2h^2 + a_3h^3 + a_4h^4 + a_5h^5 + a_6h^6 &= f_{1}\\
     a_0 + 2a_1h + 4a_2h^2 + 8a_3h^3 + 16a_4h^4 + 32a_5h^5 + 64a_6h^6 &= f_{2}\\
-    a_0 + 3a_1h + 9a_2h^3 + 27a_3h^3 + 81a_4h^4 + 243a_5h^5 + 729a_6h^6 &= f_{3} 
+    a_0 + 3a_1h + 9a_2h^3 + 27a_3h^3 + 81a_4h^4 + 243a_5h^5 + 729a_6h^6 &= f_{3}
   \end{cases}
 \end{align}
 }
@@ -305,11 +305,11 @@ More complex error analysis to be found in \cite{Mathur2012}
   \item Be fucking done with this shit.
 \end{enumerate}
 
-\section{Finite Grid}
-The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic in all regions.
+\section{Solving Derivatives Numerically}
+The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
-Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model by \citeauthor{Ocampo2012} to calculate an optimised three-finite-burn lunar-escape-trajectory~\cite{Ocampo2012}.
+Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model which calculates an optimised three-finite-burn lunar escape trajectory~\cite{Ocampo2012}.
 
 On the simpler end of the spectrum, finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
 If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$, which takes the form
@@ -320,11 +320,31 @@ f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},\label{eq:simplecdiff}
 \end{equation}
 where $h$ is some step size.
 The step size controls the accuracy of the computed derivative, which is unfortunately bound by two factors.
-If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, a step size too large mathematical truncation
+If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, a step size too large sees mathematical truncation errors dominate.
+Finding an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values. 
+This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
+
+The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
+However, for many years this statement was only true for the first order derivative -- higher orders were shown to have as many cancellation errors as their finite difference counterparts.
+This method was therefore excluded as a candidate for the model constructed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
+After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
+This algorithm may improve the error contribution of the models' final implementation, although this has not been investigated.
+
+A second possible successor to finite difference is automatic differentiation (AD). 
+\nomdef{AAD}{AD}{Automatic Differentiation}
+The premise of this algorithm isn't necessarily mathematical in nature, but capitalises on the fact that computers are methodological reductionists and ultimately only execute simple arithmetic operations no matter how complicated the actual computation is.
+Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
+There a two methods to implement this algorithm; neither is straightforward. 
+One uses special AD preprocessors that analyse each function call, break it up instruction by instruction and generates a new function that computes derivatives.
+Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \texttt{Matlab} is unfeasible.
+
+Both AD and complex step require access to functions at the source code level, meaning calls to third party libraries like \texttt{BLAS} and \texttt{LAPACK} (which are used in this model's implementation \xxx{section on lapack}) become increasingly over complicated.
+
+For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
+
+\section{The Central Difference Method}
+
+%For an overview of these algorithms, see \onlinecite{Mathews2004}.
 
 
-For an overview of these algorithms, see \onlinecite{Mathews2004}.
-
-Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire.
-A higher order treatment was required.
 
