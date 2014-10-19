@@ -30,3 +30,6 @@
 *.ini
 *.*~
 *.nlo
+*.nls
+*.fls
+*.fdb_latexmk
