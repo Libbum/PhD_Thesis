@@ -292,14 +292,14 @@ More complex error analysis to be found in \cite{Mathur2012}
   \item Be fucking done with this shit.
 \end{enumerate}
 
-\section{Solving Derivatives Numerically}
+\section{Solving Derivatives Numerically}\label{sec:numder}
 The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
 Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model which calculates an optimised three-finite-burn lunar escape trajectory~\cite{Ocampo2012}.
 
 On the simpler end of the spectrum, finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
-If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where absciss\ae are chosen symmetrically about $x$, which takes the form
+If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where absciss\ae\ are chosen symmetrically about $x$, which takes the form
 \nomdef{AODE}{ODE}{Ordinary Differential Equation}
 \nomdef{APDE}{PDE}{Partial Differential Equation}
 \begin{equation}
@@ -329,7 +329,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Difference]{Understanding the Central Difference Method}
+\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{Most of this and the next section is standard cannon information for finite differences, it follows \citeauthor{Mathur2012}, which will be introduced in \cref{sec:hopt}.}}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms
 
@@ -379,28 +379,76 @@ The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the app
 \nomdref{CFD}{$\mathcal{F}_n^{\,(d)}(x,h)$}{Finite difference approximation of the $d^{th}$ derivative of $f(x)$ of order $p = n+d-1$ using step size $h$}{ch:tls}
 
 \begin{equation}
-\mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).
+\mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).\label{eq:cdgeneral}
 \end{equation}
 
 The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.\xxx{link 7 point section to here}
 Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009}~\cite{Mathews2004,Holoborodko2009}.
 
-\section{Second Derivative of Order 2}
-
 To solve the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression. 
-The simplest arrangement truncates the Taylor series at $\mathcal{O}(h^2)$ and takes the form
+Truncating the Taylor series at $\mathcal{O}(h^2)$ is the simplest arrangement, which takes the form
 
-\begin{align}
-f^{\;\prime\prime}(x) &= \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\xi)}{12}h^2, \quad \xi \in [x-h,x+h] \\
-\mathcal{F}_2^{\,(2)}(x,h) &= \frac{f(x-h)-2f(x)+f(x+h)}{h^2} + \mathcal{O}(h^2).
-\end{align}
-
-
-
-....
-
-Cyrus1968 Mathur2012
+\begin{equation}
+f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\xi)}{12}h^2, \quad \xi \in [x-h,x+h]\label{eq:cd22t} \\
+\mathcal{F}_2^{\,(2)}(x,h) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} + \mathcal{O}(h^2).\label{eq:cd22f}
+\end{equation}
 
 
+\section{Contributors to the Step Size Dilemma}
 
+\subsection{Truncation Error}
+
+The truncation error in \cref{eq:cd22f} as $h\!\to\!0$ is not surprisingly $\mathcal{O}(h^2)\!\to\!0$, implying that $h$ should be as small as possible to maximise the accuracy of the calculation.
+Limits can also be put on the true truncation error as well. 
+Even though $\xi$ is an unknown quantity, as the step size decreases, so does range in which $\xi$ exists.
+Hence the limit of \cref{eq:cd22f} becomes
+
+\begin{equation}
+\lim_{h \to 0}\mathcal{O}(h^2) =  - \frac{f^{\;(4)}(x)}{12}h^2.
+\end{equation}
+
+This error differs for each formula, depending on the particular values of $n$ and $d$ (for example, the error in \cref{eq:cd12t} tends to $\cramped{-\frac{f^{\;(3)}(x)}{3!}h^2}$).
+Using \cref{eq:cdgeneral} and \cref{eq:cd22f}, a general relationship between the true $d^{th}$ derivative and its finite difference approximation
+
+\begin{equation}
+ f_n^{\;(d)}(x) = \mathcal{F}_n^{\,(d)}(x,h) + C(x,h)h^n,
+\end{equation}
+
+can be expressed with an undetermined truncation coefficient term $C(x,h)$. 
+This coefficient represented in Lagrange form is
+
+\begin{equation}
+C(x,h) = a_1\,f_n^{\;(n+d)}(\xi), \quad \xi \in [x-a_2h,x+a_3h],
+\end{equation}
+
+with the set of unknown constants $a$ also being dependent on the finite difference formula in question. 
+As $h \to 0$ for this expression, $\xi$ again approaches $x$ -- effectively removing the truncation coefficient's dependence on $h$.
+Hence, for small values of $h$ a simplified coefficient can be defined as
+\begin{equation}
+ C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x)
+\end{equation}
+Behaviour of the truncation error becomes unwieldily when the step size is not sufficiently small as well. $h^2$ in  
+
+\subsection{Round Off Errors}
+
+As mentioned in \cref{sec:numder}, numbers in a computer are represented with a fixed number of binary digits, and operations applied to them have an inherent loss of accuracy.
+This phenomenon is designated the term round off error, as the extra digits that cannot be held in memory must be discarded and hence rounded to the nearest tolerance.
+
+Round off error has been a hot topic of research since the invention of computers.
+Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} and investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; found round off via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
+These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible -- contrary to the truncation requirement of a small step size.
+
+A second round off error type known as condition error creeps in when functions don't use machine precision floating point numbers in their internal routines.
+For example, a third party function may approximate π to 3.14159, which would artificially round the result of whatever operation was being applied to a precision of $10^{-5}$.
+
+Finally, an error which is also important in this instance is named representational error.
+Not all numbers can be accurately be represented in binary using a fixed number of digits.
+Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \etc), and what's most troubling about this is the fact that no negative power of 10 has an exact binary representation.
+This error is small -- smaller that machine precision in fact, but it has non-trival and cumulative side effects.
+
+\section{Calculating an Optimal Step Size}\label{sec:hopt}
+\cite{Mathur2012}
+
+
+\xxx{elaborate on $C_n$, pg 24}
 
