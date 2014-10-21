@@ -330,7 +330,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it follows \citeauthor{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}
+\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms
 \begin{equation}
@@ -400,7 +400,7 @@ Hence the limit of \cref{eq:cd22f} becomes
 \lim_{h \to 0}\mathcal{O}(h^2) =  - \frac{f^{\;(4)}(x)}{12}h^2.
 \end{equation}
 
-This error differs for each formula, depending on the particular values of $n$ and $d$ (for example, the error in \cref{eq:cd12t} tends to $\cramped{-\frac{f^{\;(3)}(x)}{3!}h^2}$).
+This error differs for each formula, depending on the particular values of $n$ and $d$ (for example, the error in \labelcref{eq:cd12t} tends to $\cramped{-\frac{f^{\;(3)}(x)}{3!}h^2}$).
 Using \cref{eq:cdgeneral} and \cref{eq:cd22f}, a general relationship between the true $d^{th}$ derivative and its finite difference approximation
 \begin{equation}
  f_n^{\;(d)}(x) = \mathcal{F}_n^{\,(d)}(x,h) + C(x,h)h^n,\label{eq:cdadj}
@@ -473,9 +473,36 @@ Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \et
 This error is small -- smaller that machine precision in fact, but it has non-trival and cumulative side effects.
 If one avoids step sizes other than $2^\mathds{N}$ this error can be avoided completely.
 
+With this information in hand, an upper bound to the total round off error can now be calculated: 
+\begin{equation}
+ \abs{\mathcal{F}_n^{\,(d)}(x,h)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d}.
+\end{equation}
+
+The functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ are derived from $\Delta f_n^{\;(d)}$ (see \labelcref{eq:cdgeneral}).
+Forms of \cref{eq:cd22f} for instance are
+\begin{align}
+\mathcal{F}_\epsilon &= \abs{f(x+h)} + \abs{2f(x)} + \abs{f(x-h)} \\
+\mathcal{F}_\delta &= \max(\abs{f(x+h) + f(x-h)},\abs{2f(x)})
+\end{align}
+
+\subsection{Estimation of Total Error}
+
+Using the equations for truncation and round off errors mentioned above, and assuming a small $h$ such that \cref{eq:cdtrcoeff} holds, the total error can be bounded by the expression
+\begin{equation}
+\abs{f^{\;(d)}(x)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n
+\end{equation}
+
+Assuming a worse case scenario, the total error can therefore be described as
+\begin{equation}
+\mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n
+\end{equation} 
+
+noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$, and that $\epsilon$ is still an unknown value.
+
 \section{Calculating an Optimal Step Size}\label{sec:hopt}
+
+With all of these caveats in mind, finding an optimal step size $h_{opt}$ is a troublesome undertaking; which is why the complex step and AD methods discussed in \cref{sec:numder} were developed.
+
+
 \cite{Mathur2012}
-
-
-\xxx{elaborate on $C_n$, pg 24}
 
