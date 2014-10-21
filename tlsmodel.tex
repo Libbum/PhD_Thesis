@@ -305,10 +305,11 @@ If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and 
 \begin{equation}
 f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},\label{eq:simplecdiff}
 \end{equation}
+
 where $h$ is some step size.
 The step size controls the accuracy of the computed derivative, which is unfortunately bound by two factors.
-If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, a step size too large sees mathematical truncation errors dominate.
-Finding an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values. 
+If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, step sizes which are too large sees mathematical truncation errors dominate.
+Identifying an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values.
 This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
 
 The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
@@ -321,7 +322,7 @@ A second possible successor to finite difference is automatic differentiation (A
 \nomdef{AAD}{AD}{Automatic Differentiation}
 The premise of this algorithm isn't necessarily mathematical in nature, but capitalises on the fact that computers are methodological reductionists and ultimately only execute simple arithmetic operations no matter how complicated the actual computation is.
 Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
-There a two methods to implement this algorithm; neither is straightforward. 
+There a two methods to implement this algorithm; neither is straightforward.
 One uses special AD preprocessors that analyse each function call, break it up instruction by instruction and generates a new function that computes derivatives.
 Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \texttt{Matlab} is unfeasible.
 
@@ -329,23 +330,20 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{Most of this and the next section is standard cannon information for finite differences, it follows \citeauthor{Mathur2012}, which will be introduced in \cref{sec:hopt}.}}
+\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it follows \citeauthor{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms
-
 \begin{equation}
     f(x) = f(x^*) + f^{\;\prime}(x)(x-x*) + \cdots + R_n.
 \end{equation}
 
 The discarded, higher order remainder terms $R_n$, are considered to contribute a negligible error to the approximation assuming a sufficiently small step size $h$.
-
 \begin{equation}
     R_n = \sum_{m=n}^\infty \frac{f^{\;(m)}(x^*)}{m!}(x-x^*)^m
 \end{equation}
 
-It can be shown using the integral calculus derivation of the Taylor series that the $n^{th}$ derivative can be bound over the interval $[x^*, x]$, \ie $a\leq f^{\;(n)}(x) \leq c$~\cite{Greenberg1978}.
+It can be shown using the integral calculus derivation of the Taylor series that the $n^{th}$ derivative can be bound over the interval $[x^*, x]$, \ie $a\leq f^{\;(n)}(x) \leq~c$ \cite{Greenberg1978}.
 Furthermore, $\exists b \in [a,c]$ such that the remainder can be written as
-
 \begin{equation}
    R_n = b \frac{(x-x^*)^n}{n!}.
 \end{equation}
@@ -353,13 +351,11 @@ Furthermore, $\exists b \in [a,c]$ such that the remainder can be written as
 The Intermediate Value Theorem can be invoked at this stage to posit some point $\xi \in [x^*,x]$ exists for which $f^{\;(n)}(\xi)$ will equal the unknown parameter $b$.
 $R_n$ in this form is called the Lagrange remainder.
 While there is no known method to determine a value of $\xi$ exactly for a general function, it is useful to express the $n^{th}$ order Taylor series in terms of the Lagrange remainder:
-
 \begin{equation}
     f(x) = \sum_{m=0}^n \frac{f^{\;(m)}(x^*)}{m!}(x-x^*)^m + \frac{f^{\;(n+1)}(\xi)}{(n+1)!}(x-x^*)^{n+1}, \quad \xi \in [x^*,x].\label{eq:taylorrem}
 \end{equation}
 
 The most commonly used central difference formula is the first derivative of second order, which can be obtained by applying \cref{eq:taylorrem} at two absciss\ae\ of length $h$ from a sampling point in $f(x)$ and solving the simultaneous equation for $f^{\;\prime}(x)$.
-
 \begin{align}
 f(x+h) &= f(x) + f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 + \frac{f^{\;(3)}(\xi^+)}{2}h^3, \quad \xi^+ \in [x,x+h] \\
 f(x-h) &= f(x) - f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 - \frac{f^{\;(3)}(\xi^-)}{2}h^3, \quad \xi^- \in [x-h,x] \\
@@ -368,66 +364,82 @@ f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\xi^+)+f^{\;(3)}(\
 
 The error term in \cref{eq:cd12pm} contains the average of the third derivative evaluated the two unknown points $\xi^+$ and $\xi^-$, which are bounded inside the range $[x-h,x+h]$.
 Applying the Mean Value Theorem and assuming that $f^{\;(3)}(x)$ is smooth over the bounded range, a value $\xi$ must exist between $\xi^+$ and $\xi^-$ which satisfies the average.
-
 \begin{align}
 f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\xi)}{3!}h^2, \quad \xi \in [x-h,x+h]\label{eq:cd12t} \\
 \mathcal{F}_2^{\,(1)}(x,h) &= \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)\label{eq:cd12f}
 \end{align}
 
 Both equations above represent the first derivative of $f(x)$; although they differ in the sense that \cref{eq:cd12t} is still the true derivative and \cref{eq:cd12f} truncates the error term and represents it as an order of magnitude -- which is the essence of the finite difference approximation to the derivative.
-The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the approximation of the $d^{th}$ derivative of $f(x)$ of order $p = n+d-1$ using step size $h$, which can formerly be expressed as:
+The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$, which can formerly be expressed as:
 \nomdref{CFD}{$\mathcal{F}_n^{\,(d)}(x,h)$}{Finite difference approximation of the $d^{th}$ derivative of $f(x)$ of order $p = n+d-1$ using step size $h$}{ch:tls}
-
 \begin{equation}
 \mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).\label{eq:cdgeneral}
 \end{equation}
 
 The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.\xxx{link 7 point section to here}
-Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009}~\cite{Mathews2004,Holoborodko2009}.
+Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009} without the need to derive them from first principles~\cite{Mathews2004,Holoborodko2009}.
 
-To solve the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression. 
+Solving the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression.
 Truncating the Taylor series at $\mathcal{O}(h^2)$ is the simplest arrangement, which takes the form
-
 \begin{equation}
 f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\xi)}{12}h^2, \quad \xi \in [x-h,x+h]\label{eq:cd22t} \\
 \mathcal{F}_2^{\,(2)}(x,h) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} + \mathcal{O}(h^2).\label{eq:cd22f}
 \end{equation}
 
+Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.  
 
 \section{Contributors to the Step Size Dilemma}
 
 \subsection{Truncation Error}
 
 The truncation error in \cref{eq:cd22f} as $h\!\to\!0$ is not surprisingly $\mathcal{O}(h^2)\!\to\!0$, implying that $h$ should be as small as possible to maximise the accuracy of the calculation.
-Limits can also be put on the true truncation error as well. 
+Limits can also be put on the true truncation error as well.
 Even though $\xi$ is an unknown quantity, as the step size decreases, so does range in which $\xi$ exists.
 Hence the limit of \cref{eq:cd22f} becomes
-
 \begin{equation}
 \lim_{h \to 0}\mathcal{O}(h^2) =  - \frac{f^{\;(4)}(x)}{12}h^2.
 \end{equation}
 
 This error differs for each formula, depending on the particular values of $n$ and $d$ (for example, the error in \cref{eq:cd12t} tends to $\cramped{-\frac{f^{\;(3)}(x)}{3!}h^2}$).
 Using \cref{eq:cdgeneral} and \cref{eq:cd22f}, a general relationship between the true $d^{th}$ derivative and its finite difference approximation
-
 \begin{equation}
- f_n^{\;(d)}(x) = \mathcal{F}_n^{\,(d)}(x,h) + C(x,h)h^n,
+ f_n^{\;(d)}(x) = \mathcal{F}_n^{\,(d)}(x,h) + C(x,h)h^n,\label{eq:cdadj}
 \end{equation}
 
-can be expressed with an undetermined truncation coefficient term $C(x,h)$. 
+can be expressed with an undetermined truncation coefficient term $C(x,h)$, which is independent of the derivative parameter $d$.
 This coefficient represented in Lagrange form is
-
 \begin{equation}
 C(x,h) = a_1\,f_n^{\;(n+d)}(\xi), \quad \xi \in [x-a_2h,x+a_3h],
 \end{equation}
 
-with the set of unknown constants $a$ also being dependent on the finite difference formula in question. 
-As $h \to 0$ for this expression, $\xi$ again approaches $x$ -- effectively removing the truncation coefficient's dependence on $h$.
-Hence, for small values of $h$ a simplified coefficient can be defined as
+with the set of unknown constants $a$ also being dependent on the finite difference formula in question.
+As the truncation coefficient's is dependent on $\xi$, its dependence on $h$ is removed as $h\!\to\!0$ (because $\xi\!\to\!x$).
+Hence, for small values of $h$, a simplified coefficient can be defined as
 \begin{equation}
- C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x)
+ C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x).
 \end{equation}
-Behaviour of the truncation error becomes unwieldily when the step size is not sufficiently small as well. $h^2$ in  
+
+Simplifying \cref{eq:cdadj} with this new coefficient, it is clear that this relationship takes the form of a Richardson extrapolation, therefore we can evaluate at two different step sizes $h_1$ and $h_2$ (where $h_1 > h_2$)
+\begin{align}
+f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_1) + C_n(x)h_1^n \\
+f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_2) + C_n(x)h_2^n
+\end{align}
+
+and solving for $C_n(x)$ we find
+\begin{equation}
+ C_n(x) = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}.\label{eq:cdtrcoeff}
+\end{equation}
+
+This expression still assumes a small step size such that the approximated truncation coefficient stays independent of $h$ (and therefore constant for a valid range of steps).
+The complete estimate for the truncation error of order $n$ can now be found via \cref{eq:cdadj}
+\begin{equation}
+\mathcal{TE}_n(x,h_1) = C_n(x)h_1^n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}h_1^n.\label{eq:cdte}
+\end{equation}
+
+As much of this derivation requires a `sufficiently small' step size, it's imperative to consider the behaviour of the truncation error at larger values of $h$.
+If $h$ increases, the approximate truncation coefficient can no longer be used and
+the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
+Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values. 
 
 \subsection{Round Off Errors}
 
@@ -437,14 +449,29 @@ This phenomenon is designated the term round off error, as the extra digits that
 Round off error has been a hot topic of research since the invention of computers.
 Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} and investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; found round off via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
 These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible -- contrary to the truncation requirement of a small step size.
+An upper bound on this error is given by
+\begin{equation}
+ \abs{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
+\end{equation}
+
+where $\alpha$ and $\beta$ are two fixed precision numbers, and $\delta$ indicates the precision of the calculation. 
+Usually, modern computer languages operate using standard double precision floating point numbers, thus $\delta = 2^{-53}$.
 
 A second round off error type known as condition error creeps in when functions don't use machine precision floating point numbers in their internal routines.
 For example, a third party function may approximate π to 3.14159, which would artificially round the result of whatever operation was being applied to a precision of $10^{-5}$.
+As with cancellation error, an upper bound can also be formulated for condition error:
+\begin{equation}
+\abs{f(x)_{true} - f(x)}\leq \epsilon \abs{f(x)}.
+\end{equation}
+
+Here, $\epsilon$ is the magnitude of the most significant digit affected by the condition error. 
+For elementary operations $\epsilon$ should be equal to machine precision, although this cannot be assumed for all functions hence it is a value that should be calculated in general.
 
 Finally, an error which is also important in this instance is named representational error.
 Not all numbers can be accurately be represented in binary using a fixed number of digits.
 Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \etc), and what's most troubling about this is the fact that no negative power of 10 has an exact binary representation.
 This error is small -- smaller that machine precision in fact, but it has non-trival and cumulative side effects.
+If one avoids step sizes other than $2^\mathds{N}$ this error can be avoided completely.
 
 \section{Calculating an Optimal Step Size}\label{sec:hopt}
 \cite{Mathur2012}
