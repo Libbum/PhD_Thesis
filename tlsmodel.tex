@@ -427,13 +427,13 @@ f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_2) + C_n(x)h_2^n
 
 and solving for $C_n(x)$ we find
 \begin{equation}
- C_n(x) = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}.\label{eq:cdtrcoeff}
+ C_n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}.\label{eq:cdtrcoeff}
 \end{equation}
 
 This expression still assumes a small step size such that the approximated truncation coefficient stays independent of $h$ (and therefore constant for a valid range of steps).
 The complete estimate for the truncation error of order $n$ can now be found via \cref{eq:cdadj}
 \begin{equation}
-\mathcal{TE}_n(x,h_1) = C_n(x)h_1^n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}h_1^n.\label{eq:cdte}
+\mathcal{TE}_n(x,h_1) = C_n h_1^n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}h_1^n.\label{eq:cdte}
 \end{equation}
 
 As much of this derivation requires a `sufficiently small' step size, it's imperative to consider the behaviour of the truncation error at larger values of $h$.
@@ -494,7 +494,7 @@ Using the equations for truncation and round off errors mentioned above, and ass
 
 Assuming a worse case scenario, the total error can therefore be described as
 \begin{equation}
-\mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n
+\mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n\label{eq:cnetot}
 \end{equation} 
 
 noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$, and that $\epsilon$ is still an unknown value.
@@ -503,6 +503,28 @@ noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and
 
 With all of these caveats in mind, finding an optimal step size $h_{opt}$ is a troublesome undertaking; which is why the complex step and AD methods discussed in \cref{sec:numder} were developed.
 
+A simple method proposed in \citeauthor{Gill1982} suggests minimising an expression similar to \cref{eq:cnetot} which trades off the truncation and round off errors ~\cite{Gill1982,Mathews2004}.
+However, this method assumes the condition error $\epsilon$ is known and omits any cancellation error contributions.
 
-\cite{Mathur2012}
+Violation of monotonicity is an algorithm which attempts to ignore actually calculating any estimates for truncation and round off errors~\cite{Stepleman1979}. This method breaks down if \cref{eq:cdtrcoeff} doesn't hold and therefore is not a general solution.
 
+Algorithms specifically designed for forward differences have also been discussed in the literature~\cite{Barton1992}, but are of no benefit for purposes herein.
+
+The method which has been chosen to be implemented in this work is the algorithm from the PhD thesis of \textbf{Ravishankar Mathur}, which allows one to calculate an optimal step without \emph{a priori} knowledge of the condition error $\epsilon$.
+Additionally, corrections to the the step size are introduce to account for the approximate nature of the truncation coefficient $C_n$, as well as estimations of step size validity and the maximal appropriate step size for a problem are examined~\cite{Mathur2012}.
+
+As with \citeauthor{Gill1982}, \citeauthor{Mathur2012} starts by minimising the total error expression
+\begin{equation}
+\frac{\partial\mathcal{E}}{\partial h} = -d\frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^{d+1}} + n\abs{C_n}h^{n-1} = 0
+\end{equation}
+
+and solving for $h$ to find
+\begin{equation}
+h_{opt} = \left[\frac{d}{n}\frac{1}{\abs{C_n}}\left(\epsilon\abs{\mathcal{F}_\epsilon}+
+\delta\abs{\mathcal{F}_\delta}\right)\right]^{1/(n+d)}.\label{eq:cdhopt}
+\end{equation}
+
+Note that obtaining correct values of $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ require the optimal step size $h_{opt}$, thus an iterative method is required.
+Once this value is known, \cref{eq:cdhopt} can be rearranged to find the condition error $\epsilon$. 
+
+The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of \onlinecite{Mathur2012}.
