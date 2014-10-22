@@ -308,9 +308,19 @@ A dimensionless hamiltonian can be used to simplify the resultant wavefunctions,
 \psi_n(x) = \frac{1}{\sqrt{2^n n!}}\pi^{-1/4}e^{\frac{-x^2}{2}} H_n(x).
 \end{equation}
 
-The corresponding energy values are now expressed in units of $\hbar \omega$ and distance $x$ in units of $\sqrt{\hbar/m\omega}$.
+The corresponding values: energy $E$ and distance $x$ are now expressed in units of $\hbar \omega$ and $\sqrt{\hbar/m\omega}$ respectively.
+The ground state wavefunction in this form is simply
+\begin{equation}
+\psi_0(x) = \pi^{-1/4}e^{\frac{-x^2}{2}},
+\end{equation}
+that can now be used in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}, which we will evaluate at $x = 0$.
 
-\xxx{Complete this section}
+\begin{figure}[htp]
+\centering
+\resizebox{\columnwidth}{!}{\includestandalone{figures/hopt3pt}}
+\caption[3 point Error]{\label{fig:hopt3pt}Three point truncation error. Red $h_{opt}^U$, Green $h_{opt}$. Light small blue is base 10 data for comparison, stars are invalid roundoff (=0).}
+\end{figure}
+
 ...
 
 An approximation of the harmonic oscillator using the Hamiltonian \cref{eq:hamho} is valid near the minimum of any potential function, thus
@@ -396,6 +406,13 @@ resulting in the truncation error
 \begin{equation}
 \mathcal{E}_{trunc}(f,h) = -\frac{f^{\;(8)}(c)h^6}{560} = \mathcal{O}(h^6).\label{eq:etrunc}
 \end{equation}
+
+
+\begin{figure}[htp]
+\centering
+\resizebox{\columnwidth}{!}{\includestandalone{figures/hopt7pt}}
+\caption[7 point Error]{\label{fig:hopt7pt}Seven point truncation error. Red $h_{opt}^U$, Green $h_{opt}$. Light small blue is base 10 data for comparison, stars are invalid roundoff (=0).}
+\end{figure}
 
 %\subsection{Round-off Error and Step Size Optimisation}\label{sec:cdiffstep}
 %
