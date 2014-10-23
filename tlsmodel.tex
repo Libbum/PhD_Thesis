@@ -323,7 +323,7 @@ As step size increases, truncation error dominates until the region $h \gtrsim 2
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt3pt}}
-\caption[Step size optimisation for $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation for $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}. }
+\caption[Step size optimisation for $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation for $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
 The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \tikzlabel{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 2^{-12} \simeq 2.441\ten{-4}$.
@@ -373,8 +373,25 @@ Hence the optimal step size for the central difference second derivative of seco
 h_{opt} = 2^{-17} \simeq 7.629\ten{-6}.
 \end{equation}
 
+\section{Memory Concerns}
 
-\section{Seven Point}
+The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources. 
+Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of one $9$ Å$^\text{\skolarlining 2}$ plane discretised via $h_{opt}$ requires $1,179,649^2$ double precision floats.
+On a computer with 64 bit architecture, each double requires 8 bytes of memory, meaning our grid has a footprint of just over 11 Terabytes.
+
+Computational resources of that magnitude are infeasible when a simple solution can both minimise memory requirements and increase the accuracy of the calculation simultaneously.
+Recall the total error \cref{eq:cnetot}, which depends on $h$ via  
+\begin{equation}
+\mathcal{E}_n^{\,(d)}(x,h) \propto \frac{1}{h^d} + h^n.
+\end{equation}
+
+For our purposes, $d$ is fixed at $2$, and $n$ was also chosen as $2$, but only due to the fact that this generates the simplest second derivative central difference formula.
+Using order of magnitude arguments, a step size $h = 1\ten{-6}$ with an order parameter $n = 2$ contributes $\mathcal{O}(10^{-12})$ to the total error from the $h^n$ term.
+If the order is increased to $n = 6$, a much larger step size $h = 1\ten{-2}$ yields the same $\mathcal{O}(10^{-12})$ contribution.
+
+A back of the envelope calculation for a step size that large over the same range as above only requires $901^2$ doubles, which equates to a much more feasible memory requirement of 6.5 Megabytes.
+
+\section{Second Derivative of Sixth Order}
 
 %{\mathindent=0.2cm
 \begin{align}
@@ -437,7 +454,7 @@ resulting in the truncation error
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt7pt}}
-\caption[7 point Error]{\label{fig:hopt7pt}Seven point truncation error. Red $h_{opt}^U$, Green $h_{opt}$. Light small blue is base 10 data for comparison, stars are invalid roundoff (=0).}
+\caption[Step size optimisation for $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}\xxx{Fix the caption so the full stop is on the first line}Step size optimisation for $f_2^{\;(6)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
 %\subsection{Round-off Error and Step Size Optimisation}\label{sec:cdiffstep}
