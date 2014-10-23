@@ -12,7 +12,7 @@
 \end{equation}
 
 \begin{table}[h]
-\caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants for the Streitz-Mintmire pair potentials~\cite{Streitz1994,Gale2003}.}
+\caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants used in the calculation of the Buckingham and Rydberg pair potentials in the Streitz-Mintmire formalism~\cite{Streitz1994,Gale2003}.}
 \centering
 \begin{tabular}{ c*{5}{r@{.}l} } \toprule
 Pair & \multicolumn{2}{c}{A} & \multicolumn{2}{c}{$\rho$} & \multicolumn{2}{c}{B} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{$r_0$}  \\ \midrule
@@ -191,7 +191,7 @@ If $h$ increases, the approximate truncation coefficient can no longer be used a
 the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
 Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values. 
 
-\subsection{Round Off Errors}
+\subsection{Round Off Errors}\label{subsec:roundoff}
 
 As mentioned in \cref{sec:numder}, numbers in a computer are represented with a fixed number of binary digits, and operations applied to them have an inherent loss of accuracy.
 This phenomenon is designated the term round off error, as the extra digits that cannot be held in memory must be discarded and hence rounded to the nearest tolerance.
@@ -270,11 +270,11 @@ As with \citeauthor{Gill1982}, \citeauthor{Mathur2012} starts by minimising the 
 
 and solving for $h$ to find
 \begin{equation}
-h_{opt} = \left[\frac{d}{n}\frac{1}{\abs{C_n}}\left(\epsilon\abs{\mathcal{F}_\epsilon}+
+h_{opt,\mathcal{TE}} = \left[\frac{d}{n}\frac{1}{\abs{C_n}}\left(\epsilon\abs{\mathcal{F}_\epsilon}+
 \delta\abs{\mathcal{F}_\delta}\right)\right]^{1/(n+d)}.\label{eq:cdhopt}
 \end{equation}
 
-Note that obtaining correct values of $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ require the optimal step size $h_{opt}$, thus an iterative method is required.
+Note that obtaining correct values of $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ require the optimal step size $h_{opt,\mathcal{TE}}$, thus an iterative method is required.
 Once this value is known, \cref{eq:cdhopt} can be rearranged to find the condition error $\epsilon$. 
 
 The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of \onlinecite{Mathur2012}.
@@ -315,37 +315,63 @@ The ground state wavefunction in this form is simply
 \end{equation}
 that can now be used in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}, which we will evaluate at $x = 0$.
 
+\Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \tikzlabel{0.4}{circle,fill=Set1-5-2}.
+The smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent steps which are not of the form $2^\mathds{N}$, which are shown for comparison but not used in the optimisation calculation.
+Round off errors dominate for small step sizes ($h \lesssim 10^{-4}$) with some step sizes resulting in completely invalid results (\ie $\mathcal{TE}_2 = 0$).
+These steps are labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2} and are scaled to $2\ten{-9}$ to be displayed on the graph.
+As step size increases, truncation error dominates until the region $h \gtrsim 2$, where this error becomes invalid.
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt3pt}}
-\caption[3 point Error]{\label{fig:hopt3pt}Three point truncation error. Red $h_{opt}^U$, Green $h_{opt}$. Light small blue is base 10 data for comparison, stars are invalid roundoff (=0).}
+\caption[Step size optimisation for $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation for $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}. }
 \end{figure}
 
-...
+The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \tikzlabel{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 2^{-12} \simeq 2.441\ten{-4}$.
+The truncation error \cref{eq:cdte} overestimates the true round off error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$ such that the true optimal step is 
+\begin{equation}
+h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{eq:hoptt}
+\end{equation}
 
+labelled as \tikzlabel{0.5}{circle,fill=Set1-5-3}.
+The value of this corrected step is $h_{opt,true} \simeq 1.519\ten{-4}$, which does not have an accurate power of two representation.
+As stated in \cref{subsec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
+
+This caution is slightly premature though, as the calculated $h_{opt}$ values are currently represented in the dimensionless unit $\cramped{\left[\sqrt{\hbar/m\omega}\right]}$.
 An approximation of the harmonic oscillator using the Hamiltonian \cref{eq:hamho} is valid near the minimum of any potential function, thus
-\begin{align}
-V(x) &= \frac{1}{2}m\omega^2\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\label{eq:vharm}\\
-     &= \frac{1}{2}k\hat{x}^2
-\end{align}
+\begin{equation}
+V(x) = \frac{1}{2}m\omega^2\hat{x}^2 = \frac{1}{2}k\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\label{eq:vharm}
+\end{equation}
 
 can be connected to the Streitz Mintmire potential through the relationship $V(x_{0})=V_{SM}(x_{0})$, if Streitz Mintmire has one local minima at $x=0$.
+An equivalent value of $\omega$ can be found through this connection which can then be used tho convert the $h_{opt}$ step sizes to appropriate units.
 
-As discussed in \xxx{Section on units}, $V_{SM}$ is measured in [μeV] with $x$ in [Å], whereas $V$ is measured in [J] against [m].
+As discussed in \xxx{Introduction section describing magnitudes of parameters}, $V_{SM}$ should be measured in [μeV] with $x$ in [Å] to correspond to experimental results.
+The harmonic oscillator potential $V$ is measured in SI units: [J] against [m].
 Converting a Streitz Mintmire configuration to this unit scheme and fitting a parabola to the minima, a value of $k=938$ is found.
 \Cref{fig:harmsm} shows the fit for this value, which is comparatively representational to a large range of cluster configurations.
-
 \begin{figure}[htp]
 \centering
 \hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmsm}}
-\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmsm}A parabolic fit to the minima of a \lin{1D} Strietz Mintmire potential.}
+\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmsm}A parabolic fit to the minima of a \lin{1D} Strietz Mintmire potential, representing an Al--O--Al atom chain.}
 \end{figure}
 
 The associated angular frequency is therefore
 \begin{equation}
-\omega=\sqrt{\frac{938}{2.65\ten{-26}}}=1.879\ten{14}
+\omega=\sqrt{\frac{938}{2.657\ten{-26}}}=1.879\ten{14}.
 \end{equation}
 
+Using this result an the mass of an oxygen atom, a conversion factor for the optimal step sizes is yields values in relevant units
+\begin{align}
+\sqrt{\frac{\hbar}{m_{oxy}\omega}}10^{10} &= \sqrt{\frac{1.055\ten{-34}}{2.657\ten{-26}\cdot1.879\ten{14}}}10^{10} = 0.046 \\
+h_{opt,\mathcal{TE}} &= 2.441\ten{-4}\cdot0.046 = 1.122\ten{-5} \simeq 2^{-17} & \left[\text{Å}\right]\\
+h_{opt,true} &= 1.519\ten{-4}\cdot0.046 = 6.983\ten{-6} \simeq 2^{-17} & \left[\text{Å}\right]
+\end{align}
+
+In other words, on scales relevant to this thesis, the truncation error and true optimal step sizes are essentially equivalent.
+Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
+\begin{equation}
+h_{opt} = 2^{-17} \simeq 7.629\ten{-6}.
+\end{equation}
 
 
 \section{Seven Point}
