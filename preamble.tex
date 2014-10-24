@@ -147,6 +147,7 @@
 \renewcommand\chapternumberlinebox[2]{#2}
 \renewcommand{\cftfigureindent}{1.5em}
 \renewcommand{\cfttableindent}{1.5em}
+%\setsecnumdepth{all} %TODO: Get subsections to be numbered
 
 \newcommand{\loftchap}[1]{%alias for chapter headings in list of figures and tables
     \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}
@@ -255,11 +256,12 @@
 \newcommand*{\hyperoptions}{colorlinks=true, linkcolor=[rgb]{1,0,0}, urlcolor=Set1-5-2, citecolor=[rgb]{0,0.5,0},} %Blue is from colorbrewer
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
 \usepackage{backref}
+\usepackage[all]{hypcap} %Fixes hyperref caption links to tables and figures
 
 %TODO: Get this working again
 %\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update
 \let\oldphantomsection\phantomsection
-% Set up back references:
+% Set up back references:  TODO: Try and get page ranges to work with this.
     \backrefparscanfalse
     \newcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
     \newcommand{\backrefcitedsinglestring}[1]{Cited on page~#1.}
