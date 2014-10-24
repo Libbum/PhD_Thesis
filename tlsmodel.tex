@@ -363,7 +363,7 @@ The associated angular frequency is therefore
 Using this result an the mass of an oxygen atom, a conversion factor for the optimal step sizes is yields values in relevant units
 \begin{align}
 \sqrt{\frac{\hbar}{m_{oxy}\omega}}10^{10} &= \sqrt{\frac{1.055\ten{-34}}{2.657\ten{-26}\cdot1.879\ten{14}}}10^{10} = 0.046\label{eq:confact} \\
-h_{opt,\mathcal{TE}} &= 2.441\ten{-4}\cdot0.046 = 1.122\ten{-5} \simeq 2^{-17} & \left[\text{Å}\right]\\
+h_{opt,\mathcal{TE}} &= 2^{-12}\cdot0.046 = 1.122\ten{-5} \simeq 2^{-17} & \left[\text{Å}\right]\\
 h_{opt,true} &= 1.519\ten{-4}\cdot0.046 = 6.983\ten{-6} \simeq 2^{-17} & \left[\text{Å}\right]
 \end{align}
 
@@ -437,7 +437,12 @@ f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathds{Z} \vert -(N-1)/2 \le
 \end{equation}
 
 for example $f_{-3} \equiv f(x-3h)$.
-The form of \cref{eq:cd26f} adheres to \cref{eq:cdgeneral}, where $\cramped{\Delta f_6^{\;(2)} = \frac{1}{180}2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}$. Applying this equation is no different to \cref{eq:cd22f}, and the only additional overhead is the requirement of six absciss\ae\ rather than two.
+The form of \cref{eq:cd26f} adheres to \cref{eq:cdgeneral}, where
+\begin{equation}
+\Delta f_6^{\;(2)} = \frac{1}{180}2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}.\label{eq:f62x}
+\end{equation}
+
+Applying this equation is no different to \cref{eq:cd22f}, and the only additional overhead is the requirement of six absciss\ae\ rather than two.
 
 An optimal step size for $\nabla^2$ in \cref{eq:OHam} can be found using  \cref{eq:cd26f}.
 As with the calculation in \cref{subsec:harmsm} using \cref{eq:cd22f}, we will evaluate at $x = 0$ and apply the optimal step size algorithm~\cite{Mathur2012}; the results of which are shown in \cref{fig:hopt7pt}.
@@ -451,7 +456,7 @@ In comparison to the results of the second order method (see \cref{fig:hopt3pt})
 The absolute error $\abs{\mathcal{TE}_6}$ minimum is in fact three orders smaller, and the optimal step sizes two orders larger (in dimensionless units at least).
 Applying the dimensionless unit conversion \cref{eq:confact}, the step sizes become
 \begin{align}
-h_{opt,\mathcal{TE}} &= 1.563\ten{-2}\cdot0.046 = 7.181\ten{-4} \simeq 2^{-11} & \left[\text{Å}\right]\\
+h_{opt,\mathcal{TE}} &= 2^{-6}\cdot0.046 = 7.181\ten{-4} \simeq 2^{-11} & \left[\text{Å}\right]\\
 h_{opt,true} &= 1.275\ten{-2}\cdot0.046 = 5.861\ten{-4} \simeq 2^{-11} & \left[\text{Å}\right]
 \end{align}
 
@@ -462,6 +467,29 @@ h_{opt} = 2^{-11} \simeq 4.883\ten{-4}.
 
 A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $18,433^2$ doubles with a memory footprint of around 2.7 Gigabytes. 
 
-\section{Total Error and Maximum Step Range}
+\section{Condition and Total Error Calculation}
 
-Now that the optimal step size $h_{opt}$ has been calculated, 
+Now that the optimal step size has been calculated, both the condition error $\epsilon$ and total error $\mathcal{E}_6^{\,(2)}(x,h)$ for the sixth order form can be found.
+
+Recall the optimal step size formula \cref{eq:cdhopt}, which can now be rearranged in terms of the condition error
+\begin{equation}
+\epsilon = \frac{1}{\abs{\mathcal{F}_\epsilon}}\left(\frac{n}{d}\abs{C_n}h_{opt,\mathcal{TE}}^{n+d}-\delta\abs{\mathcal{F}_\delta}\right)
+\end{equation}
+
+and the remaining unknowns can also be calculated. 
+For ease of calculation, the dimensionless unit form of the step size will be used: $h_{opt,\mathcal{TE}} = 2^{-6}$. 
+$C_n$ \cref{eq:cdtrcoeff} is calculated during the optimal step algorithm~\cite{Mathur2012} when the steps $h_1$ and $h_2$ are found to be in the valid truncation error range.
+The absolute value of which is $\abs{C_n} = 0.141$.
+Functional forms of the condition error $\mathcal{F}_\epsilon$ and cancellation error $\mathcal{F}_\delta$ coefficients are generated from \cref{eq:f62x} 
+{\mathindent=0.4cm
+\begin{align}
+\mathcal{F}_\epsilon &= \frac{1}{180}2\abs{f_{-3}} + 27\abs{f_{-2}} + 270\abs{f_{-1}} + 490\abs{f_{0}} + 270\abs{f_{1}} + 27\abs{f_{2}} + 2\abs{f_{3}} \\
+\mathcal{F}_\delta &= \frac{1}{180}\max(\abs{27f_{-2} + 490f_{0} + 27f_{2}},\abs{2f_{-3} + 270f_{-1} + 270f_{1} + 2f_{3}}),
+\end{align}
+}
+
+yielding a value for the condition error of $\epsilon = 1.530\ten{-18}$.\xxx{This is a value for the harmonic oscillator wavefunction. Can we connect it to SM? Otherwise this entire section is probably pointless. I'll continue like this doesn't matter and we'll discuss it later. Converting to real units isn't necessarily making sense atm either.}
+This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16}$), which is a good result.
+
+The total error \cref{eq:cnetot} is now a trivial calculation, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt,\mathcal{TE}}) = 8.193\ten{-12}$.
+ 
