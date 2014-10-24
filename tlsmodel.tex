@@ -68,7 +68,7 @@ This method was therefore excluded as a candidate for the model constructed for 
 After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
 This algorithm may improve the error contribution of the models' final implementation, although this has not been investigated.
 
-A second possible successor to finite difference is automatic differentiation (AD). 
+A second possible successor to finite difference is automatic differentiation (AD).
 \nomdef{AAD}{AD}{Automatic Differentiation}
 The premise of this algorithm isn't necessarily mathematical in nature, but capitalises on the fact that computers are methodological reductionists and ultimately only execute simple arithmetic operations no matter how complicated the actual computation is.
 Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
@@ -80,7 +80,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}
+\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms
 \begin{equation}
@@ -126,8 +126,8 @@ The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the app
 \mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).\label{eq:cdgeneral}
 \end{equation}
 
-The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.\xxx{link 7 point section to here}
-Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009} without the need to derive them from first principles~\cite{Mathews2004,Holoborodko2009}.
+The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.
+Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009} without the need to derive them from first principles, although comprehensive error discussion is uncommon or oversimplified at best~\cite{Mathews2004,Holoborodko2009}.
 
 Solving the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression.
 Truncating the Taylor series at $\mathcal{O}(h^2)$ is the simplest arrangement, which takes the form
@@ -136,7 +136,7 @@ f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\xi)}{
 \mathcal{F}_2^{\,(2)}(x,h) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} + \mathcal{O}(h^2).\label{eq:cd22f}
 \end{equation}
 
-Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.  
+Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.
 
 \section{Contributors to the Step Size Dilemma}
 
@@ -189,7 +189,7 @@ The complete estimate for the truncation error of order $n$ can now be found via
 As much of this derivation requires a `sufficiently small' step size, it's imperative to consider the behaviour of the truncation error at larger values of $h$.
 If $h$ increases, the approximate truncation coefficient can no longer be used and
 the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
-Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values. 
+Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values.
 
 \subsection{Round Off Errors}\label{subsec:roundoff}
 
@@ -204,7 +204,7 @@ An upper bound on this error is given by
  \abs{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
 \end{equation}
 
-where $\alpha$ and $\beta$ are two fixed precision numbers, and $\delta$ indicates the precision of the calculation. 
+where $\alpha$ and $\beta$ are two fixed precision numbers, and $\delta$ indicates the precision of the calculation.
 Usually, modern computer languages operate using standard double precision floating point numbers, thus $\delta = 2^{-53}$.
 
 A second round off error type known as condition error creeps in when functions don't use machine precision floating point numbers in their internal routines.
@@ -214,7 +214,7 @@ As with cancellation error, an upper bound can also be formulated for condition 
 \abs{f(x)_{true} - f(x)}\leq \epsilon \abs{f(x)}.
 \end{equation}
 
-Here, $\epsilon$ is the magnitude of the most significant digit affected by the condition error. 
+Here, $\epsilon$ is the magnitude of the most significant digit affected by the condition error.
 For elementary operations $\epsilon$ should be equal to machine precision, although this cannot be assumed for all functions hence it is a value that should be calculated in general.
 
 Finally, an error which is also important in this instance is named representational error.
@@ -223,7 +223,7 @@ Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \et
 This error is small -- smaller that machine precision in fact, but it has non-trival and cumulative side effects.
 If one avoids step sizes other than $2^\mathds{N}$ this error can be avoided completely.
 
-With this information in hand, an upper bound to the total round off error can now be calculated: 
+With this information in hand, an upper bound to the total round off error can now be calculated:
 \begin{equation}
  \abs{\mathcal{F}_n^{\,(d)}(x,h)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d}.
 \end{equation}
@@ -245,7 +245,7 @@ Using the equations for truncation and round off errors mentioned above, and ass
 Assuming a worse case scenario, the total error can therefore be described as
 \begin{equation}
 \mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n\label{eq:cnetot}
-\end{equation} 
+\end{equation}
 
 noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$, and that $\epsilon$ is still an unknown value.
 
@@ -275,11 +275,11 @@ h_{opt,\mathcal{TE}} = \left[\frac{d}{n}\frac{1}{\abs{C_n}}\left(\epsilon\abs{\m
 \end{equation}
 
 Note that obtaining correct values of $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ require the optimal step size $h_{opt,\mathcal{TE}}$, thus an iterative method is required.
-Once this value is known, \cref{eq:cdhopt} can be rearranged to find the condition error $\epsilon$. 
+Once this value is known, \cref{eq:cdhopt} can be rearranged to find the condition error $\epsilon$.
 
 The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of \onlinecite{Mathur2012}.
 
-\subsection{A Harmonic Approximation to Streitz Mintmire}
+\subsection{A Harmonic Approximation to Streitz Mintmire}\label{subsec:harmsm}
 
 The functional form of the wavefunction for a Streitz Mintmire potential is not analytically known.
 However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x and \cref{fig:mexhatproj}) -- which has a simple analytic solution in the frame of\xxx{just for you Jared} the harmonic oscillator that can serve as an analogue.
@@ -303,7 +303,7 @@ with the family of solutions for the wavefunctions
 H_n(x)=(-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right)
 \end{equation}
 
-A dimensionless hamiltonian can be used to simplify the resultant wavefunctions, 
+A dimensionless hamiltonian can be used to simplify the resultant wavefunctions,
 \begin{equation}
 \psi_n(x) = \frac{1}{\sqrt{2^n n!}}\pi^{-1/4}e^{\frac{-x^2}{2}} H_n(x).
 \end{equation}
@@ -323,11 +323,11 @@ As step size increases, truncation error dominates until the region $h \gtrsim 2
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt3pt}}
-\caption[Step size optimisation for $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation for $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\caption[Step size optimisation of $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation of $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
 The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \tikzlabel{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 2^{-12} \simeq 2.441\ten{-4}$.
-The truncation error \cref{eq:cdte} overestimates the true round off error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$ such that the true optimal step is 
+The truncation error \cref{eq:cdte} overestimates the true round off error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$ such that the true optimal step is
 \begin{equation}
 h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{eq:hoptt}
 \end{equation}
@@ -362,7 +362,7 @@ The associated angular frequency is therefore
 
 Using this result an the mass of an oxygen atom, a conversion factor for the optimal step sizes is yields values in relevant units
 \begin{align}
-\sqrt{\frac{\hbar}{m_{oxy}\omega}}10^{10} &= \sqrt{\frac{1.055\ten{-34}}{2.657\ten{-26}\cdot1.879\ten{14}}}10^{10} = 0.046 \\
+\sqrt{\frac{\hbar}{m_{oxy}\omega}}10^{10} &= \sqrt{\frac{1.055\ten{-34}}{2.657\ten{-26}\cdot1.879\ten{14}}}10^{10} = 0.046\label{eq:confact} \\
 h_{opt,\mathcal{TE}} &= 2.441\ten{-4}\cdot0.046 = 1.122\ten{-5} \simeq 2^{-17} & \left[\text{Å}\right]\\
 h_{opt,true} &= 1.519\ten{-4}\cdot0.046 = 6.983\ten{-6} \simeq 2^{-17} & \left[\text{Å}\right]
 \end{align}
@@ -373,14 +373,14 @@ Hence the optimal step size for the central difference second derivative of seco
 h_{opt} = 2^{-17} \simeq 7.629\ten{-6}.
 \end{equation}
 
-\section{Memory Concerns}
+\section{Memory Concerns}\label{sec:memcons}
 
-The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources. 
+The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources.
 Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of one $9$ Å$^\text{\skolarlining 2}$ plane discretised via $h_{opt}$ requires $1,179,649^2$ double precision floats.
 On a computer with 64 bit architecture, each double requires 8 bytes of memory, meaning our grid has a footprint of just over 11 Terabytes.
 
 Computational resources of that magnitude are infeasible when a simple solution can both minimise memory requirements and increase the accuracy of the calculation simultaneously.
-Recall the total error \cref{eq:cnetot}, which depends on $h$ via  
+Recall the total error \cref{eq:cnetot}, which depends on $h$ via
 \begin{equation}
 \mathcal{E}_n^{\,(d)}(x,h) \propto \frac{1}{h^d} + h^n.
 \end{equation}
@@ -393,114 +393,75 @@ A back of the envelope calculation for a step size that large over the same rang
 
 \section{Second Derivative of Sixth Order}
 
-%{\mathindent=0.2cm
+Using the formalism outline in \cref{sec:ucdiff}, an expression for the second derivative of sixth order can be calculated.
+Starting with the Taylor series of the Lagrange remainder \cref{eq:taylorrem} using six absciss\ae\
 \begin{align}
 \MoveEqLeft f(x\pm h) = \nonumber\\
 &f(x)\pm f\,'(x)h+\frac{f^{\;''}(x)h^2}{2!}\pm \frac{f^{\;(3)}(x)h^3}{3!}+\frac{f^{\;(4)}(x)h^4}{4!}\pm \frac{f^{\;(5)}(x)h^5}{5!}\nonumber\\
-&+\frac{f^{\;(6)}(x)h^6}{6!}\pm \frac{f^{\;(7)}(x)h^7}{7!}+\frac{f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+&+\frac{f^{\;(6)}(x)h^6}{6!}\pm \frac{f^{\;(7)}(x)h^7}{7!}+\frac{f^{\;(8)}(\xi^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \xi^+ \in [x,x+h], \qquad \xi^- \in [x-h,x] \displaybreak[0]\\[0.2cm]
 \MoveEqLeft f(x\pm 2h) = \nonumber\\
 &f(x)\pm 2f\,'(x)h+\frac{4f^{\;''}(x)h^2}{2!}\pm \frac{8f^{\;(3)}(x)h^3}{3!}+\frac{16f^{\;(4)}(x)h^4}{4!}\pm \frac{32f^{\;(5)}(x)h^5}{5!}\nonumber\\
-&+\frac{64f^{\;(6)}(x)h^6}{6!}\pm \frac{128f^{\;(7)}(x)h^7}{7!}+\frac{256f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\displaybreak[0]\\[0.2cm]
+&+\frac{64f^{\;(6)}(x)h^6}{6!}\pm \frac{128f^{\;(7)}(x)h^7}{7!}+\frac{256f^{\;(8)}(\xi^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \xi^+ \in [x,x+2h], \qquad \xi^- \in [x-2h,x] \displaybreak[0]\\[0.2cm]
 \MoveEqLeft f(x\pm 3h) = \nonumber\\
 &f(x)\pm 3f\,'(x)h+\frac{9f^{\;''}(x)h^2}{2!}\pm \frac{27f^{\;(3)}(x)h^3}{3!}+\frac{81f^{\;(4)}(x)h^4}{4!}\pm \frac{243f^{\;(5)}(x)h^5}{5!}\nonumber\\
-&+\frac{729f^{\;(6)}(x)h^6}{6!}\pm \frac{2187f^{\;(7)}(x)h^7}{7!}+\frac{6561f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)
-\end{align}
-%}
-
-Calculating the difference between each set of expansions at this juncture would allow one to obtain the first derivative, however the second derivative is required in this instance.
-Summing the terms will remove the odd degree terms
-
-\begin{align}
-\MoveEqLeft f(x+h)+f(x-h) = 2f(x)+f^{\;''}(x)h^2\nonumber \\ &+\frac{2f^{\;(4)}(x)h^4}{4!}+\frac{2f^{\;(6)}(x)h^6}{6!}+\frac{2f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\label{eq:fxh}\displaybreak[0]\\[0.2cm]
-\MoveEqLeft f(x+2h)+f(x-2h) = 2f(x)+4f^{\;''}(x)h^2\nonumber \\
-&+\frac{32f^{\;(4)}(x)h^4}{4!}+\frac{128f^{\;(6)}(x)h^6}{6!}+\frac{512f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\label{eq:fx2h}\displaybreak[0]\\[0.2cm]
-\MoveEqLeft f(x+3h)+f(x-3h) = 2f(x)+9f^{\;''}(x)h^2\nonumber \\
-&+\frac{162f^{\;(4)}(x)h^4}{4!}+\frac{1458f^{\;(6)}(x)h^6}{6!}+\frac{13122f^{\;(8)}(x)h^8}{8!}+\mathcal{O}(h^9)\label{eq:fx3h}
+&+\frac{729f^{\;(6)}(x)h^6}{6!}\pm \frac{2187f^{\;(7)}(x)h^7}{7!}+\frac{6561f^{\;(8)}(\xi^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \xi^+ \in [x,x+3h], \qquad \xi^- \in [x-3h,x]
 \end{align}
 
-leaving a set of equations with fourth and sixth degree terms which need be eliminated in order to arrive at an equation similar to \cref{eq:cdiffe}.
-The series can also be truncated at this point at the eighth degree term, which exists at points $\{c_k\}$.
-The equation $72\times$\cref{eq:fx2h}$-2\times$\cref{eq:fx3h}$-270\times$\cref{eq:fxh} (changing to the $f_k$ convention) yields
-
-{\mathindent=0.2cm
-\begin{align}
-\MoveEqLeft 27f_{2}+27f_{-2}-2f_{3}-2f_{-3}-270f_{1}-270f_{-1} = \nonumber\\
-&-490f(x)-180f\,''(x)h^2+\frac{13824f^{(8)}(c_2)-26244f^{(8)}(c_3)-540f^{(8)}(c_1)}{8!}\label{eq:truncsim}
-\end{align}
-}
-
-If $f \in \mathds{C}^N [a,b]$, then it follows that $\{x_k\} \in [a,b]$.
-Furthermore, $\exists c = \{c_k\} \in [a,b]$ such that if $f^{(8)}(x)$ has one sign and its magnitude does not change rapidly, $c \in [x-3h,x+2h]$
-
-\begin{equation}
- 13824f^{\;(8)}(c_2)-26244f^{\;(8)}(c_3)-540f^{\;(8)}(c_1) = -12960f^{\;(8)}(c).\label{eq:ctrunc}
-\end{equation}
-
-Equation \cref{eq:ctrunc} can now be substituted into \cref{eq:truncsim} and the result solved for $f\,''(x)$
-
+Followed by removing the odd degree terms
 {\mathindent=0.5cm
+\begin{align}
+\MoveEqLeft f(x+h)+f(x-h) = \nonumber \\ &2f(x)+f^{\;''}(x)h^2+\frac{2f^{\;(4)}(x)h^4}{4!}+\frac{2f^{\;(6)}(x)h^6}{6!}+\frac{2f^{\;(8)}(\xi^\pm)h^8}{8!}\label{eq:fxh}\displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x+2h)+f(x-2h) = \nonumber \\
+&2f(x)+4f^{\;''}(x)h^2+\frac{32f^{\;(4)}(x)h^4}{4!}+\frac{128f^{\;(6)}(x)h^6}{6!}+\frac{512f^{\;(8)}(\xi^\pm)h^8}{8!}\label{eq:fx2h}\displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x+3h)+f(x-3h) = \nonumber \\
+&2f(x)+9f^{\;''}(x)h^2+\frac{162f^{\;(4)}(x)h^4}{4!}+\frac{1458f^{\;(6)}(x)h^6}{6!}+\frac{13122f^{\;(8)}(\xi^\pm)h^8}{8!}\label{eq:fx3h}
+\end{align}
+}
+
+leaving a set of equations with fourth and sixth degree terms which need be eliminated in order to arrive at an equation similar to \cref{eq:cd22t}.
+The equation $72\times$\cref{eq:fx2h}$-2\times$\cref{eq:fx3h}$-270\times$\cref{eq:fxh} eliminates these terms, arriving at
+{\mathindent=0.3cm
 \begin{equation}
-f\,''(x) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}-\frac{f^{\;(8)}(c)h^6}{560},\label{eq:sptetrunc}
+f^{\;''}(x) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}-\frac{f^{\;(8)}(\xi)h^6}{560}\label{eq:cd26t}\\
+\mathcal{F}_2^{\,(6)}(x,h) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}} + \mathcal{O}(h^6),\label{eq:cd26f}
 \end{equation}
 }
 
-resulting in the truncation error
-
+where $\xi \in [x-3h,x+3h]$ and both the true and finite difference expressions are displayed in a simplified form.
+The notation can be read as
 \begin{equation}
-\mathcal{E}_{trunc}(f,h) = -\frac{f^{\;(8)}(c)h^6}{560} = \mathcal{O}(h^6).\label{eq:etrunc}
+f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathds{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
 \end{equation}
 
+for example $f_{-3} \equiv f(x-3h)$.
+The form of \cref{eq:cd26f} adheres to \cref{eq:cdgeneral}, where $\cramped{\Delta f_6^{\;(2)} = \frac{1}{180}2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}$. Applying this equation is no different to \cref{eq:cd22f}, and the only additional overhead is the requirement of six absciss\ae\ rather than two.
 
+An optimal step size for $\nabla^2$ in \cref{eq:OHam} can be found using  \cref{eq:cd26f}.
+As with the calculation in \cref{subsec:harmsm} using \cref{eq:cd22f}, we will evaluate at $x = 0$ and apply the optimal step size algorithm~\cite{Mathur2012}; the results of which are shown in \cref{fig:hopt7pt}.
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt7pt}}
-\caption[Step size optimisation for $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}\xxx{Fix the caption so the full stop is on the first line}Step size optimisation for $f_2^{\;(6)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\caption[Step size optimisation of $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}Step size optimisation of $f_2^{\;(6)}(x)$ for step sizes $2^{-29}\!\leq\! h\! \leq\! 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
-%\subsection{Round-off Error and Step Size Optimisation}\label{sec:cdiffstep}
-%
-%Computers also introduce floating point round-off errors into the mix, thus truncation is not the only error source that needs to be addressed.
-%Let $f_k = y_k +e_k$, where $e_k$ is defined as the error in computing $f(x_k)$. With this treatment, \cref{eq:sptetrunc} can be expanded to
-%\begin{align}
-%\MoveEqLeft f\,''(x_0) = \nonumber\\
-%&\frac{2y_{-3}-27y_{-2}+270y_{-1}-490y_{0}+270y_{1}-27y_{2}+2y_{3}}{180h^{2}}+\mathcal{E}(f,h),\label{eq:sptye}
-%\end{align}
-%
-%where the error term now includes both round-off and truncation errors
-%
-%{\mathindent=0.5cm
-%\begin{align}
-%\MoveEqLeft \mathcal{E}(f,h) = \nonumber\\
-%&\frac{2e_{-3}-27e_{-2}+270e_{-1}-490e_{0}+270e_{1}-27e_{2}+2e_{3}}{180h^{2}}-\frac{f^{\;(8)}(c)h^6}{560}.
-%\end{align}
-%}
-%
-%Each error $e_k$ is assumed to be cumulative and of the same magnitude $\epsilon$ \ie $\abs{e_k} \leq \epsilon$.
-%To bound the error, a second assumption can be imposed on the truncation such that $\abs{f^{\;(8)}(c)} \leq M$ to introduce the condition
-%
-%\begin{equation}
-%\abs{\mathcal{E}(f,h)} \leq \frac{272\epsilon}{45h^2}+\frac{Mh^6}{560}.\label{eq:cdifferrtot}
-%\end{equation}
-%
-%It's clear from \cref{eq:cdifferrtot} that the truncation and round-off errors are inversely proportional (but not equal) for any choice of $h$, which is commonly referred to as the \emph{step-size dilemma}.
-%Expanding the central difference formula to $\mathcal{O}(h^6)$ increases the accuracy of over simpler methods like \cref{eq:simplecdiff} (which is $\mathcal{O}(h^2)$), where for a smaller $h$, the round-off error increases as the truncation error decreases at the same rate.
-%
-%An optimal step size $h$ can be found which minimises the right hand side of \cref{eq:cdifferrtot}. Let
-%
-%\begin{align}
-%g(h) &= \frac{272\epsilon}{45h^2}+\frac{Mh^6}{560}\\[0.2cm]
-%g'(h) &= \frac{544\epsilon}{45h^3}+\frac{3Mh^5}{280}.
-%\end{align}
-%
-%Setting $g'(h) = 0$ and solving for $h$ obtains the optimal step:
-%
-%\begin{equation}
-%h = \left(\frac{30464\epsilon}{27M}\right)^{1/8}.\label{eq:stepgen}
-%\end{equation}
-%for particular values of the error magnitude $\epsilon$ and the maximal truncation bound $M = \mathrm{max}_{[a,b]}\left(\abs{f^{\;(8)}(c)}\right)$.
-%
-%
-%using the mass of an oxygen atom, which can now be used to solve \cref{eq:Mlimit} for $M = 1.847\ten{98}$.
-%The final term yet to be discussed from \cref{eq:cdifferrtot} is $\epsilon$.
-%This value is the floating-point relative accuracy of the platform and software under which the central difference is being performed.
-%On various \texttt{Linux} distributions and \texttt{Windows 7}, \texttt{Matlab 2014b} provides two values for $\epsilon$: single precision $\epsilon_s = 1.192\ten{-7}$ and double $\epsilon_d = 2.220\ten{-16}$. 
+In comparison to the results of the second order method (see \cref{fig:hopt3pt}), which was calculated over the same step size range, it's clear that the estimations in \cref{sec:memcons} hold.
+The absolute error $\abs{\mathcal{TE}_6}$ minimum is in fact three orders smaller, and the optimal step sizes two orders larger (in dimensionless units at least).
+Applying the dimensionless unit conversion \cref{eq:confact}, the step sizes become
+\begin{align}
+h_{opt,\mathcal{TE}} &= 1.563\ten{-2}\cdot0.046 = 7.181\ten{-4} \simeq 2^{-11} & \left[\text{Å}\right]\\
+h_{opt,true} &= 1.275\ten{-2}\cdot0.046 = 5.861\ten{-4} \simeq 2^{-11} & \left[\text{Å}\right]
+\end{align}
+
+again showing equivalency on the angstrom scale, therefore the optimal step size for the central difference second derivative of sixth order applied to \cref{eq:OHam} is
+\begin{equation}
+h_{opt} = 2^{-11} \simeq 4.883\ten{-4}.
+\end{equation}
+
+A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $18,433^2$ doubles with a memory footprint of around 2.7 Gigabytes. 
+
+\section{Total Error and Maximum Step Range}
+
+Now that the optimal step size $h_{opt}$ has been calculated, 
