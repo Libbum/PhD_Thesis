@@ -44,7 +44,7 @@
 
 \usepackage{url}
 \urlstyle{rm}
-\usepackage[sort&compress,mcite]{natbib}
+\usepackage[sort&compress,mcite]{natbib} %CBF learning biblatex atm.
 \usepackage{bibentry} % for permissions
 %choose cite formatting:
 \renewcommand*{\citenumfont}[1]{\skolarlining#1} % oldstyle looks wrong to me in brackets.
@@ -251,30 +251,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% HYPERLINKS/PDF
 %% these packages must come last:
-
 %Make sure titles use \texorpdfstring
 \newcommand*{\hyperoptions}{colorlinks=true, linkcolor=[rgb]{1,0,0}, urlcolor=Set1-5-2, citecolor=[rgb]{0,0.5,0},} %Blue is from colorbrewer
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
-\usepackage{backref}
+\usepackage{backref} %My alterations to the backref package to compress pages
 \usepackage[all]{hypcap} %Fixes hyperref caption links to tables and figures
 
 %TODO: Get this working again
 %\usepackage[a-1b]{pdfxLSB} % some bugs fixed/worked around by LSB. don't forget to update
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% BACKREFERENCES
 \let\oldphantomsection\phantomsection
-% Set up back references:  TODO: Try and get page ranges to work with this.
-    \backrefparscanfalse
-    \newcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
-    \newcommand{\backrefcitedsinglestring}[1]{Cited on page~#1.}
-    \newcommand{\backrefcitedmultistring} [1]{Cited on pages~#1.}
-    \AtBeginDocument{% to override babel
-        \renewcommand{\backreftwosep}{~\&~}    % seperate 2 pages
-        \renewcommand{\backreflastsep}{~\&~}} % seperate last of longer list
-    \renewcommand*{\backref}[1]{}  % Disable standard
-    \renewcommand*{\backrefalt}[4]{% Detailed backref
-      \ifcase #1\backrefnotcitedstring%
-      \or\backrefcitedsinglestring{#2}%
-      \else\backrefcitedmultistring{#2}%
-      \fi}
+\backrefparscanfalse
+\newcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
+\newcommand{\backrefcitedsinglestring}[1]{Cited on page~#1.}
+\newcommand{\backrefcitedmultistring} [1]{Cited on pages~#1.}
+\AtBeginDocument{% to override babel
+    \renewcommand{\backreftwosep}{~\&~}    % seperate 2 pages
+    \renewcommand{\backreflastsep}{~\&~}} % seperate last of longer list
+\renewcommand*{\backrefalt}[4]{% Detailed backref
+  \ifcase #1\backrefnotcitedstring%
+  \or\backrefcitedsinglestring{#2}%
+  \else\backrefcitedmultistring{#2}%
+  \fi}
 
 \usepackage[english]{cleveref} % after hyperref
 \crefname{equation}{}{equations}
