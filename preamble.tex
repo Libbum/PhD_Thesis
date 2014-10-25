@@ -147,7 +147,7 @@
 \renewcommand\chapternumberlinebox[2]{#2}
 \renewcommand{\cftfigureindent}{1.5em}
 \renewcommand{\cfttableindent}{1.5em}
-%\setsecnumdepth{all} %TODO: Get subsections to be numbered
+\settocdepth{subsection}
 
 \newcommand{\loftchap}[1]{%alias for chapter headings in list of figures and tables
     \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}
@@ -287,6 +287,8 @@
 \Crefformat{chapter}{#2Chapter~#1#3}
 \crefformat{section}{#2section~#1#3}
 \Crefformat{section}{#2Section~#1#3}
+\crefformat{subsection}{#2subsection~#1#3}
+\Crefformat{subsection}{#2Subsection~#1#3}
 \crefformat{figure}{#2figure~#1#3}
 \Crefformat{figure}{#2Figure~#1#3}
 \crefformat{table}{#2table~#1#3}
