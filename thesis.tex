@@ -3,6 +3,7 @@
 
 \begin{document}
   \frontmatter
+  \backrefsetup{disable}
     \begin{SingleSpace}
     \listoffixmes  % only draft mode
     \clearpage
@@ -33,7 +34,7 @@
     \include{publications}
     \include{nomenclature}
     \include{summary}
-
+  \backrefsetup{enable}
   \mainmatter
   \setsecnumdepth{subsection} %Setting this in the preamble doesn't seem to work
     \include{introduction}
