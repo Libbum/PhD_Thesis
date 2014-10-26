@@ -6,7 +6,6 @@
 *.idx
 *.log
 *.toc
-*.ist
 *.acn
 *.acr
 *.alg
@@ -30,3 +29,6 @@
 *.ini
 *.*~
 *.nlo
+*.nls
+*.fls
+*.fdb_latexmk
