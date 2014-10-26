@@ -14,6 +14,7 @@
     \include{titleL} %Latin, Legacy
     %\include{titleP} %Principia copy
     \include{declaration}
+    \include{acknowledge}
     \fi
     \begin{SingleSpace}  %1.5  space is default at present. Check style guide though
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
@@ -29,16 +30,13 @@
     \listoftables
     \microtypesetup{protrusion=true}
     \end{SingleSpace}
-
-    \include{acknowledge}
     \include{publications}
     \include{nomenclature}
-    \include{summary}
   \backrefsetup{enable}
   \mainmatter
   \setsecnumdepth{subsection} %Setting this in the preamble doesn't seem to work
+    \include{summary}
     \include{introduction}
-
     \include{junctions}
     \include{tlsmodel}
   %  \chapter{Implementation and connection to experiment}\label{ch:impliementation}
