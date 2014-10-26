@@ -29,7 +29,7 @@
 \usepackage{eqparbox}
 \usepackage{nomenlev}\makenomen %Lev Bishop's nomenclature package
 \usepackage[rgb]{xcolor}
-\usepackage[mode=buildmissing]{standalone} %TODO: buildnew doesn't work for xelatex. Find out what to do with this.
+\usepackage[mode=buildmissing]{standalone} %buildnew doesn't work for xelatex. Manual compile for now, or build if you've got time to go make a coffe.
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usepackage{pgfplots}
@@ -198,7 +198,8 @@
     %This is a bit of a bitch - we need to print the close quote before the actual text
     %so that it isn't displayed on top of it...
     \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
-        \addtolength{\quotelength}{-15pt} %TODO: Maybe override this to center the entire quote
+        \setlength{\epigraphwidth}{\quotelength+20pt}
+        \addtolength{\quotelength}{-15pt} 
         \setlength{\quoteheight}{-20pt}
     }{%Quote is longer than one line
         \setlength{\quotelength}{285pt}
@@ -210,8 +211,9 @@
     \ifoddpage\cleartoevenpage\fi
     \thispagestyle{empty}
     \vspace*{\fill}
-    \epigraph{\openquote\closequote #1}{---#2} %TODO: Maybe extend this to have an English translation footer for quotes in other languages.
+    \epigraph{\openquote\closequote #1}{---#2} 
     \vspace*{\fill}
+    \setlength{\epigraphwidth}{300pt} %Reset to default in case of small quote
 }
 \newcommand{\versoimage}{
     \checkoddpage %Will only clear if we're on an odd page
