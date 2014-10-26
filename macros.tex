@@ -15,3 +15,11 @@
 
 \newcommand{\onlinecite}{\citenum}
 \newcommand{\lin}[1]{{\skolarlining #1}}
+\newcommand{\thought}[1]{{\skolarSC #1}}
+
+%Label markers so there are no need for legends in a plot
+\newcommand*{\tikzlabel}[2]{
+    \begin{tikzpicture}[baseline=-0.7ex]
+        \node (0,0) [scale=#1, #2] {};
+        \end{tikzpicture}
+}
