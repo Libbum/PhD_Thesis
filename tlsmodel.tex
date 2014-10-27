@@ -267,8 +267,12 @@ The steps of the algorithm which computes these values (as well as discussions o
 
 \subsection{A Harmonic Approximation to Streitz Mintmire}\label{subsec:harmsm}
 
-The functional form of the wavefunction for a Streitz Mintmire potential is not analytically known.
-However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x and \cref{fig:mexhatproj}) -- which has a simple analytic solution in the frame of\xxx{just for you Jared} the harmonic oscillator that can serve as an analogue.
+A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ and $E$ of the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$. 
+This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
+The step size algorithm requires an analytical form of the function to which it is applied.
+Unfortunately there are very few systems quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that could not exist physically.
+The functional form of the wavefunction for a particle under the influence of the Streitz Mintmire potential is not one of these systems.
+However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x, \cref{fig:mexhatproj} and \cref{fig:smvh}) -- which has a simple analytic solution in the frame of\xxx{just for you Jared} the quantum harmonic oscillator that can serve as an analogue in this limit.
 
 The hamiltonian of particle in a one dimensional quantum harmonic oscillator can be described as
 \begin{equation}
