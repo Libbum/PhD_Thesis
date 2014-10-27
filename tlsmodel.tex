@@ -28,20 +28,6 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \caption[Potential Projections]{\label{fig:mexhatproj}\lin{1D} double wells (blue, solid) and harmonic wells (red, dashed) can be used to represent simple projections of a \lin{2D} potential onto the $x$ and $y$ axes. Left: two projected double wells is an example of a tetra-well. Right: a combination of one double well and a harmonic well reflects the hemi-tetra- case.}
 \end{figure}
 
-\section{New version of this section}
-
-\begin{enumerate}
-  \item New introduction based off of \citeauthor{Mathur2012}'s first chapter
-  \item Discuss inherent errors and issues with finding an optimum step size
-  \item Quick overview of AutoDX, mostly cite \cite{Mathur2012} rather than going into too much detail of the algo, although make sure maths is complete
-  \item Approximate \cref{eq:OHam} with harmonic oscillator (using \cref{fig:harmsm} subsection), obtaining an analytic expression for $\Psi$, so we can apply AutoDX to $\nabla^2$ (using a simple $\mathcal{O}(h^2)$). Will need to use the dimensionless equation b.c. the real value one borks (too many orders of mag I think).
-  \item Discuss memory constraints. Need to make larger step size without cutting out accuracy
-  \item Derive seven point
-  \item Compare $h_{opt}$ and $\abs{TE_n}$ with 3 point
-  \item Connect both to real units, find $C_n$ \etc, then total error
-  \item Be fucking done with this shit.
-\end{enumerate}
-
 \section{Solving Derivatives Numerically}\label{sec:numder}
 The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
@@ -298,23 +284,26 @@ After separation of variables, the time independent form becomes
 \end{equation}
 
 with the family of solutions for the wavefunctions
-\begin{equation}\psi_n(x) = \frac{1}{\sqrt{2^n\,n!}}\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}e^{
-- \frac{m\omega x^2}{2 \hbar}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x \right),\qquad n = 0,1,2,\ldots\\
-H_n(x)=(-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right)
-\end{equation}
+\begin{align}\psi_n(x) &= \frac{1}{\sqrt{2^n\,n!}}\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}e^{
+- \frac{m\omega x^2}{2 \hbar}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x \right), &n = 0,1,2,\ldots \\
+H_n(x) &= (-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right) \\
+\therefore \psi_0(x) &= \left(\frac{m\omega}{\hbar\pi}\right)^{1/4}e^{
+- \frac{m\omega x^2}{2 \hbar}} \label{eq:gshwfn}
+\end{align}
 
-A dimensionless hamiltonian can be used to simplify the resultant wavefunctions,
-\begin{equation}
-\psi_n(x) = \frac{1}{\sqrt{2^n n!}}\pi^{-1/4}e^{\frac{-x^2}{2}} H_n(x).
-\end{equation}
+where $\psi_0(x)$ \cref{eq:gshwfn} is the ground state wavefunction. Particle mass $m$ in our case is the mass of an oxygen atom, and the angular frequency $\omega$ is currently unknown.
 
-The corresponding values: energy $E$ and distance $x$ are now expressed in units of $\hbar \omega$ and $\sqrt{\hbar/m\omega}$ respectively.
-The ground state wavefunction in this form is simply
-\begin{equation}
-\psi_0(x) = \pi^{-1/4}e^{\frac{-x^2}{2}},
-\end{equation}
-that can now be used in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}, which we will evaluate at $x = 0$.
+\begin{figure}[htp]
+\centering
+\resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
+\parbox{\widefigure}{\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz Mintmire \tikzlabel{0.25}{cylinder, minimum height=2cm,minimum width=0.3cm,fill=Set1-5-1} and Harmonic approximations \tikzlabel{0.25}{cylinder, minimum height=2cm,minimum width=0.3cm,fill=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}.}}
+\end{figure}
 
+%below here is in need of adjustment.
+which can now be used in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ for simplicity.
+As discussed in \xxx{Introduction section describing magnitudes of parameters}, $V_{SM}$ should be measured in [μeV] with $x$ in [Å] to correspond to experimental results.
+
+...
 \Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \tikzlabel{0.4}{circle,fill=Set1-5-2}.
 The smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent steps which are not of the form $2^\mathds{N}$, which are shown for comparison but not used in the optimisation calculation.\xxx{I think this may actually be incorrect in some sense. Pages 47--49 talk about optimising $t^*$, which I've set to $1/(2^1) = 0.5$ and ignored all other possibilities, but the graph there suggests $t^*=0.75$ish. Perhaps one finds the optimal step with all values then chooses $h_{opt}$ as the closest power of 2?}
 Round off errors dominate for small step sizes ($h \lesssim 10^{-4}$) with some step sizes resulting in completely invalid results (\ie $\mathcal{TE}_2 = 0$).
@@ -335,30 +324,6 @@ h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{e
 labelled as \tikzlabel{0.5}{circle,fill=Set1-5-3}.
 The value of this corrected step is $h_{opt,true} \simeq 1.519\ten{-4}$, which does not have an accurate power of two representation.
 As stated in \cref{subsec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
-
-This caution is slightly premature though, as the calculated $h_{opt}$ values are currently represented in the dimensionless unit $\cramped{\left[\sqrt{\hbar/m\omega}\right]}$.
-An approximation of the harmonic oscillator using the Hamiltonian \cref{eq:hamho} is valid near the minimum of any potential function, thus
-\begin{equation}
-V(x) = \frac{1}{2}m\omega^2\hat{x}^2 = \frac{1}{2}k\hat{x}^2, \qquad \omega=\sqrt{\frac{k}{m}}\label{eq:vharm}
-\end{equation}
-
-can be connected to the Streitz Mintmire potential through the relationship $V(x_{0})=V_{SM}(x_{0})$, if Streitz Mintmire has one local minima at $x=0$.
-An equivalent value of $\omega$ can be found through this connection which can then be used tho convert the $h_{opt}$ step sizes to appropriate units.
-
-As discussed in \xxx{Introduction section describing magnitudes of parameters}, $V_{SM}$ should be measured in [μeV] with $x$ in [Å] to correspond to experimental results.
-The harmonic oscillator potential $V$ is measured in SI units: [J] against [m].
-Converting a Streitz Mintmire configuration to this unit scheme and fitting a parabola to the minima, a value of $k=938$ is found.
-\Cref{fig:harmsm} shows the fit for this value, which is comparatively representational to a large range of cluster configurations.
-\begin{figure}[htp]
-\centering
-\hspace{-1cm}\resizebox{0.7\columnwidth}{!}{\includestandalone{figures/harmsm}}
-\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:harmsm}A parabolic fit to the minima of a \lin{1D} Strietz Mintmire potential, representing an Al--O--Al atom chain.}
-\end{figure}
-
-The associated angular frequency is therefore
-\begin{equation}
-\omega=\sqrt{\frac{938}{2.657\ten{-26}}}=1.879\ten{14}.
-\end{equation}
 
 Using this result an the mass of an oxygen atom, a conversion factor for the optimal step sizes is yields values in relevant units
 \begin{align}
@@ -465,7 +430,7 @@ again showing equivalency on the angstrom scale, therefore the optimal step size
 h_{opt} = 2^{-11} \simeq 4.883\ten{-4}.
 \end{equation}
 
-A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $18,433^2$ doubles with a memory footprint of around 2.7 Gigabytes. 
+A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $18,433^2$ doubles with a memory footprint of around 2.7 Gigabytes.
 
 \section{Condition and Total Error Calculation}
 
@@ -476,11 +441,11 @@ Recall the optimal step size formula \cref{eq:cdhopt}, which can now be rearrang
 \epsilon = \frac{1}{\abs{\mathcal{F}_\epsilon}}\left(\frac{n}{d}\abs{C_n}h_{opt,\mathcal{TE}}^{n+d}-\delta\abs{\mathcal{F}_\delta}\right)
 \end{equation}
 
-and the remaining unknowns can also be calculated. 
-For ease of calculation, the dimensionless unit form of the step size will be used: $h_{opt,\mathcal{TE}} = 2^{-6}$. 
+and the remaining unknowns can also be calculated.
+For ease of calculation, the dimensionless unit form of the step size will be used: $h_{opt,\mathcal{TE}} = 2^{-6}$.
 $C_n$ \cref{eq:cdtrcoeff} is calculated during the optimal step algorithm~\cite{Mathur2012} when the steps $h_1$ and $h_2$ are found to be in the valid truncation error range.
 The absolute value of which is $\abs{C_n} = 0.141$.
-Functional forms of the condition error $\mathcal{F}_\epsilon$ and cancellation error $\mathcal{F}_\delta$ coefficients are generated from \cref{eq:f62x} 
+Functional forms of the condition error $\mathcal{F}_\epsilon$ and cancellation error $\mathcal{F}_\delta$ coefficients are generated from \cref{eq:f62x}
 {\mathindent=0.4cm
 \begin{align}
 \mathcal{F}_\epsilon &= \frac{1}{180}2\abs{f_{-3}} + 27\abs{f_{-2}} + 270\abs{f_{-1}} + 490\abs{f_{0}} + 270\abs{f_{1}} + 27\abs{f_{2}} + 2\abs{f_{3}} \\
@@ -492,16 +457,17 @@ yielding a value for the condition error of $\epsilon = 1.530\ten{-18}$.\xxx{Thi
 This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16}$), which is a good result.
 
 The total error \cref{eq:cnetot} is now a trivial calculation, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt,\mathcal{TE}}) = 8.193\ten{-12}$.
- 
+
 \section{Maximum Step Size}
 
 Whilst the 2.7 Gigabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is feasible only if one plane was required.
 Below in \xxx{section on calculating the wavefunctions}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation.
-This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable. 
+This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
 
-It is shown in \onlinecite{Mathur2012} that the optimal step size is valid over the range $x \in [x^*-a_2h_{max},x^*+a_3h_{max}]$ if $f^{\;(n+d)}(x)$ can be shown to be constant over the same range. 
+It is shown in \onlinecite{Mathur2012} that the optimal step size is valid over the range $x \in [x^*-a_2h_{max},x^*+a_3h_{max}]$ if $f^{\;(n+d)}(x)$ can be shown to be constant over the same range.
 This is in turn proven by showing $f^{\;(n+d)}(\xi)$ is constant over $[h_{opt},h_{max}]$.
 The derivation is related to \cref{eq:cdcxh}, where $a_2$ and $a_3$ originate.
-The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases. 
+The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases.
 Thus $h_{max} = 1$ (in dimensionless units) for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\xi)$ is constant over $[2^{-6},2^{0}]$. \xxx{Fun fact: It varies over this entire region}
+
 

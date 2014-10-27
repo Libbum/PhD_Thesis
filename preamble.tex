@@ -115,6 +115,8 @@
 \captionstyle{\centerlastline}
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
+\newlength{\widefigure}
+\setlength{\widefigure}{\textwidth+\marginparwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES
@@ -242,7 +244,7 @@
 \ifdraftdoc
 \usepackage[color,notref,notcite]{showkeys} % notref for cleverref compat
 \usepackage[markifdraft]{gitinfo2}
-renewcommand{\gitMarkFormat}{\color{gray}\small\sffamily}
+\renewcommand{\gitMarkFormat}{\color{gray}\small\sffamily}
 %gitinfo2 cracks the sads if Idealist sans tries to print a colon. Altered the spec to compensate
 \renewcommand{\gitMark}{Branch\rmfamily : \sffamily\gitBranch\,@\,\gitAbbrevHash{} \textbullet{} (\gitAuthorDate)}
 \fi
