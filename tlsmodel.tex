@@ -333,7 +333,7 @@ The value of this corrected step is $h_{opt,true} = 3.717\ten{-5}$ Å, which doe
 As stated in \cref{subsec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
 Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
 \begin{equation}
-h_{opt} = 3.717\ten{-5} \simeq 2^{-15} \;\text{Å}.
+h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
 \end{equation}
 
 \section{Memory Concerns}\label{sec:memcons}
@@ -422,47 +422,72 @@ The uncorrected step \plotmarker{0.5}{circle,fill=Set1-5-1} was found to be $h_{
 
 Moving this value to a power of two representation, the optimal step size for the central difference second derivative of sixth order applied to \cref{eq:OHam} is
 \begin{equation}
-h_{opt} = 2.044\ten{-3} \simeq 2^{-9} \;\text{Å}.
+h_{opt} = 2.044\ten{-3} \simeq 2^{-9} = 1.953\ten{-3}\;\text{Å}.
 \end{equation}
 
 A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $4,609^2$ doubles with a memory footprint of around 170 Megabytes.
 
 \section{Condition and Total Error Calculation}
 
-Now that the optimal step size has been calculated, both the condition error $\epsilon$ and total error $\mathcal{E}_6^{\,(2)}(x,h)$ for the sixth order form can be found.
+The harmonic approximation is useful for finding the optimal step of the Streitz Mintmire method only because the change in $x$ is equivalent over the calculated range.
+Actual error values on the other hand can not be considered in the same manner.
+The condition error of the harmonic ground state wave function \cref{eq:gshwfn} is dependent on the accuracy of the input variables and the exponential function, which in \texttt{Matlab}, is computed by the built-in function \texttt{exp}.
+On the other hand, the Streitz Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \texttt{Matlab}, \texttt{C++} and \texttt{LAPACK} (implemented in \texttt{Fortran}) routines to calculate a potential value for a given $x$.
+Then, to obtain $\Psi_0(x)$, the hamiltonian matrix is diagonalised through the \texttt{eigs} function, also calling \texttt{LAPACK} through a \texttt{C++} wrapper.
 
-Recall the optimal step size formula \cref{eq:cdhopt}, which can now be rearranged in terms of the condition error
+Many of these steps may contribute to the condition error, which can be calculated by rearranging the optimal step size formula \cref{eq:cdhopt}, now that $h_{opt} = 2^{-9}$ is known
 \begin{equation}
-\epsilon = \frac{1}{\abs{\mathcal{F}_\epsilon}}\left(\frac{n}{d}\abs{C_n}h_{opt,\mathcal{TE}}^{n+d}-\delta\abs{\mathcal{F}_\delta}\right)
+\epsilon = \frac{1}{\abs{\mathcal{F}_\epsilon}}\left(\frac{n}{d}\abs{C_n}h_{opt}^{n+d}-\delta\abs{\mathcal{F}_\delta}\right).
 \end{equation}
 
-and the remaining unknowns can also be calculated.
-For ease of calculation, the dimensionless unit form of the step size will be used: $h_{opt,\mathcal{TE}} = 2^{-6}$.
 $C_n$ \cref{eq:cdtrcoeff} is calculated during the optimal step algorithm~\cite{Mathur2012} when the steps $h_1$ and $h_2$ are found to be in the valid truncation error range.
-The absolute value of which is $\abs{C_n} = 0.141$.
+The absolute value of which is $\abs{C_6} = 3.888\ten{5}$ for the sixth order central difference.
 Functional forms of the condition error $\mathcal{F}_\epsilon$ and cancellation error $\mathcal{F}_\delta$ coefficients are generated from \cref{eq:f62x}
 {\mathindent=0.4cm
 \begin{align}
 \mathcal{F}_\epsilon &= \frac{1}{180}2\abs{f_{-3}} + 27\abs{f_{-2}} + 270\abs{f_{-1}} + 490\abs{f_{0}} + 270\abs{f_{1}} + 27\abs{f_{2}} + 2\abs{f_{3}} \\
-\mathcal{F}_\delta &= \frac{1}{180}\max(\abs{27f_{-2} + 490f_{0} + 27f_{2}},\abs{2f_{-3} + 270f_{-1} + 270f_{1} + 2f_{3}}),
+\mathcal{F}_\delta &= \frac{1}{180}\max(\abs{27f_{-2} + 490f_{0} + 27f_{2}},\abs{2f_{-3} + 270f_{-1} + 270f_{1} + 2f_{3}}).
 \end{align}
 }
 
-yielding a value for the condition error of $\epsilon = 1.530\ten{-18}$.\xxx{This is a value for the harmonic oscillator wavefunction. Can we connect it to SM? Otherwise this entire section is probably pointless. Converting to real units isn't necessarily making sense atm either.}
-This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16}$), which is a good result.
+Applying this formula to the harmonic approximation, the condition error is found to be $\epsilon = 7.958\ten{-19}$.
+This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16}$), which is expected considering \texttt{exp} is a built-in function.
 
-The total error \cref{eq:cnetot} is now a trivial calculation, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt,\mathcal{TE}}) = 8.193\ten{-12}$.
+The total error \cref{eq:cnetot} is now a trivial undertaking, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt}) = 8.634\ten{-11}$.
 
-\section{Maximum Step Size}
+Calculating these values for the Streitz Mintmire case however is a much more daunting task.
+As the wavefunctions' form is unknown before the eigenvalue problem is solved, computing the required variables: $C_n$, $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ is not possible.
 
-Whilst the 2.7 Gigabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is feasible only if one plane was required.
-Below in \xxx{section on calculating the wavefunctions}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation.
+However, estimates of the condition error can be made.
+The sparse matrix eigenvalue solver \texttt{eigs} has a documented precision of $2^{-53}$~\cite{Mathworks2014}, in other words: machine precision.
+One of the pivotal advances \citeauthor{Mathur2012} accomplishes is the ability to obtain an optimal step without \emph{a priori} knowledge of $\epsilon$ \cite{Mathur2012}.
+Turned on its' head: with a known step size for a function one can estimate the condition error.
+Therefore, applying \cref{eq:cd26f} to the Streitz Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$. 
+This process yields a value of $\epsilon = 3.054\ten{-19}$, again below machine precision.
+
+Whilst these values cannot quantify the total error for the Streitz Mintmire case, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}. 
+One further test of stability that can be used in this instance is a convergence test of the energy $E$.
+Solving the eigenvalue equation over the range of step sizes used previously, \cref{fig:econv} displays how the energy fluctuates. 
+As expected, steps with high round off error contributions cause fluctuations in the calculated value of $E$, and invalid truncation error also generate large deviations from the acceptable value at $h_{opt} = 2^{-9}$.
+\begin{figure}[htp]
+\centering
+\resizebox{0.9\columnwidth}{!}{\includestandalone{figures/Econverge}}
+\caption[Energy Convergence]{\label{fig:econv}Energy Convergence for step sizes $10^{-7}\!\leq\! h\! \leq\! 10^0$ \plotmarker{0.4}{circle,fill=Set1-5-2}. The valid truncation range from \cref{fig:hopt7pt} is visible in the sense that large step sizes $h\gtrsim2\ten{-1}$ contribute sizable error. The inset shows round off error to causing an unwieldily response at small step sizes. }
+\end{figure}
+
+\subsection{Acceptable Maximum Step Size}
+
+The 170 Megabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is completely acceptable if one plane was all that was required.
+Below in \xxx{section on calculating the wavefunctions}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
 This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
 
 It is shown in \onlinecite{Mathur2012} that the optimal step size is valid over the range $x \in [x^*-a_2h_{max},x^*+a_3h_{max}]$ if $f^{\;(n+d)}(x)$ can be shown to be constant over the same range.
 This is in turn proven by showing $f^{\;(n+d)}(\xi)$ is constant over $[h_{opt},h_{max}]$.
 The derivation is related to \cref{eq:cdcxh}, where $a_2$ and $a_3$ originate.
 The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases.
-Thus $h_{max} = 1$ (in dimensionless units) for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\xi)$ is constant over $[2^{-6},2^{0}]$. \xxx{Fun fact: It varies over this entire region}
+Thus $h_{max} = 2^{-3} \simeq 0.125$ Å for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\xi)$ is constant over $[2^{-9},2^{-3}]$ which is indeed the case. 
+\Cref{fig:econv} also validates this argument as the error contribution between $[h_{opt},h_{max}]$ to $E$ is minimal.
+%TODO: Update fig1.5 with calculated data from overnight run
+% Calculate a2 and a3. Are they 3?
 
 
