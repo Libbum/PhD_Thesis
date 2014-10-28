@@ -267,7 +267,7 @@ The steps of the algorithm which computes these values (as well as discussions o
 
 \subsection{A Harmonic Approximation to Streitz Mintmire}\label{subsec:harmsm}
 
-A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ and $E$ of the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$. 
+A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$.
 This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few systems quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that could not exist physically.
@@ -297,49 +297,43 @@ H_n(x) &= (-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right) 
 
 where $\psi_0(x)$ \cref{eq:gshwfn} is the ground state wavefunction. Particle mass $m$ in our case is the mass of an oxygen atom, and the angular frequency $\omega$ is currently unknown.
 
+Using a small step size the eigenvalue equation is solved for the Streitz Mintmire case, and a ground state wavefunction is found.
+The functional form of which is shown in the left plot of \cref{fig:smvh} as \plotline{line width=1.5pt,color=Set1-5-1}.
+As the potential form (shown in the right plot) is similar to a parabola, the resultant wavefunction is gaussian.
+Using \cref{eq:gshwfn}, a harmonic form of the ground state wavefunction can now be fitted to the calculated Streitz Mintmire result through the unknown angular frequency, which is found to be $\omega = 2.241\ten{13}$ rad/s.
+Both $\psi_0(x)$ and the associated potential of this harmonic approximation are plotted as \plotline{line width=1.5pt,color=Set1-5-2} to compare with the Streitz Mintmire result.
 \begin{figure}[htp]
 \centering
 \resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
-\parbox{\widefigure}{\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz Mintmire \tikzlabel{0.25}{cylinder, minimum height=2cm,minimum width=0.3cm,fill=Set1-5-1} and Harmonic approximations \tikzlabel{0.25}{cylinder, minimum height=2cm,minimum width=0.3cm,fill=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}.}}
+\parbox{\widefigure}{\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to length scales of experimental results.}}
 \end{figure}
 
-%below here is in need of adjustment.
-which can now be used in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ for simplicity.
-As discussed in \xxx{Introduction section describing magnitudes of parameters}, $V_{SM}$ should be measured in [μeV] with $x$ in [Å] to correspond to experimental results.
+The fitted value of $\omega$ yields a complete approximation to the Strietz Mintmire ground state wavefunction, which we can now use in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ to find the eigenvalue $E$.
 
-...
-\Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \tikzlabel{0.4}{circle,fill=Set1-5-2}.
-The smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent steps which are not of the form $2^\mathds{N}$, which are shown for comparison but not used in the optimisation calculation.\xxx{I think this may actually be incorrect in some sense. Pages 47--49 talk about optimising $t^*$, which I've set to $1/(2^1) = 0.5$ and ignored all other possibilities, but the graph there suggests $t^*=0.75$ish. Perhaps one finds the optimal step with all values then chooses $h_{opt}$ as the closest power of 2?}
+\Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \plotmarker{0.4}{circle,fill=Set1-5-2}.
 Round off errors dominate for small step sizes ($h \lesssim 10^{-4}$) with some step sizes resulting in completely invalid results (\ie $\mathcal{TE}_2 = 0$).
-These steps are labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2} and are scaled to $2\ten{-9}$ to be displayed on the graph.
-As step size increases, truncation error dominates until the region $h \gtrsim 2$, where this error becomes invalid.
+These steps are labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2} and are scaled to $2\ten{-8}$ to be displayed on the graph.
+As step size increases, truncation error dominates until the region $h \gtrsim 5$, where this error becomes invalid.
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt3pt}}
-\caption[Step size optimisation of $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation of $f_2^{\;(2)}(x)$ for step sizes $2^{-29} \leq h \leq 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-9}$ for display purposes and labelled \tikzlabel{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\caption[Step size optimisation of $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation of $f_2^{\;(2)}(x)$ for step sizes $10^{-9}\!\leq\! h\! \leq\! 10^1$ \plotmarker{0.4}{circle,fill=Set1-5-2}. Steps which generate an invalid round off error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-8}$ for display purposes and labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \plotmarker{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \plotmarker{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
-The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \tikzlabel{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 2^{-12} \simeq 2.441\ten{-4}$.
-The truncation error \cref{eq:cdte} overestimates the true round off error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$ such that the true optimal step is
+The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \plotmarker{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 5.775\ten{-5}$ Å.
+The truncation error \cref{eq:cdte} overestimates the true round off error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$.
+The constant $t = 0.65$ is the step size ratio, required by the step size algorithm and is optimal for $d=2$, $n=2$.
+Using this adjustment, the true optimal step is
 \begin{equation}
 h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{eq:hoptt}
 \end{equation}
 
-labelled as \tikzlabel{0.5}{circle,fill=Set1-5-3}.
-The value of this corrected step is $h_{opt,true} \simeq 1.519\ten{-4}$, which does not have an accurate power of two representation.
+labelled as \plotmarker{0.5}{circle,fill=Set1-5-3}.
+The value of this corrected step is $h_{opt,true} \simeq 3.717\ten{-5}$ Å, which does not have an accurate power of two representation.
 As stated in \cref{subsec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
-
-Using this result an the mass of an oxygen atom, a conversion factor for the optimal step sizes is yields values in relevant units
-\begin{align}
-\sqrt{\frac{\hbar}{m_{oxy}\omega}}10^{10} &= \sqrt{\frac{1.055\ten{-34}}{2.657\ten{-26}\cdot1.879\ten{14}}}10^{10} = 0.046\label{eq:confact} \\
-h_{opt,\mathcal{TE}} &= 2^{-12}\cdot0.046 = 1.122\ten{-5} \simeq 2^{-17} & \left[\text{Å}\right]\\
-h_{opt,true} &= 1.519\ten{-4}\cdot0.046 = 6.983\ten{-6} \simeq 2^{-17} & \left[\text{Å}\right]
-\end{align}
-
-In other words, on scales relevant to this thesis, the truncation error and true optimal step sizes are essentially equivalent.
 Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
 \begin{equation}
-h_{opt} = 2^{-17} \simeq 7.629\ten{-6}.
+h_{opt} = 3.717\ten{-5} \simeq 2^{-15} \;\text{Å}.
 \end{equation}
 
 \section{Memory Concerns}\label{sec:memcons}
@@ -418,7 +412,7 @@ As with the calculation in \cref{subsec:harmsm} using \cref{eq:cd22f}, we will e
 \begin{figure}[htp]
 \centering
 \resizebox{\columnwidth}{!}{\includestandalone{figures/hopt7pt}}
-\caption[Step size optimisation of $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}Step size optimisation of $f_2^{\;(6)}(x)$ for step sizes $2^{-29}\!\leq\! h\! \leq\! 2^7$ \tikzlabel{0.4}{circle,fill=Set1-5-2}. Smaller markers \tikzlabel{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \tikzlabel{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \tikzlabel{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\caption[Step size optimisation of $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}Step size optimisation of $f_2^{\;(6)}(x)$ for step sizes $2^{-29}\!\leq\! h\! \leq\! 2^7$ \plotmarker{0.4}{circle,fill=Set1-5-2}. Smaller markers \plotmarker{0.25}{circle,fill=Set1-5-2!50} represent values of $\cramped{h \neq \left\{2^\mathds{N}\right\}}$. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \plotmarker{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \plotmarker{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
 In comparison to the results of the second order method (see \cref{fig:hopt3pt}), which was calculated over the same step size range, it's clear that the estimations in \cref{sec:memcons} hold.
