@@ -16,14 +16,6 @@ where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potenti
 
 \section{Potential configuration}
 
-%TODO: This goes in the intro chapter
-%The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-%Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-%Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
-%Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-%When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
-%TODO: Nomdef TLS in intro
-
 A potential which represents the junction, requires a number of capabilities.
 It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate quasi-degenerate states).
 As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
@@ -566,7 +558,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
   \item $h_{opt}$ will be considered optimal over a larger range than $0\pm0.375$ Å to avoid iterative and overtly complicated treatments of the eigenvalue equation.
       In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
       Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values around zero are the most important regardless.
-  \item Truncation error at $h_{max}$ contributes a consistent $1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$.
+  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.
       Large calculations that require only relative energy values, such as the phase maps in \xxx{phase map chapter/sections}, have been calculated with step sizes close to $h_{max}$.
       This allows the systems to fit in memory and/or not take the age of the universe to finish computing.
       However, specific energy values stated herein will still be calculated using $h_{opt}$ unless otherwise stated.
