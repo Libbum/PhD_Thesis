@@ -68,7 +68,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard cannon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
+\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms\nomdref{CxStar}{$x^*$}{Any value of $x$ about which a central difference is applied}{ch:tls}
 \begin{equation}
@@ -273,7 +273,7 @@ This eigenvalue equation is solved via direct diagonalisation of the hamiltonian
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
 The functional form of the wavefunction for a particle under the influence of the Streitz Mintmire potential is not one of these systems.
-However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x, \cref{fig:mexhatproj} and \cref{fig:smvh}) -- which has a simple analytic solution in the frame of\xxx{just for you Jared} the quantum harmonic oscillator that can serve as an analogue in this limit.
+However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x, \cref{fig:mexhatproj} and \cref{fig:smvh}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
 
 The hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
 \begin{equation}
