@@ -4,7 +4,114 @@
 \loftchap{Microscopic TLS Model}
 
 \section{Concept and background}
+
 \section{Potential configuration}
+
+\subsection{PRL Erratum dump}
+The delocalised oxygen model consists of six aluminium atoms comprised of pairs placed equidistantly from the origin in each cardinal direction
+The delocalised oxygen atom is represented on a two-dimensional discretised grid. All atoms and their interactions are described using the Streitz-Mintmire potential~\cite{Streitz1994} with electronegativity corrections using the extensions outlined in \onlinecite{Zhou2004}.
+This potential was chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} as our junction has two metal-oxide interfaces.
+A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the following potential:
+\begin{equation}
+\label{eq:sm}
+V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
+\end{equation}
+
+where $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$ and $N = \binom{7}{2}$.
+Here, the square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities (see Ref.\ \onlinecite{Streitz1994} for the mathematical definitions).
+The first term in \cref{eq:sm}, $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical EAM for the Al--Al and Al--O interactions
+\begin{equation}
+E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
+\end{equation}
+
+with $F_{i}\left[\rho_i\right]$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
+\begin{equation}
+\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
+\end{equation}
+
+where $r_{ij}$ is the interatomic distance between atoms $i$ and $j$.
+Further formalisms and parameters can be found in \onlinecite{Streitz1994}, implementation is also discussed in \onlinecite{Gale2003}.
+Using this potential, a single body time-independent Hamiltonian is constructed using a $7$-point central difference method
+\begin{equation}
+f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
+\end{equation}
+
+where $f_k=f\left(x_0+kh\right)$.
+The resulting single-body time-independent Schr\"odinger equation on a finite grid is then diagonalised, obtaining eigenvectors and eigenenergies with precision better than $10^{-13} \; \mathrm{\mu eV}$ ($< 10 \; \mathrm{Hz}$).
+The dipole element is computed using numerical integration of the ground- and first-excited states ($\psi_0$, $\psi_1$), where
+\begin{equation}
+    \wp_x = \iint \psi_0^*(x,y) x \psi_1(x,y) \,\mathrm{d}x\mathrm{d}y
+\end{equation}
+is an example of the dipole in the $x$ direction.
+
+\subsection{NJP Dump}
+We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in Figure [fig:defects].
+If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
+\begin{equation}
+    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
+   % \label{eq:OHam}
+\end{equation}
+
+where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
+
+The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
+Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
+Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+
+A potential which represents the junction, requires a number of capabilities.
+It needs to describe interactions between atomic species (in this case, Al--Al, O--O and Al--O interactions), as well as many body interactions to be accurate as possible (which will be required to investigate quasi-degenerate states).
+As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system as accurately as possible.
+The trade off here is that whilst any given potential may describe some properties of the system well because of certain fitting parameters, other properties may be well out of range as they were not included in the study that constructed the potential.
+Great care was taken to choose the best potential that accurately represented the junction, in this case the empirical Streitz-Mintmire potential~\cite{Streitz1994}, which describes a myriad of aluminium oxide properties over quite a large range of temperatures and pressures with high accuracy when compared against similar potentials.
+It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential (\cref{eq:sm}).
+This capability is particularly important here, as our junction has two metal-oxide interfaces, and our TLS defects may reside close to these boundaries.
+
+The Streitz-Mintmire potential is given by
+\begin{equation}
+\label{eq:sm}
+V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
+\end{equation}
+
+where $q_{i,j}$ is the atomic charge, $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$. 
+$J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
+The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
+\begin{align}
+\left[a|f_b\right] &= \int \frac{f_b(r_b,q_b)}{r_{av}}\,\mathrm{d}V_b\\
+\left[f_a|f_b\right] &= \int\!\!\int \frac{f_a(r_a,q_a)f_b(r_b,q_b)}{r_{vv}}\,\mathrm{d}V_a \mathrm{d}V_b
+\end{align}
+
+with $a=i,j; b=i,j; a\neq b$ in (\cref{eq:sm}).
+$\mathrm{d}V_{a,b}$ are integrating volume units.
+$r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
+
+The first term in (\cref{eq:sm}), $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the Al--Al and Al--O interactions
+\begin{equation}
+E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
+\end{equation}
+
+with $F_{i}\left[\rho_i\right]$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
+\begin{equation}
+\label{eq:smpair}
+\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
+\end{equation}
+where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in Table [tab:smconsts].
+Further formalisms and parameters can be found in \cite{Streitz1994,Zhou2004}, implementation is also discussed in \cite{Gale2003}.
+
+... Table ...
+
+Using this potential, a single body time-independent Hamiltonian is constructed using a $7$-point central difference method
+\begin{equation}
+f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
+\end{equation}
+
+where $f_k=f\left(x_0+kh\right)$.
+The step size $h=0.1\;\mathrm{\AA}$ was found to be optimal for the grid range relevant to our purposes\cite{Mathews2004}.
+The resulting matrix is then diagonalized, obtaining eigenvectors and eigenenergies with precision better than $10$ kHz.
+In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+
+\subsection{Thesis start}
 
 \begin{equation}
     H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r})
@@ -29,7 +136,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \end{figure}
 
 \section{Solving Derivatives Numerically}\label{sec:numder}
-The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
+The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
 Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model which calculates an optimised three-finite-burn lunar escape trajectory~\cite{Ocampo2012}.
@@ -266,13 +373,13 @@ Once this value is known, \cref{eq:cdhopt} can be rearranged to find the conditi
 
 The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of~\,\onlinecite{Mathur2012}.
 
-\subsection{A Harmonic Approximation to Streitz Mintmire}\label{subsec:harmsm}
+\subsection{A Harmonic Approximation to Streitz-Mintmire}\label{subsec:harmsm}
 
 A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{BPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
 This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
-The functional form of the wavefunction for a particle under the influence of the Streitz Mintmire potential is not one of these systems.
+The functional form of the wavefunction for a particle under the influence of the Streitz-Mintmire potential is not one of these systems.
 However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x, \cref{fig:mexhatproj} and \cref{fig:smvh}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
 
 The hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
@@ -298,15 +405,15 @@ H_n(x) &= (-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right) 
 
 where $\psi_0(x)$ \cref{eq:gshwfn} is the ground state wavefunction. Particle mass $m$ in our case is the mass of an oxygen atom, and the angular frequency $\omega$ is currently unknown.
 
-Using a small step size, the eigenvalue equation is solved for the Streitz Mintmire case, and a ground state wavefunction is found.
+Using a small step size, the eigenvalue equation is solved for the Streitz-Mintmire case, and a ground state wavefunction is found.
 The functional form of which is shown in the left plot of \cref{fig:smvh} as \plotline{line width=1.5pt,color=Set1-5-1}.
 As the potential form (shown in the right plot) is similar to a parabola, the resultant wavefunction is gaussian-like.
-Using \cref{eq:gshwfn}, a harmonic form of the ground state wavefunction can now be fitted to the calculated Streitz Mintmire result through the unknown angular frequency, which is found to be $\omega = 2.241\ten{13}$ rad/s.
-Both $\psi_0(x)$ and the associated potential of this harmonic approximation are plotted as \plotline{line width=1.5pt,color=Set1-5-2} to compare with the Streitz Mintmire result.
+Using \cref{eq:gshwfn}, a harmonic form of the ground state wavefunction can now be fitted to the calculated Streitz-Mintmire result through the unknown angular frequency, which is found to be $\omega = 2.241\ten{13}$ rad/s.
+Both $\psi_0(x)$ and the associated potential of this harmonic approximation are plotted as \plotline{line width=1.5pt,color=Set1-5-2} to compare with the Streitz-Mintmire result.
 \begin{figure}[htp]
 \centering
 \resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
-\parbox{\widefigure}{\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to length scales of experimental results.}}
+\parbox{\widefigure}{\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz-Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to length scales of experimental results.}}
 \end{figure}
 
 The fitted value of $\omega$ yields a complete approximation to the Strietz Mintmire ground state wavefunction, which we can now use in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ to find the eigenvalue $E$.
@@ -430,10 +537,10 @@ A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $4,609^2
 
 \section{Condition and Total Error Calculation}\label{sec:catoterr}
 
-The harmonic approximation is useful for finding the optimal step of the Streitz Mintmire method only because the change in $x$ is equivalent over the calculated range.
+The harmonic approximation is useful for finding the optimal step of the Streitz-Mintmire method only because the change in $x$ is equivalent over the calculated range.
 Actual error values on the other hand can not be considered in the same manner.
 The condition error of the harmonic ground state wave function \cref{eq:gshwfn} is dependent on the accuracy of the input variables and the exponential function, which in \texttt{Matlab}, is computed by the built-in function \texttt{exp}.
-On the other hand, the Streitz Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \texttt{Matlab}, \texttt{C++} and \texttt{LAPACK} (implemented in \texttt{Fortran}) routines to calculate a potential value for a given $x$.
+On the other hand, the Streitz-Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \texttt{Matlab}, \texttt{C++} and \texttt{LAPACK} (implemented in \texttt{Fortran}) routines to calculate a potential value for a given $x$.
 Then, to obtain $\Psi_0(x)$, the hamiltonian matrix is diagonalised through the \texttt{eigs} function, also calling \texttt{LAPACK} through a \texttt{C++} wrapper.
 
 Many of these steps may contribute to the condition error, which can be calculated by rearranging the optimal step size formula \cref{eq:cdhopt}, now that $h_{opt} = 2^{-9}$ is known
@@ -456,17 +563,17 @@ This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16
 
 The total error \cref{eq:cnetot} is now a trivial undertaking, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt}) = 8.634\ten{-11}$.\nomref{BEnd}{sec:catoterr}
 
-Calculating these values for the Streitz Mintmire case however is a much more daunting task.
+Calculating these values for the Streitz-Mintmire case however is a much more daunting task.
 As the wavefunctions' form is unknown before the eigenvalue problem is solved, computing the required variables: $C_n$, $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ is not possible.
 
 However, estimates of the condition error can be made.
 The sparse matrix eigenvalue solver \texttt{eigs} has a documented precision of $2^{-53}$~\cite{Mathworks2014}, in other words: machine precision $\delta$.
 One of the pivotal advances \citeauthor{Mathur2012} accomplishes is the ability to obtain an optimal step without \emph{a priori} knowledge of $\epsilon$ \cite{Mathur2012}.
 Turned on its' head: with a known step size for a function one can estimate the condition error.
-Therefore, applying \cref{eq:cd26f} to the Streitz Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$.
+Therefore, applying \cref{eq:cd26f} to the Streitz-Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$.
 This process yields a value of $\epsilon = 3.054\ten{-19}$, again below machine precision.
 
-Whilst these values cannot quantify the total error for the Streitz Mintmire case, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}.
+Whilst these values cannot quantify the total error for the Streitz-Mintmire case, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}.
 One further test of stability that can be used in this instance is a convergence test of the energy $E$.
 Solving the eigenvalue equation over the range of step sizes used previously, \cref{fig:econv} displays how the energy fluctuates.
 As expected, steps with high roundoff error contributions cause fluctuations in the calculated value of $E$, and invalid truncation errors also generate large deviations from the acceptable value at $h_{opt} = 2^{-9}$.
