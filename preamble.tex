@@ -32,7 +32,7 @@
 \usepackage[rgb]{xcolor}
 \usepackage[mode=buildmissing]{standalone} %buildnew doesn't work for xelatex. Manual compile for now, or build if you've got time to go make a coffe.
 \usepackage{tikz}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,shapes.geometric}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
 %Colorbrewer Set1 of length 5 colours
@@ -115,6 +115,8 @@
 \captionstyle{\centerlastline}
 \changecaptionwidth
 \captionwidth{0.925\textwidth}
+\newlength{\widefigure}
+\setlength{\widefigure}{\textwidth+\marginparwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES
@@ -200,7 +202,7 @@
     %so that it isn't displayed on top of it...
     \ifthenelse{\quotelength < \epigraphwidth}{%Quote is one line,smaller than box
         \setlength{\epigraphwidth}{\quotelength+20pt}
-        \addtolength{\quotelength}{-15pt} 
+        \addtolength{\quotelength}{-15pt}
         \setlength{\quoteheight}{-20pt}
     }{%Quote is longer than one line
         \setlength{\quotelength}{285pt}
@@ -212,7 +214,7 @@
     \ifoddpage\cleartoevenpage\fi
     \thispagestyle{empty}
     \vspace*{\fill}
-    \epigraph{\openquote\closequote #1}{---#2} 
+    \epigraph{\openquote\closequote #1}{---#2}
     \vspace*{\fill}
     \setlength{\epigraphwidth}{300pt} %Reset to default in case of small quote
 }
@@ -257,7 +259,7 @@
 %Make sure titles use \texorpdfstring
 \newcommand*{\hyperoptions}{colorlinks=true, linkcolor=[rgb]{1,0,0}, urlcolor=Set1-5-2, citecolor=[rgb]{0,0.5,0},} %Blue is from colorbrewer
 \usepackage[unicode,pdfencoding=auto,final,\hyperoptions,hyperfootnotes=false,linktoc=all,pagebackref]{hyperref}
-\usepackage{backref} 
+\usepackage{backref}
 \usepackage[all]{hypcap} %Fixes hyperref caption links to tables and figures
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -305,5 +307,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EXTRA STUFF
-\hyphenation{tri-methyl-aluminium}
+\hyphenation{tri-methyl-aluminium deriv-a-tive}
 
+\setkeys{Gin}{draft=false} %Allows figures to be displayed in draft mode.

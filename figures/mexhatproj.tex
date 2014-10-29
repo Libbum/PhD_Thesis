@@ -2,7 +2,10 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
-
+\usepackage{mathspec}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
 \begin{document}
 \begin{tikzpicture}
 \begin{axis}[view={115}{30},axis lines=middle, name=one, scale only axis, xtick=\empty, ytick=\empty, ztick=\empty, axis line style={<->},xlabel=$y$,ylabel=$x$,zlabel=$z$]
