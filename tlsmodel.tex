@@ -208,7 +208,7 @@ Finally, an error which is also important in this instance is named representati
 Not all numbers can be accurately be represented in binary using a fixed number of digits.
 Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \etc), and what's most troubling about this is the fact that no negative power of 10 has an exact binary representation.
 This error is small -- usually smaller that machine precision in fact, but it has non-trival and cumulative side effects.
-If one avoids step sizes other than $2^\mathds{N}$ this error can be avoided completely.
+If one avoids step sizes other than $2^\mathbb{N}$ this error can be avoided completely.
 
 With this information in hand, an upper bound to the total roundoff error can now be calculated:
 \begin{equation}
@@ -397,7 +397,7 @@ f^{\;''}(x) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}
 where $\xi \in [x-3h,x+3h]$ and both the true and finite difference expressions are displayed in a simplified form.
 The notation can be read as\nomdref{Cfk}{$f_k$}{A short form for the central difference expansions}{sec:cd6o}
 \begin{equation}
-f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathds{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
+f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathbb{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
 \end{equation}
 
 for example $f_{-3} \equiv f(x-3h)$.
