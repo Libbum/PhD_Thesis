@@ -5,67 +5,31 @@
 
 \section{Concept and background}
 
-\section{Potential configuration}
-
-\subsection{PRL Erratum dump}
-The delocalised oxygen model consists of six aluminium atoms comprised of pairs placed equidistantly from the origin in each cardinal direction
-The delocalised oxygen atom is represented on a two-dimensional discretised grid. All atoms and their interactions are described using the Streitz-Mintmire potential~\cite{Streitz1994} with electronegativity corrections using the extensions outlined in \onlinecite{Zhou2004}.
-This potential was chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} as our junction has two metal-oxide interfaces.
-A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the following potential:
-\begin{equation}
-\label{eq:sm}
-V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
-\end{equation}
-
-where $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$ and $N = \binom{7}{2}$.
-Here, the square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities (see Ref.\ \onlinecite{Streitz1994} for the mathematical definitions).
-The first term in \cref{eq:sm}, $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical EAM for the Al--Al and Al--O interactions
-\begin{equation}
-E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
-\end{equation}
-
-with $F_{i}\left[\rho_i\right]$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
-\begin{equation}
-\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
-\end{equation}
-
-where $r_{ij}$ is the interatomic distance between atoms $i$ and $j$.
-Further formalisms and parameters can be found in \onlinecite{Streitz1994}, implementation is also discussed in \onlinecite{Gale2003}.
-Using this potential, a single body time-independent Hamiltonian is constructed using a $7$-point central difference method
-\begin{equation}
-f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
-\end{equation}
-
-where $f_k=f\left(x_0+kh\right)$.
-The resulting single-body time-independent Schr\"odinger equation on a finite grid is then diagonalised, obtaining eigenvectors and eigenenergies with precision better than $10^{-13} \; \mathrm{\mu eV}$ ($< 10 \; \mathrm{Hz}$).
-The dipole element is computed using numerical integration of the ground- and first-excited states ($\psi_0$, $\psi_1$), where
-\begin{equation}
-    \wp_x = \iint \psi_0^*(x,y) x \psi_1(x,y) \,\mathrm{d}x\mathrm{d}y
-\end{equation}
-is an example of the dipole in the $x$ direction.
-
-\subsection{NJP Dump}
-We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in Figure [fig:defects].
+We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \xxx{defect figure, sio2?}.
 If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
 \begin{equation}
     H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
-   % \label{eq:OHam}
+    \label{eq:OHam}
 \end{equation}
 
 where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
 
-The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
-Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+\section{Potential configuration}
+
+%TODO: This goes in the intro chapter
+%The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
+%Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+%Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
+%Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+%When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+%TODO: Nomdef TLS in intro
 
 A potential which represents the junction, requires a number of capabilities.
-It needs to describe interactions between atomic species (in this case, Al--Al, O--O and Al--O interactions), as well as many body interactions to be accurate as possible (which will be required to investigate quasi-degenerate states).
-As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system as accurately as possible.
+It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate quasi-degenerate states).
+As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
 The trade off here is that whilst any given potential may describe some properties of the system well because of certain fitting parameters, other properties may be well out of range as they were not included in the study that constructed the potential.
 Great care was taken to choose the best potential that accurately represented the junction, in this case the empirical Streitz-Mintmire potential~\cite{Streitz1994}, which describes a myriad of aluminium oxide properties over quite a large range of temperatures and pressures with high accuracy when compared against similar potentials.
-It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential (\cref{eq:sm}).
+It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential \cref{eq:sm}.
 This capability is particularly important here, as our junction has two metal-oxide interfaces, and our TLS defects may reside close to these boundaries.
 
 The Streitz-Mintmire potential is given by
@@ -74,7 +38,7 @@ The Streitz-Mintmire potential is given by
 V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
 \end{equation}
 
-where $q_{i,j}$ is the atomic charge, $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$. 
+where $q_{i,j}$ is the atomic charge, $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.
 $J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
 The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
 \begin{align}
@@ -113,10 +77,7 @@ In contrast, the energy scale for JJ defects observed in experiments is $\lesssi
 
 \subsection{Thesis start}
 
-\begin{equation}
-    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r})
-    \label{eq:OHam}
-\end{equation}
+
 
 \begin{table}[h]
 \caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants used in the calculation of the Buckingham and Rydberg pair potentials in the Streitz-Mintmire formalism~\cite{Streitz1994,Gale2003}.}
