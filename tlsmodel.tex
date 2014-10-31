@@ -3,9 +3,8 @@
 \chapterprecis{The Microscopic TLS Model chapter}%TODO: Fill this in.
 \loftchap{Microscopic TLS Model}
 
-\section{Concept and background}
-
-We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \xxx{defect figure, sio2?}.
+\xxx{This section essentially needs to be here, but I'm unsure how it should be written until the earlier chapters are completed.}
+\thought{We are interested in what} happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \xxx{defect figure, sio2?}.
 If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
 \begin{equation}
     H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
@@ -14,7 +13,13 @@ If we also ignore any time evolution properties of the system for now and derive
 
 where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
 
-\section{Potential configuration}
+...
+
+This chapter discusses the construction of a model based around this hamiltonian.
+First, the choice of a suitable potential to describe $V(\mathbf{r})$ is considered in \cref{sec:potential}.
+An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefrange{sec:numder}{sec:catoterr}, then finally an overview of the construction of the hamiltonian matrix and unit conversions in \xxx{The next sections}.
+
+\section{Potential Configuration}\label{sec:potential}
 
 A potential which represents the junction, requires a number of capabilities.
 It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate quasi-degenerate states).
@@ -30,47 +35,29 @@ The Streitz-Mintmire potential is given by
 V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
 \end{equation}
 
-where $q_{i,j}$ is the atomic charge, $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.
-$J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
+where $q_{i,j}$ is the atomic charge, and the terms $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.
+$J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion~\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
 The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
 \begin{align}
 \left[a|f_b\right] &= \int \frac{f_b(r_b,q_b)}{r_{av}}\,\mathrm{d}V_b\\
 \left[f_a|f_b\right] &= \int\!\!\int \frac{f_a(r_a,q_a)f_b(r_b,q_b)}{r_{vv}}\,\mathrm{d}V_a \mathrm{d}V_b
 \end{align}
 
-with $a=i,j; b=i,j; a\neq b$ in (\cref{eq:sm}).
-$\mathrm{d}V_{a,b}$ are integrating volume units.
-$r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
+with $a=i,j; b=i,j; a\neq b$ in \cref{eq:sm} and $\mathrm{d}V_{a,b}$ are integrating volume units.
+The value $r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
 
-The first term in (\cref{eq:sm}), $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the Al--Al and Al--O interactions
+The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdef{AEAM}{EAM}{Embedded Atom Model}
 \begin{equation}
 E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
 \end{equation}
 
-with $F_{i}\left[\rho_i\right]$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
+with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
 \begin{equation}
 \label{eq:smpair}
 \phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
 \end{equation}
-where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in Table [tab:smconsts].
+where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in \cref{tab:smconsts}.
 Further formalisms and parameters can be found in \cite{Streitz1994,Zhou2004}, implementation is also discussed in \cite{Gale2003}.
-
-... Table ...
-
-Using this potential, a single body time-independent Hamiltonian is constructed using a $7$-point central difference method
-\begin{equation}
-f^{\prime\prime}(x_0)=\frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}+\mathcal{O}(h^{6})
-\end{equation}
-
-where $f_k=f\left(x_0+kh\right)$.
-The step size $h=0.1\;\mathrm{\AA}$ was found to be optimal for the grid range relevant to our purposes\cite{Mathews2004}.
-The resulting matrix is then diagonalized, obtaining eigenvectors and eigenenergies with precision better than $10$ kHz.
-In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
-
-\subsection{Thesis start}
-
-
-
 \begin{table}[h]
 \caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants used in the calculation of the Buckingham and Rydberg pair potentials in the Streitz-Mintmire formalism~\cite{Streitz1994,Gale2003}.}
 \centering
@@ -82,13 +69,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[htp]
-\centering
-\resizebox{0.8\columnwidth}{!}{\includestandalone{figures/mexhatproj}}
-\caption[Potential Projections]{\label{fig:mexhatproj}\lin{1D} double wells (blue, solid) and harmonic wells (red, dashed) can be used to represent simple projections of a \lin{2D} potential onto the $x$ and $y$ axes. Left: two projected double wells is an example of a tetra-well. Right: a combination of one double well and a harmonic well reflects the hemi-tetra- case.}
-\end{figure}
-
-\section{Solving Derivatives Numerically}\label{sec:numder}
+\section{Numerical Treatment of the Second Derivative}\label{sec:numder}
 The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, which in total are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
@@ -490,7 +471,7 @@ A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $4,609^2
 
 \section{Condition and Total Error Calculation}\label{sec:catoterr}
 
-The harmonic approximation is useful for finding the optimal step of the Streitz-Mintmire method only because the change in $x$ is equivalent over the calculated range.
+The harmonic approximation was useful for finding the optimal step of the Streitz-Mintmire method only because the change in $x$ is equivalent over the calculated range.
 Actual error values on the other hand can not be considered in the same manner.
 The condition error of the harmonic ground state wave function \cref{eq:gshwfn} is dependent on the accuracy of the input variables and the exponential function, which in \texttt{Matlab}, is computed by the built-in function \texttt{exp}.
 On the other hand, the Streitz-Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \texttt{Matlab}, \texttt{C++} and \texttt{LAPACK} (implemented in \texttt{Fortran}) routines to calculate a potential value for a given $x$.
@@ -526,7 +507,7 @@ Turned on its' head: with a known step size for a function one can estimate the 
 Therefore, applying \cref{eq:cd26f} to the Streitz-Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$.
 This process yields a value of $\epsilon = 3.054\ten{-19}$, again below machine precision.
 
-Whilst these values cannot quantify the total error for the Streitz-Mintmire case, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}.
+Whilst these values cannot quantify the Streitz-Mintmire total error, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}.
 One further test of stability that can be used in this instance is a convergence test of the energy $E$.
 Solving the eigenvalue equation over the range of step sizes used previously, \cref{fig:econv} displays how the energy fluctuates.
 As expected, steps with high roundoff error contributions cause fluctuations in the calculated value of $E$, and invalid truncation errors also generate large deviations from the acceptable value at $h_{opt} = 2^{-9}$.
@@ -565,4 +546,14 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
 \end{itemize}
 
 
+\section{Chapter Dump}
+
+The resulting matrix is then diagonalized, obtaining eigenvectors and eigenenergies with precision better than $10$ kHz.
+In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+
+\begin{figure}[htp]
+\centering
+\resizebox{0.8\columnwidth}{!}{\includestandalone{figures/mexhatproj}}
+\caption[Potential Projections]{\label{fig:mexhatproj}\lin{1D} double wells (blue, solid) and harmonic wells (red, dashed) can be used to represent simple projections of a \lin{2D} potential onto the $x$ and $y$ axes. Left: two projected double wells is an example of a tetra-well. Right: a combination of one double well and a harmonic well reflects the hemi-tetra- case.}
+\end{figure}
 
