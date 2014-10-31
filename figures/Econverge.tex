@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
 \usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathrm{Minion Pro}
 \usepackage{fix-cm}
@@ -25,7 +26,7 @@ xmax=1,
 xminorticks=true,
 ymin=-64.4,
 ymax=-63.6,
-xlabel={$h$ ($\mathrm{\AA}$)},
+xlabel={$h$ ($\text{\AA}$)},
 ylabel={$E$ (eV)}
 ]
 \addplot [color=Set1-5-2,mark size=1.5pt,only marks,mark=*]
@@ -113,7 +114,7 @@ xmax=1e-2,
 xminorticks=true,
 ymin=-0.0003,
 ymax=5e-05,
-ylabel={$\Delta E$ (eV)}
+ylabel={$\Delta E$ ($\mathrm{\mu}$eV)}
 %ytick={-6.370405,-6.37037},
 %yticklabels={\tiny $-6.370405\!\cdot\! 10^{-7}$,\tiny $-6.370370\!\cdot\! 10^{-7}$}
 ]
@@ -141,4 +142,4 @@ ylabel={$\Delta E$ (eV)}
 };
 \end{axis}
 \end{tikzpicture}%
-\end{document}
+\end{document} 
