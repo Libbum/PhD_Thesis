@@ -5,7 +5,7 @@
 
 \xxx{This section essentially needs to be here, but I'm unsure how it should be written until the earlier chapters are completed.}
 \thought{We are interested in what} happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \xxx{defect figure, sio2?}.
-If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
+If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian\nomdef{Crvec}{$\mathbf{r}$}{General distance vector. In \lin{1D} $\mathbf{r} = x$ for example}\nomdref{CVr}{$V(\mathbf{r})$}{Potential $V$ at point $\mathbf{r}$. Assumed to be the Streitz-Mintmire potential unless otherwise stated}{eq:OHam}
 \begin{equation}
     H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
     \label{eq:OHam}
@@ -29,13 +29,12 @@ Great care was taken to choose the best potential that accurately represented th
 It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential \cref{eq:sm}.
 This capability is particularly important here, as our junction has two metal-oxide interfaces, and our TLS defects may reside close to these boundaries.
 
-The Streitz-Mintmire potential is given by
+The Streitz-Mintmire potential is given by\nomref{CVr}{eq:sm}\nomdref{ZEAM}{EAM}{Embeded Atom Model potential contribution}{eq:sm}
 \begin{equation}
-\label{eq:sm}
-V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
+V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},\label{eq:sm}
 \end{equation}
 
-where $q_{i,j}$ is the atomic charge, and the terms $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.
+where $q_{i,j}$ is the atomic charge, and the terms $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.\nomdref{Cqij}{$q_{i,j}$}{Atomic charge contribution to the Streitz-Mintmire potential}{eq:sm}\nomdref{CJ0i}{$J_{i}^{0}$}{Self-Coulomb repulsion. Used in the Streitz-Mintmire potential}{eq:sm}\nomdef{Gdkron}{$\delta_{ij}$}{Kronecker Delta}\nomdref{Bsmbrack}{$\left[f_a|f_b\right]$}{A bracket notation representing Coulomb interaction integrals}{sec:potential}
 $J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion~\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
 The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
 \begin{align}
@@ -46,15 +45,14 @@ The square bracket notation represents Coulomb interaction integrals between val
 with $a=i,j; b=i,j; a\neq b$ in \cref{eq:sm} and $\mathrm{d}V_{a,b}$ are integrating volume units.
 The value $r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
 
-The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdef{AEAM}{EAM}{Embedded Atom Model}
+The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdef{AEAM}{EAM}{Embedded Atom Model}\nomref{ZEAM}{eq:smeam}\nomdref{CFeam}{$F_{i}\left[\rho_i\right]$}{Energy required to embed atom $i$ in a local electron density $\rho_i$. A contribution to the Streitz-Mintmire potential}{eq:smpair}
 \begin{equation}
-E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
+E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),\label{eq:smeam}
 \end{equation}
 
-with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
+with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials\nomdef{Gwphij}{$\phi_{ij}$}{Pair potentials (Buckingham and Rydberg) for Streitz-Mintmire}{eq:smpair}
 \begin{equation}
-\label{eq:smpair}
-\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
+\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],\label{eq:smpair}
 \end{equation}
 where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in \cref{tab:smconsts}.
 Further formalisms and parameters can be found in \cite{Streitz1994,Zhou2004}, implementation is also discussed in \cite{Gale2003}.
@@ -532,7 +530,7 @@ Whilst the optimal step size becomes larger as $n$ increases, this also increase
 Also, the region of invalid truncation error remains constant for the system in question (in this case $\Psi_0(x)$).
 If the order is increased to the point at which the optimal step size is almost at the lower bound of the invalid truncation range, $C_n$ will become a large contribution to error.
 \Cref{sec:numder} also discusses the complication that an optimal step size may not be valid for all points in a system.
-Pushing the optimal step to be too large may encounter non-optimal position errors, where one (optimal) point has an error of $10^{-11}$ associated with it, and the next (non-optimal) point contributes $10^1$ from invalid truncation. 
+Pushing the optimal step to be too large may encounter non-optimal position errors, where one (optimal) point has an error of $10^{-11}$ associated with it, and the next (non-optimal) point contributes $10^1$ from invalid truncation.
 
 It is shown in \citeauthor{Mathur2012} that the optimal step size is valid over the range $x \in [x^*-a_2h_{max},x^*+a_3h_{max}]$ if $f^{\;(n+d)}(x)$ can be shown to be constant over the same range.
 This is in turn proven by showing $f^{\;(n+d)}(\xi)$ is constant over $[h_{opt},h_{max}]$.
@@ -570,13 +568,13 @@ In one dimension, this matrix is relatively straightforward to construct (outlin
 \caption[Sparsity of the hamiltonian matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
 \end{marginfigure}
 
-Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ Kg, and the unit conversion constant defined as
+Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ Kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{equation}
-    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.2425\ten{46}
-\end{equation} 
+    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.2425\ten{46}\label{eq:lambda}
+\end{equation}
 
 describes the system in terms of distance in Å and energy in μeV.
-This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}. 
+This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}.
 Each subsequent value of $x$ also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
 Off diagonals are also required to fulfil the remaining $f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $f_k$ coefficient and the  $\nabla^2$ prefactor.
 
