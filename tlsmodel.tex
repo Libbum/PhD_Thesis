@@ -543,10 +543,6 @@ As a result, the estimated truncation error calculated for $h_{opt}$ is consider
 Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å; require values anywhere else on the grid and a new $h_{opt}$ should be calculated if you're a purist.
 
 Unfortunately, compromises need to be made in practice. So, keeping the above analysis in mind, the following concessions will be made throughout this thesis:
-
-%TODO: Going to higher orders from 6pt will decrease the optimal step size but then we loose resolution in x too much. the slope of valid truncation will become a delta funciton and useless.
-%Moving to haiger orders could give major differences in step if optimal so 0.1
-
 \begin{itemize}
   \item $h_{opt}$ will be considered optimal over a larger range than $0\pm0.375$ Å to avoid iterative and overtly complicated treatments of the eigenvalue equation.
       In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
@@ -574,16 +570,16 @@ In one dimension, this matrix is relatively straightforward to construct (outlin
 \caption[Sparsity of the hamiltonian matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
 \end{marginfigure}
 
-Starting with 
+Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ Kg, and the unit conversion constant defined as
+\begin{equation}
+    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.2425\ten{46}
+\end{equation} 
 
-...
+describes the system in terms of distance in Å and energy in μeV.
+This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}. 
+Each subsequent value of $x$ also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
+Off diagonals are also required to fulfil the remaining $f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $f_k$ coefficient and the  $\nabla^2$ prefactor.
 
-The resulting matrix is then diagonalized, obtaining eigenvectors and eigenenergies with precision better than $10$ kHz.
+The resulting matrix can then be diagonalized, obtaining eigenvectors and eigenenergies for the system in question.
+Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz using this method.
 In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
-
-\begin{figure}[htp]
-\centering
-\resizebox{0.8\columnwidth}{!}{\includestandalone{figures/mexhatproj}}
-\caption[Potential Projections]{\label{fig:mexhatproj}\lin{1D} double wells (blue, solid) and harmonic wells (red, dashed) can be used to represent simple projections of a \lin{2D} potential onto the $x$ and $y$ axes. Left: two projected double wells is an example of a tetra-well. Right: a combination of one double well and a harmonic well reflects the hemi-tetra- case.}
-\end{figure}
-
