@@ -2,8 +2,8 @@
 \chapter{Introduction}
 \chapterprecis{The Introduction chapter}%TODO: Fill this in.
 
-\section{Introdump from NJP}
-Superconducting qubits and Josephson junction based quantum devices in general are often limited by decoherence sources.
+%Introdump from NJP
+\thought{Superconducting qubits and Josephson junction} based quantum devices in general are often limited by decoherence sources.
 A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
 \nomdef{ATLS}{TLS}{Two level system}
 Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
@@ -40,7 +40,7 @@ Possible defects of this nature are depicted in %\cref{fig:defects}.
 
 %Finally, recent simulations suggest a TLS mass of order $1-100 \: amu$~\cite{Nugroho2013a}, too large to be simply due to an electron moving between states. \todo[color=blue!40,inline]{This paper is out now, so reference from march meeting has been updated. WKB calculations don't seem to be there. Should we remove this?}
 
-It has often been suggested that a bath of TLSs are responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
+It has often been suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
 However, it is unclear if the identified strongly coupled systems are from the same origin.
 Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
 The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
@@ -48,13 +48,11 @@ The model in this work therefore only attempts to describe TLSs that are strongl
 %The outline of this paper is as follows. \Cref{sec:methods} introduces the theory from which we build our model to investigate delocalised oxygen based two-level systems. The following three sections then start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way. Section \ref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in Figure \ref{fig:defects}. In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions. Moving towards a model representation of this, Section \ref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane. The completed model is then described in Section \ref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane. Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective $2\!+\!1$D model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system. The following sections then apply the $2\!+\!1$D model and compare delocalised oxygen responses to experimental TLS data. Section \ref{sec:smax} discuses qubit--TLS coupling and Section \ref{sec:strain} observes the effect of mechanical strain.
 
 \subsection{dump from potential}
-%TODO: This goes in the intro chapter
-%The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-%Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-%Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
-%Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-%When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
-%TODO: Nomdef TLS in intro
+The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
+Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
+Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
 
 
 \section{Defects in Corundum}\label{sec:cordef}
@@ -73,12 +71,12 @@ Singly occupied defect levels (the $F^+$ center) are also discussed by introduci
 
 Further investigations into point defects began to classify systems such as the Schottky-type (two \ce{Al^3+} and three \ce{O^2-} vacancies) and Frenkel-type (\eg one interstitial \ce{Al^3+} and one \ce{Al^3+} vacancy) defects, where the Schottky-type was found to be the dominant class~\cite{Mohapatra1978}.
 However, further theoretical studies found oxygen Frenkel defects to have the lower formation energy~\cite{Catlow1982}, which precipitated many discussions concerning the appropriateness of empirical potentials fitted to bulk properties in describing defects.
-DFT studies aligned this discussion with experimental data showing formation energies of the classes to be Schottky<\ce{Al} Frenkel<\ce{O} Frenkel~\cite{Matsunaga2003}.
+DFT studies aligned this discussion with experimental data, presenting formation energies of the classes to be Schottky<\ce{Al} Frenkel<\ce{O} Frenkel~\cite{Matsunaga2003}.
 In addition, \citeauthor{Matsunaga2003} calculate formation energies and band structures for aluminium and oxygen, vacancy and interstitial defects; as well as an in-depth discussion on lattice deformation about each defect.
 Formation energies are dependent on the chemical potential of the oxygen in the local environment, although for a wide range of this value it was found that energies were ranked as $V_\ce{Al}^\ce{3-}<\ce{O_$i$^{2-}}<V_\ce{O}^\ce{2+}<\ce{Al_$i$^{3+}}$ (\ie aluminium vacancy, oxygen interstitial, oxygen vacancy, aluminium interstitial).
 All of which are stable in their ionised states, and additional electronic defects compensate defect charges only at very high temperatures.
 
-Implanting dopants like \ce{Ti^4+} and \ce{Mg^2+} into corundum to create certain defect classes can be used to study this high temperature oxygen diffusion through the lattice.
+Implanting dopants like \ce{Ti^4+} and \ce{Mg^2+} into corundum to create certain defect classes can be used to investigate this high temperature oxygen diffusion throughout the lattice.
 If bivalent dopant concentrations dominate, the predominant transport method is through oxygen vacancies.
 On the other hand, high tetravalent impurity concentration produces  oxygen interstitials as the prevalent mechanism for transport~\cite{Heuer1999}.
 
