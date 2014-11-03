@@ -67,7 +67,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\section{Numerical Treatment of the Second Derivative}\label{sec:numder}\xxx{I think the section headers need to be rejigged from here down. First total error est as a subsection to step size dilemma is no good, then harmonic a major section although a subsection of another... Not to sure what to do with it all though.}
+\section[Numerical Second Derivative]{Numerical Treatment of the Second Derivative}\label{sec:numder}\xxx{I think the section headers need to be rejigged from here down. First total error est as a subsection to step size dilemma is no good, then harmonic a major section although a subsection of another... Not to sure what to do with it all though.}
 The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functions that are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
@@ -164,7 +164,7 @@ f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\xi)}{
 
 Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.
 
-\section{Contributors to the Step Size Dilemma}
+\section[Step Size Dilemma]{Contributors to the Step Size Dilemma}
 
 \subsection{Truncation Error}\label{sec:truncerr}
 
@@ -275,7 +275,7 @@ Assuming a worse case scenario, the total error can therefore be described as\no
 
 noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$, and that $\epsilon$ is still an unknown value.
 
-\section{Calculating an Optimal Step Size}\label{sec:hopt}
+\section[Optimal Step Size]{Calculating an Optimal Step Size}\label{sec:hopt}
 
 With all of these caveats in mind, finding an optimal step size $h_{opt}$ is a troublesome undertaking; which is why the complex step and AD methods discussed in \cref{sec:numder} were developed.
 
@@ -467,7 +467,7 @@ h_{opt} = 2.044\ten{-3} \simeq 2^{-9} = 1.953\ten{-3}\;\text{Å}.
 
 A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $4,609^2$ doubles with a memory footprint of around 170 Megabytes.
 
-\section{Condition and Total Error Calculation}\label{sec:catoterr}
+\section[Condition and Total Error]{Condition and Total Error Calculation}\label{sec:catoterr}
 
 The harmonic approximation was useful for finding the optimal step of the Streitz-Mintmire method only because the change in $x$ is equivalent over the calculated range.
 Actual error values on the other hand can not be considered in the same manner.
