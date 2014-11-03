@@ -134,6 +134,21 @@
 \rulecolor{Set1-5-1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLES
+%Captions are the same as figure captions
+\setlength{\heavyrulewidth}{0.1em}
+%Memoir has some legacy capability to color the table rules as a lot of it is %pilfered from booktabs; which, in kind has rudimentary support for colortbl.
+%I just need to enable that capability...
+\makeatletter
+\def\rulecolor#1#{\CT@arc{#1}}
+\def\CT@arc#1#2{%
+  \ifdim\baselineskip=\z@\noalign\fi
+  {\gdef\CT@arc@{\color#1{#2}}}}
+\let\CT@arc@\relax
+\makeatother
+\rulecolor{Set1-5-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% HEADER AND FOOTER
 \nouppercaseheads
 \copypagestyle{thesis}{headings}
@@ -319,4 +334,4 @@
 %% EXTRA STUFF
 \hyphenation{tri-methyl-aluminium deriv-a-tive}
 
-\setkeys{Gin}{draft=false} %Allows figures to be displayed in draft mode. 
+\setkeys{Gin}{draft=false} %Allows figures to be displayed in draft mode.
