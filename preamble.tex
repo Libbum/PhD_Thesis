@@ -175,6 +175,16 @@
 \renewcommand{\foottextfont}{\footnotesize\color{Set1-5-3}}
 \renewcommand{\sideparfont}{\small}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
+%Margin Figure captions
+\setmpjustification{\RaggedLeft}{\RaggedRight}
+\setfloatadjustment{marginfigure}{\centering}
+\setmarginfloatcaptionadjustment{figure}{
+    \captionnamefont{\tiny\color{Set1-5-1}\addfontfeature{LetterSpace=5.0,Letters=SmallCaps}}
+    \captiontitlefont{\tiny}
+    \changecaptionwidth
+    \captionwidth{\marginparwidth}
+    \captionstyle{\mpjustification}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EPIGRAPHS
