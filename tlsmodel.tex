@@ -227,7 +227,7 @@ Notable checks on the accuracy of finite element methods were completed before t
 These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible -- contrary to the truncation requirement of a small step size.
 An upper bound on this error is given by
 \begin{equation}
- \abs{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
+ \abs[\big]{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
 \end{equation}
 
 where $\alpha$ and $\beta$ are two fixed precision numbers, and $\delta$ indicates the precision of the calculation.
