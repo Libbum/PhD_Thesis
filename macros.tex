@@ -3,12 +3,18 @@
 \newcommand*{\eg}{\textit{e.g.\ }}
 \newcommand*{\etal}{\textit{et al.\ }}
 
-\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
-\newcommand*{\bra}[1]{\left\langle #1 \right\rvert}
-\newcommand*{\ket}[1]{\left\lvert #1 \right\rangle}
-\newcommand*{\bket}[2]{\left\langle \, #1 \,|\, #2 \, \right\rangle}
-\newcommand*{\boket}[3]{\langle\, #1 \,|\, #2 \,|\, #3 \,\rangle}
-\newcommand*{\com}[2]{\left[#1,#2\right]}
+%mathtool macros. 
+%Using starred versions (eg \abs*{}) will add \left-\right for oversized needs 
+%Can override for lager sizes too \abs[\Bigg]{}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\innerp[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiterX\bket[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
+\DeclarePairedDelimiterX\boket[3]{\langle}{\rangle}%
+{#1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3}
+\DeclarePairedDelimiterX\com[2]{[}{]}{#1,#2}
 
 \newcommand*{\ten}[1]{\!\times\!10^{#1}}
 
