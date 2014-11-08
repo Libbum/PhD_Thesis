@@ -34,6 +34,7 @@ where $\Psi$ is either the ground state ($\Psi_0$) or mapped via
 \end{equation}
 
 \subsection{Gram-Schmidt Procedure}
+
 One important property of a hermitian operator (in our case $H$), is orthogonality. That is: a system's eigenfunctions belong to distinct eigenvalues which are orthogonal.
 The proof of this theorem neglects degenerate states, although it can be shown that any linear combination of eigenfunctions which share the same eigenvalue are indeed eigenfunctions of the system.
 
@@ -69,7 +70,8 @@ Once $\Psi_0$ is converged, the Gram-Schmidt procedure can then be invoked to ca
 \end{equation}
 
 which can again be used as input to \sw{qfdtd}.
-As $\Psi^\prime_1$ has been chosen to be orthogonal to $\Psi^\prime_0$, regardless of whether the excited state exists in a degenerate subspace or not, the conversion algorithm is now able to converge to the correct eigenenergy and return an optimal excited state wavefunction. 
+As $\Psi^\prime_1$ has been chosen to be orthogonal to $\Psi^\prime_0$, regardless of whether the excited state exists in a degenerate subspace or not, the conversion algorithm is now able to converge to the correct eigenenergy and return an optimal excited state wavefunction.
 \Cref{eq:gs3ex} can now calculate the second excited state, projecting along the converged ground and first excited wavefunctions, after which repeating the process  on higher states is possible.
 % \cite{Griffiths2005} Grifiths, page 101-102 and 440 have some stuff on this but not much.
+
  
