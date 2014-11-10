@@ -56,7 +56,7 @@ with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $
 \phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],\label{eq:smpair}
 \end{equation}
 where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in \cref{tab:smconsts}.
-Further formalisms and parameters can be found in \cite{Streitz1994,Zhou2004}, implementation is also discussed in \cite{Gale2003}.
+Further formalisms, variable descriptions and parameters can be found in \cite{Streitz1994,Zhou2004}, additional implementation is also discussed in \cite{Gale2003}.
 \begin{table}[h]
 \caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants used in the calculation of the Buckingham and Rydberg pair potentials in the Streitz-Mintmire formalism~\cite{Streitz1994,Gale2003}.}
 \centering
@@ -89,7 +89,7 @@ If the step size is too small, numerical roundoff errors cause accuracy issues; 
 Identifying an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values.
 This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
 
-The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\emph{vide infra} \cref{subsec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
+The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\textit{vide infra} \cref{subsec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
 However, for many years this statement was only true for the first order derivative -- higher orders were shown to have as many cancellation errors as their finite difference counterparts.
 This method was therefore excluded as a candidate for the model constructed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
 After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
@@ -287,7 +287,7 @@ Violation of monotonicity is an algorithm which attempts to ignore actually calc
 
 Algorithms specifically designed for forward differences have also been discussed in the literature~\cite{Barton1992}, but are of no benefit for purposes herein.
 
-The method which has been chosen to be implemented in this work is the algorithm from the PhD thesis of \textbf{Ravishankar Mathur}, which allows one to calculate an optimal step without \emph{a priori} knowledge of the condition error $\epsilon$.
+The method which has been chosen to be implemented in this work is the algorithm from the PhD thesis of \textbf{Ravishankar Mathur}, which allows one to calculate an optimal step without \textit{a priori} knowledge of the condition error $\epsilon$.
 Additionally, corrections to the the step size are introduced to account for the approximate nature of the truncation coefficient $C_n$, as well as estimations of step size validity and the maximal appropriate step size for a problem are examined~\cite{Mathur2012}.
 
 As with \citeauthor{Gill1982}, \citeauthor{Mathur2012} starts by minimising the total error expression
@@ -363,8 +363,8 @@ As the step size increases, truncation error dominates until the region $h \gtrs
 \caption[Step size optimisation of $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation of $f_2^{\;(2)}(x)$ for step sizes $10^{-9}\!\leq\! h\! \leq\! 10^1$ \plotmarker{0.4}{circle,fill=Set1-5-2}. Steps which generate an invalid roundoff error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-8}$ for display purposes and labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \plotmarker{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \plotmarker{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
 \end{figure}
 
-The step size optimisation algorithm~\cite{Mathur2012} initially chooses an uncorrected optimal step size \plotmarker{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 5.775\ten{-5}$ Å.
-The truncation error \cref{eq:cdte} overestimates the true roundoff error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$.
+The step size optimisation algorithm initially chooses an uncorrected optimal step size \plotmarker{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 5.775\ten{-5}$ Å.
+The truncation error \cref{eq:cdte} overestimates the true roundoff error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$~\cite{Mathur2012}.
 The constant $t = 0.65$ is the step size ratio, required by the step size algorithm and is optimal for $d=2$, $n=2$.
 Using this adjustment, the true optimal step is
 \begin{equation}
@@ -503,8 +503,8 @@ As the wavefunctions' form is unknown before the eigenvalue problem is solved, c
 
 However, estimates of the condition error can be made.
 The sparse matrix eigenvalue solver \sw{eigs} has a documented precision of $2^{-53}$~\cite{Mathworks2014}, in other words: machine precision $\delta$.
-One of the pivotal advances \citeauthor{Mathur2012} accomplishes is the ability to obtain an optimal step without \emph{a priori} knowledge of $\epsilon$ \cite{Mathur2012}.
-Turned on its' head: with a known step size for a function one can estimate the condition error.
+One of the pivotal advances \citeauthor{Mathur2012} accomplishes is the ability to obtain an optimal step without \textit{a priori} knowledge of $\epsilon$ \cite{Mathur2012}.
+Turned on its head: with a known step size for a function one can estimate the condition error.
 Therefore, applying \cref{eq:cd26f} to the Streitz-Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$.
 This process yields a value of $\epsilon = 3.054\ten{-19}$, again below machine precision.
 
@@ -571,7 +571,7 @@ In one dimension, this matrix is relatively straightforward to construct (outlin
 \caption[Sparsity of the hamiltonian matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
 \end{marginfigure}
 
-Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ Kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
+Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{equation}
     \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.2425\ten{46}\label{eq:lambda}
 \end{equation}
