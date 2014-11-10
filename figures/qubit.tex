@@ -1,6 +1,7 @@
 \documentclass[tikz]{standalone}
 \usepackage[american currents,cuteinductors]{circuitikz}
-
+\usepackage{mathspec} %loads fontspec
+\setromanfont{Skolar PE}[Ligatures={TeX, Common}, Numbers=OldStyle]
 %Override shitty JJ and Squid designs
 \makeatletter
 %% SQUID added by Tim DuBois 10 Oct 2011
@@ -50,9 +51,13 @@
               bipoles/cuteinductor/width=1.2,
               bipoles/barrier/height=1,
               bipoles/barrier/width=1}
+    \node at (-0.75,1) [rotate=90] {microwave drive};
+    \node at (3,2.35) {qubit};
+    \node at (6.25,2.35) {DC SQUID};
+    \node at (5.25,-0.55) {flux bias};
     \draw
     (0,0) node[ground] {}
-        to [sI]   (0,2)
+        to [sI]   (0,2) 
         to [C,-*] (2,2)
         to [C]    (2,0) -- (3,0)
         to [barrier,*-*] (3,2) -- (4,2)
