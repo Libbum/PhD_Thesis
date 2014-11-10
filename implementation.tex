@@ -33,12 +33,12 @@ where $\Psi$ is either the ground state ($\Psi_0$) or mapped via
  \ket{\Psi_1} \simeq \ket{\Psi_{snap}} - \ket{\Psi_0}\bket{\Psi_0}{\Psi_{snap}}
 \end{equation}
 
-\subsection{Gram-Schmidt Procedure}
+\subsection{Gram-Schmidt Procedure}\label{subsec:gsp}
 
 One important property of a hermitian operator (in our case $H$), is orthogonality. That is: a system's eigenfunctions belong to distinct eigenvalues which are orthogonal.
 The proof of this theorem neglects degenerate states, although it can be shown that any linear combination of eigenfunctions which share the same eigenvalue are indeed eigenfunctions of the system.
 
-Using the Gram-Schmidt orthogonalisation procedure \cite{Gram1883, Schmidt1907}, orthogonal eigenfunctions within a degenerate subspace can be constructed; \emph{chosen} to be orthogonal to the system's basis.
+Using the Gram-Schmidt orthogonalisation procedure \cite{Gram1883, Schmidt1907}, orthogonal eigenfunctions within a degenerate subspace can be constructed; \textit{chosen} to be orthogonal to the system's basis.
 
 Consider a non-orthonormal basis of vectors $\ket{a_1}, \ket{a_1}, \ldots \ket{a_n}$.
 A new, orthonormal basis for these vectors can by found be first normalising the initial vector
@@ -63,7 +63,7 @@ Computing the excited state energies and wavefunctions using the method outlined
 On the other hand, direct diagonalisation achieves the correct eigenspectrum but lacks the resolution to gain quantitative results (see \xxx{section on \lin{3D} implementation and memory issues}).
 A hybrid method is therefore proposed to calculate higher order states.
 
-Starting with a \sw{Matlab} calculated low resolution ground state wavefunction $\Psi_0^{M}$, the true excited state wavefunction $\Psi_0$ (and its' associated eigenenergy) can be calculated via \sw{qfdtd} by means of using the low resolution result as a starting guess $\Psi_0^{M} \simeq \Psi_0$.
+Starting with a \sw{Matlab} calculated low resolution ground state wavefunction $\Psi_0^{M}$, the true excited state wavefunction $\Psi_0$ (and its' associated eigenenergy) can be calculated via \sw{qfdtd} by means of using the low resolution result as a starting guess $\Psi_0^{M} \simeq \Psi_0$.\nomdref{XM}{$M$}{Indicates a low resolution result calculated by \sw{Matlab}. Usually used in connection to values calculated in the \lin{3D} formalism}{subsec:gsp}
 Once $\Psi_0$ is converged, the Gram-Schmidt procedure can then be invoked to calculate the first excited state, using an initial guess from \sw{Matlab} projected along the converged, orthonormal ground state
 \begin{equation}
     \ket{\Psi^\prime_1} \simeq \frac{\ket{\Psi^M_1} - \ket{\Psi^\prime_0}\bket{\Psi^\prime_0}{\Psi^M_1}}{\norm[\big]{\ket{\Psi^M_1} - \ket{\Psi^\prime_0}\bket{\Psi^\prime_0}{\Psi^M_1}}}
