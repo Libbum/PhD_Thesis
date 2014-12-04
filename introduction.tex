@@ -47,21 +47,19 @@ The model in this work therefore only attempts to describe TLSs that are strongl
 
 %The outline of this paper is as follows. \Cref{sec:methods} introduces the theory from which we build our model to investigate delocalised oxygen based two-level systems. The following three sections then start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way. Section \ref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in Figure \ref{fig:defects}. In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions. Moving towards a model representation of this, Section \ref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane. The completed model is then described in Section \ref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane. Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective $2\!+\!1$D model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system. The following sections then apply the $2\!+\!1$D model and compare delocalised oxygen responses to experimental TLS data. Section \ref{sec:smax} discuses qubit--TLS coupling and Section \ref{sec:strain} observes the effect of mechanical strain.
 
-\subsection{dump from potential}
+\section{dump from potential}
 The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
 Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
+Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\cite{Cole2010,Shalibo2010}.
 Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
 
 \begin{figure}[htp]
-\centering
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
 \caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
 \end{figure}
 
 \begin{figure}[htp]
-\centering
 \includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
 \caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
 \end{figure}
@@ -71,18 +69,26 @@ Look at \cite{Enss2005} in depth here.
 Jared also suggests a section on ``Qubits as Probes of TLSs''.
 
 \section{New text}
+\begin{marginfigure}
+\resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
+\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.5pt,color=Set1-5-1} \& \plotline{line width=1.5pt,color=Set1-5-2} in a double well potential \plotline{line width=1pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
+\end{marginfigure}
 Early work from the glass community identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
+This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
+The two-level system (TLS) description in the STM requires two parameters, the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
+Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
+TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
+  
 A representation of a quartz-like tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
 Applying some global strain tensor to the system, the structure may realign to the amorphous structure depicted to the right.
-
 \begin{figure}[htp]
-\begin{adjustwidth*}{-\marginparwidth}{0em}
-\centering
+\begin{adjustwidth*}{-\marginparwidth}{0em} %TODO: Make this figure out what page it's on
 \resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
 \caption[\ce{SiO_2}-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: \ce{SiO_2}-like Crystal Lattice. Right: Defected \ce{SiO_2}-like Crystal Lattice}
 \end{adjustwidth*}
 \end{figure}
 
+ 
 
 
 \section{Defects in Corundum}\label{sec:cordef}
