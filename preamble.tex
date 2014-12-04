@@ -58,6 +58,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% FORMATTING
 % Thesis-specific formatting
+\usepackage{marginfix} %Fixes incorrect marginpar issues. Suggests not to use \sidepar
 \OnehalfSpacing
 %Trim to a4, cutting top and fore-edge only
 \settrimmedsize{297mm}{210mm}{*}
@@ -70,7 +71,7 @@
 %much math going on in a line and too much wide equations to allow that here
 \settypeblocksize{634pt}{400pt}{*}
 \setulmargins{4cm}{*}{*}
-\setlrmargins{*}{*}{1.618} %Golden ratio mofos
+\setlrmargins{*}{*}{1.618} %Golden ratio mofos {75.5pt}{*}{*}
 \marginparmargin{outer}
 \sideparmargin{outer}
 \setmarginnotes{10pt}{105pt}{\onelineskip}
@@ -79,7 +80,7 @@
 \setlength{\topskip}{1.6\topskip}
 \checkandfixthelayout
 \sloppybottom  %Overcomes orphaned windows. No need to provide a strict window penalty and a ragged bottom
-
+\strictpagecheck %Don't fuck around the page checking
 %For title pages
 \newlength{\calign}
 
@@ -117,6 +118,7 @@
 \captionwidth{0.925\textwidth}
 \newlength{\widefigure}
 \setlength{\widefigure}{\textwidth+\marginparwidth}
+\setfloatadjustment{figure}{\centering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES
@@ -147,6 +149,7 @@
 \let\CT@arc@\relax
 \makeatother
 \rulecolor{Set1-5-1}
+\setfloatadjustment{table}{\centering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% HEADER AND FOOTER
@@ -220,7 +223,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EMPTY PAGE STYLES
-\strictpagecheck %Don't fuck around the page checking
 \newcommand{\versoquote}[2]{
     \settowidth{\quotelength}{#1}
     %This is a bit of a bitch - we need to print the close quote before the actual text
@@ -335,3 +337,5 @@
 \hyphenation{tri-methyl-aluminium deriv-a-tive}
 
 \setkeys{Gin}{draft=false} %Allows figures to be displayed in draft mode.
+
+%\checkandfixthelayout
