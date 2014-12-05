@@ -2,6 +2,57 @@
 \chapter{Introduction}
 \chapterprecis{The Introduction chapter}
 
+\thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
+The tunnelling effect in Josephson junctions (JJs) in conjunction with superconducting phenomena leads to interesting quantum properties which can be exploited to this end. However, the use of quantum bits (qubits) for computation is dependent on the ability to operate them in an essentially isolated environment, \emph{i.e.}\ the system must operate over coherent states.
+The phenomenon of decoherence refers to the instability of a quantum state of a system when it interacts with the surrounding environment.
+In general, the stronger the interaction with the environment, the quicker the quantum state decoheres.
+Removal or control of these defects is required before quantum computers using this architecture can be realised.
+
+\section{Defects in Glasses}
+\begin{marginfigure}
+\resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
+\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
+\end{marginfigure}
+Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Zachariasen1932,Anderson1972}.
+Early research on this topic identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
+This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
+The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
+Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
+TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
+
+A representation of a quartz-like (\ce{SiO_2}) tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
+Applying some global strain tensor to the system, the crystal may realign to the amorphous structure depicted to the right.
+\begin{figure}[htp]
+\widefiguremargins
+\begin{adjustwidth}{\leftwidth}{\rightwidth}
+\resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
+\caption[Quartz-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: Quartz-like crystal lattice, with oxygen \resizebox{!}{0.6em}{\includestandalone{figures/oxygen}} and aluminium \resizebox{!}{0.6em}{\includestandalone{figures/aluminium}} atoms aligned in a hexagonal grid. Right: Defected quartz-like lattice strained to an amorphous state. Three possible defect types are identified, where equivalent lattice positions the oxygen atom can occupy are identified as \resizebox{!}{0.6em}{\includestandalone{figures/oxygenb}}.}
+\end{adjustwidth}
+\end{figure}
+
+Three unique defect types are depicted, which have been used in the glass community extensively from as early as the 1930s~\cite{Zachariasen1932}.
+A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom.
+Ensembles of thousands of such defects govern the acoustic, thermal and dielectric material properties of glassy systems at low temperature.
+Characterisation of the macroscopic response due to these TLS ensembles via a distribution of defect parameters \cite{Enss2005} has seen the STM applied not only to large systems, but more recently to microfabricated circuits.
+
+Devices like single electron transistors \cite{Zimmerli1992}, nanomechanical resonators \cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators \cite{Gao2007} all seemed to suffer from noise channels attributed to TLS behaviour. 
+Superconducting qubits using tunnel junctions such as the Josephson junction in the presence of strong electric fields were often stymied by even just a few two-level defects~\cite{Simmonds2004}.
+
+
+%Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
+
+
+
+
+
+
+One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}. 
+Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013}. 
+A variety of phenomenological models exist~\cite{Martinis2005, deSousa2009, Sendelbach2008, Faoro2007,Ku2005} which can describe the properties of these defects, although their true microscopic origin remains elusive. 
+In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process.
+
+
+
 %Introdump from NJP
 \thought{Superconducting qubits and Josephson junction} based quantum devices in general are often limited by decoherence sources.
 A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
@@ -32,11 +83,6 @@ This ansatz allows the existence of many different spatial configurations throug
 To simplify the configuration space we initially consider the introduction of small lattice irregularities from an idealised trigonal-like \lin{2D} oxide lattice.
 Possible defects of this nature are depicted in %\cref{fig:defects}.
 
-%\begin{figure}[tp]
-%  \hspace{0.2\textwidth}\centering
-%  \includegraphics[width=0.6\textwidth]{figure1}\\
-%  \caption{\label{fig:defects}Illustration of a trigonal-like oxide lattice (aluminium in gray, oxygen in red) with three possible defect types~\cite{Zachariasen1932, Enss2005}. A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom. Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.}
-%\end{figure}
 
 %Finally, recent simulations suggest a TLS mass of order $1-100 \: amu$~\cite{Nugroho2013a}, too large to be simply due to an electron moving between states. \todo[color=blue!40,inline]{This paper is out now, so reference from march meeting has been updated. WKB calculations don't seem to be there. Should we remove this?}
 
@@ -59,37 +105,19 @@ When a representative example is required in this work, $E_{01}=8$ GHz and a dip
 \caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
 \end{figure}
 
-\begin{figure}[htp]
-\includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
-\caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
-\end{figure}
 
 \section{Two Level Systems}
 Look at \cite{Enss2005} in depth here.
 Jared also suggests a section on ``Qubits as Probes of TLSs''.
 
-\section{New text}
-\begin{marginfigure}
-\resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
-\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
-\end{marginfigure}
-Early work from the glass community identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
-This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
-The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
-Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
-TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
 
-A representation of a quartz-like (\ce{SiO_2}) tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
-Applying some global strain tensor to the system, the crystal may realign to the amorphous structure depicted to the right.
-\begin{figure}[htp]  
-\widefiguremargins
-\begin{adjustwidth}{\leftwidth}{\rightwidth}
-\resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
-\caption[Quartz-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: Quartz-like crystal lattice, with oxygen \resizebox{!}{0.6em}{\includestandalone{figures/oxygen}} and aluminium \resizebox{!}{0.6em}{\includestandalone{figures/aluminium}} atoms aligned in a hexagonal grid. Right: Defected quartz-like lattice strained to an amorphous state. Three possible defect types are identified~\cite{Zachariasen1932, Enss2005}, indicated via \resizebox{!}{0.6em}{\includestandalone{figures/oxygenb}}, which can be considered as an equivalent lattice position the oxygen atom can occupy.  A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom.}
-\end{adjustwidth}
+
+\begin{figure}[htp]
+\includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
+\caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
 \end{figure}
 
-Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
+
 
 \section{Defects in Corundum}\label{sec:cordef}
 Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
