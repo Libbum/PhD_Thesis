@@ -71,25 +71,25 @@ Jared also suggests a section on ``Qubits as Probes of TLSs''.
 \section{New text}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
-\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.5pt,color=Set1-5-1} \& \plotline{line width=1.5pt,color=Set1-5-2} in a double well potential \plotline{line width=1pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
+\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
 \end{marginfigure}
 Early work from the glass community identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
 This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
-The two-level system (TLS) description in the STM requires two parameters, the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
+The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
 Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
 TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
-  
-A representation of a quartz-like tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
-Applying some global strain tensor to the system, the structure may realign to the amorphous structure depicted to the right.
-\begin{figure}[htp]
-\begin{adjustwidth*}{-\marginparwidth}{0em} %TODO: Make this figure out what page it's on
+
+A representation of a quartz-like (\ce{SiO_2}) tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
+Applying some global strain tensor to the system, the crystal may realign to the amorphous structure depicted to the right.
+\begin{figure}[htp]  
+\widefiguremargins
+\begin{adjustwidth}{\leftwidth}{\rightwidth}
 \resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
-\caption[\ce{SiO_2}-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: \ce{SiO_2}-like Crystal Lattice. Right: Defected \ce{SiO_2}-like Crystal Lattice}
-\end{adjustwidth*}
+\caption[Quartz-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: Quartz-like crystal lattice, with oxygen \resizebox{!}{0.6em}{\includestandalone{figures/oxygen}} and aluminium \resizebox{!}{0.6em}{\includestandalone{figures/aluminium}} atoms aligned in a hexagonal grid. Right: Defected quartz-like lattice strained to an amorphous state. Three possible defect types are identified~\cite{Zachariasen1932, Enss2005}, indicated via \resizebox{!}{0.6em}{\includestandalone{figures/oxygenb}}, which can be considered as an equivalent lattice position the oxygen atom can occupy.  A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom.}
+\end{adjustwidth}
 \end{figure}
 
- 
-
+Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
 
 \section{Defects in Corundum}\label{sec:cordef}
 Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
