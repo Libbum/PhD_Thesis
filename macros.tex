@@ -35,3 +35,15 @@
         \draw [#1] (0,0) -- (0.5,0);
         \end{tikzpicture}
 }
+
+\newcommand{\widefiguremargins}{
+\whiledo{\thepagecount<130}{%
+\checkoddpage
+\ifoddpage
+\setlength{\leftwidth}{0em}
+\setlength{\rightwidth}{-\marginparwidth}
+\else
+\setlength{\leftwidth}{-\marginparwidth}
+\setlength{\rightwidth}{0em}
+\fi
+\stepcounter{pagecount}}} 
