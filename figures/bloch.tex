@@ -1,0 +1,60 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz-3dplot}
+\usepackage{physymb}
+\usetikzlibrary{calc}
+\definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\tikzset{%
+  >=stealth, 
+  inner sep=0pt,%
+  outer sep=2pt,%
+  mark coordinate/.style={inner sep=0pt,outer sep=0pt,minimum size=3pt,fill=black,circle}%
+}
+
+\newcommand*{\ket}[1]{\left\lvert #1 \right\rangle}
+\newcommand{\blds}[1]{\mbox{\tiny $#1$}}
+
+\tdplotsetmaincoords{70}{110}
+\pgfmathsetmacro{\rvec}{2}
+\pgfmathsetmacro{\thetavec}{40}
+\pgfmathsetmacro{\phivec}{60}
+
+\begin{document}
+\begin{tikzpicture}[tdplot_main_coords]
+
+\draw[tdplot_screen_coords] (0,0) circle (\rvec);
+\draw[dashed] (\rvec,0,0) arc (0:360:\rvec);
+\draw (\rvec,0,0) arc (0:110:\rvec);
+\draw (\rvec,0,0) arc (0:-70:\rvec);
+
+\coordinate (O) at (0,0,0);
+\coordinate[mark coordinate] (N) at (0,0,\rvec) + (0,0,\rvec) node[below left,color=Set1-5-2] {$\ket{0}$};
+\coordinate[mark coordinate] (S) at (0,0,-\rvec) + (0,0,-\rvec) node[above right,color=Set1-5-2] {$\ket{1}$};
+
+\draw[thick,->] (0,0,0) -- (3,0,0) node[anchor=north east]{$\hat{e}_{\blds{1}}$};
+\draw[thick,->] (0,0,0) -- (0,3,0) node[anchor=north west]{$\hat{e}_{\blds{2}}$};
+\draw[thick,->] (0,0,0) -- (0,0,3) node[anchor=south]{$\hat{e}_{\blds{3}}$};
+
+\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+
+\draw[->,color=Set1-5-1] (O) -- (P) node[anchor=west]{$\ket{\psi}$};
+\draw[dashed,color=Set1-5-1] (O) -- (Pxy);
+\draw[dashed,color=Set1-5-1] (P) -- (Pxy);
+
+\tdplotdrawarc[->]{(O)}{1}{0}{\phivec}{anchor=north}{$\phi$}
+
+\tdplotsetthetaplanecoords{\phivec}
+
+\draw[dashed,tdplot_rotated_coords] (\rvec,0,0) arc (0:360:\rvec);
+\draw[tdplot_rotated_coords] (\rvec,0,0) arc (0:180:\rvec);
+
+\tdplotdrawarc[tdplot_rotated_coords,->]{(O)}{1}{0}%
+{\thetavec}{anchor=south west}{$\theta$}
+
+\end{tikzpicture}
+\end{document} 
