@@ -8,24 +8,78 @@ The phenomenon of decoherence refers to the instability of a quantum state of a 
 In general, the stronger the interaction with the environment, the quicker the quantum state decoheres.
 Removal or control of these defects is required before quantum computers using superconducting circuit architecture can be realised.
 
-\begin{itemize}
-  \item howto qubit
-  \item Josephson Effect
-  \item WTF is a junction
-  \item superconducting qubits, differences and capabilities
-  \item phase architecture
-  \item Defects, glasses, corrundum etc
-  \item TLSs, differences btwn 1/f and strongly coupled
-  \item Qubits as Probes of TLSs
-\end{itemize}
-
-\cite{Makhlin2001, Paladino2014}
-
-\section{qubits}
+\section{A Qubit Primer}
+A quantum bit differs from its classical counterpart the bit in a number of ways.
+A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
+Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space. 
+In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron).
+In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.
+ 
+The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system. 
+\Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
 \begin{figure}[htp]
 \resizebox{0.5\textwidth}{!}{\includestandalone{figures/bloch}}
-\caption[Bloch Sphere]{\label{fig:bloch}Bloch Sphere where $\ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\frac{\theta}{2}\right) \ket{1} = \cos\left(\frac{\theta}{2}\right) \ket{0} \, +  \, ( \cos \phi + i \sin \phi) \, \sin\left(\frac{\theta}{2}\right) \ket{1}$ with $0 \leq \theta \leq \pi$ and $0 \leq \phi < 2 \pi$.}
+\caption[Bloch Sphere]{\label{fig:bloch}The Bloch Sphere: a geometrical representation of the pure state space of a two-level quantum system in an arbitrary Hilbert space $\hat{e}_{\{1,2,3\}}$.}
 \end{figure}
+
+The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ is real and non-negative. 
+This means the pure state can be represented as 
+\begin{equation}
+\ket{\psi} = \cos\left(\theta\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\theta\right) \ket{1},
+\end{equation}
+
+where $\cramped{-\frac{\pi}{2} \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 2 \pi$.
+
+The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states. 
+As these states cannot be described by ket vectors, a density matrix must be defined 
+\begin{equation}
+\rho = \sum_x p_x \ket{\psi_x} \bra{\psi_x},
+\end{equation}
+
+where $p_x$ is the fraction of each pure state $\psi_x$ represented in the mixture.
+
+\subsection{Decoherence and Dephasing}
+\cite{Makhlin2001, Paladino2014}
+TODO. Maybe ask Jan for a good primer, or scan his thesis.
+
+
+\section{Qubit Architectures}
+Ion traps use optical or magnetic fields (or a combination of both) to trap ions.
+Optical traps use light waves to trap and control particles.
+Quantum dots are made of semiconductor material and are used to contain and manipulate electrons.
+Semiconductor impurities contain electrons by using "unwanted" atoms found in semiconductor material.
+Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
+
+\section{The Phase Qubit}
+
+\begin{figure}[htp]
+\resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
+\caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
+\end{figure}
+
+
+\section{Josephson Junctions}
+Josephson Effect etc
+
+construction etc
+
+\section{Noise Sources and Phenomenological Theories}
+Phenomenological descriptions only
+
+TLSs, differences btwn 1/f and strongly coupled
+
+Qubits as Probes of TLSs
+
+
+\section{Defects}
+
+Defects, glasses, corrundum etc
+
+
+
+
+
+
 
 \section{Defects in Glasses}
 \begin{marginfigure}
@@ -119,10 +173,6 @@ Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\c
 Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
 When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
 
-\begin{figure}[htp]
-\resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
-\caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
-\end{figure}
 
 
 \section{Two Level Systems}
