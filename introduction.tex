@@ -44,10 +44,22 @@ TODO. Maybe ask Jan for a good primer, or scan his thesis.
 
 
 \section{Qubit Architectures}
-Ion traps use optical or magnetic fields (or a combination of both) to trap ions.
+Physical qubit implementations can nominally be broken up into four categories: ultracold atoms, spin-based systems, quantum optics and superconducting circuits; each with their own strengths and weaknesses.
+
+The following is not an exhaustive list or discussion of qubit conceptions, it is presented to the reader as an overview of the efforts in the wider quantum information science community before focusing on specific devices relevant to this thesis.
+
+\subsection{Ion Traps}
+Ion traps\cite{Paul1990}  use optical or magnetic fields (or a combination of both) to trap ions. Ion traped qubits \cite{Cirac1995}.
 Optical traps use light waves to trap and control particles.
-Quantum dots are made of semiconductor material and are used to contain and manipulate electrons.
-Semiconductor impurities contain electrons by using "unwanted" atoms found in semiconductor material.
+
+\subsection{Nitrogen-vacancy Center of Diamond}
+
+\subsection{Quantum Dots}
+Quantum dots are made of semiconductor material and are used to contain and manipulate electrons electronic \cite{Chang1974} optical \cite{Dingle1974}. 'Carrier confnement to reduced dimensions were first demonstrated in quantum wells ...qb'
+
+\subsection{Superconducting Circuits}
+    Charge qubit Flux qubit Phase qubit
+
 Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
 
 \section{The Phase Qubit}
@@ -59,9 +71,29 @@ Superconducting circuits allow electrons to flow with almost no resistance at ve
 
 
 \section{Josephson Junctions}
+For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}\cite{Makhlin2001}.
+
 Josephson Effect etc
 
 construction etc
+
+Martin's CoC:\\
+In 1962, Brian Josephson’s PhD work led him to discover what is now termed the Josephson effect \cite{Josephson1962}.
+This combines the theory of superconductors with a description of quantum mechanical tunnelling, leading to unique and useful properties in certain systems.
+The theoretical background of the phenomenon formed the major part of his thesis work, and was reported in a summarised form in Advances in Physics in 1965 \cite{Josephson1965}.
+Since this publication, multiple techniques for creating devices which exhibit the Josephson effect have been developed.
+The system necessary for the effect to occur consists of two regions of superconducting materials separated by a tunnelling barrier.
+This barrier can be made experimentally by constricting the superconducting material to a very narrow strip, by inserting a non-superconducting metal, or an insulating layer between the two regions.
+The construction of interest in this project involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
+
+Shadow evaporation is a common technique used to fabricate a system such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
+This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
+It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
+Junctions can also be fabricated with niobium (Nb) electrodes around the aluminium oxide insulating layer \cite{Morohashi1987,Kohlstedt1993}.
+The critical step however is the oxidation of the aluminium.
+This is the process wherein defects are most likely to occur, due to the amorphous nature of the oxide.
+It is therefore this interaction which needs to be described most precisely in order to obtain results from simulation which are applicable to future fabrication work.
+
 
 \section{Noise Sources and Phenomenological Theories}
 Phenomenological descriptions only
