@@ -10,7 +10,7 @@
 \setmathrm{Minion Pro}
 \usepackage{fix-cm}
 \tikzset{%
-  >=stealth, 
+  >=stealth,
   inner sep=0pt,%
   outer sep=2pt,%
   mark coordinate/.style={inner sep=0pt,outer sep=0pt,minimum size=3pt,fill=black,circle}%
@@ -27,7 +27,7 @@
 \begin{document}
 \begin{tikzpicture}[tdplot_main_coords]
 
-\draw[tdplot_screen_coords] (0,0) circle (\rvec);
+\draw[tdplot_screen_coords] (0,0,0) circle [x radius = \rvec, y radius=1.88];
 \draw[dashed] (\rvec,0,0) arc (0:360:\rvec);
 \draw (\rvec,0,0) arc (0:110:\rvec);
 \draw (\rvec,0,0) arc (0:-70:\rvec);
