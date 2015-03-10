@@ -1,22 +1,19 @@
-%For now, this is essentially a sandbox for new design additions.
-\versoquote{The task must be made difficult, for only the difficult inspires the noble-hearted.}{Søren Kierkegaard}
-%\versoimage %Will generate a black page with a tikz image
+%\versoquote{The task must be made difficult, for only the difficult inspires the noble-hearted.}{Søren Kierkegaard}
 \chapter{Junction Models}
-%This is from memoir, it will write this text in both the ToC and at the top of the chapter.
-\chapterprecis{Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits.}
+\loftchap{Junction Models}
+\chapterprecis{Junction models, how they're built and shit.}
 
 \thought{Here is a section that} starts with a thought that is in small caps.
+\sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.}
 
-%\marginpar{This is a test margin paragraph}
 \section{How a junction is built in experiment}
-Bistable defects \sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.} in glasses and amorphous solids in general have been understood for some time [17].
-Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits [1, 2, 9]. Developments in controllable
-qubit architecture (charge, flux and phase) has\footnote{margin footnote with a few more words in it to make it a bit better.} enabled the study of so-called
-‘strongly coupled defects’ [4, 6, 7]. These defects have comparable resonance fre-
-quencies to the qubit circuit and coupling strengths as well as decoherence times
-long enough to allow\footnote{a second \the\marginparwidth, \the\marginparsep, \the\marginparpush} coherent oscillations between the qubit and TLS. Probing
-individual defects has promoted their bistable\footnote{and third} nature from hypothesis to observ-
-able fact, as well as providing clues to their microscopic origin.
+
+This section is currently lorem ipsum.
+Bistable defects in glasses and amorphous solids in general have been understood for some time.
+Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits. 
+Developments in controllable qubit architecture (charge, flux and phase) has\footnote{margin footnote with a few more words in it to make it a bit better.} enabled the study of so-called ‘strongly coupled defects’.
+These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow\footnote{a second \the\marginparwidth, \the\marginparsep, \the\marginparpush} coherent oscillations between the qubit and TLS.
+Probing individual defects has promoted their bistable\footnote{and third} nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
 
 \section{DFT and MM theory}
 \section{Model construction}
@@ -24,27 +21,11 @@ able fact, as well as providing clues to their microscopic origin.
 \subsection{Amorphous \texorpdfstring{\ce{AlO_{x}}}{AlOₓ} in MM}
 \subsection{DFT MD and optimisation}
 \section{Analysis of structures}
-
-The Streitz Mintmire potential \cite{Streitz1994} is an assemblage of many functional forms and integrals, some of which can only be solved numerically.
-Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment via a finite difference method.
-
-Finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
-If the ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where abscissas are chosen symmetrically about $x$, which takes the form
-
-\begin{equation}
-f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},
-\end{equation}
-where $h$ is some step size.
-\begin{marginfigure}
-\resizebox{\marginparwidth}{!}{\includestandalone{figures/mexhatproj}}
-\end{marginfigure}
-For an overview of these algorithms, see \onlinecite{Mathews2004}.
-
-Usually methods of low orders (\eg $\mathcal{O}(h^2)$) are sufficient to achieve a comparable results to the original ODE, although this was not the case for some responses of Streitz Mintmire.
-A higher order treatment was required.
-
 \subsection{Stoichiometry}
-\lin{1D} model vs 2D model
 \subsection{Density}
 \subsection{\texorpdfstring{$G(r)$}{G(r)}}
-In cited \cite{Xu1997} 
+\begin{figure}[htp]
+\centering
+\resizebox{\textwidth}{!}{\includestandalone{figures/gr}}
+\caption[Radial Distribution Function]{\label{fig:gofr}Radial distribution function.}
+\end{figure}
