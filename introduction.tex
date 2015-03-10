@@ -11,27 +11,27 @@ Removal or control of these defects is required before quantum computers using s
 \section{A Qubit Primer}
 A quantum bit differs from its classical counterpart the bit in a number of ways.
 A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
-Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space. 
+Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space.
 In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron).
 In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.
- 
-The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system. 
+
+The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system.
 \Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
 \begin{figure}[htp]
 \resizebox{0.5\textwidth}{!}{\includestandalone{figures/bloch}}
 \caption[Bloch Sphere]{\label{fig:bloch}The Bloch Sphere: a geometrical representation of the pure state space of a two-level quantum system in an arbitrary Hilbert space $\hat{e}_{\{1,2,3\}}$.}
 \end{figure}
 
-The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ is real and non-negative. 
-This means the pure state can be represented as 
+The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ is real and non-negative.
+This means the pure state can be represented as
 \begin{equation}
 \ket{\psi} = \cos\left(\theta\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\theta\right) \ket{1},
 \end{equation}
 
 where $\cramped{-\frac{\pi}{2} \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 2 \pi$.
 
-The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states. 
-As these states cannot be described by ket vectors, a density matrix must be defined 
+The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states.
+As these states cannot be described by ket vectors, a density matrix must be defined
 \begin{equation}
 \rho = \sum_x p_x \ket{\psi_x} \bra{\psi_x},
 \end{equation}
@@ -58,7 +58,8 @@ Optical traps use light waves to trap and control particles.
 Quantum dots are made of semiconductor material and are used to contain and manipulate electrons electronic \cite{Chang1974} optical \cite{Dingle1974}. 'Carrier confnement to reduced dimensions were first demonstrated in quantum wells ...qb'
 
 \subsection{Superconducting Circuits}
-    Charge qubit Flux qubit Phase qubit
+    Charge qubit Flux qubit~\cite{Plourde2005, Deppe2007}  Phase qubit
+Transmon\cite{Wallraff2004, Schreier2008} 
 
 Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
 
@@ -140,7 +141,7 @@ A: the bond length is shortened causing an oxygen to form a dipole perpendicular
 Ensembles of thousands of such defects govern the acoustic, thermal and dielectric material properties of glassy systems at low temperature.
 Characterisation of the macroscopic response due to these TLS ensembles via a distribution of defect parameters \cite{Enss2005} has seen the STM applied not only to large systems, but more recently to microfabricated circuits.
 
-Devices like single electron transistors \cite{Zimmerli1992}, nanomechanical resonators \cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators \cite{Gao2007} all seemed to suffer from noise channels attributed to TLS behaviour. 
+Devices like single electron transistors \cite{Zimmerli1992}, nanomechanical resonators \cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators \cite{Gao2007} all seemed to suffer from noise channels attributed to TLS behaviour.
 Superconducting qubits using tunnel junctions such as the Josephson junction in the presence of strong electric fields were often stymied by even just a few two-level defects~\cite{Simmonds2004}.
 
 
@@ -151,9 +152,9 @@ Superconducting qubits using tunnel junctions such as the Josephson junction in 
 
 
 
-One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}. 
-Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013}. 
-A variety of phenomenological models exist~\cite{Martinis2005, deSousa2009, Sendelbach2008, Faoro2007,Ku2005} which can describe the properties of these defects, although their true microscopic origin remains elusive. 
+One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}.
+Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013}.
+A variety of phenomenological models exist~\cite{Martinis2005, deSousa2009, Sendelbach2008, Faoro2007,Ku2005} which can describe the properties of these defects, although their true microscopic origin remains elusive.
 In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process.
 
 
