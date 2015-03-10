@@ -1,9 +1,166 @@
 \versoquote{ἀγεωμέτρητος μηδεὶς εἰσίτω.}{Ἀκαδημία}
 \chapter{Introduction}
-\chapterprecis{The Introduction chapter}%TODO: Fill this in.
+\chapterprecis{He writes some words. What happens next will flaw you.}
 
-\section{Introdump from NJP}
-Superconducting qubits and Josephson junction based quantum devices in general are often limited by decoherence sources.
+\thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
+Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end. However, the use of quantum bits (qubits) for computation is dependent on the ability to operate them in an essentially isolated environment, \emph{i.e.}\ the system must operate over coherent states.
+The phenomenon of decoherence refers to the instability of a quantum state of a system when it interacts with the surrounding environment.
+In general, the stronger the interaction with the environment, the quicker the quantum state decoheres.
+Removal or control of these defects is required before quantum computers using superconducting circuit architecture can be realised.
+
+\section{A Qubit Primer}
+A quantum bit differs from its classical counterpart the bit in a number of ways.
+A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
+Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space.
+In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron).
+In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.
+
+The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system.
+\Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
+\begin{figure}[htp]
+\resizebox{0.5\textwidth}{!}{\includestandalone{figures/bloch}}
+\caption[Bloch Sphere]{\label{fig:bloch}The Bloch Sphere: a geometrical representation of the pure state space of a two-level quantum system in an arbitrary Hilbert space $\hat{e}_{\{1,2,3\}}$.}
+\end{figure}
+
+The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ is real and non-negative.
+This means the pure state can be represented as
+\begin{equation}
+\ket{\psi} = \cos\left(\theta\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\theta\right) \ket{1},
+\end{equation}
+
+where $\cramped{-\frac{\pi}{2} \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 2 \pi$.
+
+The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states.
+As these states cannot be described by ket vectors, a density matrix must be defined
+\begin{equation}
+\rho = \sum_x p_x \ket{\psi_x} \bra{\psi_x},
+\end{equation}
+
+where $p_x$ is the fraction of each pure state $\psi_x$ represented in the mixture.
+
+\subsection{Decoherence and Dephasing}
+\cite{Makhlin2001, Paladino2014}
+TODO. Maybe ask Jan for a good primer, or scan his thesis.
+
+
+\section{Qubit Architectures}
+Physical qubit implementations can nominally be broken up into four categories: ultracold atoms, spin-based systems, quantum optics and superconducting circuits; each with their own strengths and weaknesses.
+
+The following is not an exhaustive list or discussion of qubit conceptions, it is presented to the reader as an overview of the efforts in the wider quantum information science community before focusing on specific devices relevant to this thesis.
+
+\subsection{Ion Traps}
+Ion traps\cite{Paul1990}  use optical or magnetic fields (or a combination of both) to trap ions. Ion traped qubits \cite{Cirac1995}.
+Optical traps use light waves to trap and control particles.
+
+\subsection{Nitrogen-vacancy Center of Diamond}
+
+\subsection{Quantum Dots}
+Quantum dots are made of semiconductor material and are used to contain and manipulate electrons electronic \cite{Chang1974} optical \cite{Dingle1974}. 'Carrier confnement to reduced dimensions were first demonstrated in quantum wells ...qb'
+
+\subsection{Superconducting Circuits}
+    Charge qubit Flux qubit~\cite{Plourde2005, Deppe2007}  Phase qubit
+Transmon\cite{Wallraff2004, Schreier2008} 
+
+Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
+
+\section{The Phase Qubit}
+
+\begin{figure}[htp]
+\resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
+\caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
+\end{figure}
+
+
+\section{Josephson Junctions}
+For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}\cite{Makhlin2001}.
+
+Josephson Effect etc
+
+construction etc
+
+Martin's CoC:\\
+In 1962, Brian Josephson’s PhD work led him to discover what is now termed the Josephson effect \cite{Josephson1962}.
+This combines the theory of superconductors with a description of quantum mechanical tunnelling, leading to unique and useful properties in certain systems.
+The theoretical background of the phenomenon formed the major part of his thesis work, and was reported in a summarised form in Advances in Physics in 1965 \cite{Josephson1965}.
+Since this publication, multiple techniques for creating devices which exhibit the Josephson effect have been developed.
+The system necessary for the effect to occur consists of two regions of superconducting materials separated by a tunnelling barrier.
+This barrier can be made experimentally by constricting the superconducting material to a very narrow strip, by inserting a non-superconducting metal, or an insulating layer between the two regions.
+The construction of interest in this project involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
+
+Shadow evaporation is a common technique used to fabricate a system such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
+This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
+It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
+Junctions can also be fabricated with niobium (Nb) electrodes around the aluminium oxide insulating layer \cite{Morohashi1987,Kohlstedt1993}.
+The critical step however is the oxidation of the aluminium.
+This is the process wherein defects are most likely to occur, due to the amorphous nature of the oxide.
+It is therefore this interaction which needs to be described most precisely in order to obtain results from simulation which are applicable to future fabrication work.
+
+
+\section{Noise Sources and Phenomenological Theories}
+Phenomenological descriptions only
+
+TLSs, differences btwn 1/f and strongly coupled
+
+Qubits as Probes of TLSs
+
+
+\section{Defects}
+
+Defects, glasses, corrundum etc
+
+
+
+
+
+
+
+\section{Defects in Glasses}
+\begin{marginfigure}
+\resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
+\caption[STM picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
+\end{marginfigure}
+Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Zachariasen1932,Anderson1972}.
+Early research on this topic identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
+This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
+The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.
+Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
+TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
+
+A representation of a quartz-like (\ce{SiO_2}) tetragonal lattice is shown defect free on the left of \cref{fig:sio2}.
+Applying some global strain tensor to the system, the crystal may realign to the amorphous structure depicted to the right.
+\begin{figure}[htp]
+\widefiguremargins
+\begin{adjustwidth}{\leftwidth}{\rightwidth}
+\resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
+\caption[Quartz-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: Quartz-like crystal lattice, with oxygen \resizebox{!}{0.6em}{\includestandalone{figures/oxygen}} and aluminium \resizebox{!}{0.6em}{\includestandalone{figures/aluminium}} atoms aligned in a hexagonal grid. Right: Defected quartz-like lattice strained to an amorphous state. Three possible defect types are identified, where equivalent lattice positions the oxygen atom can occupy are identified as \resizebox{!}{0.6em}{\includestandalone{figures/oxygenb}}.}
+\end{adjustwidth}
+\end{figure}
+
+Three unique defect types are depicted, which have been used in the glass community extensively from as early as the 1930s~\cite{Zachariasen1932}.
+A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom.
+Ensembles of thousands of such defects govern the acoustic, thermal and dielectric material properties of glassy systems at low temperature.
+Characterisation of the macroscopic response due to these TLS ensembles via a distribution of defect parameters \cite{Enss2005} has seen the STM applied not only to large systems, but more recently to microfabricated circuits.
+
+Devices like single electron transistors \cite{Zimmerli1992}, nanomechanical resonators \cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators \cite{Gao2007} all seemed to suffer from noise channels attributed to TLS behaviour.
+Superconducting qubits using tunnel junctions such as the Josephson junction in the presence of strong electric fields were often stymied by even just a few two-level defects~\cite{Simmonds2004}.
+
+
+%Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
+
+
+...\\
+
+
+
+One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}.
+Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013}.
+A variety of phenomenological models exist~\cite{Martinis2005, deSousa2009, Sendelbach2008, Faoro2007,Ku2005} which can describe the properties of these defects, although their true microscopic origin remains elusive.
+In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process.
+
+
+
+%Introdump from NJP
+\thought{Superconducting qubits and Josephson junction} based quantum devices in general are often limited by decoherence sources.
 A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
 \nomdef{ATLS}{TLS}{Two level system}
 Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
@@ -32,29 +189,36 @@ This ansatz allows the existence of many different spatial configurations throug
 To simplify the configuration space we initially consider the introduction of small lattice irregularities from an idealised trigonal-like \lin{2D} oxide lattice.
 Possible defects of this nature are depicted in %\cref{fig:defects}.
 
-%\begin{figure}[tp]
-%  \hspace{0.2\textwidth}\centering
-%  \includegraphics[width=0.6\textwidth]{figure1}\\
-%  \caption{\label{fig:defects}Illustration of a trigonal-like oxide lattice (aluminium in gray, oxygen in red) with three possible defect types~\cite{Zachariasen1932, Enss2005}. A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom. Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.}
-%\end{figure}
 
 %Finally, recent simulations suggest a TLS mass of order $1-100 \: amu$~\cite{Nugroho2013a}, too large to be simply due to an electron moving between states. \todo[color=blue!40,inline]{This paper is out now, so reference from march meeting has been updated. WKB calculations don't seem to be there. Should we remove this?}
 
-It has often been suggested that a bath of TLSs are responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
+It has often been suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
 However, it is unclear if the identified strongly coupled systems are from the same origin.
 Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
 The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
 
 %The outline of this paper is as follows. \Cref{sec:methods} introduces the theory from which we build our model to investigate delocalised oxygen based two-level systems. The following three sections then start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way. Section \ref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in Figure \ref{fig:defects}. In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions. Moving towards a model representation of this, Section \ref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane. The completed model is then described in Section \ref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane. Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective $2\!+\!1$D model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system. The following sections then apply the $2\!+\!1$D model and compare delocalised oxygen responses to experimental TLS data. Section \ref{sec:smax} discuses qubit--TLS coupling and Section \ref{sec:strain} observes the effect of mechanical strain.
 
-\subsection{dump from potential}
-%TODO: This goes in the intro chapter
-%The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-%Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-%Dipole moment strengths also vary, but are usually on the order of $1 \; e\mathrm{\AA}$~\cite{Cole2010,Shalibo2010}.
-%Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-%When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2 \; e\mathrm{\AA}$ will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
-%TODO: Nomdef TLS in intro
+\section{dump from potential}
+The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
+Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\cite{Cole2010,Shalibo2010}.
+Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+
+
+
+\section{Two Level Systems}
+Look at \cite{Enss2005} in depth here.
+Jared also suggests a section on ``Qubits as Probes of TLSs''.
+
+
+
+\begin{figure}[htp]
+\includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
+\caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
+\end{figure}
+
 
 
 \section{Defects in Corundum}\label{sec:cordef}
@@ -73,12 +237,12 @@ Singly occupied defect levels (the $F^+$ center) are also discussed by introduci
 
 Further investigations into point defects began to classify systems such as the Schottky-type (two \ce{Al^3+} and three \ce{O^2-} vacancies) and Frenkel-type (\eg one interstitial \ce{Al^3+} and one \ce{Al^3+} vacancy) defects, where the Schottky-type was found to be the dominant class~\cite{Mohapatra1978}.
 However, further theoretical studies found oxygen Frenkel defects to have the lower formation energy~\cite{Catlow1982}, which precipitated many discussions concerning the appropriateness of empirical potentials fitted to bulk properties in describing defects.
-DFT studies aligned this discussion with experimental data showing formation energies of the classes to be Schottky<\ce{Al} Frenkel<\ce{O} Frenkel~\cite{Matsunaga2003}.
+DFT studies aligned this discussion with experimental data, presenting formation energies of the classes to be Schottky<\ce{Al} Frenkel<\ce{O} Frenkel~\cite{Matsunaga2003}.
 In addition, \citeauthor{Matsunaga2003} calculate formation energies and band structures for aluminium and oxygen, vacancy and interstitial defects; as well as an in-depth discussion on lattice deformation about each defect.
 Formation energies are dependent on the chemical potential of the oxygen in the local environment, although for a wide range of this value it was found that energies were ranked as $V_\ce{Al}^\ce{3-}<\ce{O_$i$^{2-}}<V_\ce{O}^\ce{2+}<\ce{Al_$i$^{3+}}$ (\ie aluminium vacancy, oxygen interstitial, oxygen vacancy, aluminium interstitial).
 All of which are stable in their ionised states, and additional electronic defects compensate defect charges only at very high temperatures.
 
-Implanting dopants like \ce{Ti^4+} and \ce{Mg^2+} into corundum to create certain defect classes can be used to study this high temperature oxygen diffusion through the lattice.
+Implanting dopants like \ce{Ti^4+} and \ce{Mg^2+} into corundum to create certain defect classes can be used to investigate this high temperature oxygen diffusion throughout the lattice.
 If bivalent dopant concentrations dominate, the predominant transport method is through oxygen vacancies.
 On the other hand, high tetravalent impurity concentration produces  oxygen interstitials as the prevalent mechanism for transport~\cite{Heuer1999}.
 
