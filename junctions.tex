@@ -6,29 +6,29 @@
 \thought{Here is a section that} starts with a thought that is in small caps.
 \sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.}
 
-\section{How a junction is built in experiment}
-
-This section is currently lorem ipsum.
-Bistable defects in glasses and amorphous solids in general have been understood for some time.
-Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits.
-Developments in controllable qubit architecture (charge, flux and phase) has\footnote{margin footnote with a few more words in it to make it a bit better.} enabled the study of so-called ‘strongly coupled defects’.
-These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow\footnote{a second \the\marginparwidth, \the\marginparsep, \the\marginparpush} coherent oscillations between the qubit and TLS.
-Probing individual defects has promoted their bistable\footnote{and third} nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
-
-\section{DFT and MM theory}
-\section{Model construction}
-\subsection{Al slabs in DFT}
-\subsection{Amorphous \texorpdfstring{\ce{AlO_{x}}}{AlOₓ} in MM}
-\subsection{DFT MD and optimisation}
-\section{Analysis of structures}
-\subsection{Stoichiometry}
-\subsection{Density}
-\subsection{\texorpdfstring{$G(r)$}{G(r)}}
-\begin{figure}[htp]
-\centering
-\resizebox{\textwidth}{!}{\includestandalone{figures/gr}}
-\caption[Radial Distribution Function]{\label{fig:gofr}Radial distribution function.}
-\end{figure} 
+%\section{How a junction is built in experiment}
+%
+%This section is currently lorem ipsum.
+%Bistable defects in glasses and amorphous solids in general have been understood for some time.
+%Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits.
+%Developments in controllable qubit architecture (charge, flux and phase) has\footnote{margin footnote with a few more words in it to make it a bit better.} enabled the study of so-called ‘strongly coupled defects’.
+%These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow\footnote{a second \the\marginparwidth, \the\marginparsep, \the\marginparpush} coherent oscillations between the qubit and TLS.
+%Probing individual defects has promoted their bistable\footnote{and third} nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
+%
+%\section{DFT and MM theory}
+%\section{Model construction}
+%\subsection{Al slabs in DFT}
+%\subsection{Amorphous \texorpdfstring{\ce{AlO_{x}}}{AlOₓ} in MM}
+%\subsection{DFT MD and optimisation}
+%\section{Analysis of structures}
+%\subsection{Stoichiometry}
+%\subsection{Density}
+%\subsection{\texorpdfstring{$G(r)$}{G(r)}}
+%\begin{figure}[htp]
+%\centering
+%\resizebox{\textwidth}{!}{\includestandalone{figures/gr}}
+%\caption[Radial Distribution Function]{\label{fig:gofr}Radial distribution function.}
+%\end{figure}
 
 \section{Mol Sim Dump}
 \subsection{Abstract}
@@ -78,12 +78,12 @@ This method has the advantage of computational simplicity and speed, however the
 Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness will be considered in future work.
 
 \section{Model construction}\label{sec:model}
-\begin{figure}[tbh]
+\begin{figure}[htp]
 \centering
-%\includegraphics[width=0.85\textwidth]{AlO125_075.pdf}
-\caption{\label{fig:povray}Model of a Josephson junction comprised of aluminium (grey) and oxygen (red). Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density $0.75$ times that of corundum.}%
+\includegraphics[width=0.9\textwidth]{figures/AlO125_075}
+\caption[Atomistic Josephson junction model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium (grey) and oxygen (red). Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
 \end{figure}
-
+\xxx{singular ball renders for Al and O}
 To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT. \xxx{This should already be assigned by now}
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
 Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.
@@ -109,7 +109,7 @@ The junction was further annealed to simulate a metal--metal--oxide interface re
 For comparison, junctions were also modelled without the added computational overhead of DFT by solely employing \sw{GULP} and the Streitz-Mintmire potential.
 The construction process of these models matches the procedure above, but interchanges the \textit{ab initio} optimisations of the oxide layer with an empirical framework.
 
-\section{Model Analysis{\rmfamily :} Radial distribution function}
+\section{Radial distribution function \texorpdfstring{$G(r)$}{G(r)}}
 To validate our models against experimental observations, we perform a number of statistical tests to scrutinize the structures.
 First we must ensure that the oxide layer of the junctions are in fact amorphous in nature.
 We employ a projected radial distribution function
@@ -119,11 +119,10 @@ G(r) = \lim_{dr \to 0}\frac{p(r)}{4\pi\left(N_{\mathrm{pairs}}/V\right)r^2dr}
 where $r$ is the distance between a pair of particles, $p(r)$ is the average number of atom pairs found at a distance between $r$ and $r + dr$, $V$ is the total volume of the system, and $N_{\mathrm{pairs}}$ is the number of unique pairs of atoms~\cite{Levine2011}.
 This function was calculated for each stoichiometry and density configuration using oxygen as the reference species, and aluminium atoms in the amorphous region along with the superconducting bulk as the projection species. \Cref{fig:groptis} depicts the results of this analysis.
 
-\begin{figure}[tbh]
+\begin{figure}[htp]
 \centering
-%\includegraphics[width=0.7\textwidth]{groptis}
-\caption{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum (thin, gray); Metal---metal--oxide interface reconstruction before (dash dotted, green) and after (dashed, blue); final optimised geometry (thick, red).  Inset: Oxygen projected $G(r)$ computed using \textit{ab initio}
- (\sw{VASP}) and empirical (\sw{GULP}) methods, showing no statistically significant differences.}%
+\resizebox{0.8\textwidth}{!}{\includestandalone{figures/groptis}}
+\caption[Radial Distribution Function]{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum \plotline{line width=1pt,color=gray!50}; Metal---metal--oxide interface reconstruction before \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} and after \plotline{line width=1.5pt,dashed, color=Set1-5-2}; final optimised geometry \plotline{line width=2pt,color=Set1-5-1}.}%
 \end{figure}
 
 A major peak is visible centered around $1.85$ \AA, which corresponds to convolution of the two Al--O bond distances, $1.852$ \AA\ and $1.971$ \AA\ of the corundum crystal~\cite{Ishizawa1980}.
@@ -135,46 +134,52 @@ It's also significant to note that we don't observe neighbours closer than $\sim
 Most importantly, this trend is almost uniform across all the modeled junctions, which indicate the process outlined in \cref{sec:model} is capable of producing amorphous oxides whilst varying other physical parameters of the system.
 An evolution of the important steps in the procedure is depicted in \cref{fig:groptis}.
 
-The corundum $G(r)$ (thin, gray) is a complicated structure due to the 30 atom unit cell of the crystal, however it is clear from this figure where much of the amorphous structure originates from.
+The corundum $G(r)$ \plotline{line width=1pt,color=gray!50} is a complicated structure due to the 30 atom unit cell of the crystal, however it is clear from this figure where much of the amorphous structure originates from.
 Specifically the $1.852$ \AA\ and $1.971$ \AA\ Al--O bond distance contributions and the void in the $2$--$3$ \AA\ range.
-After the melt/quench phase of the procedure the lattice still appears liquid--like (dash dotted, green).
+After the melt/quench phase of the procedure \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} the lattice still appears liquid-like.
 Whilst the quench cycle minimises the possibility of atoms position very close to one another due to an excess of kinetic energy, it still appears to exhibit liquid behaviour.
-This may be a shortcoming of the Streitz-Mintmire potentials ability to capture the relevant physics, however this is rectified after the metal---metal--oxide interface reconstruction is completed (dashed, blue) using the \textit{ab initio} methods.
-Finally, the geometry optimisation (thick, red) yields a smoother $1.85$ \AA\ peak and recovers some of the void region around $2$ \AA.
+This may be a shortcoming of the Streitz-Mintmire potentials ability to capture the relevant physics, however this is rectified after the metal---metal--oxide interface reconstruction is completed \plotline{line width=1.5pt,dashed, color=Set1-5-2} using the \textit{ab initio} methods.
+Finally, the geometry optimisation \plotline{line width=2pt,color=Set1-5-1} yields a smoother $1.85$ \AA\ peak and recovers some of the void region around $2$ \AA.
 
-The inset of \cref{fig:groptis} compares the optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations.
-Whilst these results are very similar, the \sw{GULP} simulation actually produces a drastically different final structure.
+\begin{marginfigure}
+\resizebox{\marginparwidth}{!}{\includestandalone{figures/grcomp}}
+\caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing no statistically significant differences.}
+\end{marginfigure}
+
+Whilst optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations are very similar (\cref{fig:grcomp}), the \sw{GULP} simulation actually produces a drastically different final structure.
 We find under \sw{GULP} simulation that stoichiometric ratios higher than 1:1 are not stable and oxygen atoms diffuse into the metallic regions until a stoichiometric ratio of at most 1:1 is achieved.
 As a result of this excess oxygen diffusion, the junction width can increase by up to 30\% or more over the course of the simulation.
 At high densities and stoichiometries (higher than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
 Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential, but we see very little increase in oxide distribution during the optimisation phase -- suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
 
-\section{Model Analysis{\rmfamily :} Total energy and optimal conditions}
+\section{Total energy and optimal conditions}
 The total energy of a computational model is a good indication of the structures electronic stability.
 Due to the stoichiometry changes invoked in the oxygen depleted models, not all structures have the same number of atoms.
 This gives structures with more atoms (such as \ce{AlO_{1.25}}) additional electronegativity which in turn results in a deeper potential well and a large total energy.
-In an attempt to normalise this response, we present a total energy per atom value in \Cref{fig:energy}, scaling against stoichiometry (left) and density (right).
+In an attempt to normalise this response, we present a total energy per atom value in \Cref{fig:energyperatom}, scaling against stoichiometry (left) and density (right).
 
-\begin{figure}[tbh]
+\begin{figure}[htp]
+\begin{adjustwidth*}{0em}{-\marginparwidth}
 \centering
-%\includegraphics[width=\textwidth]{energyperatom}
-\caption{\label{fig:energy}Total energy per atom for various junction models with stoichiometry (left) and density (right).  Although the total energy per atom is strongly dependent on stoichiometry, we see a clear tread to optimal densities of approximately 75\% of the density of corundum.}%
+\resizebox{\widefigure}{!}{\includestandalone{figures/energyperatom}}
+\caption[Energy Comparisons]{\label{fig:energyperatom}Total energy per atom for various junction models with stoichiometry (left) and density (right).  Although the total energy per atom is strongly dependent on stoichiometry, we see a clear tread to optimal densities of approximately 75\% of the density of corundum.}
+\end{adjustwidth*}
 \end{figure}
 
-It is clear from \cref{fig:energy} that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
+It is clear from \cref{fig:energyperatom} that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
 This suggests that fabrication processes that generate oxygen deficiencies may be inviting the inclusion of alien species or oxygenic site hopping in an attempt to rectify this offset.
 
 Density changes seem to alter the energy contribution marginally.
 Minimum energies correspond to density multiples between 0.6 and 0.75, slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
 
-\section{Model Analysis{\rmfamily :} Coordination number}
+\section{Coordination number}
 Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of octahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using nuclear magnetic resonance (NMR) are also able to resolve the \ce{AlO_5} coordination~\cite{Lee2009}.
 
 
-\begin{figure}[tbh]
+\begin{figure}[htp]
 \centering
-%\includegraphics[width=\textwidth]{coord_hists.pdf}
-\caption{\label{fig:coordinationnumber}Distribution of oxygen coordination about aluminium as a function of density and stoichiometry, showing a tendency to higher coordination number with increasing density or stoichiometry.}%
+\resizebox{\textwidth}{!}{\includestandalone{figures/coord_hists}}
+\caption[Oxygen Coordination]{\label{fig:coordinationnumber}Distribution of oxygen coordination about aluminium as a function of density and stoichiometry, showing a tendency to higher coordination number with increasing density or stoichiometry.}%
 \end{figure}
 
 \Cref{fig:coordinationnumber} shows the distribution of oxygen coordination about aluminium as a function of density and stoichiometry. These results are calculated using an Al--O bond length cutoff of $2.5$ \AA, which corresponds to the first minimum after the nearest neighbour peak in the $G(r)$ (see \cref{fig:groptis}). As one would expect, the coordination number (for Al--O bonding) increases with increasing density or stoichiometry. We also note that there exists a reasonable proportion of $2$- and $3$-coordinated aluminium atoms, which persists at high density and stoichiometry. In order to compare directly to previous experimental and theoretical work, we compute the ratio of $4$-, $5$- and $6$-coordination for Al--O bonding, matching the stoichiometry of 1.5 and assuming the density multiple closest to experimental values (0.750). The results are presented in \cref{tab:coord_comp}. We observe excellent agreement, both before and after the \textit{ab initio} optimisation.

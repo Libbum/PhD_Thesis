@@ -1,0 +1,132 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\definecolor{Dark2-4-1}{RGB}{27,158,119} %Green
+\definecolor{Dark2-4-2}{RGB}{217,95,2} %Orange
+\definecolor{Dark2-4-3}{RGB}{117,112,179} %Purple
+\definecolor{Dark2-4-4}{RGB}{231,41,138} %Magenta
+
+\definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\definecolor{Set1-5-3}{RGB}{77,175,74} %Green
+\definecolor{Set1-5-4}{RGB}{152,78,163} %Purple
+\definecolor{Set1-5-5}{RGB}{255,127,0} %Orange
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[%
+scale only axis,
+separate axis lines,
+name=one,
+xmin=0.8,
+xmax=1.5,
+xlabel={Stoichiometry},
+ymin=-5.1,
+ymax=-4.4,
+ylabel={Energy per atom (eV)},
+legend style={at={(0.5,1.01)},anchor=south},
+legend columns=5
+]
+\addplot [color=Set1-5-1,solid,mark=*,mark options={solid}]
+  table[row sep=crcr]{%
+0.8	-4.42517434806034\\
+1	-4.61782172727273\\
+1.25	-4.803877456\\
+1.5	-4.9492800076555\\
+};
+\addlegendentry{0.500}
+\addplot [color=Set1-5-2,solid,mark=square*,mark options={solid}]
+  table[row sep=crcr]{%
+0.8	-4.44921720905172\\
+1	-4.64188359504132\\
+1.25	-4.831405076\\
+1.5	-5.04185655502392\\
+};
+\addlegendentry{0.625}
+\addplot [color=Set1-5-3,solid,mark=triangle*,mark options={solid}]
+  table[row sep=crcr]{%
+0.8	-4.44684177801724\\
+1	-4.63831065289256\\
+1.25	-4.845437073\\
+1.5	-5.04805194162679\\
+};
+\addlegendentry{0.750}
+\addplot [color=Set1-5-4,solid,mark=diamond*,mark options={solid}]
+  table[row sep=crcr]{%
+0.8	-4.42699506465517\\
+1	-4.62304965805785\\
+1.25	-4.826316853\\
+1.5	-5.03559175885167\\
+};
+\addlegendentry{0.875}
+\addplot [color=Set1-5-5,solid,mark=pentagon*,mark options={solid}]
+  table[row sep=crcr]{%
+0.8	-4.40113256788793\\
+1	-4.59943389566116\\
+1.25	-4.800377386\\
+1.5	-5.03120570047847\\
+};
+\addlegendentry{1.000}
+\end{axis}
+
+\begin{axis}[%
+scale only axis,
+separate axis lines,
+at=(one.right of east),%{(0,0)}, %
+anchor=left of west,
+xmin=0.5,
+xmax=1,
+xlabel={Density multiple of corundum},
+ymin=-5.1,
+ymax=-4.4,
+yticklabels={\empty},
+legend style={at={(0.5,1.01)},anchor=south},
+legend columns=4
+]
+\addplot [color=Dark2-4-1,solid,mark=*,mark options={solid}]
+  table[row sep=crcr]{%
+0.5	-4.42517434806034\\
+0.625	-4.44921720905172\\
+0.75	-4.44684177801724\\
+0.875	-4.42699506465517\\
+1	-4.40113256788793\\
+};
+\addlegendentry{AlO$_{0.8}$}
+\addplot [color=Dark2-4-2,solid,mark=square*,mark options={solid}]
+  table[row sep=crcr]{%
+0.5	-4.61782172727273\\
+0.625	-4.64188359504132\\
+0.75	-4.63831065289256\\
+0.875	-4.62304965805785\\
+1	-4.59943389566116\\
+};
+\addlegendentry{AlO$_{1.0}$}
+\addplot [color=Dark2-4-3,solid,mark=triangle*,mark options={solid}]
+  table[row sep=crcr]{%
+0.5	-4.803877456\\
+0.625	-4.831405076\\
+0.75	-4.845437073\\
+%0.8     -4.83450611507\\
+0.875	-4.826316853\\
+1	-4.800377386\\
+};
+\addlegendentry{AlO$_{1.25}$}
+\addplot [color=Dark2-4-4,solid,mark=pentagon*,mark options={solid}]
+  table[row sep=crcr]{%
+0.5	-4.9492800076555\\
+0.625	-5.04185655502392\\
+0.75	-5.04805194162679\\
+0.875	-5.03559175885167\\
+1	-5.03120570047847\\
+};
+\addlegendentry{AlO$_{1.5}$}
+\end{axis}
+\end{tikzpicture}%
+\end{document} 

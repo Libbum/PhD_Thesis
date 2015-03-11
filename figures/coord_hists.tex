@@ -1,0 +1,232 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\begin{document}
+\begin{tikzpicture}
+\pgfplotsset{
+/pgf/bar width=1cm,
+tick label style={font=\Huge},
+title style={font=\Huge},
+label style={font=\Huge},
+every axis/.append style={
+semithick,
+tick style={thick}}
+}
+\begin{axis}[%
+scale only axis,
+xmin=1,
+xmax=7,
+name=c,
+xtick={2, 3, 4, 5, 6},
+xticklabels={\empty},
+yticklabels={\empty},
+ymin=0,
+ymax=40
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	8.10810810810811\\
+3	20.5405405405405\\
+4	37.2972972972973\\
+5	14.0540540540541\\
+6	5.40540540540541\\
+};
+\end{axis}
+\node at (4.25, 16.35) {\Huge Density multiple};
+\begin{axis}[%
+scale only axis,
+separate axis lines,
+xmin=1,
+xmax=7,
+name=n,
+at=(c.above north),
+anchor=below south,
+xtick={2, 3, 4, 5, 6},
+xticklabels={\empty},
+yticklabels={\empty},
+ymin=0,
+ymax=40,
+title={0.750}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	24.3243243243243\\
+3	31.8918918918919\\
+4	21.0810810810811\\
+5	6.48648648648649\\
+6	2.16216216216216\\
+};
+\end{axis}
+
+\begin{axis}[%
+scale only axis,
+xmin=1,
+xmax=7,
+name=s,
+at=(c.below south),
+anchor=above north,
+yticklabels={\empty},
+xtick={2, 3, 4, 5, 6},
+xlabel={coordination number},
+ymin=0,
+ymax=40
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	5.94059405940594\\
+3	11.3861386138614\\
+4	36.6336633663366\\
+5	29.7029702970297\\
+6	2.47524752475248\\
+};
+\end{axis}
+
+\begin{axis}[%
+name=nw,
+at=(n.left of west),
+anchor=right of east,
+scale only axis,
+xmin=1,
+xmax=7,
+xtick={2, 3, 4, 5, 6},
+ytick={10,20,30,40},
+xticklabels={\empty},
+ymin=0,
+ymax=40,
+%ylabel={1.00},
+title={0.500}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	30.5263157894737\\
+3	27.8947368421053\\
+4	18.9473684210526\\
+5	0.526315789473684\\
+6	0\\
+};
+\end{axis}
+
+
+\begin{axis}[%
+scale only axis,
+separate axis lines,
+xmin=1,
+xmax=7,
+name=ne,
+at=(n.right of east),
+anchor=left of west,
+xtick={2, 3, 4, 5, 6},
+xticklabels={\empty},
+yticklabels={\empty},
+ymin=0,
+ymax=40,
+title={1.000}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	19.4594594594595\\
+3	21.0810810810811\\
+4	18.9189189189189\\
+5	16.2162162162162\\
+6	7.56756756756757\\
+};
+\end{axis}
+
+\begin{axis}[%
+scale only axis,
+separate axis lines,
+xmin=1,
+xmax=7,
+name=w,
+at=(c.left of west),
+anchor=right of east,
+xtick={2, 3, 4, 5, 6},
+ytick={10,20,30,40},
+xticklabels={\empty},
+ymin=0,
+ymax=40,
+ylabel={\% occurrence}
+%ylabel={1.25}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	17.2043010752688\\
+3	33.8709677419355\\
+4	27.9569892473118\\
+5	5.37634408602151\\
+6	0\\
+};
+\end{axis}
+
+
+\begin{axis}[%
+scale only axis,
+xmin=1,
+xmax=7,
+name=e,
+at=(c.right of east),
+anchor=left of west,
+xtick={2, 3, 4, 5, 6},
+xticklabels={\empty},
+yticklabels={\empty},
+ymin=0,
+ymax=40
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	5.26315789473684\\
+3	17.8947368421053\\
+4	25.7894736842105\\
+5	27.3684210526316\\
+6	8.42105263157895\\
+};
+\end{axis}
+\node[rotate=270, very thick, scale=1] at (18.5, 3.75) {\Huge Stoichiometry};
+\node[rotate=270, scale=1] at (17.6, -4.1) {\Huge 1.50};
+\node[rotate=270, scale=1] at (17.6, 3.65) {\Huge 1.25};
+\node[rotate=270, scale=1] at (17.6, 11.4) {\Huge 1.00};
+\begin{axis}[%
+scale only axis,
+xmin=1,
+xmax=7,
+name=sw,
+at=(s.left of west),
+anchor=right of east,
+xtick={2, 3, 4, 5, 6},
+ymin=0,
+ymax=40,
+%ylabel={1.5}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	17.2043010752688\\
+3	33.8709677419355\\
+4	27.9569892473118\\
+5	5.37634408602151\\
+6	0\\
+};
+\end{axis}
+
+\begin{axis}[%
+scale only axis,
+xmin=1,
+xmax=7,
+name=se,
+yticklabels={\empty},
+at=(s.right of east),
+anchor=left of west,
+xtick={2, 3, 4, 5, 6},
+ymin=0,
+ymax=40,
+%ylabel={1.5}
+]
+\addplot[ybar,draw=black,fill=Set1-5-2] plot table[row sep=crcr] {%
+2	7.31707317073171\\
+3	8.29268292682927\\
+4	15.1219512195122\\
+5	34.1463414634146\\
+6	22.4390243902439\\
+};
+\end{axis}
+\end{tikzpicture}%
+\end{document} 
