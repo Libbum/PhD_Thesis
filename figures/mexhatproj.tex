@@ -2,6 +2,10 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.11}
+
+\definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+
 \usepackage{mathspec}
 \setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
@@ -9,13 +13,13 @@
 \usepackage{fix-cm}
 \begin{document}
 \begin{tikzpicture}
-\begin{axis}[view={115}{30},axis lines=middle, name=one, scale only axis, xtick=\empty, ytick=\empty, ztick=\empty, axis line style={<->},xlabel=$y$,ylabel=$x$,zlabel=$z$]
-\addplot3[blue,thick,samples=100,samples y=0]({x},{0},{-15*x^2 + x^4 + 55});
-\addplot3[blue,thick,samples=100,samples y=0]({0},{x},{-15*x^2 + x^4 + 55});
+\begin{axis}[view={115}{30},axis lines=middle, name=one, scale only axis, xtick=\empty, ytick=\empty, ztick=\empty, axis line style={stealth-stealth},z axis line style={-stealth},xlabel=$y$,ylabel=$x$,zlabel=$z$]
+\addplot3[Set1-5-2,very thick,samples=100,samples y=0]({x},{0},{-15*x^2 + x^4 + 55});
+\addplot3[Set1-5-2,very thick,samples=100,samples y=0]({0},{x},{-15*x^2 + x^4 + 55});
 \end{axis}
-\begin{axis}[view={115}{30},axis lines=middle, scale only axis, name=two, at=(one.right of south east), xtick=\empty, ytick=\empty, ztick=\empty, axis line style={<->},xlabel=$y$,ylabel=$x$,zlabel=$z$]
-\addplot3[blue,thick,samples=100,samples y=0]({x},{0},{-15*x^2 + x^4 + 55});
-\addplot3[red,densely dashed,thick,samples=100,samples y=0]({0},{x},{15*x^2});
+\begin{axis}[view={115}{30},axis lines=middle, scale only axis, name=two, at=(one.right of south east), xtick=\empty, ytick=\empty, ztick=\empty, axis line style={stealth-stealth},z axis line style={-stealth},xlabel=$y$,ylabel=$x$,zlabel=$z$]
+\addplot3[Set1-5-2,very thick,samples=100,samples y=0]({x},{0},{-15*x^2 + x^4 + 55});
+\addplot3[Set1-5-1,densely dashed,very thick,samples=100,samples y=0]({0},{x},{15*x^2});
 \end{axis}
 \end{tikzpicture}
 \end{document} 
