@@ -1,0 +1,64 @@
+\versoimage
+\chapter{TLS Identification In 3D}\label{ch:threedee}
+\loftchap{TLS Identification In 3D}
+\chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
+
+
+\section{3D}
+\subsection{Methods of implementation}
+\subsection{Potential Landscape analysis}
+\subsubsection{Cluster analysis on a known grid}
+\subsection{Comparative results with 2D model}
+
+\section{Notes for 3D portion}
+The methods outlined in \cite{Strickland2010} give us what we want for the most part, but needs to be extended a fair deal to be completely useful.
+\begin{equation}
+E[\Psi] = \frac{\sum_{x,y,z}\Psi(x,y,z,\tau)\left[\frac{1}{2}\sum_{i=1}^3\left(\mathbf{D\cdot\widehat{\Psi}}\right)-V(x,y,z)\Psi(x,y,z,\tau)\right]}{\sum_{x,y,z}\Psi(x,y,z,\tau)^2}
+\end{equation}
+where $\Psi$ is either the ground state ($\Psi_0$) or mapped via
+\begin{equation}
+ \ket{\Psi_1} \simeq \ket{\Psi_{snap}} - \ket{\Psi_0}\bket{\Psi_0}{\Psi_{snap}}
+\end{equation}
+
+\subsection{Gram-Schmidt Procedure}\label{subsec:gsp}
+
+One important property of a hermitian operator (in our case $H$), is orthogonality. That is: a system's eigenfunctions belong to distinct eigenvalues which are orthogonal.
+The proof of this theorem neglects degenerate states, although it can be shown that any linear combination of eigenfunctions which share the same eigenvalue are indeed eigenfunctions of the system.
+
+Using the Gram-Schmidt orthogonalisation procedure \cite{Gram1883, Schmidt1907}, orthogonal eigenfunctions within a degenerate subspace can be constructed; \textit{chosen} to be orthogonal to the system's basis.
+
+Consider a non-orthonormal basis of vectors $\ket{a_1}, \ket{a_1}, \ldots \ket{a_n}$.
+A new, orthonormal basis for these vectors can by found be first normalising the initial vector
+\begin{equation}
+\ket{a^\prime_1} = \frac{\ket{a_1}}{\norm{a_1}},
+\end{equation}
+
+then finding the projection of the second vector along the first and subtracting it.
+This vector is orthogonal to $\ket{a^\prime_1}$ and normalising it obtains
+\begin{equation}
+\ket{a^\prime_2} = \frac{\ket{a_2}-\ket{a^\prime_1}\bket{a^\prime_1}{a_2}}{\norm[\big]{\ket{a_2}-\ket{a^\prime_1}\bket{a^\prime_1}{a_2}}}.
+\end{equation}
+
+Similarly, the third vector requires the same treatment, although projections along both $\ket{a^\prime_1}$ and $\ket{a^\prime_2}$ are needed
+\begin{equation}
+\ket{a^\prime_3} = \frac{\ket{a_3}-\ket{a^\prime_1}\bket{a^\prime_1}{a_3}-\ket{a^\prime_2}\bket{a^\prime_2}{a_3}}{\norm[\big]{\ket{a_3}-\ket{a^\prime_1}\bket{a^\prime_1}{a_3}-\ket{a^\prime_2}\bket{a^\prime_2}{a_3}}}.\label{eq:gs3ex}
+\end{equation}
+
+This process is repeated until the orthonormal vector $\ket{a^\prime_n}$ is calculated.
+
+Computing the excited state energies and wavefunctions using the method outlined in \xxx{section on qfdtd} relies on the orthogonality theorem, which cannot identify values in a degenerate subspace.
+On the other hand, direct diagonalisation achieves the correct eigenspectrum but lacks the resolution to gain quantitative results (see \xxx{section on \lin{3D} implementation and memory issues}).
+A hybrid method is therefore proposed to calculate higher order states.
+
+Starting with a \sw{Matlab} calculated low resolution ground state wavefunction $\Psi_0^{M}$, the true excited state wavefunction $\Psi_0$ (and its' associated eigenenergy) can be calculated via \sw{qfdtd} by means of using the low resolution result as a starting guess $\Psi_0^{M} \simeq \Psi_0$.\nomdref{XM}{$M$}{Indicates a low resolution result calculated by \sw{Matlab}. Usually used in connection to values calculated in the \lin{3D} formalism}{subsec:gsp}
+Once $\Psi_0$ is converged, the Gram-Schmidt procedure can then be invoked to calculate the first excited state, using an initial guess from \sw{Matlab} projected along the converged, orthonormal ground state
+\begin{equation}
+    \ket{\Psi^\prime_1} \simeq \frac{\ket{\Psi^M_1} - \ket{\Psi^\prime_0}\bket{\Psi^\prime_0}{\Psi^M_1}}{\norm[\big]{\ket{\Psi^M_1} - \ket{\Psi^\prime_0}\bket{\Psi^\prime_0}{\Psi^M_1}}}
+\end{equation}
+
+which can again be used as input to \sw{qfdtd}.
+As $\Psi^\prime_1$ has been chosen to be orthogonal to $\Psi^\prime_0$, regardless of whether the excited state exists in a degenerate subspace or not, the conversion algorithm is now able to converge to the correct eigenenergy and return an optimal excited state wavefunction.
+\Cref{eq:gs3ex} can now calculate the second excited state, projecting along the converged ground and first excited wavefunctions, after which repeating the process  on higher states is possible.
+% \cite{Griffiths2005} Grifiths, page 101-102 and 440 have some stuff on this but not much.
+
+
