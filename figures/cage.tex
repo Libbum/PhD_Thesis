@@ -1,10 +1,15 @@
 \documentclass{standalone}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{calc,fadings,decorations.pathreplacing}
+\usetikzlibrary{decorations.pathreplacing}
 \usepackage{amsmath}
 \definecolor{Set1-5-1}{RGB}{228,26,28} %Red
 \definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
 \begin{document}
 \begin{tikzpicture}
 %\definecolor{comp}{RGB}{62,152,204}
@@ -15,13 +20,19 @@
 \draw[stealth-stealth,thick] (5, 0) -- (5,10) node[above] {\Large $z$}; %y
 \draw[stealth-stealth,thick] (5,5,-5.5) -- (5,5,5.5) node[below] {\Large $y$}; %z
 %Aluminium
-\shadedraw [ball color = gray] (5,0.5,0) circle (0.25);
-\shadedraw [ball color = gray] (5,9.5,0) circle (0.25);
-\shadedraw [ball color = gray] (1.5,5,0) circle (0.25); %0.625
-\shadedraw [ball color = gray] (8.5,5,0) circle (0.25); %9.375
-\shadedraw [ball color = gray] (5,5,-3.5) circle (0.25);
-\shadedraw [ball color = gray] (5,5,3.5) circle (0.25);
 
+\draw (5,0.5,0) circle (0.25);
+\draw (5,9.5,0) circle (0.25);
+\draw (1.5,5,0) circle (0.25); %0.625
+\draw (8.5,5,0) circle (0.25); %9.375
+\draw (5,5,-3.5) circle (0.25);
+\draw (5,5,3.5) circle (0.25);
+\node at (5,0.5,0) {\includegraphics[width=1.4em]{aluminium}};
+\node at (5,9.5,0) {\includegraphics[width=1.4em]{aluminium}};
+\node at (1.5,5,0) {\includegraphics[width=1.4em]{aluminium}};
+\node at (8.5,5,0) {\includegraphics[width=1.4em]{aluminium}};
+\node at (5,5,-3.5) {\includegraphics[width=1.4em]{aluminium}};
+\node at (5,5,3.5) {\includegraphics[width=1.4em]{aluminium}};
 %labels
 \draw[very thick,Set1-5-2,decorate,decoration={brace,raise=6pt,amplitude=2ex}] (1.5,5) -- (5,5)
        node[midway,above=3.5ex] {\LARGE $\lvert X\rvert$};
