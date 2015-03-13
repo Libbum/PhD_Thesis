@@ -1,0 +1,58 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{scopes}
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\begin{document}
+\begin{tikzpicture}[level/.style={very thick},font=\Large,yscale=0.6]
+    %\shade[shading=axis,top color=lightgray!10,bottom color=lightgray,shading angle=45,opacity=0.1] (-1.9,8.5) rectangle (-5.6,18.6);
+    %\draw[dotted] (-5.6,8.6) -- (3.1,8.6);
+    %\draw[dotted] (-1.3,0.4) -- (-1.3,18.6);
+    % Tetra 0
+    { [xshift=0cm, yshift=0cm]
+    \draw[level] (-2,10) -- (-5,10) node[below=1.4em, left] {$E_{0}$};
+    \draw[level] (-2,10.2) -- (-5,10.2) node[below=0.5em, left] {$E_{1}$};
+    \draw[level] (-2,10.4) -- (-5,10.4) node[above=0.5em, left] {$E_{2}$};
+    \draw[level] (-2,10.6) -- (-5,10.6) node[above=1.4em, left] {$E_{3}$};
+    \draw[level] (-2,17) -- (-5,17) node[left] {$E_{4}$};
+    }
+    % Hemitetra 0.5
+    { [xshift=0cm, yshift=0cm]
+    \draw[level] (3,10) -- (0,10) node[below=0.5em, left] {$E_{0}$};
+    \draw[level] (3,10.2) -- (0,10.2) node[above=0.5em, left] {$E_{1}$};
+    \draw[level] (3,13.3) -- (0,13.3) node[below=0.5em, left] {$E_{2}$};
+    \draw[level] (3,13.5) -- (0,13.5) node[above=0.5em, left] {$E_{3}$};
+    \draw[level] (3,17) -- (0,17) node[left] {$E_{4}$};
+    }
+    %Bifurcation 1
+   % \draw[level] (8,1) -- (5,1) node[below=0.4em, left] {$E_{0}$};
+%    \draw[level] (8,1.4) -- (5,1.4) node[above=0.4em, left] {$E_{1}$};
+%    \draw[level] (8,6.6) -- (5,6.6) node[below=0.4em, left] {$E_{2}$};
+%    \draw[level] (8,7) -- (5,7) node[above=0.4em, left] {$E_{3}$};
+    % Harmonic 1.5
+    { [xshift=10cm, yshift=10cm]
+    \draw[level] (-2,0) -- (-5,0) node[left] {$E_{0}$};
+    \draw[level] (-2,1.75) -- (-5,1.75) node[left] {$E_{1}$};
+    \draw[level] (-2,3.5) -- (-5,3.5) node[left] {$E_{2}$};
+    \draw[level] (-2,5.25) -- (-5,5.25) node[left] {$E_{3}$};
+     \draw[level] (-2,7) -- (-5,7) node[left] {$E_{4}$};
+     }
+    %\shade[shading=axis,bottom color=lightgray!10,top color=lightgray,shading angle=45,opacity=0.1]  (3.1,0.4) rectangle (-0.6,8.5);
+    % Mid degenerate 2
+    { [xshift=10cm, yshift=10cm]
+    \draw[level] (3,0) -- (0,0) node[left] {$E_{0}$};
+    \draw[level] (3,3.3) -- (0,3.3) node[below=0.5em, left] {$E_{1}$};
+    \draw[level] (3,3.5) -- (0,3.5) node[above=0.5em, left] {$E_{2}$};
+    \draw[level] (3,6.8) -- (0,6.8) node[below=0.5em, left] {$E_{3}$};
+    \draw[level] (3,7) -- (0,7) node[above=0.5em, left] {$E_{4}$};
+    }
+    % Labels
+    \node (TR) at (-3.5,18.5) {\huge $\xi=0$}; %T
+    \node (HT) at (1.5,18.5) {\huge $\xi=\frac{1}{2}$}; %T
+    %\node (DGS) at (6.5,8) {$\xi=1$};
+    \node (HM) at (6.5,18.5) {\huge $\xi=\frac{5}{4}$};
+    \node (UGS) at (11.5,18.5) {\huge $\xi=2$}; %mid deg
+\end{tikzpicture}
+\end{document} 
