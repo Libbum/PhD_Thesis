@@ -254,9 +254,9 @@ Using this $\xi$ metric and varying the values of both $\abs{X}$ and $\abs{Y}$ g
 The $x$ and $y$ axes show the $\abs{X}$ and $\abs{Y}$ pair separation distances respectively over a range of $1.85\!-\!4$ \AA\ and the phase colour indicates which $\xi$ region a particular configuration exists in.
 
 \begin{figure}[htp]
-%\centering
-  %\hfill\includegraphics[width=0.8\textwidth]{figure7}\\
-\caption[fig7]{\label{fig:xiunbound}Map of the $\xi$ metric of the delocalized oxygen 2D model. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair position separations. Black, dashed contour lines represent a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results. Cases where quad-degeneracy exists are denoted as dotted rather than solid contours. Two traces (white, dash-dotted lines) are also depicted. The first, at $\abs{Y} = 2.5$ \AA\ (labelled A) is plotted in \cref{fig:tetraspectrum}. In contrast, the trace at $\abs{Y} = 3.6$ \AA\ (labelled B) yields an equivalent eigenspectrum to the \lin{1D} case in \cref{fig:spectrum}. }
+\includegraphics[width=\textwidth]{figures/xiunbound}\\
+\caption[$\xi$ metric phase map, unbound in $z$]{\label{fig:xiunbound}Map of the $\xi$ metric of the delocalized oxygen \lin{2D} model. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair position separations. \plotline{line width=1.5pt,dashed} represents a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results. Cases where quad-degeneracy exists are denoted as dotted rather than solid contours. Two traces (white, dash-dotted lines) are also depicted. The first, at $\abs{Y} = 2.5$ \AA\ (labelled A) is plotted in \cref{fig:tetraspectrum}. In contrast, the trace at $\abs{Y} = 3.6$ \AA\ (labelled B) yields an equivalent eigenspectrum to the \lin{1D} case in \cref{fig:spectrum}.}
+%\plotline{thin,double distance=2pt,dash dot}
 \end{figure}
 
 Regions that are deemed to be unimportant when searching for TLS behaviour are those where $\xi \geq 1$, as these correspond to eigenspectra which do not possess a (quasi-)doubly degenerate ground state.
@@ -321,25 +321,22 @@ To understand the properties of a delocalised oxygen, we have considered confini
 In reality, aluminium atoms will surround the oxygen in all three dimensions.
 Two more confining atoms are therefore added into the system in the $z$ direction labelled as $\abs{Z}$.
 Interactions with these atoms in the third dimension are now considered, although the model is still two dimensional (\ie\ \lin{2+1D}); thus oxygen continues to be confined to the $xy$ plane.
-An illustration of this cluster configuration is displayed in \cref{fig:cage} and representations of the cage potential and oxygen wavefunctions are shown in \cref{fig:wfstack} for A (left) and B (right) type defects.
+An illustration of this cluster configuration is displayed in \cref{fig:cage} and representations of the cage potential and oxygen wavefunctions are shown in \cref{fig:wfstackA} for A and \cref{fig:wfstackB} for B type defects.
 
 \begin{figure}[htp]
   \resizebox{0.6\textwidth}{!}{\includestandalone{figures/cage}}
   \caption[\lin{2+1D} cluster illustration]{\label{fig:cage}Illustration of an idealised cluster producing a void in \lin{3D}. Six cage aluminium atoms \resizebox{0.5em}{!}{\includegraphics{figures/aluminium}} sit in pairs on each cardinal axis, equidistant from the origin. Separation distances $\abs{X}$ and $\abs{Y}$ are labeled for reference (see text). The plane \begin{tikzpicture}[baseline=-0.7ex]\filldraw [Set1-5-1,fill=Set1-5-1!80,fill opacity=0.7] (0,-0.1) -- (0.5,-0.1) -- (0.5,0.1) -- (0,0.1) --cycle;\end{tikzpicture} at $z=0$ is a representation of the \lin{2D} delocalisation of an oxygen atom.}
 \end{figure}
 
-\begin{figure}[htp]
-\centering
-%\includegraphics[width=0.45\textwidth]{figure10a}
-%\includegraphics[width=0.45\textwidth]{figure10b}
-\caption[fig10]{\label{fig:wfstack}Cage potentials and the lowest three eigenfunctions of a clusters with the values $\abs{X}=1.53, \: \abs{Y} = 2.52, \: \abs{Z} = 2.25$ \AA\ (left) and $\abs{X}=2.38, \: \abs{Y} = 3.19, \: \abs{Z} = 2.75$ \AA\ (right). The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. The left cluster configuration is representative of an A type defect (see \cref{fig:Atype}); with a ground to first excited state splitting of $E_{01} = 8.1$ GHz and a ground to second excited state splitting of $E_{02} = 202.2$ THz. The right cluster configuration is representative of a B type defect (see \cref{fig:Btype}); with a ground to first excited state splitting of $E_{01} = 8.4$ GHz and a ground to second excited state splitting of $E_{02} = 36.3$ THz.}
+\begin{figure}[p]
+\includegraphics[width=0.85\textwidth]{figures/wfstackA}
+\caption[A type energy states]{\label{fig:wfstackA}Cage potential and the lowest three eigenfunctions of a cluster with the values $\abs{X}=1.53, \: \abs{Y} = 2.52, \: \abs{Z} = 2.25$ \AA\. The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. This cluster configuration is representative of an A type defect (see \cref{fig:Atype}); with a ground to first excited state splitting of $E_{01} = 8.1$ GHz and a ground to second excited state splitting of $E_{02} = 202.2$ THz.}
 \end{figure}
 
-%\begin{figure}[htp]
-%\hspace{0.2\textwidth}\centering
-%\includegraphics[width=0.75\textwidth]{figure11}\\
-%\caption{\label{fig:wfstack}Cage potential and the lowest three eigenfunctions of a cluster with the values $\abs{X}=2.38, \: \abs{Y} = 3.19, \: \abs{Z} = 2.75 \; \mathrm{\AA}$. The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. This cluster configuration is representative of a B type defect (see Figure \ref{fig:Btype}); with a ground to first excited state splitting of $E_{01} = 8.4$ GHz and a ground to second excited state splitting of $E_{02} = 36.3$ THz.}
-%\end{figure}
+\begin{figure}[p]
+\includegraphics[width=0.85\textwidth]{figures/wfstackB}
+\caption[B type energy states]{\label{fig:wfstackB}Cage potential and the lowest three eigenfunctions of a cluster with the values $\abs{X}=2.38, \: \abs{Y} = 3.19, \: \abs{Z} = 2.75$ \AA. The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. This cluster configuration is representative of a B type defect (see Figure \ref{fig:Btype}); with a ground to first excited state splitting of $E_{01} = 8.4$ GHz and a ground to second excited state splitting of $E_{02} = 36.3$ THz.}
+\end{figure}
 
 The selection of a fixed $\abs{Z}$ distance changes the phase landscape in a manner that can be qualitatively extrapolated between two arbitrary values even a few angstroms apart.
 Values of $\abs{Z} = 2.75$ \AA\ (\cref{fig:xi275}) and $\abs{Z} = 2.25$ \AA\ (\cref{fig:xi225}) have been chosen to analyse in detail.
@@ -350,15 +347,13 @@ $\abs{Z}$ values larger than $2.75$ \AA\ show similar phase behaviour to that of
 Large $\abs{Z}$ separation distances also decrease the validity of the \lin{2+1D} model, in addition: the radial distribution analysis in \onlinecite{DuBois2013} suggests large separation distances for nearest neighbour atoms have a low probability of occurrence.
 
 \begin{figure}[htp]
-  %\centering
-  %\hfill\includegraphics[width=0.8\textwidth]{figure11}\\
-  \caption[fig11]{\label{fig:xi275}Map of the $\xi$ metric of the delocalized oxygen model confined in two dimensions. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair positions with $\abs{Z} = 2.75$ \AA. Black, dashed contour lines represent a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results. Cases where quad-degeneracy exists are denoted as dotted rather than solid contours.}
+  \includegraphics[width=\textwidth]{figures/xi275}
+  \caption[$\xi$ metric phase map, with $\abs{Z} = 2.75$ \AA]{\label{fig:xi275}Map of the $\xi$ metric of the delocalized oxygen model confined in two dimensions. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair positions with $\abs{Z} = 2.75$ \AA. \plotline{line width=1.5pt,dashed} represents a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results. Cases where quad-degeneracy exists are denoted as dotted rather than solid contours.}
 \end{figure}
 
 \begin{figure}[htp]
-  %\centering
-  %\hfill\includegraphics[width=0.8\textwidth]{figure12}\\
-  \caption[fig12]{\label{fig:xi225}Map of the $\xi$ metric of the delocalized oxygen model confined in two dimensions. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair positions with $\abs{Z} = 2.25$ \AA. Black, dashed contour lines represent a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results.}
+  \includegraphics[width=\textwidth]{figures/xi225}
+  \caption[$\xi$ metric phase map, with $\abs{Z} = 2.25$ \AA]{\label{fig:xi225}Map of the $\xi$ metric of the delocalized oxygen model confined in two dimensions. The $\abs{X}$ and $\abs{Y}$ axes represent aluminium pair positions with $\abs{Z} = 2.25$ \AA. \plotline{line width=1.5pt,dashed} represents a minimum resolvable energy splitting of $10$ kHz. The white (blank) section indicates where the aluminium atoms are so close, the oxygen confinement region no longer exists. Overlayed contour lines corresponding to $E_{01} = 0.5\!-\!10$ GHz (red to yellow) are comparable to existing experimental qubit results.}
 \end{figure}
 
 As the pair separation distance $\abs{Z}$ decreases, the tetra-well ($\xi=0$) regimes diminish in size and no longer exhibit TLS behaviour.
@@ -381,15 +376,13 @@ The colourmap for both figures now represent dipole strengths of each cluster co
 These computed dipole moments correspond well to observed values, assuming $\mathcal{O}$(nm) junction widths~\cite{Martinis2005, Cole2010}.
 
 \begin{figure}[htp]
-  %\centering
-  %\hfill\includegraphics[width=0.8\textwidth]{figure13}\\
-  \caption[fig13]{\label{fig:dipole275}The difference between the absolute dipole moment (in $x$- and $y$-directions) over the same range for $\abs{Z} = 2.75$ \AA. We see either $\abs{\wp_x}$ (red) or $\abs{\wp_y}$ (green) dominated behaviour in the tetra- and hemi-tetra- domains but none in other regions.}
+  \includegraphics[width=\textwidth]{figures/dipole275}
+  \caption[Dipole phase map, with $\abs{Z} = 2.75$ \AA]{\label{fig:dipole275}The difference between the absolute dipole moment (in $x$- and $y$-directions) over the same range for $\abs{Z} = 2.75$ \AA. We see either $\abs{\wp_x}$ (red) or $\abs{\wp_y}$ (green) dominated behaviour in the tetra- and hemi-tetra- domains but none in other regions.}
 \end{figure}
 
 \begin{figure}[htp]
-  %\centering
-  %\hfill\includegraphics[width=0.8\textwidth]{figure14}
-  \caption[fig14]{\label{fig:dipole225}The difference between the absolute dipole moment (in $x$- and $y$-directions) over the same range for $\abs{Z} = 2.25$ \AA. We see either $\abs{\wp_x}$ (red) or $\abs{\wp_y}$ (green) dominated behaviour in the tetra- and hemi-tetra- domains but none in other regions.}
+\includegraphics[width=\textwidth]{figures/dipole225}
+  \caption[Dipole phase map, with $\abs{Z} = 2.25$ \AA]{\label{fig:dipole225}The difference between the absolute dipole moment (in $x$- and $y$-directions) over the same range for $\abs{Z} = 2.25$ \AA. We see either $\abs{\wp_x}$ (red) or $\abs{\wp_y}$ (green) dominated behaviour in the tetra- and hemi-tetra- domains but none in other regions.}
 \end{figure}
 
 The dipole moments are presented as $\left(\abs{\wp_y}-\abs{\wp_x}\right)/e$ rather than separate plots because the dipole elements are discontinuous at the bifurcation points (\ie\ when $\abs{\wp_x}>0, \abs{\wp_y}=0$ and \textit{vice versa}).
@@ -461,7 +454,7 @@ Whilst many deformation types were tested~\cite{DuBois2013}, only two types (dep
 Four clusters are chosen that lie on the $8$ GHz contour when $\abs{Z} = 2.25$ \AA, indicated as (b), (c), (d) and (e) in \cref{fig:straina}.
 As can be seen in \cref{fig:dipole225}, each of these cases are within a $\abs{\wp_x}$ dominant domain.
 
-\begin{figure}[htp]
+\begin{figure}[p]
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/strain}}
 \caption[Strain response of TLS clusters]{\label{fig:strain}\label[figurea]{fig:straina}Strain response of four candidate TLS clusters. (a) Left: depictions of two deformation types that show active responses. A dilation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is stretched from their original position and a translation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is moved from their original position. Right: locations along the $8$ GHz contour from the $\abs{Z} = 2.25$ \AA\ phase maps. Each case is deformed and translated in both $x$ and $y$ directions by $\pm 1$ pm and plotted as (b), (c), (d) and (e). Dilation of $\abs{X}$ \plotline{line width=2pt,color=Set1-5-1}, Translation of $\abs{Y}$ \plotline{line width=2pt,dashed,color=Set1-5-2}, Dilation of $\abs{Y}$ \plotline{line width=2pt,dotted,color=Set1-5-3}. Note that all four cases lie in the $\abs{\wp_x}$ dominant domain (see \cref{fig:dipole225}). Translation of $\abs{X}$ is not shown on any graph as its' $E_{01}$ response is of $\sim\!10^4$ GHz over ($\Delta L$) for all cases.  }
 \end{figure}
