@@ -4,10 +4,10 @@
 %\versoquote{The task must be made difficult, for only the difficult inspires the noble-hearted.}{Søren Kierkegaard}
 \chapter{Junction Models}
 \loftchap{Junction Models}
-\chapterprecis{Junction models, how they're built and shit.}
+\chapterprecis{Methodology used to construct high precision Josephson junction models of varying stoichiometry and density.}
 
 \thought{Here is a section that} starts with a thought that is in small caps.
-\sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.}
+%\sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.}
 
 %\section{How a junction is built in experiment}
 %
@@ -59,26 +59,6 @@ As well as atomistic models, a range of effective defect state models also exist
 One possible way of distinguishing between these options is to develop complete atomistic models of the Josephson junction and study the configuration of the amorphous layer.
 Forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this paper.
 
-\section{The Josephson Junction Formation Process}
-
-Josephson junctions may be constructed from any superconducting material with any insulating or non-superconducting metal barrier to invoke a weak link coupling.
-A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
-
-Shadow evaporation is a common technique used to fabricate a system such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
-This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
-It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
-Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
-It is therefore the amorphous oxide formation which needs to be investigated predominantly, in order to obtain results from simulation which are applicable to future fabrication work.
-
-Simulating oxide layer growth is in general a difficult problem as the time scale of the oxide growth ($\sim\,$minutes) is many orders of magnitude greater than typically achievable molecular dynamics timescales (ps--ns).
-One standard approach is to perform the simulation at elevated temperatures and gas pressures ($\ge 1$ atm)~\cite{Campbell1999, Zhou2005, Hasnaoui2005}.
-This accelerates the oxidation process, making the computation feasible on current high performance computing infrastructure.
-However, it also removes the simulation from the reality of experimental junction formation, where pressures range between $10^{-9}$ and $10^{-3}$ atm~\cite{Morohashi1987, Kohlstedt1993, Jeurgens2002}.
-It remains to be seen whether any fundamental physics is neglected by adopting this approximation.
-
-An alternative approach is to form an amorphous layer via direct melt and quench~\cite{Vashishta2008,Sheng2012}.
-This method has the advantage of computational simplicity and speed, however the resulting layers are not necessarily representative of the true physical situation and therefore benchmarking against other methods and experiment is critical.
-Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness will be considered in future work.
 
 \section{Model construction}\label{sec:model}
 \begin{figure}[htp]
