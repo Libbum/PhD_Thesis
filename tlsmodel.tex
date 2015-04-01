@@ -345,11 +345,11 @@ As the potential form (shown in the right plot) is similar to a parabola, the re
 Using \cref{eq:gshwfn}, a harmonic form of the ground state wavefunction can now be fitted to the calculated Streitz-Mintmire result through the unknown angular frequency, which is found to be $\omega = 2.241\ten{13}$ rad/s.
 Both $\psi_0(x)$ and the associated potential of this harmonic approximation are plotted as \plotline{line width=1.5pt,color=Set1-5-2} to compare with the Streitz-Mintmire result.
 \begin{figure}[htp]
-\begin{adjustwidth*}{0em}{-\marginparwidth}
-\centering
+\widefiguremargins
+\begin{adjustwidth}{\leftwidth}{\rightwidth}
 \resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
 \caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz-Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to length scales of experimental results.}
-\end{adjustwidth*}
+\end{adjustwidth}
 \end{figure}
 
 The fitted value of $\omega$ yields a complete approximation to the Strietz Mintmire ground state wavefunction, which we can now use in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ to find the eigenvalue $E$.
@@ -567,21 +567,21 @@ A complete description of the hamiltonian \cref{eq:OHam} can now be implemented 
 the implementation of which requires the construction of a sparse matrix representation of $H$, which can be fed into the \sw{eigs} function of \sw{Matlab}; computing the wavefunction $\Psi$ and energy $E$ of the system.
 
 In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{ch:lowdims,ch:threedee} for specifics).\xxx{Make sure I actually go into these details, or otherwise can this sentence}
+
+Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/spyham}}
 \caption[Sparsity of the hamiltonian matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
 \end{marginfigure}
-
-Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{equation}
-    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.2425\ten{46}\label{eq:lambda}
+    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.243\ten{46}\label{eq:lambda}
 \end{equation}
 
 describes the system in terms of distance in Å and energy in μeV.
 This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}.
 Each subsequent value of $x$ also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
-Off diagonals are also required to fulfil the remaining $f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $f_k$ coefficient and the  $\nabla^2$ prefactor.
+Off diagonals are also required to fulfil the remaining $~f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $~f_k$ coefficient and the  $\nabla^2$ prefactor.
 
-The resulting matrix can then be diagonalized, obtaining eigenvectors and eigenenergies for the system in question.
+The resulting matrix can then be diagonalised, obtaining eigenvectors and eigenenergies for the system in question.
 Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz using this method.
 In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
