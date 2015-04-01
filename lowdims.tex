@@ -6,7 +6,7 @@
 
 Possible sections:
 
-\section{2D model}\label{sec:2d}
+\section{2D model}
 \subsection{Defects as Perturbed Bond Angles in a Lattice (1D)}
 \subsection{TLS Defect Confined in 2 Dimensions}
 \subsection{TLS Defect Confined in 3 Dimensions}
@@ -75,10 +75,11 @@ The following sections then apply the \lin{2+1D} model and compare delocalised o
 We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \cref{fig:defects}.
 If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
 
-\begin{equation}
-    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
-    \label{eq:OHam}
-\end{equation}
+\xxx{TLS Model chapter}
+%\begin{equation}
+%    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
+%    \label{eq:OHam}
+%\end{equation}
 
 where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
 
@@ -98,10 +99,11 @@ A variable charge potential such as Streitz-Mintmire can capture the variable ox
 This capability is particularly important here, as our junction has two metal-oxide interfaces, and our TLS defects may reside close to these boundaries.
 
 The Streitz-Mintmire potential is given by
-\begin{equation}
-\label{eq:sm}
-V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
-\end{equation}
+\xxx{TLS Model chapter}
+%\begin{equation}
+%\label{eq:sm}
+%V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},
+%\end{equation}
 
 where $q_{\{i,j\}}$ is the atomic charge, $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$.
 $\chi_i^0$ is the electronegativity and $J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion~\cite{Rappe1991} of atom $i$.
@@ -124,13 +126,15 @@ E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),
 \end{equation}
 
 with $F_{i}\left[\rho_i\right]$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials
-\begin{equation}
-\label{eq:smpair}
-\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
-\end{equation}
+\xxx{TLS Model chapter}
+%\begin{equation}
+%\label{eq:smpair}
+%\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],
+%\end{equation}
 where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in \cref{tab:smconsts}.\xxx{This is in tlsmodel.tex}
 Further formalisms and parameters can be found in \cite{Streitz1994,Zhou2004}, implementation is also discussed in \cite{Gale2003}.
 
+\xxx{TLS Model chapter}
 %\begin{table}[tb]
 %\caption{\label{tab:smconsts} Empirical constants for the Streitz-Mintmire pair potentials (\ref{eq:smpair})\cite{Streitz1994,Gale2003}.}
 %\begin{indented}
