@@ -10,10 +10,10 @@ In general, the stronger the interaction with the environment, the quicker the q
 Removal or control of these defects is required before quantum computers using superconducting circuit architecture can be realised.
 
 \section{A Qubit Primer}
-A quantum bit differs from its classical counterpart the bit in a number of ways.
+A quantum bit differs from its classical counterpart (the bit) in a number of ways.
 A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
 Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space.
-In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron).
+In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron for example).
 In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.
 
 The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system.
@@ -40,9 +40,12 @@ As these states cannot be described by ket vectors, a density matrix must be def
 where $p_x$ is the fraction of each pure state $\psi_x$ represented in the mixture.
 
 \subsection{Decoherence and Dephasing}
-\cite{Makhlin2001, Paladino2014}
-TODO. Maybe ask Jan for a good primer, or scan his thesis.
+\emph{Section can come from \cite{Makhlin2001, Paladino2014} perhaps.
+Need to introduce decoherence as a major noise source.}
+\xxx{Maybe ask Jan for a good primer, or scan his thesis.}
 
+Quantum computation requires qubits to be strongly inter-coupled by control gates, but at the same time must be completely isolated (decoupled) from the surrounding environment.
+Except of course; when control and I/O is required, and information must flow in and out of the computer.
 
 \section{Qubit Architectures}
 Physical qubit implementations can nominally be broken up into four categories: ultracold atoms, spin-based systems, quantum optics and superconducting circuits; each with their own strengths and weaknesses.
@@ -62,7 +65,18 @@ Quantum dots are made of semiconductor material and are used to contain and mani
     Charge qubit Flux qubit~\cite{Plourde2005, Deppe2007}  Phase qubit
 Transmon\cite{Wallraff2004, Schreier2008}
 
-Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
+* Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
+
+* Different from the previous architectures which rely on naturally isolated microscopic degrees of freedom, and instead use a collective electrodynamic mode of macroscopic electrical elements.
+Gating is no longer an issue, as simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly. 
+Downside is the system is no longer easily isolated.
+
+* Basic features: Ultra-low dissipation (from superconductivity); ultra-low noise (from low temperature); non-linear, non-dissipative elements (from the JJ); 
+
+* ``Degrees of freedom must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states. 
+$\ldots$ this frequency is in the $5-20$ GHz range, thus the operating temp $T$ must be around $20$ mK (recall that $1$ K corresponds to about $20$ GHz).''
+
+$kT \ll \hbar \omega_{01}, \quad \hbar \omega_{01} \ll \Delta$, where $\Delta$ is the energy gap of the superconducting material. \xxx{later we say $\Delta$ is the `tunneling energy'. Check this is equivalent.}
 
 \section{The Phase Qubit}
 
@@ -76,6 +90,13 @@ Superconducting circuits allow electrons to flow with almost no resistance at ve
 For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}\cite{Makhlin2001}.
 
 Josephson Effect etc
+
+* the only non-dissipative, strongly non-linear circuit element available at low temperature.
+
+\begin{figure}[htp]
+\resizebox{0.75\textwidth}{!}{\includestandalone{figures/jjdiagram}}
+\caption[Josephson Junction Schematic]{\label{fig:jjdiagram}Schematic of a Josephson junction constructed with two superconducting thin films of aluminium and an amorphous \ce{AlO_x} tunnel barrier.}
+\end{figure}
 
 \subsection{Formation Process}
 Dumped from MolSim\\
