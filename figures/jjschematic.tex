@@ -17,7 +17,7 @@
 
 \begin{document}
 \begin{tikzpicture}[tdplot_main_coords,fill=white,draw=black,line width=0.2pt]
-\coordinate (F) at (-5,0,0.5); %Focal point
+\coordinate (F) at (-5,0.5,0.5); %Focal point
 
 %Bottom electrode
 \node[coordinate]  (f1) at (0,0,0){};
@@ -38,16 +38,16 @@
 \node[coordinate]  (t2) at (0,0.91,0.32){};
 \node[coordinate]  (t3) at (0,1.02,0){};
 \node[coordinate]  (t4) at (0,3.75,0){};
-\node[coordinate]  (t5) at (0,3.75,0.32){};
+\node[coordinate]  (t5) at (0,3.65,0.32){};
 \node[coordinate]  (t6) at (0,1.22,0.32){};
 \node[coordinate]  (t7) at (0,1.12,0.62){};
-\node[coordinate]  (t8) at (0,0.3,0.62){};
+\node[coordinate]  (t8) at (0,0.4,0.62){};
 
 \filldraw[left color=gray!10, right color=black!70] ($(t1)!\tf!(F)$)--($(t2)!\tf!(F)$)--($(t3)!\tf!(F)$)--($(t4)!\tf!(F)$)--($(t5)!\tf!(F)$)--($(t6)!\tf!(F)$)--($(t7)!\tf!(F)$)--($(t8)!\tf!(F)$)--cycle;
 \filldraw[left color=gray!10, right color=black!70] ($(t8)!\tf!(F)$)--($(t8)!\tb!(F)$)--($(t7)!\tb!(F)$)--($(t6)!\tb!(F)$)--($(t5)!\tb!(F)$)--($(t5)!\tf!(F)$)--($(t6)!\tf!(F)$)--($(t7)!\tf!(F)$)--cycle;
 \draw ($(t6)!\tf!(F)$)--($(t6)!\tb!(F)$);
 \draw ($(t7)!\tf!(F)$)--($(t7)!\tb!(F)$);
-
+\filldraw[fill=black!70] ($(t4)!\tf!(F)$)--($(t4)!\tb!(F)$)--($(t5)!\tb!(F)$)--($(t5)!\tf!(F)$)--cycle;
 %Oxide
 \node[coordinate]  (o1) at (0,0.3,0.31){};
 \node[coordinate]  (o2) at (0,0.905,0.31){};
