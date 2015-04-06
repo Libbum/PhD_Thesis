@@ -20,13 +20,14 @@ The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, wi
 \Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
 \begin{figure}[htp]
 \resizebox{0.5\textwidth}{!}{\includestandalone{figures/bloch}}
-\caption[Bloch Sphere]{\label{fig:bloch}The Bloch Sphere: a geometrical representation of the pure state space of a two-level quantum system in an arbitrary Hilbert space $\hat{e}_{\{1,2,3\}}$.}
+\caption[Bloch Sphere]{\label{fig:bloch}The Bloch Sphere: a geometrical representation of the pure state space of a two-level quantum system in an arbitrary Hilbert space $\hat{e}_{\{1,2,3\}}$. This example shows a pure state $\ket{\psi}$ calculated using \cref{eq:purestate} with $\cramped{\phi=\frac{\pi}{3}}$ and $\cramped{\theta=\frac{2\pi}{9}}$. }
 \end{figure}
 
 The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ is real and non-negative.
 This means the pure state can be represented as
 \begin{equation}
 \ket{\psi} = \cos\left(\theta\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\theta\right) \ket{1},
+\label{eq:purestate}
 \end{equation}
 
 where $\cramped{-\frac{\pi}{2} \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 2 \pi$.
@@ -39,13 +40,17 @@ As these states cannot be described by ket vectors, a density matrix must be def
 
 where $p_x$ is the fraction of each pure state $\psi_x$ represented in the mixture.
 
+* Energy relaxation or state mixing occurs when ``the tip of the Bloch vector diffuses in the latitude direction, i.e. along the are joining the two poles of the sphere to or away from the North pole.'' \xxx{Unsure that this is correct}
+
 \subsection{Decoherence and Dephasing}
 \emph{Section can come from \cite{Makhlin2001, Paladino2014} perhaps.
 Need to introduce decoherence as a major noise source.}
 \xxx{Maybe ask Jan for a good primer, or scan his thesis.}
 
-Quantum computation requires qubits to be strongly inter-coupled by control gates, but at the same time must be completely isolated (decoupled) from the surrounding environment.
+* Quantum computation requires qubits to be strongly inter-coupled by control gates, but at the same time must be completely isolated (decoupled) from the surrounding environment.
 Except of course; when control and I/O is required, and information must flow in and out of the computer.
+
+*
 
 \section{Qubit Architectures}
 Physical qubit implementations can nominally be broken up into four categories: ultracold atoms, spin-based systems, quantum optics and superconducting circuits; each with their own strengths and weaknesses.
@@ -62,21 +67,26 @@ Optical traps use light waves to trap and control particles.
 Quantum dots are made of semiconductor material and are used to contain and manipulate electrons electronic \cite{Chang1974} optical \cite{Dingle1974}. 'Carrier confnement to reduced dimensions were first demonstrated in quantum wells ...qb'
 
 \subsection{Superconducting Circuits}
-    Charge qubit Flux qubit~\cite{Plourde2005, Deppe2007}  Phase qubit
+    Charge qubit~\cite{Makhlin2001,Vion2002} (comes from the cooper pair box)~\cite{Nakamura1999,Bouchiat1998}
 Transmon\cite{Wallraff2004, Schreier2008}
+    Flux qubit~\cite{Mooij1999,VanderWal2000,Chiorescu2003}%~\cite{Plourde2005, Deppe2007}
+    Phase qubit (current-biased junction)
+
 
 * Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
 
 * Different from the previous architectures which rely on naturally isolated microscopic degrees of freedom, and instead use a collective electrodynamic mode of macroscopic electrical elements.
-Gating is no longer an issue, as simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly. 
+Gating is no longer an issue, as simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly.
 Downside is the system is no longer easily isolated.
 
-* Basic features: Ultra-low dissipation (from superconductivity); ultra-low noise (from low temperature); non-linear, non-dissipative elements (from the JJ); 
+* Basic features: Ultra-low dissipation (from superconductivity); ultra-low noise (from low temperature); non-linear, non-dissipative elements (from the JJ);
 
-* ``Degrees of freedom must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states. 
+* ``Degrees of freedom must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
 $\ldots$ this frequency is in the $5-20$ GHz range, thus the operating temp $T$ must be around $20$ mK (recall that $1$ K corresponds to about $20$ GHz).''
 
 $kT \ll \hbar \omega_{01}, \quad \hbar \omega_{01} \ll \Delta$, where $\Delta$ is the energy gap of the superconducting material. \xxx{later we say $\Delta$ is the `tunneling energy'. Check this is equivalent.}
+
+* 6.5 discusses the main differences in non-linearity of the three main SC types.
 
 \section{The Phase Qubit}
 
@@ -97,6 +107,8 @@ Josephson Effect etc
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/jjdiagram}}
 \caption[Josephson Junction Schematic]{\label{fig:jjdiagram}Schematic of a Josephson junction constructed with two superconducting thin films of aluminium and an amorphous \ce{AlO_x} tunnel barrier.}
 \end{figure}
+
+* 
 
 \subsection{Formation Process}
 Dumped from MolSim\\
