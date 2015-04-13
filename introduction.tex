@@ -55,6 +55,8 @@ Physical qubit implementations can nominally be broken up into four categories: 
 
 The following is not an exhaustive list or discussion of qubit conceptions, it is presented to the reader as an overview of the efforts in the wider quantum information science community before focusing on specific devices relevant to this thesis.
 
+A comprehensive roadmap containing many of the advances in quantum computing (unfortunately only up to 2004) can be found via \onlinecite{qist2004}.
+
 \subsection{Ion Traps}
 Ion traps use optical or magnetic fields (or a combination of both) to trap ions.
 Optical traps use light waves to trap and control particles.
@@ -80,7 +82,11 @@ On-chip wiring and waveguides govern fast electrical and magnetic control which 
 These unique properties give rise to an electron spin lifetime longer than that of a trapped ion (at low temperatures)~\cite{Jarmola2012} and coherence times larger than a second at room temperature if nearby nuclear spins are utilised~\cite{Maurer2012}.
 
 \subsection{Quantum Dots}
-Quantum dots are made of semiconductor material and are used to contain and manipulate electrons electronic \cite{Chang1974} optical \cite{Dingle1974}. 'Carrier confnement to reduced dimensions were first demonstrated in quantum wells ...qb'
+Quantum dots are made of semiconductor material and are used to contain and manipulate electrons in microcavity modes, which in turn behave as an \textit{artificial} atom.
+Manipulation can come about via electronic~\cite{Chang1974} or optical~\cite{Dingle1974} methods, and the resultant coherent system states can be used as a qubit.
+
+Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times. 
+Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}.
 
 \subsection{Superconducting Circuits}
     Charge qubit~\cite{Makhlin2001,Vion2002} (comes from the cooper pair box)~\cite{Nakamura1999,Bouchiat1998}
@@ -90,7 +96,6 @@ Quantum dots are made of semiconductor material and are used to contain and mani
     Phase qubit (current-biased junction)
 
 ``On the other hand, the technology needs to be scalable. Solid-state systems have a clear advantage in this regard, offering the opportunity to adapt nanofabrication techniques developed in the semiconductor industry to build integrated quantum devices.''
-
 
 * Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
 
