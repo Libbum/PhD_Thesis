@@ -86,37 +86,33 @@ Quantum dots are made of semiconductor material and are used to contain and mani
 Manipulation can come about via electronic~\cite{Chang1974} or optical~\cite{Dingle1974} methods, and the resultant coherent system states can be used as a qubit.
 
 Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times. 
-Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}.
+Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}, although this has proved difficult in practice.
 
 \subsection{Superconducting Circuits}
-    Charge qubit~\cite{Makhlin2001,Vion2002} (comes from the cooper pair box)~\cite{Nakamura1999,Bouchiat1998}
-    Transmon\cite{Wallraff2004, Schreier2008} (essentially an improved charge qubit)
-    Flux qubit~\cite{Mooij1999,VanderWal2000,Chiorescu2003}%~\cite{Plourde2005, Deppe2007}
-    (comes from RF-SQUID)~\cite{Barone1982}
-    Phase qubit (current-biased junction)
 
-``On the other hand, the technology needs to be scalable. Solid-state systems have a clear advantage in this regard, offering the opportunity to adapt nanofabrication techniques developed in the semiconductor industry to build integrated quantum devices.''
+Microscopic degrees of freedom (\eg\ spin) of ions, crystal defects or artificial atoms are well isolated form the environment and therefore operate as good qubits.
+However, inter-qubit coupling in these systems becomes complex at scale and fast gating operations required for computation is a task that for many architectures introduces decoherence.
+Hence while the qubit itself is isolated, the quantum computer suffers as a whole.
 
-* Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
+The superconducting circuit architecture is different from these systems, as it instead uses a a collective electrodynamic mode of macroscopic electrical elements.
+Therefore, gating is no longer an issue: simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly.
+Adaptation of nano-fabrication techniques developed in the semiconductor industry to build scalable integrated quantum devices once operational designs are developed.
+A tradeoff exists though, as the system is no longer easily isolated from the surrounding environment.
 
-* Different from the previous architectures which rely on naturally isolated microscopic degrees of freedom, and instead use a collective electrodynamic mode of macroscopic electrical elements.
-Gating is no longer an issue, as simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly.
-Downside is the system is no longer easily isolated.
+The basic features of a superconducting qubit circuit are ultra-low dissipation (from superconductivity), ultra-low noise (from low temperature) and non-linear, non-dissipative elements (the Josephson junction).
 
-* Basic features: Ultra-low dissipation (from superconductivity); ultra-low noise (from low temperature); non-linear, non-dissipative elements (from the JJ);
+Superconductivity allows electron flow with almost no resistance.
+Type I superconductors are primarily used in circuit construction due to their simplicity compared to Type II (aluminium is a popular choice), which only operate in the superconducting regime at low temperature.
+Cooling the system to this level is advantageous from a noise argument as well: qubits must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
+This frequency is nominally in the $5\!-\!20$ GHz range, thus the operating temperature $T$ must be around $20$ mK or lower.
 
-* Superconducting circuits allow electrons to flow with almost no resistance at very low temperatures.
 
-* Different from the previous architectures which rely on naturally isolated microscopic degrees of freedom, and instead use a collective electrodynamic mode of macroscopic electrical elements.
-Gating is no longer an issue, as simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly.
-Downside is the system is no longer easily isolated.
+* Charge qubit~\cite{Makhlin2001,Vion2002} (comes from the cooper pair box)~\cite{Nakamura1999,Bouchiat1998}\\
+* Transmon\cite{Wallraff2004, Schreier2008} (essentially an improved charge qubit)\\
+* Flux qubit~\cite{Mooij1999,VanderWal2000,Chiorescu2003}%~\cite{Plourde2005, Deppe2007}
+    (comes from RF-SQUID)~\cite{Barone1982}\\
+* Phase qubit (current-biased junction)
 
-* Basic features: Ultra-low dissipation (from superconductivity); ultra-low noise (from low temperature); non-linear, non-dissipative elements (from the JJ);
-
-* ``Degrees of freedom must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
-$\ldots$ this frequency is in the $5-20$ GHz range, thus the operating temp $T$ must be around $20$ mK (recall that $1$ K corresponds to about $20$ GHz).''
-
-$kT \ll \hbar \omega_{01}, \quad \hbar \omega_{01} \ll \Delta$, where $\Delta$ is the energy gap of the superconducting material. \xxx{later we say $\Delta$ is the `tunneling energy'. Check this is equivalent.}
 
 \section{The Phase Qubit}
 
