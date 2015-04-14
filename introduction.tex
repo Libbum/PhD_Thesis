@@ -4,7 +4,8 @@
 \chapterprecis{He writes some words. What happens next will flaw you.}
 
 \thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
-Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end. However, the use of quantum bits (qubits) for computation is dependent on the ability to operate them in an essentially isolated environment, \emph{i.e.}\ the system must operate over coherent states.
+Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end.\nomdef{AJJ}{JJ}{Josephson junction} 
+However, the use of quantum bits (qubits) for computation is dependent on the ability to operate them in an essentially isolated environment, \ie the system must operate over coherent states.
 The phenomenon of decoherence refers to the instability of a quantum state of a system when it interacts with the surrounding environment.
 In general, the stronger the interaction with the environment, the quicker the quantum state decoheres.
 Removal or control of these defects is required before quantum computers using superconducting circuit architecture can be realised.
@@ -58,9 +59,6 @@ The following is not an exhaustive list or discussion of qubit conceptions, it i
 A comprehensive roadmap containing many of the advances in quantum computing (unfortunately only up to 2004) can be found via \onlinecite{qist2004}.
 
 \subsection{Ion Traps}
-Ion traps use optical or magnetic fields (or a combination of both) to trap ions.
-Optical traps use light waves to trap and control particles.
-
 Electromagnetic fields, light waves or a combination of both can be used to suspend and isolate charged atomic particles (ions) in free space~\cite{Paul1990}.
 Ion trapped qubits~\cite{Cirac1995} exploit stable electronic or spin states of the ion to store information, which in turn can be processed and transmitted through the collective quantised motion (via the Coulomb force) of other ions in the trap.
 
@@ -75,7 +73,7 @@ Fundamental gating operations such as the C-NOT have also been demonstrated with
 The nitrogen vacancy (NV$^-$) center~\cite{Gruber1997} is arguably the most studied crystalline defect in existence.
 Application areas include ultrasensitive sensing of electric, magnetic and strain fields; biological imaging and sensing; and a room temperature, solid state qubit architecture.
 
-Exhibiting atom-like properties: long-lived spin quantum states and well-defined optical transitions whilst encased in a robust solid-state device.
+The center exhibits atom-like properties: long-lived spin quantum states and well-defined optical transitions, whilst encased in a robust solid-state device.
 Both its bound electrons and nearby nuclear spins can be addressed using optical transitions much like the atomic states in ion traps.  
 On-chip wiring and waveguides govern fast electrical and magnetic control which exploits the solid state nature of the diamond lattice.
 
@@ -90,31 +88,35 @@ Even early schemes hinted at the possibility of coupling more than 100 qubits us
 
 \subsection{Superconducting Circuits}
 
-Microscopic degrees of freedom (\eg\ spin) of ions, crystal defects or artificial atoms are well isolated form the environment and therefore operate as good qubits.
+Microscopic degrees of freedom (\eg spin) of ions, crystal defects or artificial atoms are well isolated from the environment and therefore operate as good qubits.
 However, inter-qubit coupling in these systems becomes complex at scale and fast gating operations required for computation is a task that for many architectures introduces decoherence.
 Hence while the qubit itself is isolated, the quantum computer suffers as a whole.
 
-The superconducting circuit architecture is different from these systems, as it instead uses a a collective electrodynamic mode of macroscopic electrical elements.
-Therefore, gating is no longer an issue: simple electrical elements (capacitors, inductors etc) can be coupled to the qubits directly.
-Adaptation of nano-fabrication techniques developed in the semiconductor industry to build scalable integrated quantum devices once operational designs are developed.
-A tradeoff exists though, as the system is no longer easily isolated from the surrounding environment.
+The superconducting circuit architecture is different from these systems, as it instead uses a collective electrodynamic mode of macroscopic electrical elements.
+Therefore, gating is no longer an issue: simple electrical elements (capacitors, inductors \etc) can be coupled to the qubits directly.
+Adaptation of nano-fabrication techniques developed in the semiconductor industry to build scalable integrated quantum devices once operational designs are developed is therefore possible.
+A tradeoff exists though, as the qubits are no longer easily isolated from the surrounding environment.
 
-The basic features of a superconducting qubit circuit are ultra-low dissipation (from superconductivity), ultra-low noise (from low temperature) and non-linear, non-dissipative elements (the Josephson junction).
+The basic features of a superconducting qubit circuit are ultra-low dissipation (from superconductivity), ultra-low noise (from low temperature) and non-linear, non-dissipative elements (specifically in the form of the Josephson junction).
 
 Superconductivity allows electron flow with almost no resistance.
-Type I superconductors are primarily used in circuit construction due to their simplicity compared to Type II (aluminium is a popular choice), which only operate in the superconducting regime at low temperature.
+Type I superconductors are primarily used in circuit construction due to their simplicity compared to their Type II counterparts (aluminium is a popular choice), which only operate in the superconducting regime at low temperature.
 Cooling the system to this level is advantageous from a noise argument as well: qubits must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
 This frequency is nominally in the $5\!-\!20$ GHz range, thus the operating temperature $T$ must be around $20$ mK or lower.
 
+There are three basic types of superconducting qubits which form around the Josephson junction. 
+Each design is an attempt to minimise the detrimental effect of a `residual offset charge', that manifests as a consequence of a pre-existing charge on the capacitor at the time it is wired to the inductor (see \cref{fig:qubit} below) in order to fabricate the qubit.
 
-* Charge qubit~\cite{Makhlin2001,Vion2002} (comes from the cooper pair box)~\cite{Nakamura1999,Bouchiat1998}\\
-* Transmon\cite{Wallraff2004, Schreier2008} (essentially an improved charge qubit)\\
-* Flux qubit~\cite{Mooij1999,VanderWal2000,Chiorescu2003}%~\cite{Plourde2005, Deppe2007}
-    (comes from RF-SQUID)~\cite{Barone1982}\\
-* Phase qubit (current-biased junction)
+The simplest idea to mitigate this issue is the Cooper pair box~\cite{Nakamura1999,Bouchiat1998}, which biases the JJ with a voltage in series with a gate capacitor.
+Circuits derived from this method are commonly called charge qubits~\cite{Makhlin2001,Vion2002} although it's important to note that the name does not imply information is encoded in the charge of the system, but instead refers to the controlling variable of the system.
+The transmon~\cite{Wallraff2004, Schreier2008} is a relatively new qubit design that stems from the original charge qubit ideas, but shrinks the cooper pair box size in an attempt to squelch decoherence sources. 
 
+The second circuit type (the RF-SQUID~\cite{Barone1982}) can be considered the dual of the Cooper pair box, employing a superconducting transformer in place of the aforementioned gate capacitor.
+Designs utilizing this method are referred to as Flux qubits~\cite{Mooij1999,VanderWal2000,Chiorescu2003}, again this is because a controllable external flux field is imposed on a superconducting loop across the JJ rather than the idea that information is stored in the magnetic moment of the qubit.
 
 \section{The Phase Qubit}
+
+* Phase qubit (current-biased junction)
 
 \begin{figure}[htp]
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
@@ -261,8 +263,8 @@ Superconducting qubits using tunnel junctions such as the Josephson junction in 
 A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
 \nomdef{ATLS}{TLS}{Two level system}
 Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
-Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{DeSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the Josephson junction (JJ) transparency~\cite{Ku2005}.
-\nomdef{AJJ}{JJ}{Josephson junction}
+Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{DeSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the JJ transparency~\cite{Ku2005}.
+
 Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results - rendering them presently indistinguishable.
 It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
 Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
