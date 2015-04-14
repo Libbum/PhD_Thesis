@@ -10,6 +10,7 @@ XELATEX := xelatex --shell-escape --extra-mem-top=10000000 --save-size=80000
 .PHONY: all clear rebuild clean distclean
 
 all: xelatex
+	@-rm -f *.dat
 
 pdflatex: $(PTARGETS)
 
