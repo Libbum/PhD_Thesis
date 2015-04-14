@@ -4,7 +4,7 @@
 \chapterprecis{He writes some words. What happens next will flaw you.}
 
 \thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
-Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end.\nomdef{AJJ}{JJ}{Josephson junction} 
+Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end.\nomdef{AJJ}{JJ}{Josephson junction}
 However, the use of quantum bits (qubits) for computation is dependent on the ability to operate them in an essentially isolated environment, \ie the system must operate over coherent states.
 The phenomenon of decoherence refers to the instability of a quantum state of a system when it interacts with the surrounding environment.
 In general, the stronger the interaction with the environment, the quicker the quantum state decoheres.
@@ -65,7 +65,7 @@ Ion trapped qubits~\cite{Cirac1995} exploit stable electronic or spin states of 
 Single qubit operations can be invoked by spin-phonon coupling (for example) induced by a laser pulse.
 Multiple entangled qubits can be coupled through internal states and external motion states in a similar fashion.
 
-Ion traps show significant promise for the future of quantum information processing, as architectures with many coupled qubits are already experimentally accessible. 
+Ion traps show significant promise for the future of quantum information processing, as architectures with many coupled qubits are already experimentally accessible.
 Fundamental gating operations such as the C-NOT have also been demonstrated with high fidelity.
 
 \subsection{Nitrogen-Vacancy Center of Diamond}
@@ -74,7 +74,7 @@ The nitrogen vacancy (NV$^-$) center~\cite{Gruber1997} is arguably the most stud
 Application areas include ultrasensitive sensing of electric, magnetic and strain fields; biological imaging and sensing; and a room temperature, solid state qubit architecture.
 
 The center exhibits atom-like properties: long-lived spin quantum states and well-defined optical transitions, whilst encased in a robust solid-state device.
-Both its bound electrons and nearby nuclear spins can be addressed using optical transitions much like the atomic states in ion traps.  
+Both its bound electrons and nearby nuclear spins can be addressed using optical transitions much like the atomic states in ion traps.
 On-chip wiring and waveguides govern fast electrical and magnetic control which exploits the solid state nature of the diamond lattice.
 
 These unique properties give rise to an electron spin lifetime longer than that of a trapped ion (at low temperatures)~\cite{Jarmola2012} and coherence times larger than a second at room temperature if nearby nuclear spins are utilised~\cite{Maurer2012}.
@@ -83,7 +83,7 @@ These unique properties give rise to an electron spin lifetime longer than that 
 Quantum dots are made of semiconductor material and are used to contain and manipulate electrons in microcavity modes, which in turn behave as an \textit{artificial} atom.
 Manipulation can come about via electronic~\cite{Chang1974} or optical~\cite{Dingle1974} methods, and the resultant coherent system states can be used as a qubit.
 
-Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times. 
+Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times.
 Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}, although this has proved difficult in practice.
 
 \subsection{Superconducting Circuits}
@@ -104,32 +104,40 @@ Type I superconductors are primarily used in circuit construction due to their s
 Cooling the system to this level is advantageous from a noise argument as well: qubits must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
 This frequency is nominally in the $5\!-\!20$ GHz range, thus the operating temperature $T$ must be around $20$ mK or lower.
 
-There are three basic types of superconducting qubits which form around the Josephson junction. 
+There are three basic types of superconducting qubits which form around the Josephson junction.
 Each design is an attempt to minimise the detrimental effect of a `residual offset charge', that manifests as a consequence of a pre-existing charge on the capacitor at the time it is wired to the inductor (see \cref{fig:qubit} below) in order to fabricate the qubit.
 
 The simplest idea to mitigate this issue is the Cooper pair box~\cite{Nakamura1999,Bouchiat1998}, which biases the JJ with a voltage in series with a gate capacitor.
 Circuits derived from this method are commonly called charge qubits~\cite{Makhlin2001,Vion2002} although it's important to note that the name does not imply information is encoded in the charge of the system, but instead refers to the controlling variable of the system.
-The transmon~\cite{Wallraff2004, Schreier2008} is a relatively new qubit design that stems from the original charge qubit ideas, but shrinks the cooper pair box size in an attempt to squelch decoherence sources. 
+The transmon~\cite{Wallraff2004, Schreier2008} is a relatively new qubit design that stems from the original charge qubit ideas, but shrinks the cooper pair box size in an attempt to squelch decoherence sources.
 
 The second circuit type (the RF-SQUID~\cite{Barone1982}) can be considered the dual of the Cooper pair box, employing a superconducting transformer in place of the aforementioned gate capacitor.
 Designs utilizing this method are referred to as Flux qubits~\cite{Mooij1999,VanderWal2000,Chiorescu2003}, again this is because a controllable external flux field is imposed on a superconducting loop across the JJ rather than the idea that information is stored in the magnetic moment of the qubit.
 
-\section{The Phase Qubit}
-
-* Phase qubit (current-biased junction)
+Another method to minimise the effect of offset charge is to bias the JJ with a fixed DC current source.
+Implementation of this design is referred to as the Phase qubit~\cite{Clarke1988,Martinis2002}, a circuit diagram of which is depicted in \cref{fig:qubit}.
 
 \begin{figure}[htp]
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/qubit}}
-\caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit~\cite{Clarke1988,Martinis2002}. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
+\caption[Phase Qubit Circuit Diagram]{\label{fig:qubit}Circuit diagram of a phase qubit and readout components. This schematic is representational of current designs, based on improvements made in \onlinecite{Simmonds2004}.}
 \end{figure}
 
+This design has a highly capable readout mechanism and multi-qubit scaling arrangements are promising.
+Thus the possibility of a functioning quantum computer using it is encouraging with only one major caveat: the system is mired with decoherence causing defects.
+In fact, much of the superconducting qubit community has transitioned from active phase qubit experimentation to the transmon because of this phenomena.
+
+On the other hand, this design is very useful for studying these decoherence sources (see \cref{sec:probes} below) and therefore the most relevant architecture to study throughout this thesis. 
 
 \section{Josephson Junctions}
-For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}\cite{Makhlin2001}.
+\Cref{fig:qubit} depicts an LC circuit in parallel with a barrier component  \resizebox{!}{0.6em}{\includestandalone{figures/jjcomponent}}.
+This symbol represents the Josephson junction: the only non-dissipative, strongly non-linear circuit element available at low temperature.
 
-Josephson Effect etc
+A normal LC circuit is a harmonic oscillator as a result of the parabolic potential, meaning transitions between neighboring excited states are degenerate. 
+If we wish to use the circuit as a qubit, the transition between state $\ket{0}$ and $\ket{1}$ must be sufficiently different to the higher-lying eigenstates of the system.
 
-* the only non-dissipative, strongly non-linear circuit element available at low temperature.
+TODO: Josephson Effect etc
+
+For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}~\cite{Makhlin2001}.
 
 \begin{figure}[htp]
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/jjdiagram}}
@@ -185,7 +193,6 @@ Phenomenological descriptions only
 
 TLSs, differences btwn 1/f and strongly coupled
 
-Qubits as Probes of TLSs
 
 
 
@@ -195,11 +202,6 @@ Qubits as Probes of TLSs
 Look at \cite{Enss2005} in depth here.
 
 
-
-\begin{figure}[htp]
-\includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
-\caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
-\end{figure}
 
 %Dumped from potential
 The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
@@ -217,13 +219,17 @@ A variety of phenomenological models exist~\cite{Martinis2005, DeSousa2009, Send
 In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process.
 
 
-\subsection{Qubits as Probes of TLSs}
+\subsection{Qubits as Probes of TLSs}\label{sec:probes}
 
+\begin{figure}[htp]
+\includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
+\caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
+\end{figure}
 
 \section{Historical Defect Research}
 
 
-Condensed matter defects and thier properties have been an active area of research for many decades.
+Condensed matter defects and their properties have been an active area of research for many decades.
 When considering the identification of a noise source within a system constructed by a material as well studied as aluminium oxide, it would be amiss not to attempt to look at this research body in light of the recent findings and advances of the strongly coupled TLS experiments.
 
 
