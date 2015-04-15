@@ -36,20 +36,45 @@ where $\cramped{-\frac{\pi}{2} \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 
 The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states.
 As these states cannot be described by ket vectors, a density matrix must be defined
 \begin{equation}
-\rho = \sum_x p_x \ket{\psi_x} \bra{\psi_x},
+\rho = \sum_k p_k \ket{\psi_k} \bra{\psi_k},
 \end{equation}
 
-where $p_x$ is the fraction of each pure state $\psi_x$ represented in the mixture.
+where $p_k$ is the fraction of each pure state $\psi_k$ represented in the mixture.
 
-* Energy relaxation or state mixing occurs when ``the tip of the Bloch vector diffuses in the latitude direction, i.e. along the are joining the two poles of the sphere to or away from the North pole.'' \xxx{Unsure that this is correct}
+As a qubit state evolves through time, the equation of motion can be written as
+\begin{equation}
+i\hbar \frac{\mathrm{d}\rho}{\mathrm{d}t} = \com{H}{\rho}
+\label{eq:tevqubit}
+\end{equation}
+which evolves entirely due to the dynamics of a Hamiltonian $H$,
+provided the qubit is completely isolated from any environmental perturbations.
 
-\subsection{Decoherence and Dephasing}
-\emph{Section can come from \cite{Makhlin2001, Paladino2014} perhaps.
-Need to introduce decoherence as a major noise source.}
-\xxx{Maybe ask Jan for a good primer, or scan his thesis.}
+\subsection{Interaction With the Environment}
+Environmental noise sources are seldom completely removed from qubit operations and in practically all current designs, interaction with this uncontrolled, perturbative source is unavoidable.
+Noise being an umbrella term for thermal radiation, collisions, lattice vibrations or any other form of energy dissipation phenomena which causes the time evolution of the qubit to become irreversible: taking away information about the state being represented. 
+This (primarily) decreases the quantum coherence of the system and measurements in turn deteriorate.
 
-Quantum computation requires qubits to be strongly inter-coupled by control gates, but at the same time must be completely isolated (decoupled) from the surrounding environment.
-Except of course; when control and I/O is required, and information must flow in and out of the computer.
+Qubit dynamics can therefore no longer be considered as a unitary evolution described by the von Neumann equation \cref{eq:tevqubit}, but instead as an open quantum system.
+A master equation approach is therefore required to further describe qubit time evolution as it interacts with the environment. 
+For simplicity, we assume that environment perturbations to our qubit come from an arbitrarily large bath of uncorrelated noise sources with a uniform frequency spectrum.
+Also, interactions between the system and environment are brief with respect to ordinary system dynamics determined by the hamiltonian $H$.
+These conditions describe the most general type of Markovian and time homogeneous master equation, the Lindblad form~\cite{Lindblad1976} 
+\begin{equation}
+\frac{\mathrm{d}\rho}{\mathrm{d}t} =-\frac{i}{\hbar}\com{H}{\rho}+\sum_{k} \Gamma_k\left(L_k\rho L_k^\dagger-\frac{1}{2}\left\{L_k^\dagger L_k, \rho\right\}\right)
+\end{equation}
+where the Lindblad operators $L_k$ and the rates $\Gamma_k$ determine
+how the environment interacts with the system.
+
+It can be shown that a qubit damped via environment interaction looses coherence on two time scales ~\cite{Stenholm2005}:
+\begin{equation}
+\frac{1}{T_1} = \Gamma_+ + \Gamma_-, \qquad \frac{1}{T_2} = \gamma + \frac{\Gamma_+ + \Gamma_-}{2}, \qquad \frac{\Gamma_+}{\Gamma_-} = \exp\left(-\frac{\hbar \omega}{k_B T}\right).
+\end{equation}
+The times $T_1$ and $T_2$ are called the \textit{energy (longitudinal)} and \textit{phase (transverse)} relaxation times respectively.
+$T_2$ has an additional contribution $\gamma$ which is a contribution due to random movement of the relative phase caused by perturbations of the environment.
+
+These relaxation processes are the ultimate optical to the realisation of a working qubit architecture.
+Level populations tend to be more robust than the phase (which is easily disturbed by the environment), so generally $T_2 < T_1$.
+This time equates to a fundamental limit in most experimental systems and is often called the \textit{decoherence} time.
 
 \section{Qubit Architectures}
 Physical qubit implementations can nominally be broken up into four categories: ultracold atoms, spin-based systems, quantum optics and superconducting circuits; each with their own strengths and weaknesses.
@@ -70,7 +95,7 @@ Fundamental gating operations such as the C-NOT have also been demonstrated with
 
 \subsection{Nitrogen-Vacancy Center of Diamond}
 
-The nitrogen vacancy (NV$^-$) center~\cite{Gruber1997} is arguably the most studied crystalline defect in existence.
+The nitrogen vacancy (NV$^-$) center~\cite{Gruber1997} is seemingly the most studied crystalline defect in existence.
 Application areas include ultrasensitive sensing of electric, magnetic and strain fields; biological imaging and sensing; and a room temperature, solid state qubit architecture.
 
 The center exhibits atom-like properties: long-lived spin quantum states and well-defined optical transitions, whilst encased in a robust solid-state device.
@@ -101,7 +126,7 @@ The basic features of a superconducting qubit circuit are ultra-low dissipation 
 
 Superconductivity allows electron flow with almost no resistance.
 Type I superconductors are primarily used in circuit construction due to their simplicity compared to their Type II counterparts (aluminium is a popular choice), which only operate in the superconducting regime at low temperature.
-Cooling the system to this level is advantageous from a noise argument as well: qubits must be cooled to temperatures where the typical energy $kT$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
+Cooling the system to this level is advantageous from a noise argument as well: qubits must be cooled to temperatures where the typical energy $k_B T$ of thermal fluctuations is much less that the energy quantum $\hbar \omega_{01}$ associated with the transition between the $\ket{0}$ and $\ket{1}$ states.
 This frequency is nominally in the $5\!-\!20$ GHz range, thus the operating temperature $T$ must be around $20$ mK or lower.
 
 There are three basic types of superconducting qubits which form around the Josephson junction.
@@ -126,13 +151,14 @@ This design has a highly capable readout mechanism and multi-qubit scaling arran
 Thus the possibility of a functioning quantum computer using it is encouraging with only one major caveat: the system is mired with decoherence causing defects.
 In fact, much of the superconducting qubit community has transitioned from active phase qubit experimentation to the transmon because of this phenomena.
 
-On the other hand, this design is very useful for studying these decoherence sources (see \cref{sec:probes} below) and therefore the most relevant architecture to study throughout this thesis. 
+On the other hand, this design is very useful for studying these decoherence sources (see \cref{sec:probes} below) and therefore the most relevant architecture to study throughout this thesis.
 
 \section{Josephson Junctions}
 \Cref{fig:qubit} depicts an LC circuit in parallel with a barrier component  \resizebox{!}{0.6em}{\includestandalone{figures/jjcomponent}}.
+\nomdef{ALC}{LC}{Inductor-Capacititor circuit, generates a harmonic oscillator}
 This symbol represents the Josephson junction: the only non-dissipative, strongly non-linear circuit element available at low temperature.
 
-A normal LC circuit is a harmonic oscillator as a result of the parabolic potential, meaning transitions between neighboring excited states are degenerate. 
+A normal LC circuit is a harmonic oscillator as a result of the parabolic potential, meaning transitions between neighboring excited states are degenerate.
 If we wish to use the circuit as a qubit, the transition between state $\ket{0}$ and $\ket{1}$ must be sufficiently different to the higher-lying eigenstates of the system.
 
 TODO: Josephson Effect etc
@@ -188,12 +214,21 @@ It is therefore this interaction which needs to be described most precisely in o
 
 
 
-\section{Noise Sources and Phenomenological Theories}
+\section[Noise and Phenomenological Theories]{Noise Sources and Phenomenological Theories}
 Phenomenological descriptions only
 
 TLSs, differences btwn 1/f and strongly coupled
 
+\subsection{NOTES ON DECOHERENCE}
+Standard open quantum systems theory:  $1/f$ noise because TLS are considered to be an ensemble, causing background fluctuations. (adds additional dephasing mechanism $\gamma$ in $T_2$)
 
+
+Strongly coupled TLSs. Cannot be considered as a simple Lindbladian decoherence channel,
+because TLS is coherent and coupled more strongly to the qubit than other processes.
+Time scales associated with TLS-Qbit coupling ($S_{max}$) is shorter than all other decoherence time scales.
+
+Therefore we have to consider the TLS as its own quantum system `in isolation'.
+This thesis asks questions about the properties of the TLS derived from the material properties of the JJ it resides in.
 
 
 
