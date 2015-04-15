@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz-3dplot}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\tdplotsetmaincoords{61}{21} %21,16
+\newcommand{\ket}[1]{\left\lvert #1 \right\rangle}
+
+\begin{document}
+\begin{tikzpicture}[level/.style={thick}]
+    \begin{scope}[scale=0.3,xshift=13.25cm,yshift=17cm]
+        \pgftext{\includegraphics{line162116.png}};
+    \end{scope}
+
+    \begin{scope} [yshift=3.5cm,xshift=-0.4cm]
+        \node (0,0) {\Large $\ket{0}$};
+    \end{scope}
+    \begin{scope} [yshift=3.5cm,xshift=2.6cm]
+        \node (0,0) {\Large $\ket{1}$};
+    \end{scope}
+    \begin{scope} [yshift=3.5cm,xshift=5.6cm]
+        \node (0,0) {\Large $\ket{2}$};
+    \end{scope}
+    \begin{scope} [yshift=3.5cm,xshift=8.6cm]
+        \node (0,0) {\Large $\ket{3}$};
+    \end{scope}
+
+    \begin{scope}[tdplot_main_coords, scale=1.5,yshift=0.5cm,xshift=-0.2cm]
+        \draw[-stealth] (0,0,0) -- (1,0,0) node[below] {x};
+        \draw[-stealth] (0,0,0) -- (0,1,0) node[right] {y};
+        \draw[-stealth] (0,0,0) -- (0,0,1) node[left] {z};
+    \end{scope}
+
+    \begin{scope}[yscale=0.5,xshift=3.25cm]
+        \draw[level] (3,0) node[above=0.1em, right] {$E_{01} = 36.37$ kHz} -- (0,0) node[below=0.4em, left] {$E_{0}$};
+        \draw[level] (3,0.2) node[above=2.3em, right] {$E_{12} = 23.65$ THz} -- (0,0.2) node[above=0.4em, left] {$E_{1}$};
+        \draw[level] (3,3.3) node[above=0.1em, right] {$E_{23} = 6.53$ kHz} -- (0,3.3) node[below=0.4em, left] {$E_{2}$};
+        \draw[level] (3,3.5) -- (0,3.5) node[above=0.4em, left] {$E_{3}$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{document} 
