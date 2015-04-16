@@ -111,8 +111,7 @@ This system exhibits TLS behaviour, with $E_{01} = 40.63$ MHz, and a dipole stre
 The leftmost axis of \cref{fig:atypey} shows a \lin{2D} projection of the first excited state, illustrating no major differences in the response of the \lin{3D} and \lin{2+1D} models.
 
 \begin{figure}[tbh]
-  \centering
-  %\includegraphics[width=\columnwidth]{atypey.pdf}
+  \resizebox{\textwidth}{!}{\includestandalone{figures/atypey}}
   \caption{\label{fig:atypey}Wavefunctions of an A type defect with confinement $\abs{X} = 1.53, \abs{Y} = 1.97, \abs{Z} = 1.95$ \AA\ which yields dominant dipole in the $y$ direction with a strength of $0.26 \; e$\AA. Leftmost axis shows an $xy$ projection of the first excited state to compare with \lin{2+1D} results in \onlinecite{DuBois2015}.}
 \end{figure}
 
@@ -121,10 +120,8 @@ Moving $\abs{Y}$ from $1.97$ to $1.9$ \AA\ (for example) crosses a bifurcation i
 As $\abs{Z}$ is now the least confining pair, the dominant dipole direction flips to $z$ as shown in \cref{fig:atypez}.
 
 \begin{figure}[htb]
-  \centering
- % \includegraphics[width=\columnwidth]{atypez.pdf}
+  \resizebox{\textwidth}{!}{\includestandalone{figures/atypez}}
   \caption{\label{fig:atypez}Wavefunctions of an A type defect with confinement $\abs{X} = 1.53, \abs{Y} = 1.9, \abs{Z} = 1.95$ \AA\ which yields dominant dipole in the $z$ direction with a strength of $0.21 \; e$\AA. Leftmost axis shows an $xz$ projection of the first excited state to compare with \lin{2+1D} results in \onlinecite{DuBois2015}.}
-  %TODO: Maybe merge this and atypey to allow two figures in corundum defect section (style only allows 8 figures)
 \end{figure}
 
 Ultimately this does not add any complexity to the model: minimal confinement in $y$ generates an A type defect with a dipole in $y$, perpendicular to $x$; minimal confinement in $z$ generates an A type defect with a dipole in $z$, perpendicular to $x$.
@@ -139,7 +136,6 @@ Additionally, as with B type and any other possible TLS defect, both A type alig
 Assuming that this model is correct, removing an oxygen atom from bulk aluminium oxide and performing a calculation should yield a localised, harmonic wavefunction positioned at the location where the oxygen was removed. \Cref{fig:clustpot} shows the potential seen by such a location.
 
 \begin{figure}[htb]
-        \centering
 %\includegraphics[width=\columnwidth]{clusterpot}
 \caption{\label{fig:clustpot}Energy barrier seen by an oxygen in an \ce{Al_2O_3} 3x3x1 supercell}
 \end{figure}
