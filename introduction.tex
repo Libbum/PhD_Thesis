@@ -49,7 +49,8 @@ i\hbar \frac{\mathrm{d}\rho}{\mathrm{d}t} = \com{H}{\rho}
 which evolves entirely due to the dynamics of a Hamiltonian $H$,
 provided the qubit is completely isolated from any environmental perturbations.
 
-\subsection{Interaction With the Environment}
+\subsection{Interaction With the Environment}\label{sec:envint}
+
 Environmental noise sources are seldom completely removed from qubit operations and in practically all current designs, interaction with this uncontrolled, perturbative source is unavoidable.
 Noise being an umbrella term for thermal radiation, collisions, lattice vibrations or any other form of energy dissipation phenomena which causes the time evolution of the qubit to become irreversible: taking away information about the state being represented.
 This (primarily) decreases the quantum coherence of the system and measurements in turn deteriorate.
@@ -185,10 +186,10 @@ It has more recently been shown that junction fabrication can be performed witho
 Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
 
 
-\section[Noise and Phenomenological Theories]{Noise Sources and Phenomenological Theories}
-Phenomenological descriptions only
+\section{Investigating Decoherence Sources}
 
-TLSs, differences btwn 1/f and strongly coupled
+Essentially a $1/f$ \cite{Dutta1981} discussion, tying back to \cref{sec:envint}.
+
 
 \subsection{NOTES ON DECOHERENCE}
 Standard open quantum systems theory:  $1/f$ noise because TLS are considered to be an ensemble, causing background fluctuations. (adds additional dephasing mechanism $\gamma$ in $T_2$)
@@ -203,20 +204,8 @@ This thesis asks questions about the properties of the TLS derived from the mate
 
 
 
-
-\section{Two Level Systems}
+\section{Strongly Coupled Two Level Systems}
 Look at \cite{Enss2005} in depth here.
-
-
-
-%Dumped from potential
-The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\cite{Cole2010,Shalibo2010}.
-Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
-
-...\\
 
 
 One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}.
@@ -225,34 +214,62 @@ A variety of phenomenological models exist~\cite{Martinis2005, DeSousa2009, Send
 In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process.
 
 
+Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Anderson1972}.
+Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits~\cite{Dutta1981, Shnirman2005, Martinis2005}.
+
+
+A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
+\nomdef{ATLS}{TLS}{Two level system}
+Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
+
+
 \subsection{Qubits as Probes of TLSs}\label{sec:probes}
+
+
+Developments in controllable qubit architecture (charge, flux and phase) has enabled the study of so-called `strongly coupled defects'~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow coherent oscillations between the qubit and TLS.
+Probing individual defects has promoted their bistable nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
+
 
 \begin{figure}[htp]
 \includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
 \caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
 \end{figure}
 
-As stated in \cref{sec:formation}, the amorphous oxide is the general case for construction. 
+As stated in \cref{sec:formation}, the amorphous oxide is the general case for construction.
 As such we need to investigate this, esp bc \cite{Oh2006}.
 as a formation which needs to be investigated predominantly, in order to obtain results from simulation which are applicable to future fabrication work.
 
+\subsection{Phenomenological Models}
 
-\section{Historical Defect Research}
+Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{DeSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the JJ transparency~\cite{Ku2005}.
 
+Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results - rendering them presently indistinguishable.
+
+\subsection{Microscopic Models}
+
+It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
+Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
+
+If, as alternative models suggest, TLS defects indeed stem from surface states~\cite{Choi2009} or the accidental inclusion of an alien species~\cite{Jameson2011, Holder2013}; future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}.
+Nevertheless, if the oxygen atoms themselves form a noise source, a perfectly clean but amorphous dielectric may still harbour a large ensemble of TLSs.
+
+\section{Historical Material Defect Research}
 
 Condensed matter defects and their properties have been an active area of research for many decades.
 When considering the identification of a noise source within a system constructed by a material as well studied as aluminium oxide, it would be amiss not to attempt to look at this research body in light of the recent findings and advances of the strongly coupled TLS experiments.
-
 
 \subsection{Defects in Glasses}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
 \caption[STM Picture of a TLS]{STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$. }
 \end{marginfigure}
+
+\xxx{Still to do. Mostly written but very much out of place right now}
 Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Zachariasen1932,Anderson1972}.
 Early research on this topic identified defects in a number of imperfect crystalline lattices, assuming that defects formed by individual atoms or small atom clusters tunneling between two almost equivalent lattice positions \cite{Anderson1972,Phillips1972}.
 This work also saw the genesis of the Standard Tunnelling Model (STM): the conventional phenomenological \lin{1D} model which explains the anomalous bulk properties of these amorphous glass systems at low temperature.\nomdef{ASTM}{STM}{Standard Tunneling Model}
-The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.\xxx{this may need to go higher and be reworked here}
+The two-level system (TLS) description in the STM requires two parameters: the tunneling energy $\Delta$ and asymmetry energy $\epsilon$.\xxx{This section is fine standalone, but its wrecked in context of the stuff above.}
 Both parameters depend on local atomic configuration and lattice strain forces, necessitating a redistribution of charge as well when parameters shift.
 TLSs therefore couple to their environment through electric and strain (elastic) dipole moments.
 
@@ -274,49 +291,6 @@ Characterisation of the macroscopic response due to these TLS ensembles via a di
 Devices like single electron transistors \cite{Zimmerli1992}, nanomechanical resonators \cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators \cite{Gao2007} all seemed to suffer from noise channels attributed to TLS behaviour.
 Superconducting qubits using tunnel junctions such as the Josephson junction in the presence of strong electric fields were often stymied by even just a few two-level defects~\cite{Simmonds2004}.\xxx{This is too specific for here, but may be used above}
 
-...\\
-%Introdump from NJP
-\thought{Superconducting qubits and Josephson junction} based quantum devices in general are often limited by decoherence sources.
-A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
-\nomdef{ATLS}{TLS}{Two level system}
-Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature.
-Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{DeSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the JJ transparency~\cite{Ku2005}.
-
-Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results - rendering them presently indistinguishable.
-It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
-Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
-
-Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Anderson1972}.
-Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits~\cite{Dutta1981, Shnirman2005, Martinis2005}.
-Developments in controllable qubit architecture (charge, flux and phase) has enabled the study of so-called `strongly coupled defects'~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
-These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow coherent oscillations between the qubit and TLS.
-Probing individual defects has promoted their bistable nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
-
-As described in previous work~\cite{DuBois2013}, we consider the origin of some defects to be within the amorphous oxide layer itself, specifically an oxygen atom in a spatially delocalised state.
-This has important ramifications for materials science based efforts to reduce the effects of TLSs.
-If, as alternative models suggest, TLS defects indeed stem from surface states~\cite{Choi2009} or the accidental inclusion of an alien species~\cite{Jameson2011, Holder2013}; future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}.
-Nevertheless, if the oxygen atoms themselves form a noise source, a perfectly clean but amorphous dielectric may still harbour a large ensemble of TLSs.
-
-Our approach considers only atomic positions as input parameters in an attempt to construct a microscopic model rather than a phenomenological one.
-The premise of this thesis is that positional anharmonicity of oxygen atoms arises within the \ce{AlO_x} barrier of the Josephson junction due to its fundamentally non-crystalline nature.
-As an illustrative example, consider an interstitial oxygen defect in crystalline silicon: the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Si--Si bond axis~\cite{Artacho1995}.
-This forms an anharmonic system with a quasi-degenerate~\cite{DuBois2013} ground state, even in a ``perfect'' crystal.
-This ansatz allows the existence of many different spatial configurations throughout the layer, causing unique TLS properties based solely on atomic positions and rotation in relation to the external electric field.
-To simplify the configuration space we initially consider the introduction of small lattice irregularities from an idealised trigonal-like \lin{2D} oxide lattice.
-Possible defects of this nature are depicted in %\cref{fig:defects}.
-
-
-%Finally, recent simulations suggest a TLS mass of order $1-100 \: amu$~\cite{Nugroho2013a}, too large to be simply due to an electron moving between states. \todo[color=blue!40,inline]{This paper is out now, so reference from march meeting has been updated. WKB calculations don't seem to be there. Should we remove this?}
-
-It has often been suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
-However, it is unclear if the identified strongly coupled systems are from the same origin.
-Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
-The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
-
-%The outline of this paper is as follows. \Cref{sec:methods} introduces the theory from which we build our model to investigate delocalised oxygen based two-level systems. The following three sections then start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way. Section \ref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in Figure \ref{fig:defects}. In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions. Moving towards a model representation of this, Section \ref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane. The completed model is then described in Section \ref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane. Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective $2\!+\!1$D model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system. The following sections then apply the $2\!+\!1$D model and compare delocalised oxygen responses to experimental TLS data. Section \ref{sec:smax} discuses qubit--TLS coupling and Section \ref{sec:strain} observes the effect of mechanical strain.
-
-
-
 \subsection{Defects in Corundum}\label{sec:cordef}
 Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
 The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium---oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
@@ -327,7 +301,7 @@ and $F^+$ electron centres~\cite{Kotomin1989} and observations of defect mobilit
 Intrinsic defects (such as self-trapped and defect-trapped holes, or oxygen and aluminium vacancies) as well as impurities of transition-metal ions like \ce{Co}, \ce{Fe}, \ce{Mg}, \ce{Mn} or \ce{Ti} are all possible~\cite{Jacobs1994}.
 \citeauthor{Jacobs1994} also suggest that oxygen vacancies are mobile throughout the lattice, as effective charges of an oxygen at a saddle point between aluminium atoms is similar to one on a normal lattice site.
 
-DFT\xxx{Make sure this is defined before here} studies of single oxygen vacancies soon followed, using $120$ atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
+Density Functional Theory (DFT) studies of single oxygen vacancies soon followed, using $120$ atom supercells of corundum~\cite{Xu1997} which show the oxygen vacancy introduces a deep and doubly occupied (electronic) defect level (an $F$ center), and was found to be ``not so localized''.
 \nomdef{ADFT}{DFT}{Density Functional Theory}
 Singly occupied defect levels (the $F^+$ center) are also discussed by introducing a positive background charge into the calculation.
 
@@ -345,10 +319,9 @@ On the other hand, high tetravalent impurity concentration produces  oxygen inte
 Surface point defects (interstitial and vacancies) have also been compared to their bulk counterparts~\cite{Carrasco2004}, showing that relative formation costs are similar (\ie the cost of an aluminium versus oxygen vacancy), although the surface defects require much less energy to form and electronic delocalisation is larger on the surface than in the bulk.
 This suggests surface defects may play an an important role as nucleation centers when bonding to metals (such as aluminium in our case).
 
-%\section[toclisting][headlisting]{Deficiency Defects in Amorphous Aluminium}\label{sec:defdef}
 \subsection{Deficiency Defects in Amorphous Aluminium}\label{sec:defdef}
-%TODO: Fix these overrides
-It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion,\xxx{Make sure this is discussed before here} such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
+
+It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion (\ie various methods discussed in \cref{sec:formation}), such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
 \nomdref{AALD}{ALD}{Atomic Layer Deposition}{sec:defdef}
 ALD works by exposing a substrate to a heat source, then alternating pulses of water and trimethylaluminium.
 Each pulse is separated by a nitrogen gas flush to assure no gas phase mixing between the pulses.
@@ -367,3 +340,35 @@ This process was then repeated a number of times to generate an appropriate leve
 Relative to the bulk valence band edge, these states appear in the band gap between $0.51\!-\!2.51$, $1.30\!-\!3.58$, and $2.39\!-\!3.64$ eV respectively.
 Figure 2 in \onlinecite{Momida2011} is of particular interest, comparing the difference between the relatively stable and localised $V_\ce{O}^\ce{0}$ wavefunction and the $V_\ce{O}^\ce{2+}$ wavefunction -- which is delocalised throughout the lattice.
 Furthermore, lattice configurations for each of the defects are also presented, which may be useful for defect classification in this work.
+
+\section{Conjecture Concerning TLS Origins}
+
+May want to put this above the previous section?
+
+\xxx{From PRL}
+To make concrete predictions, a detailed microscopic model of these defects is required.
+In this paper we consider the origin of defects to be within the amorphous oxide layer itself~\cite{Lacquaniti2012}, rather than assuming defects stemming from surface states~\cite{Choi2009} or the accidental inclusion of an alien species.
+A pertinent example defect is the oxygen interstitial in crystalline silicon. For an O defect in c--Si, the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Si--Si bond axis~\cite{Artacho1995}.
+This forms an anharmonic system with a quasi-degenerate ground state, even in a ``perfect'' crystal.
+As many different spatial configurations can exist in the \ce{AlO_x} amorphous junction, it is our premise that positional anharmonicity arises within voids in this layer.
+This yields TLSs with unique properties based solely on atomic positions and rotation in relation to the external electric field.
+Starting from this ansatz, we compute parameters which have been measured directly in experiments on TLSs, including: TLS resonant frequency, qubit-TLS coupling and TLS energy/strain dependence.
+
+\xxx{From somewhere else}
+It has often been suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
+However, it is unclear if the identified strongly coupled systems are from the same origin.
+Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
+The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
+
+\xxx{From NJP}
+As described in previous work~\cite{DuBois2013}, we consider the origin of some defects to be within the amorphous oxide layer itself, specifically an oxygen atom in a spatially delocalised state.
+This has important ramifications for materials science based efforts to reduce the effects of TLSs.
+
+
+Our approach considers only atomic positions as input parameters in an attempt to construct a microscopic model rather than a phenomenological one.
+The premise of this thesis is that positional anharmonicity of oxygen atoms arises within the \ce{AlO_x} barrier of the Josephson junction due to its fundamentally non-crystalline nature.
+As an illustrative example, consider an interstitial oxygen defect in crystalline silicon: the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Si--Si bond axis~\cite{Artacho1995}.
+This forms an anharmonic system with a quasi-degenerate~\cite{DuBois2013} ground state, even in a ``perfect'' crystal.
+This ansatz allows the existence of many different spatial configurations throughout the layer, causing unique TLS properties based solely on atomic positions and rotation in relation to the external electric field.
+To simplify the configuration space we initially consider the introduction of small lattice irregularities from an idealised trigonal-like \lin{2D} oxide lattice.
+Possible defects of this nature are depicted in %\cref{fig:defects}.
