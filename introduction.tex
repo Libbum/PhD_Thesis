@@ -151,55 +151,38 @@ This design has a highly capable readout mechanism and multi-qubit scaling arran
 Thus the possibility of a functioning quantum computer using it is encouraging with only one major caveat: the system is mired with decoherence causing defects.
 In fact, much of the superconducting qubit community has transitioned from active phase qubit experimentation to the transmon because of this phenomena.
 
-On the other hand, this design is very useful for studying these decoherence sources (see \cref{sec:probes} below) and therefore the most relevant architecture to study throughout this thesis.
+On the other hand, this design is very useful for studying these decoherence sources (\textit{vide infra} \cref{sec:probes}) and therefore the most relevant architecture to study throughout this thesis.
 
 \section{Josephson Junctions}
+A normal LC circuit generates a parabolic potential, which in energy terms is a harmonic oscillator: transitions between neighboring excited states are degenerate.
+If we wish to use this kind of circuit as a qubit, the transition between state $\ket{0}$ and $\ket{1}$ must be sufficiently different to the higher-lying eigenstates of the system.
+
 \Cref{fig:qubit} depicts an LC circuit in parallel with a barrier component  \resizebox{!}{0.6em}{\includestandalone{figures/jjcomponent}}.
-\nomdef{ALC}{LC}{Inductor-Capacititor circuit, generates a harmonic oscillator}
-This symbol represents the Josephson junction: the only non-dissipative, strongly non-linear circuit element available at low temperature.
+\nomdef{ALC}{LC}{Inductor-Capacitor circuit, generates a harmonic oscillator}
+This symbol represents the Josephson junction, which at low temperature is a strongly non-linear, non-dissipative circuit element\footnote{One reason why the JJ is so ubiquitous in superconducing devices is that for many years it was the \textit{only} non-linear component. Recently the quantum phase slip junction~\cite{Bezryadin2000,Mooij2006,Astafiev2012} (effectively the dual of the JJ) has been showing great promise as well.}.
+In fact, a JJ behaves as a pure non-linear inductor in parallel with a capacitor resulting from the parallel plate capacitance inherent in the junctions' construction (see \cref{fig:jjdiagram} below).
+These features give rise to an anharmonic oscillator, a readable energy spectrum and the possibility of a working qubit.
 
-A normal LC circuit is a harmonic oscillator as a result of the parabolic potential, meaning transitions between neighboring excited states are degenerate.
-If we wish to use the circuit as a qubit, the transition between state $\ket{0}$ and $\ket{1}$ must be sufficiently different to the higher-lying eigenstates of the system.
-
-TODO: Josephson Effect etc
-
-For further discussion of the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}~\cite{Makhlin2001}.
-
-\subsection{Formation Process}
+This is all possible because of the Josephson effect~\cite{Josephson1962,Josephson1965}, which is one of the most significant examples of macroscopic quantum phenomena presently known.
+Current flow between two superconductors separated by a thin insulating layer (\ie a JJ) is possible even in the absence of electrical voltage drop across the junction, making this phenomena a \textit{supercurrent}.
+Cooper pairs tunneling through the insulating barrier are the cause of this supercurrent, which manifests macroscopically, but depends on the quantum phase of the system.
 
 Josephson junctions may be constructed from any superconducting material with any insulating or non-superconducting metal barrier to invoke a weak link coupling.
-A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
-
-Shadow evaporation is a common technique used to fabricate systems such as this, where two metallic layers are deposited from different angles with an intervening oxidation step (see \cref{fig:jjdiagram}).
-This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
-It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
-Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
+A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier -- an illustration of which is depicted in \cref{fig:jjdiagram}.
 
 \begin{figure}[htp]
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/jjdiagram}}
 \caption[Josephson Junction Schematic]{\label{fig:jjdiagram}Schematic of a Josephson junction constructed with two superconducting thin films of aluminium and an amorphous \ce{AlO_x} tunnel barrier.}
 \end{figure}
 
-...\\
+For further discussion of the theory behind, and the engineering prospects of the Josephson junction, see the the great review article by \citeauthor{Makhlin2001}~\cite{Makhlin2001}.
 
-Martin's CoC:\\
-In 1962, Brian Josephson’s PhD work led him to discover what is now termed the Josephson effect \cite{Josephson1962}.
-This combines the theory of superconductors with a description of quantum mechanical tunnelling, leading to unique and useful properties in certain systems.
-The theoretical background of the phenomenon formed the major part of his thesis work, and was reported in a summarised form in Advances in Physics in 1965 \cite{Josephson1965}.
-Since this publication, multiple techniques for creating devices which exhibit the Josephson effect have been developed.
-The system necessary for the effect to occur consists of two regions of superconducting materials separated by a tunnelling barrier.
-This barrier can be made experimentally by constricting the superconducting material to a very narrow strip, by inserting a non-superconducting metal, or an insulating layer between the two regions.
-The construction of interest in this project involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
+\subsection{Formation Process}\label{sec:formation}
 
-Shadow evaporation is a common technique used to fabricate a system such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
+Shadow evaporation is a common technique used to fabricate systems such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
 This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
 It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
-Junctions can also be fabricated with niobium (Nb) electrodes around the aluminium oxide insulating layer \cite{Morohashi1987,Kohlstedt1993}.
-The critical step however is the oxidation of the aluminium.
-This is the process wherein defects are most likely to occur, due to the amorphous nature of the oxide.
-It is therefore this interaction which needs to be described most precisely in order to obtain results from simulation which are applicable to future fabrication work.
-
-
+Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
 
 
 \section[Noise and Phenomenological Theories]{Noise Sources and Phenomenological Theories}
@@ -248,6 +231,11 @@ In particular, the superconducting phase qubit is mired by decoherence via multi
 \includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
 \caption[ALC]{\label{fig:alc}ALC from \citeauthor{Lisenfeld2010}.}
 \end{figure}
+
+As stated in \cref{sec:formation}, the amorphous oxide is the general case for construction. 
+As such we need to investigate this, esp bc \cite{Oh2006}.
+as a formation which needs to be investigated predominantly, in order to obtain results from simulation which are applicable to future fabrication work.
+
 
 \section{Historical Defect Research}
 
