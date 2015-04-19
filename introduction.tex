@@ -62,6 +62,7 @@ Also, interactions between the system and environment are brief with respect to 
 These conditions describe the most general type of Markovian and time homogeneous master equation, the Lindblad form~\cite{Lindblad1976}
 \begin{equation}
 \frac{\mathrm{d}\rho}{\mathrm{d}t} =-\frac{i}{\hbar}\com{H}{\rho}+\sum_{k} \Gamma_k\left(L_k\rho L_k^\dagger-\frac{1}{2}\left\{L_k^\dagger L_k, \rho\right\}\right)
+\label{eq:lindblad}
 \end{equation}
 where the Lindblad operators $L_k$ and the rates $\Gamma_k$ determine
 how the environment interacts with the system.
@@ -69,6 +70,7 @@ how the environment interacts with the system.
 It can be shown that a qubit damped via environment interaction looses coherence on two time scales ~\cite{Stenholm2005}:
 \begin{equation}
 \frac{1}{T_1} = \Gamma_+ + \Gamma_-, \qquad \frac{1}{T_2} = \gamma + \frac{\Gamma_+ + \Gamma_-}{2}, \qquad \frac{\Gamma_+}{\Gamma_-} = \exp\left(-\frac{\hbar \omega}{k_B T}\right).
+\label{eq:t1t2}
 \end{equation}
 The times $T_1$ and $T_2$ are called the \textit{energy (longitudinal)} and \textit{phase (transverse)} relaxation times respectively.
 $T_2$ has an additional contribution $\gamma$ which is a contribution due to random movement of the relative phase caused by perturbations of the environment.
@@ -112,7 +114,7 @@ Manipulation can come about via electronic~\cite{Chang1974} or optical~\cite{Din
 Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times.
 Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}, although this has proved difficult in practice.
 
-\subsection{Superconducting Circuits}
+\subsection{Superconducting Circuits}\label{sec:sccircuits}
 
 Microscopic degrees of freedom (\eg spin) of ions, crystal defects or artificial atoms are well isolated from the environment and therefore operate as good qubits.
 However, inter-qubit coupling in these systems becomes complex at scale and fast gating operations required for computation is a task that for many architectures introduces decoherence.
@@ -188,12 +190,25 @@ Regardless of the process chosen, the oxidation of the aluminium does not result
 
 \section{Investigating Decoherence Sources}
 
-Essentially a $1/f$ \cite{Dutta1981} discussion, tie things back to \cref{sec:envint}.
+We have so far considered that our architecture of choice: the superconducting phase qubit (\cref{sec:sccircuits}) trades off its relatively simple construction, control and readout capabilities with a qubit design which interacts with its environment in a destructive manner (\cref{sec:envint}), causing it to decohere.
+Identifying the phenomena which cause environmental perturbations (or put simply on our context: electronic noise) is an investigation which spans an entire century of research effort.
+ 
+The uniform noise assumption of the Lindblad form master equation \cref{eq:lindblad} in reality is generally considered to be na\"{\i}ve, as the situation tends to be far more complicated. 
+Whilst a complete decoherence theory discussion is not required for the intricacies of this thesis, it is important to understand a few more pieces of the puzzle before moving on.
+Introduction of non-uniform noise, as well as the treatment of spatial correlations between individual noise sources can be discussed through the framework of the Bloch-Redfield master equation~\cite{Carmichael1999}.
+To treat spatial correlations in the noise correctly, one must treat the perturbations explicitly as part of a larger open quantum system. A straightforward, and pertinent example of this treatment can be observed in \onlinecite{Vogt2012}. 
+In certain limits, the noise profiles described by Block-Redfield can be mapped to a Linbladian form []\xxx{Cite Jan}, which indicates that the relationship between these two theories is tightly bound.
 
+Extensive experimentation on superconducting qubits has identified that at low frequencies, the spectral density of the noise exhibited be the environment varies approximately as $1/f\,$ over a sampled frequency range $f\,$~\cite{Dutta1981}, which in terms of decoherence times adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.
+
+
+
+Essentially a $1/f$ \cite{Dutta1981,Shnirman2005} discussion, look at \cite{Enss2005} probably..
+
+
+\section{Strongly Coupled Two Level Systems}
 
 \subsection{NOTES ON DECOHERENCE}
-Standard open quantum systems theory:  $1/f$ noise because TLS are considered to be an ensemble, causing background fluctuations. (adds additional dephasing mechanism $\gamma$ in $T_2$)
-
 
 Strongly coupled TLSs. Cannot be considered as a simple Lindbladian decoherence channel,
 because TLS is coherent and coupled more strongly to the qubit than other processes.
@@ -201,12 +216,9 @@ Time scales associated with TLS-Qbit coupling ($S_{max}$) is shorter than all ot
 
 Therefore we have to consider the TLS as its own quantum system `in isolation'.
 This thesis asks questions about the properties of the TLS derived from the material properties of the JJ it resides in.
+\footnote{It is interesting to note that historically, the tunneling of atoms was considered as a phenomena before electron tunneling or $\alpha$ particle emission was ever discussed.}
 
-
-
-\section{Strongly Coupled Two Level Systems}
-Look at \cite{Enss2005} in depth here.
-
+\subsection{dump}
 
 One of the key decoherence channels facing superconducting qubits and other Josephson junction devices are certain bistable material defects (herein defined as two-level systems or TLSs)~\cite{Dutta1981, Shnirman2005}.
 Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013}.
