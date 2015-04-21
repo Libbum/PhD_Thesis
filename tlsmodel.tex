@@ -105,7 +105,7 @@ One uses special AD preprocessors that analyse each function call, break it up i
 Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \sw{Matlab} is unfeasible -- requiring some hacking of the engine itself.
 \nomdef{AJIT}{JIT}{Just-in-time compilation}
 
-Both AD and complex step require access to functions at the source code level, meaning calls to third party libraries like \sw{BLAS} and \sw{LAPACK} (which are used in this model's implementation \xxx{section on lapack}) become increasingly over-complicated.
+Both AD and complex step require access to functions at the source code level, meaning calls to third party libraries like \sw{BLAS} and \sw{LAPACK} (which are used in this model's implementation) become increasingly over-complicated.
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
@@ -309,12 +309,12 @@ The steps of the algorithm which computes these values (as well as discussions o
 
 \subsection{A Harmonic Approximation to Streitz-Mintmire}\label{subsec:harmsm}
 
-A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{BPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
+A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
 This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
 The functional form of the wavefunction for a particle under the influence of the Streitz-Mintmire potential is not one of these systems.
-However, certain configurations of the potential approximate to a parabola-like shape (see section \xxx{Add in the mex hat section}x, \cref{fig:mexhatproj} and \cref{fig:smvh}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
+However, certain configurations of the potential approximate to a parabola-like shape (for example see \cref{fig:smvh,fig:mexhatproj}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
 
 The hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
 \begin{equation}
@@ -522,7 +522,7 @@ As expected, steps with high roundoff error contributions cause fluctuations in 
 \subsection{Acceptable Maximum Step Size}
 
 The 170 Megabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is completely acceptable if one plane was all that was required.
-Below in \xxx{section on calculating the wavefunctions}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
+Below in \cref{sec:hammat,ch:lowdims}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
 This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
 For instance, the \lin{1D} configuration used to compute energies for \cref{fig:econv} lies within $x \in [-0.6, 0.6]$ Å.
 Although a step of $h = 1\ten{-8}$ Å needs just under 1 Gigabyte of memory to store this line, the total calculation cannot be completed on a machine with 32 GB of RAM and 128 GB of swap space.
@@ -551,7 +551,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
       Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values around zero are the most important regardless.
   \item Step sizes optimised for a range in $x$ are assumed valid in all spatial dimensions $\mathbf{r}$.
   \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.
-      Large calculations that require only relative energy values, such as the phase maps in \xxx{phase map chapter/sections}, have been calculated with step sizes close to $h_{max}$.
+      Large calculations that require only relative energy values, such as the phase maps in \cref{sec:phasespace,sec:tls,sec:dipole} have been calculated with step sizes close to $h_{max}$.
       This allows the systems to fit in memory and/or not take the age of the universe to finish computing.
       However, specific energy values stated herein will still be calculated using $h_{opt}$ unless otherwise stated.
 \end{itemize}
