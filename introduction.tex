@@ -1,6 +1,6 @@
 \versoquote{ἀγεωμέτρητος μηδεὶς εἰσίτω.}{Ἀκαδημία}
 \chapter{Introduction}\label{ch:introduction}
-\loftchap{Introduction}
+\lofchap{Introduction}
 \chapterprecis{Background information and motivation for this thesis. Discussion of current qubit designs, pitfalls and architecture issues. Investigation of current scientific knowledge pertaining to material defects in \ce{AlO_x}.}
 
 \thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
@@ -201,7 +201,7 @@ To treat spatial correlations in the noise correctly, one must treat the perturb
 In certain limits, the noise profiles described by Block-Redfield can be mapped to a Linbladian form~\cite{Jeske2013, Jeske2015}, which indicates that the relationship between these two theories is tightly bound.
 
 Extensive experimentation on superconducting qubits has identified that at low frequencies, the spectral density of the noise exhibited be the environment varies approximately as $1/f\,$ over a sampled frequency range $f\,$~\cite{Dutta1981}.
-In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.\nomdref{Cf}{$f$}{Frequency, predominantly used to describe the $1/f\,$ noise spectrum}{sec:invnoise} 
+In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.\nomdref{Cf}{$f$}{Frequency, predominantly used to describe the $1/f\,$ noise spectrum}{sec:invnoise}
 At higher frequencies, the spectrum is closer to an Ohmic ($\propto \omega$) response, contributing to qubit relaxation ($T_1$ decay), and it appears these two asymptotes cross at $\omega \sim T$ (where $T$ here is temperature)~\cite{Astafiev2004}.
 
 These scaling laws are predominantly explained by a phenomenological ensemble of systems with two distinct, almost degenerate sites of equilibrium.
@@ -270,11 +270,11 @@ The response of TLS coherence times under qubit deformation (via a localised str
 \subsection{Phenomenological Models}
 
 In an attempt to understand these defects, many phenomenological theories attempting to describe them exist.
- 
+
 The charge dipole~\cite{Martinis2005}, perhaps the most straightforward and well understood model, suggests the STM approach can be applied to strongly coupled TLSs, where one would consider a charge hopping from one equilibrium position to another (see \cref{fig:stmtls}) inside the amorphous layer of the JJ, or perhaps at the metal--oxide interface.
 
 The measurable signal of a TLS in a phase qubit in this framework is the resonance of the TLS and qubit splitting energy, $E_{01}$, with the qubit-TLS coupling $S_{max}$ (identical to $S$ in \cref{fig:alc}).\nomref{CSmax}{eq:smax}
-This coupling is described by the expression 
+This coupling is described by the expression
 \begin{equation}
     S_{max}=2\frac{\wp}{w}\sqrt{\frac{e^2}{2C}E_{01}},
 \label{eq:smax}
@@ -292,8 +292,8 @@ One can consider that these surface spins couple to the magnetic flux of the sys
 
 \divtext
 
-\citeauthor{DeSousa2009} identify individual trapping centers in the Josepson junction's oxide barrier hybridised with electrons in the attached superconducting leads~\cite{DeSousa2009}. 
-These centers cause sharp subgap resonances, which may form pairs of Andreev bound states (entangled electron--hole states). 
+\citeauthor{DeSousa2009} identify individual trapping centers in the Josepson junction's oxide barrier hybridised with electrons in the attached superconducting leads~\cite{DeSousa2009}.
+These centers cause sharp subgap resonances, which may form pairs of Andreev bound states (entangled electron--hole states).
 
 \divtext
 
@@ -302,7 +302,7 @@ Electron trapping via this mechanism in shallow subgap states forming at the met
 
 \divtext
 
-A variation in critical current coupled to a qubit results in decoherence. 
+A variation in critical current coupled to a qubit results in decoherence.
 \citeauthor{Ku2005} suggest two noise models describing TLS state dependence of the JJ transparency: a qubit in resonance with a high-frequency TLS which decays via phonon emission; $1/f$ noise modulating the critical current~\cite{Ku2005}.
 
 \divtext
@@ -315,7 +315,7 @@ Probing individual defects has promoted their bistable nature from hypothesis to
 The phenomenological free parameter trouble makes it very important to construct microscopic models of these systems to increase our understanding of their composition and put further bounds on the TLS phenomenon.
 
 Recent years have seen a number of possible microscopic extensions to phenomenological theories, for example the origin of the local magnetic moments as been proposed as multiple metal-induced gap states arising from localised disorder at the metal--oxide interface~\cite{Choi2009} or even surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014}.
-Others suggest polaron dressed electrons~\cite{Agarwal2013} or the accidental inclusion of an alien species (primarily hydrogen) in the junction construction process~\cite{Jameson2011, Holder2013, Gordon2014}. 
+Others suggest polaron dressed electrons~\cite{Agarwal2013} or the accidental inclusion of an alien species (primarily hydrogen) in the junction construction process~\cite{Jameson2011, Holder2013, Gordon2014}.
 
 Future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}, although there are still many open questions to be considered.
 As stated above, it is suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.

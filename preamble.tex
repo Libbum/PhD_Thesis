@@ -158,8 +158,12 @@
 \renewcommand{\cfttableindent}{1.5em}
 \settocdepth{subsection}
 
-\newcommand{\loftchap}[1]{%alias for chapter headings in list of figures and tables
+\newcommand{\lofchap}[1]{%alias for chapter headings in list of figures but no tables
     \addcontentsline{lof}{chapter}{\protect\numberline{\thechapter}#1}
+}
+
+\newcommand{\loftchap}[1]{%alias for chapter headings in list of figures and tables
+    \lofchap{#1}
     \addcontentsline{lot}{chapter}{\protect\numberline{\thechapter}#1}
 }
 
