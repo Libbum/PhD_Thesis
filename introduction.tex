@@ -1,7 +1,7 @@
 \versoquote{ἀγεωμέτρητος μηδεὶς εἰσίτω.}{Ἀκαδημία}
-\chapter{Introduction}
+\chapter{Introduction}\label{ch:introduction}
 \loftchap{Introduction}
-\chapterprecis{He writes some words. What happens next will flaw you.}
+\chapterprecis{Background information and motivation for this thesis. Discussion of current qubit designs, pitfalls and architecture issues. Investigation of current scientific knowledge pertaining to material defects in \ce{AlO_x}.}
 
 \thought{The ability to create a} device whose macroscopic quantities are quantum variables is advantageous for a myriad of reasons, one in particular is the development of a quantum computer.
 Constructing circuits which invoke the tunnelling effect of Josephson junctions (JJs) in conjunction with superconducting phenomena manifest controllable quantum properties which can be exploited to this end.\nomdef{AJJ}{JJ}{Josephson junction}
@@ -37,8 +37,9 @@ The interior region of the Bloch sphere represents qubit mixed states: statistic
 As these states cannot be described by ket vectors, a density matrix must be defined
 \begin{equation}
 \rho = \sum_k p_k \ket{\psi_k} \bra{\psi_k},
+\label{eq:densmat}
 \end{equation}
-
+\nomdref{Gp}{$\rho$}{Density matrix}{eq:densmat}
 where $p_k$ is the fraction of each pure state $\psi_k$ represented in the mixture.
 
 As a qubit state evolves through time, the equation of motion can be written as
@@ -47,7 +48,7 @@ i\hbar \frac{\mathrm{d}\rho}{\mathrm{d}t} = \com{H}{\rho}
 \label{eq:tevqubit}
 \end{equation}
 which evolves entirely due to the dynamics of a Hamiltonian $H$,
-provided the qubit is completely isolated from any environmental perturbations.
+provided the qubit is completely isolated from any environmental perturbations.\nomref{Gp}{eq:tevqubit}
 
 \subsection{Interaction With the Environment}\label{sec:envint}
 
@@ -65,14 +66,14 @@ These conditions describe the most general type of Markovian and time homogeneou
 \label{eq:lindblad}
 \end{equation}
 where the Lindblad operators $L_k$ and the rates $\Gamma_k$ determine
-how the environment interacts with the system.
+how the environment interacts with the system.\nomref{Gp}{eq:lindblad}\nomdref{CL}{$L_k$}{Lindblad operator}{eq:lindblad}\nomdref{GGam}{$\Gamma_k$}{Rate operator}{eq:lindblad}
 
 It can be shown that a qubit damped via environment interaction looses coherence on two time scales ~\cite{Stenholm2005}:
 \begin{equation}
 \frac{1}{T_1} = \Gamma_+ + \Gamma_-, \qquad \frac{1}{T_2} = \gamma + \frac{\Gamma_+ + \Gamma_-}{2}, \qquad \frac{\Gamma_+}{\Gamma_-} = \exp\left(-\frac{\hbar \omega}{k_B T}\right).
 \label{eq:t1t2}
 \end{equation}
-The times $T_1$ and $T_2$ are called the \textit{energy (longitudinal)} and \textit{phase (transverse)} relaxation times respectively.
+The times $T_1$ and $T_2$ are called the \textit{energy (longitudinal)} and \textit{phase (transverse)} relaxation times respectively.\nomref{GGam}{eq:t1t2}\nomdref{CTimes}{$T_1,\,T_2$}{Energy (longitudinal) and phase (transverse) relaxation times}{sec:envint}\nomdef{CTemp}{$T$}{Temperature}\nomdref{Glgam}{$\gamma$}{Relative phase correction to the dephasing time}{eq:t1t2}
 $T_2$ has an additional contribution $\gamma$ which is a contribution due to random movement of the relative phase caused by perturbations of the environment.
 
 These relaxation processes are the ultimate optical to the realisation of a working qubit architecture.
@@ -142,7 +143,7 @@ The transmon~\cite{Wallraff2004, Schreier2008} is a relatively new qubit design 
 The second circuit type (the RF-SQUID~\cite{Barone1982}) can be considered the dual of the Cooper pair box, employing a superconducting transformer in place of the aforementioned gate capacitor.\nomdef{ASQUID}{SQUID}{Superconducting Quantum Interference Device}
 Designs utilizing this method are referred to as Flux qubits~\cite{Mooij1999,VanderWal2000,Chiorescu2003}, again this is because a controllable external flux field is imposed on a superconducting loop across the JJ rather than the idea that information is stored in the magnetic moment of the qubit.
 
-Another method to minimise the effect of offset charge is to bias the JJ with a fixed DC current source.
+Another method to minimise the effect of offset charge is to bias the JJ with a fixed DC current source.\nomdef{ADC}{DC}{Direct current}
 Implementation of this design is referred to as the Phase qubit~\cite{Clarke1988,Martinis2002}, a circuit diagram of which is depicted in \cref{fig:qubit}.
 
 \begin{figure}[htp]
@@ -156,12 +157,12 @@ In fact, much of the superconducting qubit community has transitioned from activ
 
 On the other hand, this design is very useful for studying these decoherence sources (\textit{vide infra} \cref{sec:probes}) and therefore the most relevant architecture to study throughout this thesis.
 
-\section{Josephson Junctions}
+\section{Josephson Junctions}\label{sec:jj}
 A normal LC circuit generates a parabolic potential, which in energy terms is a harmonic oscillator: transitions between neighboring excited states are degenerate.
 If we wish to use this kind of circuit as a qubit, the transition between state $\ket{0}$ and $\ket{1}$ must be sufficiently different to the higher-lying eigenstates of the system.
 
 \Cref{fig:qubit} depicts an LC circuit in parallel with a barrier component  \resizebox{!}{0.6em}{\includestandalone{figures/jjcomponent}}.
-\nomdef{ALC}{LC}{Inductor-Capacitor circuit, generates a harmonic oscillator}
+\nomdref{ALC}{LC}{Inductor-Capacitor circuit elements}{sec:jj}
 This symbol represents the Josephson junction, which at low temperature is a strongly non-linear, non-dissipative circuit element\footnote{One reason why the JJ is so ubiquitous in superconducing devices is that for many years it was the \textit{only} non-linear component. Recently the quantum phase slip junction~\cite{Bezryadin2000,Mooij2006,Astafiev2012} (effectively the dual of the JJ) has been showing great promise as well.}.
 In fact, a JJ behaves as a pure non-linear inductor in parallel with a capacitor resulting from the parallel plate capacitance inherent in the junctions' construction (see \cref{fig:jjdiagram} below).
 These features give rise to an anharmonic oscillator, a readable energy spectrum and the possibility of a working qubit.
@@ -188,7 +189,7 @@ It has more recently been shown that junction fabrication can be performed witho
 Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
 
 
-\section{Investigating Decoherence Sources}
+\section{Investigating Decoherence Sources}\label{sec:invnoise}
 
 We have so far considered that our architecture of choice: the superconducting phase qubit (\cref{sec:sccircuits}) trades off its relatively simple construction, control and readout capabilities with a qubit design which interacts with its environment in a destructive manner (\cref{sec:envint}), causing it to decohere.
 Identifying the phenomena which cause environmental perturbations (or put simply on our context: electronic noise) is an investigation which spans an entire century of research effort.
@@ -200,7 +201,7 @@ To treat spatial correlations in the noise correctly, one must treat the perturb
 In certain limits, the noise profiles described by Block-Redfield can be mapped to a Linbladian form~\cite{Jeske2013, Jeske2015}, which indicates that the relationship between these two theories is tightly bound.
 
 Extensive experimentation on superconducting qubits has identified that at low frequencies, the spectral density of the noise exhibited be the environment varies approximately as $1/f\,$ over a sampled frequency range $f\,$~\cite{Dutta1981}.
-In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.
+In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.\nomdref{Cf}{$f$}{Frequency, predominantly used to describe the $1/f\,$ noise spectrum}{sec:invnoise} 
 At higher frequencies, the spectrum is closer to an Ohmic ($\propto \omega$) response, contributing to qubit relaxation ($T_1$ decay), and it appears these two asymptotes cross at $\omega \sim T$ (where $T$ here is temperature)~\cite{Astafiev2004}.
 
 These scaling laws are predominantly explained by a phenomenological ensemble of systems with two distinct, almost degenerate sites of equilibrium.
@@ -248,7 +249,7 @@ These defects have comparable resonance frequencies to the qubit circuit and cou
 
 \subsection{Qubits as Probes of TLSs}\label{sec:probes}
 
-Probing environmental noise with qubits has been a useful tool for the development of the $1/f\,$ and Ohmic spectrum models, as well as solidifying the conjecture that the underlying mechanism is the result of incoherent random TLS transitions~\cite{Shnirman2005}.
+Probing environmental noise with qubits has been a useful tool for the development of the $1/f\,$ and Ohmic spectrum models, as well as solidifying the conjecture that the underlying mechanism is the result of incoherent random TLS transitions~\cite{Shnirman2005}.\nomref{Cf}{sec:probes}
 
 More recently the investigation has focused on a new capability: resolving individual TLSs.
 Using a phase qubit, \citeauthor{Lisenfeld2010} developed a coherent single-pulse resonant driving method in which a detuned qubit acts a detection and measurement device to characterise the coherence properties of an individual TLS by applying microwave pulse sequences to the system~\cite{Lisenfeld2010}. \Cref{fig:alc} shows one result of this method: the identification of two individual TLSs coupled to a phase qubit.
@@ -278,8 +279,7 @@ This coupling is described by the expression
     S_{max}=2\frac{\wp}{w}\sqrt{\frac{e^2}{2C}E_{01}},
 \label{eq:smax}
 \end{equation}
-
-where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ donating a dipole in the $x$ direction}{eq:smax}
+where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ donating a dipole in the $x$ direction}{eq:smax}\nomdef{Z01}{$01$}{Or some other integer pair. Denotes a difference between two levels. For example the splitting energy of a first excited state $E_1$ and a ground state $E_0$ is $E_{01} \equiv E_1-E_0$}
 
 The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
 Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
