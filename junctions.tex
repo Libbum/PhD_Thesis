@@ -1,42 +1,21 @@
 \versoquote{Но природа не справляется с логикой, с нашей человечес- кою логикой: у ней есть своя, которую мы не понимаем и не признаем до тех пор, пока она нас, как колесом, не переедет.}{Иван Сергеевич Тургенев}
 %Nature cares nothing for logic, our human logic: she has her own, which we do not recognize and do not acknowledge until we are crushed under its wheel. --Ivan Turgenev
-%\versoquote{Something unknown is doing we don't know what.}{Sir Arthur Eddington} %Tentative. Too much English for my liking.
-%\versoquote{The task must be made difficult, for only the difficult inspires the noble-hearted.}{Søren Kierkegaard}
 \chapter{Junction Models}\label{ch:junctions}
 \loftchap{Junction Models}
 \chapterprecis{Methodology used to construct high precision Josephson junction models of varying stoichiometry and density.}
 
-\thought{Here is a section that} starts with a thought that is in small caps.
-%\sidepar{This is a side par, you can do more stuff with it, but it may overlap so be careful.}
+\thought{The jury is still out} when it comes to the specific location of strongly coupled TLSs inside Josephson junctions, and as we've seen in \cref{sec:micromod}, many perchance competing microscopic models exist that attempt to describe their origin.
+One possible way of distinguishing between these options (including the one posited in \cref{sec:conjecture}) is to develop complete atomistic models of the Josephson junction and study the many spatial configurations of the amorphous tunneling barrier.
+ 
+From a quantum simulation point of view, this is not a trivial problem.
+Crystalline symmetries usually invoked to minimise calculations cannot be used to reduce the state space of the oxide barrier of a junction due to its amorphous nature.
+However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.\footnote{Special thanks must go to Martin Cyster for his contributions to work discussed in this chapter.}
 
-%\section{How a junction is built in experiment}
-%
-%This section is currently lorem ipsum.
-%Bistable defects in glasses and amorphous solids in general have been understood for some time.
-%Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits.
-%Developments in controllable qubit architecture (charge, flux and phase) has\footnote{margin footnote with a few more words in it to make it a bit better.} enabled the study of so-called ‘strongly coupled defects’.
-%These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow\footnote{a second \the\marginparwidth, \the\marginparsep, \the\marginparpush} coherent oscillations between the qubit and TLS.
-%Probing individual defects has promoted their bistable\footnote{and third} nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
-%
-%\section{DFT and MM theory}
-%\section{Model construction}
-%\subsection{Al slabs in DFT}
-%\subsection{Amorphous \texorpdfstring{\ce{AlO_{x}}}{AlOₓ} in MM}
-%\subsection{DFT MD and optimisation}
-%\section{Analysis of structures}
-%\subsection{Stoichiometry}
-%\subsection{Density}
-%\subsection{\texorpdfstring{$G(r)$}{G(r)}}
-%\begin{figure}[htp]
-%\centering
-%\resizebox{\textwidth}{!}{\includestandalone{figures/gr}}
-%\caption[Radial Distribution Function]{\label{fig:gofr}Radial distribution function.}
-%\end{figure}
+\section{Simulating the Junction Formation Process}
 
-\section{Mol Sim Dump}
-
-\subsection{Moved (back) from introduction}
-It is therefore the amorphous oxide formation which needs to be investigated predominantly, in order to obtain results from simulation which are applicable to future fabrication work.
+Josephson junctions may be constructed from any superconducting material with any insulating or non-superconducting metal barrier to invoke a weak link coupling.
+A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
+\Cref{sec:formation} discusses the shadow evaporation techniques usually undertaken to grow a $\sim2$ nm amorphous layer which may vary in stoichiometry, density and thickness.
 
 Simulating oxide layer growth is in general a difficult problem as the time scale of the oxide growth ($\sim\,$minutes) is many orders of magnitude greater than typically achievable molecular dynamics timescales (ps--ns).
 One standard approach is to perform the simulation at elevated temperatures and gas pressures ($\ge 1$ atm)~\cite{Campbell1999, Zhou2005, Hasnaoui2005}.
@@ -46,46 +25,20 @@ It remains to be seen whether any fundamental physics is neglected by adopting t
 
 An alternative approach is to form an amorphous layer via direct melt and quench~\cite{Vashishta2008,Sheng2012}.
 This method has the advantage of computational simplicity and speed, however the resulting layers are not necessarily representative of the true physical situation and therefore benchmarking against other methods and experiment is critical.
-Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness will be considered in future work.
-
-\subsection{Abstract}
-The microscopic structure of ultra-thin oxide barriers often plays a major role in modern nano-electronic devices.
-In the case of superconducting electronic circuits, their operation depends on the electrical non-linearity provided by one or more such oxide layers in the form of ultra-thin tunnel barriers (also known as Josephson junctions).
-Currently available fabrication techniques manufacture an amorphous oxide barrier, which is attributed as a major noise source within the device.
-The nature of this noise is currently an open question and requires both experimental and theoretical investigation.
-Here, we present a methodology for constructing atomic scale computational models of Josephson junctions using a combination of molecular mechanics, empirical and ab initio methods.
-These junctions consist of ultra-thin amorphous aluminium-oxide layers sandwiched between crystalline aluminium. The stability and structure of these barriers as a function of density and stoichiometry are investigated, which we compare to experimentally observed parameters.
-
-
-\section{Introduction}
-Josephson junctions: ultra-thin insulating layers sandwiched between layers of superconducting metal, are the fundamental building blocks of the next generation of quantum electronics.
-Examples include superconducting quantum-bits~\cite{Clarke1988,Martinis2002,Plourde2005,Deppe2007,Schreier2008}, low power Rapid-Single-Flux-Quantum circuits \cite{Mukhanov1987}, Superconducting Quantum Interference Devices~\cite{Weinstock1996} and non-linear elements for single quanta microwave electronics~\cite{Astafiev2007, Astafiev2010, Wilson2011, Hoi2013, Hoi2013a}.
-In all these cases, Josephson junctions provide the non-linear element that allows quantum effects to manifest in the voltage, current or magnetic flux signatures of these circuits.
-Recent work on superconducting qubits~\cite{Dutta1981, Shnirman2005} has shown that a key limiting factor in quantum electronics is the existence of loss mechanisms, which can be traced to material defects in the oxide coating (and protecting) the metallic circuits, as well as the oxide which forms the Josephson junction tunnel barrier.
-Recent experimental probes of so-called `strongly coupled' defects~\cite{Neeley2008, Lupascu2009, Lisenfeld2010} have shown that they can be individually addressed and manipulated, and mostly likely reside within the junction~\cite{Lacquaniti2012}.
-It is therefore fundamentally important to identify and ideally remove these defects as a source of loss and imperfection in quantum circuits.
-
-From a quantum simulation point of view, this is not a trivial problem.
-The oxide barrier of a junction is amorphous, so crystalline symmetries cannot be used to reduce the state space.
-Added to this is the far more fundamental issue that we currently do not understand what forms the defects of interest.
-Various microscopic models exist, including hydrogenic dangling bonds~\cite{Martinis2005,Jameson2011,Holder2013, Gordon2014}, charged surface states~\cite{Choi2009, Lee2014} and delocalisation of the oxygen atoms themselves~\cite{DuBois2013, DuBois2015}.
-As well as atomistic models, a range of effective defect state models also exist such as phonon dressing of electronic states~\cite{Agarwal2013}, metal-insulator gap states~\cite{Choi2009} and Andreev bound state models~\cite{DeSousa2009}.
-One possible way of distinguishing between these options is to develop complete atomistic models of the Josephson junction and study the configuration of the amorphous layer.
-Forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this paper.
-
+Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness is the subject of M. Cyster's PhD dissertation.
 
 \section{Model construction}\label{sec:model}
 \begin{figure}[htp]
 \includegraphics[width=0.9\textwidth]{figures/AlO125_075}
-\caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium (grey) and oxygen (red). Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
+\caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
 \end{figure}
-\xxx{singular ball renders for Al and O}
+
 To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT. 
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
 Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.
 
 Formation of the amorphous \ce{AlO_x} layers required a number of preparation steps to accurately represent experimental results.
-The low temperature and pressure phase of aluminium oxide (commonly referred to as corundum or $\alpha$--\ce{Al_2O_3}) was used as a basis for all the constructed junction models.
+Corundum was used as a basis for all the constructed junction models as it represents the low temperature and pressure phase of aluminium oxide.
 Experimental investigations of stoichiometry suggest, in general, an oxygen deficiency with oxide O/Al ratios varying between 0.6 and 1.4~\cite{Tan2005}, which are highly dependent on the fabrication process.
 In response to this, we construct models with four stoichiometries: \ce{AlO_{0.8}}, \ce{AlO_{1.0}}, \ce{AlO_{1.25}} and \ce{AlO_{1.5}}.
 The oxide density may also be an important formation variable.
@@ -116,9 +69,8 @@ where $r$ is the distance between a pair of particles, $p(r)$ is the average num
 This function was calculated for each stoichiometry and density configuration using oxygen as the reference species, and aluminium atoms in the amorphous region along with the superconducting bulk as the projection species. \Cref{fig:groptis} depicts the results of this analysis.
 
 \begin{figure}[htp]
-\centering
 \resizebox{0.8\textwidth}{!}{\includestandalone{figures/groptis}}
-\caption[Radial Distribution Function]{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum \plotline{line width=1pt,color=gray!50}; Metal---metal--oxide interface reconstruction before \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} and after \plotline{line width=1.5pt,dashed, color=Set1-5-2}; final optimised geometry \plotline{line width=2pt,color=Set1-5-1}.}%
+\caption[Radial Distribution Function]{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum \plotline{line width=1pt,color=gray!50}; Metal--oxide interface reconstruction before \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} and after \plotline{line width=1.5pt,dashed, color=Set1-5-2}; final optimised geometry \plotline{line width=2pt,color=Set1-5-1}.}%
 \end{figure}
 
 A major peak is visible centered around $1.85$ \AA, which corresponds to convolution of the two Al--O bond distances, $1.852$ \AA\ and $1.971$ \AA\ of the corundum crystal~\cite{Ishizawa1980}.
@@ -134,18 +86,19 @@ The corundum $G(r)$ \plotline{line width=1pt,color=gray!50} is a complicated str
 Specifically the $1.852$ \AA\ and $1.971$ \AA\ Al--O bond distance contributions and the void in the $2$--$3$ \AA\ range.
 After the melt/quench phase of the procedure \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} the lattice still appears liquid-like.
 Whilst the quench cycle minimises the possibility of atoms position very close to one another due to an excess of kinetic energy, it still appears to exhibit liquid behaviour.
-This may be a shortcoming of the Streitz-Mintmire potentials ability to capture the relevant physics, however this is rectified after the metal---metal--oxide interface reconstruction is completed \plotline{line width=1.5pt,dashed, color=Set1-5-2} using the \textit{ab initio} methods.
+This may be a shortcoming of the Streitz-Mintmire potentials ability to capture the relevant physics, however this is rectified after the metal--oxide interface reconstruction is completed \plotline{line width=1.5pt,dashed, color=Set1-5-2} using the \textit{ab initio} methods.
 Finally, the geometry optimisation \plotline{line width=2pt,color=Set1-5-1} yields a smoother $1.85$ \AA\ peak and recovers some of the void region around $2$ \AA.
 
+\phantom{push marginfigure}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/grcomp}}
 \caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing no statistically significant differences.}
 \end{marginfigure}
-
+\vspace{-1em}
 Whilst optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations are very similar (\cref{fig:grcomp}), the \sw{GULP} simulation actually produces a drastically different final structure.
 We find under \sw{GULP} simulation that stoichiometric ratios higher than 1:1 are not stable and oxygen atoms diffuse into the metallic regions until a stoichiometric ratio of at most 1:1 is achieved.
 As a result of this excess oxygen diffusion, the junction width can increase by up to 30\% or more over the course of the simulation.
-At high densities and stoichiometries (higher than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
+At high densities and stoichiometries (than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
 Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential, but we see very little increase in oxide distribution during the optimisation phase -- suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
 
 \section{Total energy and optimal conditions}
