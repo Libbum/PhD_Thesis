@@ -1,0 +1,25 @@
+\documentclass[tikz]{standalone}
+\usepackage[american currents,cuteinductors]{circuitikz}
+%Override shitty JJ design
+\makeatletter
+\pgfcircdeclarebipole{}{\ctikzvalof{bipoles/barrier/height}}{barrier}{\ctikzvalof{bipoles/barrier/height}}{\ctikzvalof{bipoles/barrier/width}}{
+
+	\pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+    \pgfpathmoveto{\pgfpoint{0.35*\pgf@circ@res@left}{0.35*\pgf@circ@res@up}}
+	\pgfpathlineto{\pgfpoint{0.35*\pgf@circ@res@right}{0.35*\pgf@circ@res@down}}
+	\pgfpathmoveto{\pgfpoint{0.35*\pgf@circ@res@left}{0.35*\pgf@circ@res@down}}
+	\pgfpathlineto{\pgfpoint{0.35*\pgf@circ@res@right}{0.35*\pgf@circ@res@up}}
+
+	\pgfusepath{draw}
+
+    \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}*0.5\pgfstartlinewidth}
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@step}}
+	\pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@step}}
+    \pgfusepath{draw}
+}
+\makeatother 
+\begin{document}
+\begin{circuitikz} 
+\draw (0,0) to [barrier] (1,0);
+\end{circuitikz} 
+\end{document}

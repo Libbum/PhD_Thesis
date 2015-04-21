@@ -1,0 +1,19 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage[version=3]{mhchem}
+\usepackage{mathspec} %loads fontspec
+\setromanfont{Skolar PE}[Ligatures={TeX, Common}, Numbers=OldStyle]
+
+\begin{document}
+\begin{tikzpicture}
+\node at (0,0) {\includegraphics[scale=3]{jjschematic}};
+\draw [black, line width=2pt, {Square[slant=-0.5,length=\the\pgflinewidth]}-{Stealth[slant=-0.5]}] (-3,1.5) -- (-2.5,0);
+\draw [black, line width=2pt, {Square[slant=-0.5,length=\the\pgflinewidth]}-{Stealth[slant=-0.5]}] (3.2,1.4) -- (2.7,0.25);
+\draw [black, line width=2pt, {Square[slant=0.5,length=\the\pgflinewidth]}-{Stealth[slant=0.5]}] (1,-1) -- (-0.2,-0.25);
+
+\node[align=center] (B) at (-3,1.9) {Superconducting\\bottom electrode (\ce{Al})};
+\node[align=center] (T) at (3.2,1.8) {Superconducting\\top electrode (\ce{Al})};
+\node[align=center] (O) at (1,-1.5) {Tunnel Barrier\\(\ce{AlO_x})};
+
+\end{tikzpicture}
+\end{document}
