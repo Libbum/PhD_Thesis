@@ -253,6 +253,7 @@ Probing environmental noise with qubits has been a useful tool for the developme
 More recently the investigation has focused on a new capability: resolving individual TLSs.
 Using a phase qubit, \citeauthor{Lisenfeld2010} developed a coherent single-pulse resonant driving method in which a detuned qubit acts a detection and measurement device to characterise the coherence properties of an individual TLS by applying microwave pulse sequences to the system~\cite{Lisenfeld2010}. \Cref{fig:alc} shows one result of this method: the identification of two individual TLSs coupled to a phase qubit.
 
+\nomdref{CSmax}{$S_{max}$}{qubit-TLS coupling strength}{fig:alc}
 \begin{figure}[htp]
 \includegraphics[width=0.6\textwidth]{figures/alclisenfeld2010}
 \caption[ALC]{\label{fig:alc}Two avoided level crossings indicate the existence of two individual two-level systems extant inside a phase qubit. Avoided level crossings indicate the TLSs are in resonance with the qubit at this frequency, and the probability of detecting an excited qubit state $P_e$ falls dramatically due to the TLS inducing a decoherence channel. (Figure 1 of \citeauthor{Lisenfeld2010}~\cite{Lisenfeld2010}).}
@@ -271,15 +272,14 @@ In an attempt to understand these defects, many phenomenological theories attemp
  
 The charge dipole~\cite{Martinis2005}, perhaps the most straightforward and well understood model, suggests the STM approach can be applied to strongly coupled TLSs, where one would consider a charge hopping from one equilibrium position to another (see \cref{fig:stmtls}) inside the amorphous layer of the JJ, or perhaps at the metal--oxide interface.
 
-The measurable signal of a TLS in a phase qubit in this framework is the resonance of the TLS and qubit splitting energy, $E_{01}$, with the qubit-TLS coupling $S_{max}$ (identical to $S$ in \cref{fig:alc}).
+The measurable signal of a TLS in a phase qubit in this framework is the resonance of the TLS and qubit splitting energy, $E_{01}$, with the qubit-TLS coupling $S_{max}$ (identical to $S$ in \cref{fig:alc}).\nomref{CSmax}{eq:smax}
 This coupling is described by the expression 
-
 \begin{equation}
     S_{max}=2\frac{\wp}{w}\sqrt{\frac{e^2}{2C}E_{01}},
 \label{eq:smax}
 \end{equation}
 
-where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.
+where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ donating a dipole in the $x$ direction}{eq:smax}
 
 The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
 Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
@@ -287,21 +287,23 @@ Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA\ \
 
 \divtext
 
-There was no direct experimental evidence for magnetism in superconducting circuits until 2008 when unpaired surface spins in thin-film SQUIDs identified ~\cite{Sendelbach2008}.
+There was no direct experimental evidence for magnetism in superconducting circuits until 2008 when unpaired surface spins in thin-film SQUIDs were identified ~\cite{Sendelbach2008}.
 One can consider that these surface spins couple to the magnetic flux of the system as a paramagnetic dipole rather than a charge dipole to the electric field.
-The origin of these local magnetic moments as been proposed as multiple metal-induced gap states arising from localised disorder at the metal--oxide interface~\cite{Choi2009}.
 
 \divtext
 
-Andreev bound states~\cite{DeSousa2009}
+\citeauthor{DeSousa2009} identify individual trapping centers in the Josepson junction's oxide barrier hybridised with electrons in the attached superconducting leads~\cite{DeSousa2009}. 
+These centers cause sharp subgap resonances, which may form pairs of Andreev bound states (entangled electron--hole states). 
 
 \divtext
 
-Kondo impurities~\cite{Faoro2007}
+It is understood that a local trap interacting with a Fermi sea gives rise to the Kondo effect: the formation of a many-body singlet with conduction electron spins screening out local trap spin~\cite{Wilson1975}.
+Electron trapping via this mechanism in shallow subgap states forming at the metal--metal-oxide boundary explains TLS temperature dependencies which other phenomenological models struggle with~\cite{Faoro2007}.
 
 \divtext
 
-TLS state dependence of the JJ transparency~\cite{Ku2005}
+A variation in critical current coupled to a qubit results in decoherence. 
+\citeauthor{Ku2005} suggest two noise models describing TLS state dependence of the JJ transparency: a qubit in resonance with a high-frequency TLS which decays via phonon emission; $1/f$ noise modulating the critical current~\cite{Ku2005}.
 
 \divtext
 
@@ -309,20 +311,25 @@ Detailed fitting of experimental data can place limits on these models~\cite{Col
 
 \subsection{Microscopic Models}
 
-It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
-Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
+Probing individual defects has promoted their bistable nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
+The phenomenological free parameter trouble makes it very important to construct microscopic models of these systems to increase our understanding of their composition and put further bounds on the TLS phenomenon.
 
-If, as alternative models suggest, TLS defects indeed stem from surface states~\cite{Choi2009} or the accidental inclusion of an alien species~\cite{Jameson2011, Holder2013}; future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}.
-Nevertheless, if the oxygen atoms themselves form a noise source, a perfectly clean but amorphous dielectric may still harbour a large ensemble of TLSs.
+Recent years have seen a number of possible microscopic extensions to phenomenological theories, for example the origin of the local magnetic moments as been proposed as multiple metal-induced gap states arising from localised disorder at the metal--oxide interface~\cite{Choi2009} or even surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014}.
+Others suggest polaron dressed electrons~\cite{Agarwal2013} or the accidental inclusion of an alien species in the junction construction process~\cite{Jameson2011, Holder2013}.
+
+Future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}, although there are still many open questions to be considered.
+As stated above, it is suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
+However, it is unclear if the identified strongly coupled TLSs are from the same origin.
+Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
 
 \section{Historical Material Defect Research}
 
-\xxx{flesh this out a bit more so the transition to material science investigation isn't so brutal}
-Condensed matter defects and their properties have been an active area of research for many decades.
-When considering the identification of a noise source within a system constructed by a material as well studied as aluminium oxide, it would be amiss not to attempt to look at this research body in light of the recent findings and advances of the strongly coupled TLS experiments.
+Both phenomenological and microscopic models suggest differing TLS locations within the junction or leads, which is still a matter of contention.
+It is therefore important to change tack for a moment and focus on material properties, considering the identification of a noise source within a system constructed by a material as well studied as aluminium oxide may have already occurred.
+Condensed matter defects and their properties have been an active area of research for many decades, we should therefore look at this research body in light of the recent findings and advances of the strongly coupled TLS experiments.
 
 \subsection{Defects in Corundum}\label{sec:cordef}
-Various defects in corundum have been thoroughly investigated, both experimentally and theoretically for quite some time.
+Various defects in corundum (the low temperature and pressure phase of aluminium oxide, $\alpha$--\ce{Al_2O_3}) have been thoroughly investigated, both experimentally and theoretically for quite some time.
 The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium---oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
 Experimental identification of defects like the $F$
 \nomdref{CF}{$F$}{An electron sitting in a vacancy defect}{sec:cordef}
@@ -361,7 +368,7 @@ However; it is possible that this process generates oxygen deficient lattices wi
 
 Although ALD is not presently used in Josephson junction fabrication, the process is actively being studied as a fabrication method to create resistive random access memory.
 It is well known that oxygen diffusion methods can create low stoichiometries (\ie $\text{x}<1.5$) of amorphous \ce{AlO_x}~\cite{Park2002, Tan2005}, whereas this is not the goal for ALD.
-Hence, research into single oxygen vacancies in ALD grown \ce{AlO_{1.5}} provide a good intermediary between the discussion of crystalline defects above, and the topic of this thesis (clusters forming two-level defects in amorphous aluminium oxides).
+Hence, research into single oxygen vacancies in ALD grown \ce{AlO_{1.5}} provide a good intermediary between the discussion of crystalline defects above, and the topic of this thesis (identifying two-level defects mechanisms in amorphous aluminium oxides).
 
 Single oxygen vacancies denoted as $V_\ce{O}^\ce{0}$: a fully-occupied state, $V_\ce{O}^\ce{1+}$:
 half-filled state, and $V_\ce{O}^\ce{2+}$: an empty state have been introduced into a DFT based model of ALD grown \ce{AlO_{1.5}}~\cite{Momida2011} ($V_\ce{O}^\ce{0}$ and $V_\ce{O}^\ce{1+}$ are also denoted as the $F$ and $F^+$ centers elsewhere in the literature).
@@ -382,11 +389,6 @@ As many different spatial configurations can exist in the \ce{AlO_x} amorphous j
 This yields TLSs with unique properties based solely on atomic positions and rotation in relation to the external electric field.
 Starting from this ansatz, we compute parameters which have been measured directly in experiments on TLSs, including: TLS resonant frequency, qubit-TLS coupling and TLS energy/strain dependence.
 
-\xxx{From somewhere else}
-It has often been suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
-However, it is unclear if the identified strongly coupled systems are from the same origin.
-Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
-The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
 
 \xxx{From NJP}
 As described in previous work~\cite{DuBois2013}, we consider the origin of some defects to be within the amorphous oxide layer itself, specifically an oxygen atom in a spatially delocalised state.
@@ -402,8 +404,6 @@ To simplify the configuration space we initially consider the introduction of sm
 Possible defects of this nature are depicted in %\cref{fig:defects}.
 
 \xxx{From higher up}
-Probing individual defects has promoted their bistable nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
-
 
 As stated in \cref{sec:formation}, the amorphous oxide is the general case for construction.
 As such we need to investigate this, esp bc \cite{Oh2006}.
@@ -417,4 +417,3 @@ Time scales associated with TLS-Qbit coupling ($S_{max}$) is shorter than all ot
 Therefore we have to consider the TLS as its own quantum system `in isolation'.
 This thesis asks questions about the properties of the TLS derived from the material properties of the JJ it resides in. 
 
-In particular, the superconducting phase qubit is mired by decoherence via multiple TLS sources and as such cannot operate long enough for surface code to correct errors caused by this process. 
