@@ -4,14 +4,13 @@
 \loftchap{TLS Parameter Space In Low Dimensions}
 \chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
 
-Possible sections:
-
-\section{2D model}
-\subsection{Defects as Perturbed Bond Angles in a Lattice (1D)}
-\subsection{TLS Defect Confined in 2 Dimensions}
-\subsection{TLS Defect Confined in 3 Dimensions}
-\subsection{Charge Dipoles}
-\subsection{Qubit Coupling}
+\section{Pushed back from intro}
+%Dumped from potential
+The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
+Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\cite{Cole2010,Shalibo2010}.
+Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
 
 \section{NJP Dump}
 \subsection{Abstract}
@@ -114,7 +113,7 @@ The Streitz-Mintmire potential is given by
 where $q_{\{i,j\}}$ is the atomic charge, $\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])$ and $V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]$.
 $\chi_i^0$ is the electronegativity and $J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion~\cite{Rappe1991} of atom $i$.
 $Z_j$ is an effective core charge of atom $j$, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
-The square bracket notation represents Coulomb interaction integrals between valence charge densities (\eg\ $j$) and effective core charge densities (\eg\ $f_i$) and takes the form~\cite{Zhou2004}:
+The square bracket notation represents Coulomb interaction integrals between valence charge densities (\eg $j$) and effective core charge densities (\eg $f_i$) and takes the form~\cite{Zhou2004}:
 
 \begin{align}
 \left[a|f_b\right] &= \int \frac{f_b(r_b,q_b)}{r_{av}}\,\mathrm{d}V_b\\
@@ -178,7 +177,7 @@ The dipole element is computed using numerical integration of the ground- and fi
 \end{equation}
 is an example of the dipole in the $x$ direction.
 
-Relative differences in energy levels (\ie\ energy splittings) are an important measure of the model.
+Relative differences in energy levels (\ie energy splittings) are an important measure of the model.
 We therefore define a convention where $E_{ij} = E_j-E_i$, such that the ground state ($E_0$) to first excited state ($E_1$) energy splitting is defined as $E_{01}$.
 For comparison with experimental results, energy is expressed in frequency units throughout this paper.
 
@@ -189,7 +188,7 @@ Consider the two simplest cases in \cref{fig:defects} -- defect type A; where th
 These two defect types can be modelled by solving our system hamiltonian \cref{eq:OHam} for three atoms: an oxygen with two aluminium atoms at a lattice coordinate apart, displaced toward and away from the oxygen.
 For example, corundum: the low pressure and temperature phase of aluminium oxide (also known as $\alpha$--\ce{Al_2O_3}) has an Al--O bond distance of $\sim\!1.85$ \AA.
 If we define the oxygen position to be at an origin, the aluminium atoms can be considered as pairs ($x = -X, \: +X$ = \{$\pm 1.85$ \AA\}) lying on a cardinal axes; which are identified throughout this paper as $\abs{X}$ or simply the `defect pair'.
-Displacing $\abs{X}$ equidistantly from this origin (\ie\ moving away from optimal crystalline configuration) will yield either an A or B type defect, depending on the direction of displacement.
+Displacing $\abs{X}$ equidistantly from this origin (\ie moving away from optimal crystalline configuration) will yield either an A or B type defect, depending on the direction of displacement.
 
 An eigenspectrum of the six lowest energy levels of this system over a continuum of values in $\abs{X}$  is depicted in \cref{fig:spectrum}.
 Each energy is measured relative to the ground state, which shows two particular regions where $E_{01}$ (green, solid line) is quasi-degenerate (labelled sections A and B: both associated with the respective defect type).
@@ -228,7 +227,7 @@ This representation is equivalent to the standard two level physics depiction of
 \section{TLS Defect Confined in Two Dimensions}\label{sec:2d}
 
 The ideal case discussed in \cref{sec:bonds} ignores many real world complications, in particular any potential constraints from nearest neighbour atoms that undoubtedly surround the TLS.
-In an attempt to add complexity to the model gradually, we start with two additional aluminium atoms on the same plane as \cref{fig:Atype,fig:Btype}, confining the defect in the $\abs{Y}$ direction (\ie\ $y = -Y, \: +Y$).
+In an attempt to add complexity to the model gradually, we start with two additional aluminium atoms on the same plane as \cref{fig:Atype,fig:Btype}, confining the defect in the $\abs{Y}$ direction (\ie $y = -Y, \: +Y$).
 
 \subsection{Classifying Eigenspectrum Dynamics}
 
@@ -331,7 +330,7 @@ Each of the four potential minima exist localised about the four confining alumi
 To understand the properties of a delocalised oxygen, we have considered confining aluminium atoms in both a line and in a plane.
 In reality, aluminium atoms will surround the oxygen in all three dimensions.
 Two more confining atoms are therefore added into the system in the $z$ direction labelled as $\abs{Z}$.
-Interactions with these atoms in the third dimension are now considered, although the model is still two dimensional (\ie\ \lin{2+1D}); thus oxygen continues to be confined to the $xy$ plane.
+Interactions with these atoms in the third dimension are now considered, although the model is still two dimensional (\ie \lin{2+1D}); thus oxygen continues to be confined to the $xy$ plane.
 An illustration of this cluster configuration is displayed in \cref{fig:cage} and representations of the cage potential and oxygen wavefunctions are shown in \cref{fig:wfstackA} for A and \cref{fig:wfstackB} for B type defects.
 
 \begin{figure}[htp]
@@ -353,7 +352,7 @@ The selection of a fixed $\abs{Z}$ distance changes the phase landscape in a man
 Values of $\abs{Z} = 2.75$ \AA\ (\cref{fig:xi275}) and $\abs{Z} = 2.25$ \AA\ (\cref{fig:xi225}) have been chosen to analyse in detail.
 
 TLS behaviour can be observed on both maps and each value of $\abs{Z}$ has been selected based on model parameters.
-Oxygen confinement occurs for $\abs{Z}$ values lower than $2.25$ \AA\ (\ie\ $E_{01} \gg 100$ GHz).
+Oxygen confinement occurs for $\abs{Z}$ values lower than $2.25$ \AA\ (\ie $E_{01} \gg 100$ GHz).
 $\abs{Z}$ values larger than $2.75$ \AA\ show similar phase behaviour to that of \cref{fig:xiunbound}, which in completely unbound in $z$.
 Large $\abs{Z}$ separation distances also decrease the validity of the \lin{2+1D} model, in addition: the radial distribution analysis in \onlinecite{DuBois2013} suggests large separation distances for nearest neighbour atoms have a low probability of occurrence.
 
@@ -374,7 +373,7 @@ For one to exist in a junction, the amorphous layer would have to be disordered 
 Whilst this configuration of six cage aluminium atoms on cardinal axes around a central oxygen is still an idealised system, \cref{fig:xi225} is confined in all three spatial dimensions with pragmatic distances and is therefore considered to be the most `realistic' representation of the TLS phase space for this model published here.
 TLS candidates lie well within hemi-tetra- ($\xi=1/2$) domains, are not mired by higher energy level complexities (i.e.\ quad-quasi-degeneracies) and can be clearly identified as A type and B type defects separated by an (an)harmonic boundary.
 
-Phase space is also dominated on this map with $\xi=5/4$ (harmonic) and $\xi=2$ (unique ground state) domains where the oxygen atom can be considered under the spatial harmonic approximation (\ie\ localised).
+Phase space is also dominated on this map with $\xi=5/4$ (harmonic) and $\xi=2$ (unique ground state) domains where the oxygen atom can be considered under the spatial harmonic approximation (\ie localised).
 This is significant, as TLS observations in experiments are not statistically dense.
 We expect few defects in the junction compared to the number of atoms extant.
 
@@ -396,7 +395,7 @@ These computed dipole moments correspond well to observed values, assuming $\mat
   \caption[Dipole Phase Map, With $\abs{Z} = 2.25$ \AA]{\label{fig:dipole225}The difference between the absolute dipole moment (in $x$- and $y$-directions) over the same range for $\abs{Z} = 2.25$ \AA. We see either $\abs{\wp_x}$ (red) or $\abs{\wp_y}$ (green) dominated behaviour in the tetra- and hemi-tetra- domains but none in other regions.}
 \end{figure}
 
-The dipole moments are presented as $\left(\abs{\wp_y}-\abs{\wp_x}\right)/e$ rather than separate plots because the dipole elements are discontinuous at the bifurcation points (\ie\ when $\abs{\wp_x}>0, \abs{\wp_y}=0$ and \textit{vice versa}).
+The dipole moments are presented as $\left(\abs{\wp_y}-\abs{\wp_x}\right)/e$ rather than separate plots because the dipole elements are discontinuous at the bifurcation points (\ie when $\abs{\wp_x}>0, \abs{\wp_y}=0$ and \textit{vice versa}).
 Comparing these plots to the phase maps in \cref{sec:tls}, it is apparent that only the tetra- and hemi-tetra- domains ($\xi < 1$) exhibit a dipole response -- which is appropriate for our model as $E_{01}$ splittings representative of a TLS only appear in these regions.
 Localised oxygen atoms ($\xi > 1$) are also expected to not elicit dipole behaviour.
 
@@ -413,7 +412,7 @@ The same $\abs{X},\abs{Y}$ parameters on \cref{fig:dipole225} cross a bifurcatio
 Increased confinement in $z$ induces a deeper potential well in the $xy$ plane and removes any major landscape changing contributions from the confining atom pair -- effectively reducing the model back to a \lin{1D} description.
 A cluster with a comparatively shallow potential that generates tetra-well domains does so when conditions are advantageous for an A type confinement pair to become a B type defect pair (a dipole direction change is not required for this to occur).
 A trace like the $\abs{Y} = 2.5$ \AA\ (labelled A) on \cref{fig:xiunbound} (and an associated eigenspectrum response similar to \cref{fig:tetraspectrum}) is an example of this behaviour.
-If we do not consider the small portion of quad-degenerate defects in this domain; the measurable properties (\ie\ $E_{01}$ and dipole strength) tetra-well, B type, $\abs{\wp_y}$ TLSs are identical to B type, $\abs{\wp_y}$ TLSs that reside in a hemi-tetra-well domain.
+If we do not consider the small portion of quad-degenerate defects in this domain; the measurable properties (\ie $E_{01}$ and dipole strength) tetra-well, B type, $\abs{\wp_y}$ TLSs are identical to B type, $\abs{\wp_y}$ TLSs that reside in a hemi-tetra-well domain.
 
 
 \section{Qubit Coupling}\label{sec:smax}
