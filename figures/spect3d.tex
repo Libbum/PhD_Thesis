@@ -1,0 +1,144 @@
+\documentclass{standalone}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+\usetikzlibrary{plotmarks}
+\usepackage{amsmath}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
+\usepackage{fix-cm}
+\begin{document}
+\begin{tikzpicture}
+\tikzset{highlight/.style args={#1}{fill=#1,fill opacity=0.1}}
+% defining custom colors
+\definecolor{mycolor1}{rgb}{0.435294,0.756863,0.423529}
+\definecolor{mycolor2}{rgb}{0.690196,0.611765,0.792157}
+\definecolor{mycolor3}{rgb}{0.984314,0.701961,0.45098}
+\definecolor{mycolor4}{rgb}{0.172549,0.337255,0.627451}
+\definecolor{mycolor5}{rgb}{0.913725,0,0.423529}
+\definecolor{mycolor6}{rgb}{0.690196,0.278431,0.0745098}
+\definecolor{mycolor7}{rgb}{0.32549,0.32549,0.32549}
+
+\begin{axis}[%
+scale only axis,
+xmin=1.4,xmax=2.2,
+ymin=0,ymax=25,
+xlabel={$\abs{X}$ (\AA)},
+ylabel={$E_j-E_0$ (THz)},
+xmajorgrids,
+ymajorgrids,
+zmajorgrids,
+legend entries={$E_{01}$,$E_{02}$,$E_{03}$,$E_{04}$,$E_{05}$},
+legend style={nodes=right}]
+\addplot [color=mycolor1,solid,line width=1.5pt,mark=star,mark options={solid}]
+  table[row sep=crcr]{%
+1.4	0.0517836868112789\\
+1.45	0.0677385758374043\\
+1.5	0.09974615453258\\
+1.55	0.198590164334418\\
+1.6	2.94824013515208\\
+1.65	7.6248512806436\\
+1.7	9.63859576457377\\
+1.75 10.613362234420471\\
+1.8	11.0293829234639\\
+1.85	11.0967288799244\\
+1.9	3.22594772173489\\
+1.95	0.00378987648261555\\
+2	3.20384292600931e-08\\
+2.05	6.04872573224221e-10\\
+2.1	2.17537939588458e-10\\
+2.15	0\\
+2.2	1.15583357011565e-08\\
+};
+
+\addplot [color=mycolor2,dotted,line width=1.5pt,mark=star,mark options={solid}]
+  table[row sep=crcr]{%
+1.4	0.0517836867392166\\
+1.45	0.0677385758617253\\
+1.5	0.099746154629864\\
+1.55	0.198590164430801\\
+1.6	2.94824013524846\\
+1.65	7.62485128066792\\
+1.7	9.63859576464673\\
+1.75 10.613362234444791\\
+1.8	11.0293829234396\\
+1.85	11.0967288799005\\
+1.9	10.3785745017623\\
+1.95	9.53281222030646\\
+2	8.51549608313172\\
+2.05	7.66678264424211\\
+2.1	6.95163240884197\\
+2.15	6.34630724567799\\
+2.2	5.83025328733493\\
+};
+
+\addplot [color=mycolor3,dashdotted,line width=1.5pt,mark=star,mark options={solid}]
+  table[row sep=crcr]{%
+1.4	0.207124956683063\\
+1.45	0.270918935460305\\
+1.5	0.398814269386235\\
+1.55	0.791416697998322\\
+1.6	6.5814190440877\\
+1.65	15.385470860169\\
+1.7	19.3286867213797\\
+1.75 21.248334706840840\\
+1.8	18.1925804017308\\
+1.85	11.2658125399725\\
+1.9	10.8076549448892\\
+1.95	9.53285686901959\\
+2	8.51549608332494\\
+2.05	7.66678264426598\\
+2.1	6.95163240889016\\
+2.15	6.34630724572663\\
+2.2	5.83025328750382\\
+};
+
+\addplot [color=mycolor4,densely dotted,line width=1.5pt,mark=star,mark options={solid}]
+  table[row sep=crcr]{%
+1.4	0.207125132399672\\
+1.45	0.270920710158237\\
+1.5	0.398814346085699\\
+1.55	0.791417024477281\\
+1.6	6.58141940190473\\
+1.65	15.3854722034212\\
+1.7	19.3286903152893\\
+1.75 21.251509078632076\\
+1.8	22.0655545930536\\
+1.85	22.1721117441248\\
+1.9	10.8076549795151\\
+1.95	9.53552176355092\\
+2	8.51549610278986\\
+2.05	7.66678264489472\\
+2.1	6.95163240901132\\
+2.15	6.34630724572663\\
+2.2	5.83025328951076\\
+};
+
+\addplot [color=mycolor5,dashed,line width=1.5pt,mark=star,mark options={solid}]
+  table[row sep=crcr]{%
+1.4	0.465975679042658\\
+1.45	0.609431890810942\\
+1.5	0.896688330965609\\
+1.55	1.77008337680476\\
+1.6	7.51164339834313\\
+1.65	15.524747295588\\
+1.7	19.3804142759946\\
+1.75 21.265172958744028\\
+1.8	22.071514707867\\
+1.85	22.1911791046597\\
+1.9	13.7758721581463\\
+1.95	9.53554180475155\\
+2	8.51549615806566\\
+2.05	7.66678272418122\\
+2.1	6.95163250270892\\
+2.15	6.34630732380383\\
+2.2	5.83026952440412\\
+};
+
+\end{axis}
+\end{tikzpicture}%
+\end{document} 
