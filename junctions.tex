@@ -27,7 +27,7 @@ An alternative approach is to form an amorphous layer via direct melt and quench
 This method has the advantage of computational simplicity and speed, however the resulting layers are not necessarily representative of the true physical situation and therefore benchmarking against other methods and experiment is critical.
 Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness is the subject of M. Cyster's PhD dissertation.
 
-\section{Model construction}\label{sec:model}
+\section{Model Construction}\label{sec:model}
 \begin{figure}[htp]
 \includegraphics[width=0.9\textwidth]{figures/AlO125_075}
 \caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
@@ -58,7 +58,7 @@ The junction was further annealed to simulate a metal--metal--oxide interface re
 For comparison, junctions were also modelled without the added computational overhead of DFT by solely employing \sw{GULP} and the Streitz-Mintmire potential.
 The construction process of these models matches the procedure above, but interchanges the \textit{ab initio} optimisations of the oxide layer with an empirical framework.
 
-\section{Radial distribution function \texorpdfstring{$G(r)$}{G(r)}}
+\section{Radial Distribution Function \texorpdfstring{$G(r)$}{G(r)}}
 To validate our models against experimental observations, we perform a number of statistical tests to scrutinize the structures.
 First we must ensure that the oxide layer of the junctions are in fact amorphous in nature.
 We employ a projected radial distribution function
@@ -101,11 +101,11 @@ As a result of this excess oxygen diffusion, the junction width can increase by 
 At high densities and stoichiometries (than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
 Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential, but we see very little increase in oxide distribution during the optimisation phase -- suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
 
-\section{Total energy and optimal conditions}
-The total energy of a computational model is a good indication of the structures electronic stability.
+\section{Total Energy and Optimal Conditions}
+The total energy of a computational model is a good indication of the structures' electronic stability.
 Due to the stoichiometry changes invoked in the oxygen depleted models, not all structures have the same number of atoms.
 This gives structures with more atoms (such as \ce{AlO_{1.25}}) additional electronegativity which in turn results in a deeper potential well and a large total energy.
-In an attempt to normalise this response, we present a total energy per atom value in \Cref{fig:energyperatom}, scaling against stoichiometry (left) and density (right).
+In an attempt to normalise this response, we present a total energy per atom value in \cref{fig:energyperatom}, scaling against stoichiometry (left) and density (right).
 
 \begin{figure}[tbp]
 \peratommargins
@@ -115,14 +115,14 @@ In an attempt to normalise this response, we present a total energy per atom val
 \end{adjustwidth}
 \end{figure}
 
-It is clear from \cref{fig:energyperatom} that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
+It is clear from this figure that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
 This suggests that fabrication processes that generate oxygen deficiencies may be inviting the inclusion of alien species or oxygenic site hopping in an attempt to rectify this offset.
 
 Density changes seem to alter the energy contribution marginally.
-Minimum energies correspond to density multiples between 0.6 and 0.75, slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
+Minimum energies correspond to density multiples between 0.6 and 0.75 -- slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
 
-\section{Coordination number}
-Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of octahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using nuclear magnetic resonance (NMR) are also able to resolve the \ce{AlO_5} coordination~\cite{Lee2009}.
+\section{Coordination Number}
+Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of hexahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using Nuclear Magnetic Resonance (NMR) are also able to resolve any \ce{AlO_5} coordinations~\cite{Lee2009}.\nomdef{ANMR}{NMR}{Nuclear Magnetic Resonance}
 
 
 \begin{figure}[htp]
@@ -145,13 +145,12 @@ Coordination number is a useful metric which allows for some insight into both t
 \end{tabular}
 \end{table}
 
-\section{Conclusions}
+\section{Chapter Summary}
 
 Precise computational models of Josephson junctions are becoming crucial to efforts to reduce dissipation and loss in superconducting circuits.
 The limits of computational resources mean that full \textit{ab initio} models are computationally intractable.
 However, a combination of \textit{ab initio} and empirical models holds promise for developing flexible and efficient simulation approaches.
-We have constructed models of amorphous aluminium-oxide barriers, sandwiched between crystalline aluminium.
 Through comparisons with both previous theoretical analysis and experimental measurements, we have shown that the resulting structures are representative of those fabricated experimentally.
-The structure of such junctions can be used as input conditions to potential microscopic models for either charge or magnetic defects in Josephson junctions.
-Through this approach, free parameters in existing phenomenological defect models can be determined via information directly obtained from the atomic positions.
+The structure of such junctions may now be used as input conditions for the delocalised oxygen models discussed in the subsequent chapters.
+Additionally, free parameters in existing phenomenological defect models can be determined via information directly obtained from the atomic positions, and other microscopic TLS models may use these structures to investigate their own particular phenomenon.
 
