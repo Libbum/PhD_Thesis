@@ -69,7 +69,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-\section[Numerical Second Derivative]{Numerical Treatment of the Second Derivative}\label{sec:numder}\xxx{I think the section headers need to be rejigged from here down. First total error est as a subsection to step size dilemma is no good, then harmonic a major section although a subsection of another... Not to sure what to do with it all though.}
+\section[Numerical Treatment of the Second Derivative][Second Derivative Treatment]{Numerical Treatment of the Second Derivative}\label{sec:numder}
 The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functions that are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
 A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
@@ -90,7 +90,7 @@ If the step size is too small, numerical roundoff errors cause accuracy issues; 
 Identifying an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values.
 This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
 
-The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\textit{vide infra} \cref{subsec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
+The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\textit{vide infra} \cref{sec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
 However, for many years this statement was only true for the first order derivative -- higher orders were shown to have as many cancellation errors as their finite difference counterparts.
 This method was therefore excluded as a candidate for the model constructed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
 After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
@@ -109,7 +109,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
+\section[Understanding the Central Difference Method][Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms\nomdref{CxStar}{$x^*$}{Any value of $x$ about which a central difference is applied}{ch:tls}
 \begin{equation}
@@ -166,7 +166,7 @@ f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\zeta)
 
 Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.
 
-\section[Step Size Dilemma]{Contributors to the Step Size Dilemma}
+\section{Contributors to the Step Size Dilemma}
 
 \subsection{Truncation Error}\label{sec:truncerr}
 
@@ -219,7 +219,7 @@ If $h$ increases, the approximate truncation coefficient can no longer be used a
 the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
 Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values.
 
-\subsection{Roundoff Errors}\label{subsec:roundoff}
+\subsection{Roundoff Errors}\label{sec:roundoff}
 
 As mentioned in \cref{sec:numder}, numbers in a computer are represented with a fixed number of binary digits, and operations applied to them have an inherent loss of accuracy.
 This phenomenon is designated the term roundoff error, as the extra digits that cannot be held in memory must be discarded -- rounded to the nearest tolerance.
@@ -263,14 +263,14 @@ Forms of \cref{eq:cd22f} for instance are\nomdref{BFE}{$\mathcal{F}_\epsilon$}{C
 \mathcal{F}_\delta &= \max(\abs{f(x+h) + f(x-h)},\abs{2f(x)}).
 \end{align}
 
-\subsection{Estimation of Total Error}\label{subsec:cdtoterr}
+\subsection{Estimation of Total Error}\label{sec:cdtoterr}
 
 Using the equations for truncation and roundoff errors mentioned above, and assuming a small $h$ such that \cref{eq:cdtrcoeff} holds, the total error can be bounded by the expression
 \begin{equation}
 \abs{f^{\;(d)}(x)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n
 \end{equation}
 
-Assuming a worse case scenario, the total error can therefore be described as\nomdref{BEnd}{$\mathcal{E}_n^{\,(d)}(x,h)$}{Total error for a $d^{th}$ derivative central difference method of order $n$}{subsec:cdtoterr}
+Assuming a worse case scenario, the total error can therefore be described as\nomdref{BEnd}{$\mathcal{E}_n^{\,(d)}(x,h)$}{Total error for a $d^{th}$ derivative central difference method of order $n$}{sec:cdtoterr}
 \begin{equation}
 \mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n\label{eq:cnetot}
 \end{equation}
@@ -307,7 +307,7 @@ Once this value is known, \cref{eq:cdhopt} can be rearranged to find the conditi
 
 The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of~\,\onlinecite{Mathur2012}.
 
-\subsection{A Harmonic Approximation to Streitz-Mintmire}\label{subsec:harmsm}
+\section[A Harmonic Approximation to Streitz-Mintmire][Streitz-Mintmire Harmonic Approximation]{A Harmonic Approximation to Streitz-Mintmire}\label{sec:harmsm}
 
 A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
 This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
@@ -374,7 +374,7 @@ h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{e
 
 labelled as \plotmarker{0.5}{circle,fill=Set1-5-3}.
 The value of this corrected step is $h_{opt,true} = 3.717\ten{-5}$ Å, which does not have an accurate power of two representation.
-As stated in \cref{subsec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
+As stated in \cref{sec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
 Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
 \begin{equation}
 h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
@@ -452,7 +452,7 @@ The form of \cref{eq:cd26f} adheres to \cref{eq:cdgeneral}, where
 Applying this equation is no different to \cref{eq:cd22f}, and the only additional overhead is the requirement of six absciss\ae\ rather than two.
 
 An optimal step size for $\nabla^2$ in \cref{eq:OHam} can be found using  \cref{eq:cd26f} and the harmonic approximation of $\Psi_0(x)$ \cref{eq:gshwfn}.
-As with the calculation in \cref{subsec:harmsm} using \cref{eq:cd22f}, we will evaluate at $x = 0$ and apply the optimal step size algorithm~\cite{Mathur2012}; the results of which are shown in \cref{fig:hopt7pt}.
+As with the calculation in \cref{sec:harmsm} using \cref{eq:cd22f}, we will evaluate at $x = 0$ and apply the optimal step size algorithm~\cite{Mathur2012}; the results of which are shown in \cref{fig:hopt7pt}.
 \begin{figure}[htp]
 \centering
 \resizebox{\textwidth}{!}{\includestandalone{figures/hopt7pt}}
