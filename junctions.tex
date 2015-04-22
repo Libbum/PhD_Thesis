@@ -11,7 +11,11 @@ From a quantum simulation point of view, this is not a trivial problem.
 Crystalline symmetries usually invoked to minimise calculations cannot be used to reduce the state space of the oxide barrier of a junction due to its amorphous nature.
 However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.\footnote{Special thanks must go to Martin Cyster for his contributions to work discussed in this chapter.}
 
-\section{Simulating the Junction Formation Process}
+Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
+\Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data. 
+Finally a summary in \cref{sec:jjsum} which outlines a few technical uses for these models outside the main scope of this thesis.
+
+\section{Simulating the Junction Formation Process}\label{sec:simjjform}
 
 Josephson junctions may be constructed from any superconducting material with any insulating or non-superconducting metal barrier to invoke a weak link coupling.
 A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
@@ -27,7 +31,7 @@ An alternative approach is to form an amorphous layer via direct melt and quench
 This method has the advantage of computational simplicity and speed, however the resulting layers are not necessarily representative of the true physical situation and therefore benchmarking against other methods and experiment is critical.
 Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness is the subject of M. Cyster's PhD dissertation.
 
-\section{Model Construction}\label{sec:model}
+\section{Model Construction}\label{sec:jjmodel}
 \begin{figure}[htp]
 \includegraphics[width=0.9\textwidth]{figures/AlO125_075}
 \caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
@@ -58,7 +62,7 @@ The junction was further annealed to simulate a metal--metal--oxide interface re
 For comparison, junctions were also modelled without the added computational overhead of DFT by solely employing \sw{GULP} and the Streitz-Mintmire potential.
 The construction process of these models matches the procedure above, but interchanges the \textit{ab initio} optimisations of the oxide layer with an empirical framework.
 
-\section{Radial Distribution Function \texorpdfstring{$G(r)$}{G(r)}}
+\section{Radial Distribution Function \texorpdfstring{$G(r)$}{G(r)}}\label{sec:gr}
 To validate our models against experimental observations, we perform a number of statistical tests to scrutinize the structures.
 First we must ensure that the oxide layer of the junctions are in fact amorphous in nature.
 We employ a projected radial distribution function
@@ -79,7 +83,7 @@ Moving away from this peak to larger distance separations, we see the statistics
 These two features represent an amorphous system quite well, as close range order suggests a connection to the crystalline form whilst long range order no longer agrees with such periodic conditions.
 It's also significant to note that we don't observe neighbours closer than $\sim\!1.5$ \AA\ which is a good indication that the models do not have non-physical neighbour forces acting on atoms.
 
-Most importantly, this trend is almost uniform across all the modeled junctions, which indicate the process outlined in \cref{sec:model} is capable of producing amorphous oxides whilst varying other physical parameters of the system.
+Most importantly, this trend is almost uniform across all the modeled junctions, which indicate the process outlined in \cref{sec:jjmodel} is capable of producing amorphous oxides whilst varying other physical parameters of the system.
 An evolution of the important steps in the procedure is depicted in \cref{fig:groptis}.
 
 The corundum $G(r)$ \plotline{line width=1pt,color=gray!50} is a complicated structure due to the 30 atom unit cell of the crystal, however it is clear from this figure where much of the amorphous structure originates from.
@@ -121,7 +125,7 @@ This suggests that fabrication processes that generate oxygen deficiencies may b
 Density changes seem to alter the energy contribution marginally.
 Minimum energies correspond to density multiples between 0.6 and 0.75 -- slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
 
-\section{Coordination Number}
+\section{Coordination Number}\label{sec:coord}
 Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of hexahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using Nuclear Magnetic Resonance (NMR) are also able to resolve any \ce{AlO_5} coordinations~\cite{Lee2009}.\nomdef{ANMR}{NMR}{Nuclear Magnetic Resonance}
 
 
@@ -145,7 +149,7 @@ Coordination number is a useful metric which allows for some insight into both t
 \end{tabular}
 \end{table}
 
-\section{Chapter Summary}
+\section{Chapter Summary}\label{sec:jjsum}
 
 Precise computational models of Josephson junctions are becoming crucial to efforts to reduce dissipation and loss in superconducting circuits.
 The limits of computational resources mean that full \textit{ab initio} models are computationally intractable.
