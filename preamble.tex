@@ -119,9 +119,54 @@
 \setfloatadjustment{figure}{\centering}
 \newlength{\widefigure}
 \setlength{\widefigure}{\textwidth+\marginparwidth}
-\newlength{\leftwidth}
-\newlength{\rightwidth}
-\newcounter{pagecount}
+%Wide figures are essentially impossible to work with in memoir at present. 
+%All packages that try (fullwidth etc.) fail here. 
+%This is a brutal fix, but it's all I got.
+\newlength{\siotwoleft}
+\newlength{\siotworight}
+\newcounter{siotwocount}
+\newlength{\peratomleft}
+\newlength{\peratomright}
+\newcounter{peratomcount}
+\newlength{\smvhleft}
+\newlength{\smvhright}
+\newcounter{smvhcount}
+
+\newcommand{\siotwomargins}{
+\whiledo{\thesiotwocount<200}{%
+\checkoddpage
+\ifoddpage
+\setlength{\siotwoleft}{0em}
+\setlength{\siotworight}{-\marginparwidth}
+\else
+\setlength{\siotwoleft}{-\marginparwidth}
+\setlength{\siotworight}{0em}
+\fi
+\stepcounter{siotwocount}}}
+
+\newcommand{\peratommargins}{
+\whiledo{\theperatomcount<200}{%
+\checkoddpage
+\ifoddpage
+\setlength{\peratomleft}{0em}
+\setlength{\peratomright}{-\marginparwidth}
+\else
+\setlength{\peratomleft}{-\marginparwidth}
+\setlength{\peratomright}{0em}
+\fi
+\stepcounter{peratomcount}}}
+
+\newcommand{\smvhmargins}{
+\whiledo{\thesmvhcount<200}{%
+\checkoddpage
+\ifoddpage
+\setlength{\smvhleft}{0em}
+\setlength{\smvhright}{-\marginparwidth}
+\else
+\setlength{\smvhleft}{-\marginparwidth}
+\setlength{\smvhright}{0em}
+\fi
+\stepcounter{smvhcount}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES
@@ -338,7 +383,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EXTRA STUFF
-\hyphenation{tri-methyl-aluminium deriv-a-tive wave-guides nano-mech-an-ical quasi-de-gen-er-ate}
+\hyphenation{tri-methyl-aluminium deriv-a-tive wave-guides nano-mech-an-ical quasi-de-gen-er-ate al-u-min-ium}
 
 \setkeys{Gin}{draft=false} %Allows figures to be displayed in draft mode.
 
