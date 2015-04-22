@@ -36,16 +36,4 @@
         \end{tikzpicture}
 }
 
-\newcommand{\widefiguremargins}{
-\whiledo{\thepagecount<130}{%
-\checkoddpage
-\ifoddpage
-\setlength{\leftwidth}{0em}
-\setlength{\rightwidth}{-\marginparwidth}
-\else
-\setlength{\leftwidth}{-\marginparwidth}
-\setlength{\rightwidth}{0em}
-\fi
-\stepcounter{pagecount}}} 
-
 \newcommand{\divtext}{\begin{center}\resizebox{!}{0.65cm}{\includestandalone{figures/flourish}}\end{center}}

@@ -6,7 +6,7 @@
 
 \thought{The jury is still out} when it comes to the specific location of strongly coupled TLSs inside Josephson junctions, and as we've seen in \cref{sec:micromod}, many perchance competing microscopic models exist that attempt to describe their origin.
 One possible way of distinguishing between these options (including the one posited in \cref{sec:conjecture}) is to develop complete atomistic models of the Josephson junction and study the many spatial configurations of the amorphous tunneling barrier.
- 
+
 From a quantum simulation point of view, this is not a trivial problem.
 Crystalline symmetries usually invoked to minimise calculations cannot be used to reduce the state space of the oxide barrier of a junction due to its amorphous nature.
 However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.\footnote{Special thanks must go to Martin Cyster for his contributions to work discussed in this chapter.}
@@ -33,7 +33,7 @@ Generating stoichiometry or density gradients across an artificial junction is n
 \caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
 \end{figure}
 
-To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT. 
+To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT.
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
 Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.
 
@@ -108,9 +108,8 @@ This gives structures with more atoms (such as \ce{AlO_{1.25}}) additional elect
 In an attempt to normalise this response, we present a total energy per atom value in \Cref{fig:energyperatom}, scaling against stoichiometry (left) and density (right).
 
 \begin{figure}[tbp]
-\widefiguremargins
-%TODO: Getting overfull hbox warnings on recto pages, check if this is an issue..
-\begin{adjustwidth}{\leftwidth}{\rightwidth}
+\peratommargins
+\begin{adjustwidth}{\peratomleft}{\peratomright}
 \resizebox{\widefigure}{!}{\includestandalone{figures/energyperatom}}
 \caption[Energy Comparisons]{\label{fig:energyperatom}Total energy per atom for various junction models with stoichiometry (left) and density (right).  Although the total energy per atom is strongly dependent on stoichiometry, we see a clear tread to optimal densities of approximately 75\% of the density of corundum.}
 \end{adjustwidth}
