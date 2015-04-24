@@ -12,7 +12,7 @@ Crystalline symmetries usually invoked to minimise calculations cannot be used t
 However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.\footnote{Special thanks must go to Martin Cyster for his contributions to work discussed in this chapter.}
 
 Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
-\Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data. 
+\Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data.
 Finally a summary in \cref{sec:jjsum} which outlines a few technical uses for these models outside the main scope of this thesis.
 
 \section{Simulating the Junction Formation Process}\label{sec:simjjform}
@@ -47,7 +47,7 @@ Experimental investigations of stoichiometry suggest, in general, an oxygen defi
 In response to this, we construct models with four stoichiometries: \ce{AlO_{0.8}}, \ce{AlO_{1.0}}, \ce{AlO_{1.25}} and \ce{AlO_{1.5}}.
 The oxide density may also be an important formation variable.
 For simplicity we identify oxide density in multiples of the (average) corundum density: $4.05$ g/cm$^\text{3}$, and construct junctions with 0.5, 0.625, 0.75, 0.875 \& 1.0 density multiples for each stoichiometry listed above.
-A value of $3.2$ g/cm$^\text{3}$ is typical~\cite{Barbour1998} (which corresponds to a density multiple of 0.8), although theoretical predictions suggest altering the density of this barrier may suppress noise sources of the junction~\cite{DuBois2013}.
+A value of $3.2$ g/cm$^\text{3}$ is typical~\cite{Barbour1998} (which corresponds to a density multiple of 0.8).
 
 Using \ce{AlO_{1.25}} with a density multiple of 0.75 as an example, a $6\!\times\!6\!\times\!1$ supercell of corundum was geometry optimised in the software package \sw{GULP}~\cite{Gale2003}, employing the empirical Streitz-Mintmire potential~\cite{Streitz1994} which can capture the variable oxygen charge states when present in a predominantly metallic environment. This capability is particularly important here, as a Josephson junction has two metal-oxide interfaces.
 This large superstructure was required due to the trigonal nature of the lattice, as it was then cut down such that the $xy$ plane of the bulk aluminium slab could be covered.

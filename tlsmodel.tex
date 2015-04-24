@@ -566,7 +566,7 @@ A complete description of the hamiltonian \cref{eq:OHam} can now be implemented 
 
 the implementation of which requires the construction of a sparse matrix representation of $H$, which can be fed into the \sw{eigs} function of \sw{Matlab}; computing the wavefunction $\Psi$ and energy $E$ of the system.
 
-In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{ch:lowdims,ch:threedee} for specifics).\xxx{Make sure I actually go into these details, or otherwise can this sentence}
+In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,ch:threedee} for specifics).\xxx{Make sure I actually go into these details, or otherwise can this sentence}
 
 Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{marginfigure}
@@ -579,7 +579,7 @@ Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an
 
 describes the system in terms of distance in Å and energy in μeV.
 This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}.
-Each subsequent value of $x$ also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
+Each subsequent position value ($\mathbf{r}=x$) also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
 Off diagonals are also required to fulfil the remaining $~f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $~f_k$ coefficient and the  $\nabla^2$ prefactor.
 
 The resulting matrix can then be diagonalised, obtaining eigenvectors and eigenenergies for the system in question.
