@@ -4,72 +4,22 @@
 \loftchap{TLS Parameter Space In Low Dimensions}
 \chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
 
-\section{Pushed back from intro}
-%Dumped from potential
-The two most striking properties of a strongly coupled TLS (if one assumes the charge dipole framework is physically representational) are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA~\cite{Cole2010,Shalibo2010}.
-Whilst many other properties have been measured, this work will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
-When a representative example is required in this work, $E_{01}=8$ GHz and a dipole strength of $1.2$ $e$\AA will be used, to compare directly with a TLS studied in \onlinecite{Cole2010}.
+\thought{Equipped with a framework describing} the behaviour of an oxygen atom delocalising in the presence of an external potential, we are now in a position to investigate which atomic configurations may demonstrate TLS characteristics. 
+Whilst many other properties have been measured, we will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
+Expected values are approximately $E_{01}=8$ GHz and $\wp=1.2$ $e$\AA~\cite{Cole2010}.
+This will enable us to directly compare measured qubit-TLS couplings via \cref{eq:smax} to our calculated splitting energies and dipole values.
 
-\section{NJP Dump}
-\subsection{Abstract}
-Identifying the microscopic origins of decoherence sources prevalent in Josephson junction based circuits is central to their use as functional quantum devices.
-Focussing on so called ``strongly coupled'' two-level defects, we construct a theoretical model using the atomic position of the oxygen which is spatially delocalised in the oxide forming the Josephson junction barrier.
-Using this model, we investigate which atomic configurations give rise to two-level behaviour of the type seen in experiments.
-We compute experimentally observable parameters for phase qubits and examine defect response under the effects of applied electric field and strain.
-
-
-\section{Introduction and Concept}
-Superconducting qubits and Josephson junction based quantum devices in general are often limited by decoherence sources.
-A common and important source of decoherence is the environmental two-level system (TLS)~\cite{Dutta1981, Shnirman2005}.
-Experiments have probed these defects directly and shown them to be stable, controllable and have relatively long decoherence times,~\cite{Simmonds2004, Neeley2008, Shalibo2010, Lupascu2009, Lisenfeld2010, Gunnarsson2013} although little is known about their true microscopic nature. Many phenomenological theories attempting to describe them exist; including charge dipoles~\cite{Martinis2005}, Andreev bound states~\cite{DeSousa2009}, magnetic dipoles~\cite{Sendelbach2008}, Kondo impurities~\cite{Faoro2007} and TLS state dependence of the Josephson junction (JJ) transparency~\cite{Ku2005}.
-Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results -- rendering them presently indistinguishable.
-It is therefore important to construct microscopic models of these systems to increase our understanding of their composition.
-Polaron dressed electrons~\cite{Agarwal2013} and surface aluminium ions paramagnetically coupling to ambient molecules~\cite{Lee2014} are two recent models that may shed new light in this area.
-
-Bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Anderson1972}.
-Amorphous insulating barriers (either in the form of Josephson junctions or simply a native oxide) form an integral part of superconducting circuits, so it comes as no surprise that TLSs are often considered to be an important source of noise in these circuits~\cite{Dutta1981, Shnirman2005, Martinis2005}.
-Developments in controllable qubit architecture (charge, flux and phase) has enabled the study of so-called `strongly coupled defects'~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
-These defects have comparable resonance frequencies to the qubit circuit and coupling strengths as well as decoherence times long enough to allow coherent oscillations between the qubit and TLS.
-Probing individual defects has promoted their bistable nature from hypothesis to observable fact, as well as providing clues to their microscopic origin.
-
-As described in previous work~\cite{DuBois2013}, we consider the origin of some defects to be within the amorphous oxide layer itself, specifically an oxygen atom in a spatially delocalised state.
-This has important ramifications for materials science based efforts to reduce the effects of TLSs.
-If, as alternative models suggest, TLS defects indeed stem from surface states~\cite{Choi2009} or the accidental inclusion of an alien species~\cite{Jameson2011, Holder2013}; future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}.
-Nevertheless, if the oxygen atoms themselves form a noise source, a perfectly clean but amorphous dielectric may still harbour a large ensemble of TLSs.
-
-Our approach considers only atomic positions as input parameters in an attempt to construct a microscopic model rather than a phenomenological one.
-The premise of our TLS model is that positional anharmonicity of oxygen atoms arises within the \ce{AlO_x} barrier of the Josephson junction primarily due to its non-crystalline nature.
-As an illustrative example, consider an interstitial oxygen defect in crystalline silicon: the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Si-Si bond axis~\cite{Artacho1995}.
-This forms an anharmonic system with a quasi-degenerate~\cite{DuBois2013} ground state, even in a ``perfect'' crystal.
-This ansatz allows the existence of many different spatial configurations throughout the layer, causing unique TLS properties based solely on atomic positions and rotation in relation to the external electric field.
-To simplify the configuration space we initially consider the introduction of small lattice irregularities from an idealised trigonal-like 2D oxide lattice.
-Possible defects of this nature are depicted in \cref{fig:sio2}. \xxx{This is in the intro, don't add it here.}
-
-\begin{figure}[htp]
-  \hspace{0.2\textwidth}\centering
-  %\includegraphics[width=0.6\textwidth]{figure1}\\
-  \caption[fig1]{\label{fig:defects}Illustration of a trigonal-like oxide lattice (aluminium in gray, oxygen in red) with three possible defect types~\cite{Zachariasen1932, Enss2005}. Each defect type is indicated via an atom in blue, which can be considered as an equivalent lattice position the oxygen atom can occupy.  A: the bond length is shortened causing an oxygen to form a dipole perpendicular to the bond axis, B: the bond length is lengthened causing an oxygen to form a dipole parallel to the bond axis, C: a cluster of three oxygens are rotated about a central metal atom. Types A and B are of interest to this work. Type C requires a many body investigation that is beyond the current scope, although it has been discussed extensively in the literature~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.}
-\end{figure}
-
-It has often been suggested that a bath of TLSs are responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
-However, it is unclear if the identified strongly coupled systems are from the same origin.
-Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate.
-The model in this work therefore only attempts to describe TLSs that are strongly coupled in nature.
-
-The outline of this paper is as follows.
-\Cref{sec:methods} introduces the theory from which we build our model to investigate delocalised oxygen based two-level systems.
-The following three sections then start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way.
-\Cref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in \cref{fig:defects}.
-In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions.
+Starting with the model outlined in \cref{ch:tls}, \cref{sec:methdipole} extends these methods to treat oxygen delocalisation in two dimensions, and introduces an expression to calculate the effective dipole of the oxygen relative to an external field.
+\Crefrange{sec:bonds}{sec:tls} start from a minimal example of this model and slowly add complexity, so interactions can be examined and understood in a systematic way.
+\Cref{sec:bonds} considers a defect comprising of an Al--O--Al chain in one dimension, perturbed from a crystalline lattice, simulating defects A and B in \cref{fig:sio2}.
+In reality, an oxygen atom in the amorphous layer of a Josephson junction will be surrounded by atoms in all three dimensions (which can be expressed using a cluster of atoms simulated in \cref{ch:junctions}).
 Moving towards a model representation of this, \cref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane.
 The completed model is then described in \cref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane.
 Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective \lin{2+1D} model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system.
 The following sections then apply the \lin{2+1D} model and compare delocalised oxygen responses to experimental TLS data.
 \Cref{sec:smax} discusses qubit--TLS coupling and \cref{sec:strain} observes the effect of mechanical strain.
 
-\section{Methods}\label{sec:methods}
+\section{2D Formalism and Dipole Expression}\label{sec:methdipole}
 
 We are interested in what happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types outlined in \cref{fig:defects}.
 If we also ignore any time evolution properties of the system for now and derive an effective single particle Hamiltonian
@@ -272,7 +222,7 @@ The $x$ and $y$ axes show the $\abs{X}$ and $\abs{Y}$ pair separation distances 
 Regions that are deemed to be unimportant when searching for TLS behaviour are those where $\xi \geq 1$, as these correspond to eigenspectra which do not possess a (quasi-)doubly degenerate ground state.
 
 As discussed in \cref{sec:bonds}, in the one dimensional confinement case, both A and B type defects exist in a hemi-tetra-well ($\xi = 1/2$).
-This is also the case for the two dimensional landscape -- contour lines corresponding to $E_{01} = \{0.5, 2, 4, 6, 8, 10\}$ GHz (red--yellow) on \cref{fig:xiunbound} show the configuration properties that result in TLS $E_{01}$ splittings in various qubit architectures described in \cref{sec:methods}.
+This is also the case for the two dimensional landscape -- contour lines corresponding to $E_{01} = \{0.5, 2, 4, 6, 8, 10\}$ GHz (red--yellow) on \cref{fig:xiunbound} show the configuration properties that result in TLS $E_{01}$ splittings in various qubit architectures described in \cref{sec:methods}.\xxx{methods}
 For example: anywhere an orange, $8$ GHz line exists on this phase map, the $\abs{X}, \abs{Y}$ coordinates of the model generate a cluster configuration that yields the same $E_{01}$ observed in phase qubit experiments~\cite{Cole2010}.
 
 Many of these lines lie completely within a $\xi = 1/2$ (green) region.
@@ -379,7 +329,7 @@ We expect few defects in the junction compared to the number of atoms extant.
 
 \section{Charge Dipoles}\label{sec:dipole}
 
-As stated in \cref{sec:methods}, another important experimentally measurable property of the TLS is its strong electric dipole moment.
+As stated in \cref{sec:methods}, another important experimentally measurable property of the TLS is its strong electric dipole moment.\xxx{methods}
 Using the same $\abs{X}, \: \abs{Y}$ and $\abs{Z}$ parameters from the phase maps in the previous section, the dipole elements in the $x$ direction $\wp_x$, and the $y$ direction $\wp_y$ can be calculated via \cref{eq:dipole}.
 \Cref{fig:dipole275} shows the same phase space as \cref{fig:xi275}, where $\abs{Z} = 2.75$ \AA, and \cref{fig:dipole225} matches \cref{fig:xi225}, where $\abs{Z} = 2.25$ \AA.
 The colourmap for both figures now represent dipole strengths of each cluster configuration rather than energy level splittings (represented through the $\xi$ metric).
