@@ -91,8 +91,9 @@ Identifying an optimal balance for the step size is also dependent on the specif
 This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
 
 The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\textit{vide infra} \cref{sec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
-However, for many years this statement was only true for the first order derivative -- higher orders were shown to have as many cancellation errors as their finite difference counterparts.
-This method was therefore excluded as a candidate for the model constructed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
+However, for many years this statement was only true for the first order derivative---higher orders were shown to have as many cancellation errors as their finite difference counterparts.
+
+This method was therefore excluded as a candidate for the model designed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
 After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
 This algorithm may improve the error contribution of the models' final implementation, although this has not been investigated.
 
@@ -102,7 +103,7 @@ The premise of this algorithm isn't necessarily mathematical in nature, but capi
 Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
 There a two methods to implement this algorithm; neither is straightforward.
 One uses special AD preprocessors that analyse each function call, break it up instruction by instruction and generates a new function that computes derivatives.
-Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \sw{Matlab} is unfeasible -- requiring some hacking of the engine itself.
+Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \sw{Matlab} is unfeasible---requiring some hacking of the engine itself.
 \nomdef{AJIT}{JIT}{Just-in-time compilation}
 
 Both AD and complex step require access to functions at the source code level, meaning calls to third party libraries like \sw{BLAS} and \sw{LAPACK} (which are used in this model's implementation) become increasingly over-complicated.
@@ -148,7 +149,7 @@ f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta)}{3!}h^2, \q
 \mathcal{F}_2^{\,(1)}(x,h) &= \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)\label{eq:cd12f}
 \end{align}
 
-Both equations above represent the first derivative of $f(x)$; although they differ in the sense that \cref{eq:cd12t} is still the true derivative and \cref{eq:cd12f} truncates the error term and represents it as an order of magnitude -- which is the essence of the finite difference approximation to the derivative.
+Both equations above represent the first derivative of $f(x)$; although they differ in the sense that \cref{eq:cd12t} is still the true derivative and \cref{eq:cd12f} truncates the error term and represents it as an order of magnitude---which is the essence of the finite difference approximation to the derivative.
 The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$, which can formerly be expressed as:\nomdref{CFD}{$\mathcal{F}_n^{\,(d)}(x,h)$}{Finite difference approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$}{ch:tls}\nomdef{BO}{$\mathcal{O}$}{Big-O notation, signifying the order of a value}
 \begin{equation}
 \mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).\label{eq:cdgeneral}
@@ -222,11 +223,11 @@ Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a st
 \subsection{Roundoff Errors}\label{sec:roundoff}
 
 As mentioned in \cref{sec:numder}, numbers in a computer are represented with a fixed number of binary digits, and operations applied to them have an inherent loss of accuracy.
-This phenomenon is designated the term roundoff error, as the extra digits that cannot be held in memory must be discarded -- rounded to the nearest tolerance.
+This phenomenon is designated the term roundoff error, as the extra digits that cannot be held in memory must be discarded---rounded to the nearest tolerance.
 
 Roundoff error has been a hot topic of research since the invention of computers.
 Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} and investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; found roundoff via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
-These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible -- contrary to the truncation requirement of a small step size.
+These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible---contrary to the truncation requirement of a small step size.
 An upper bound on this error is given by
 \begin{equation}
  \abs[\big]{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
@@ -248,7 +249,7 @@ For elementary operations $\epsilon$ should be equal to machine precision, altho
 Finally, an error which is also important in this instance is named representational error.
 Not all numbers can be accurately be represented in binary using a fixed number of digits.
 Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \etc), and what's most troubling about this is the fact that no negative power of 10 has an exact binary representation.
-This error is small -- usually smaller that machine precision in fact, but it has non-trival and cumulative side effects.
+This error is small---usually smaller that machine precision in fact, but it has non-trival and cumulative side effects.
 If one avoids step sizes other than $2^\mathbb{N}$ this error can be avoided completely.
 
 With this information in hand, an upper bound to the total roundoff error can now be calculated:

@@ -4,7 +4,7 @@
 \loftchap{TLS Parameter Space In Low Dimensions}
 \chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
 
-\thought{Equipped with a framework describing} the behaviour of an oxygen atom delocalising in the presence of an external potential, we are now in a position to investigate which atomic configurations may demonstrate TLS characteristics. 
+\thought{Equipped with a framework describing} the behaviour of an oxygen atom delocalising in the presence of an external potential, we are now in a position to investigate which atomic configurations may demonstrate TLS characteristics.
 Whilst many other properties have been measured, we will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
 Expected values are approximately $E_{01}=8$ GHz and $\wp=1.2$ $e$\AA~\cite{Cole2010}.
 This will enable us to directly compare measured qubit-TLS couplings via \cref{eq:smax} to our calculated splitting energies and dipole values.
@@ -24,7 +24,7 @@ The following sections then apply the \lin{2+1D} model and compare delocalised o
 To extend the hamiltonian $H$ \cref{eq:OHam} into a two dimensional matrix representation, one must arrange in a way understood by the \sw{eigs} function, which expects a two dimensional sparse matrix.
 
 If $\mathbf{r}=(x,y)$ in \cref{eq:tisemat}, we can treat each dimension separately and follow the method outlined in \cref{sec:methdipole} for $x$ then $y$.
-With two sparse matricies, the Kronecker product can be applied to generate a block matrix ready for diagonalisation. 
+With two sparse matricies, the Kronecker product can be applied to generate a block matrix ready for diagonalisation.
 \begin{equation}
 H = H_x \otimes \mathbb{I}_y + \mathbb{I}_x \otimes H_y.
 \end{equation}
@@ -131,7 +131,7 @@ The $x$ and $y$ axes show the $\abs{X}$ and $\abs{Y}$ pair separation distances 
 Regions that are deemed to be unimportant when searching for TLS behaviour are those where $\xi \geq 1$, as these correspond to eigenspectra which do not possess a (quasi-)doubly degenerate ground state.
 
 As discussed in \cref{sec:bonds}, in the one dimensional confinement case, both A and B type defects exist in a hemi-tetra-well ($\xi = 1/2$).
-This is also the case for the two dimensional landscape -- contour lines corresponding to $E_{01} = \{0.5, 2, 4, 6, 8, 10\}$ GHz (red--yellow) on \cref{fig:xiunbound} show the configuration properties that result in TLS $E_{01}$ splittings in various qubit architectures described in \cref{sec:phenom}.
+This is also the case for the two dimensional landscape---contour lines corresponding to $E_{01} = \{0.5, 2, 4, 6, 8, 10\}$ GHz (red--yellow) on \cref{fig:xiunbound} show the configuration properties that result in TLS $E_{01}$ splittings in various qubit architectures described in \cref{sec:phenom}.
 For example: anywhere an orange, $8$ GHz line exists on this phase map, the $\abs{X}, \abs{Y}$ coordinates of the model generate a cluster configuration that yields the same $E_{01}$ observed in phase qubit experiments~\cite{Cole2010}.
 
 Many of these lines lie completely within a $\xi = 1/2$ (green) region.
@@ -178,7 +178,7 @@ Confinement pairs start interacting with the defect, causing $E_{23}$ to approac
 The $\xi$ metric does not clearly differentiate between two quasi-degenerate pairs that are marginally separated and two pairs that are actually degenerate.
 
 If however, $E_{12} < 100$ GHz, higher lying energy states must still be considered and the model exhibits true quad degenerate behaviour.
-Regions in which this occurs are denoted in \cref{fig:xiunbound} as dotted contours, which over the entirety of phase space are extremely rare -- suggesting a reason why quad-level systems are yet to be experimentally observed.
+Regions in which this occurs are denoted in \cref{fig:xiunbound} as dotted contours, which over the entirety of phase space are extremely rare---suggesting a reason why quad-level systems are yet to be experimentally observed.
 
 The final domain yet to be discussed on \cref{fig:xiunbound} is the upper right hand corner where both $\abs{X}$ and $\abs{Y}$ are large.
 This region is tetra-well dominated but can be considered as a region where the TLS model breaks down.
@@ -255,7 +255,7 @@ These computed dipole moments correspond well to observed values, assuming $\mat
 \end{figure}
 
 The dipole moments are presented as $\left(\abs{\wp_y}-\abs{\wp_x}\right)/e$ rather than separate plots because the dipole elements are discontinuous at the bifurcation points (\ie when $\abs{\wp_x}>0, \abs{\wp_y}=0$ and \textit{vice versa}).
-Comparing these plots to the phase maps in \cref{sec:tls}, it is apparent that only the tetra- and hemi-tetra- domains ($\xi < 1$) exhibit a dipole response -- which is appropriate for our model as $E_{01}$ splittings representative of a TLS only appear in these regions.
+Comparing these plots to the phase maps in \cref{sec:tls}, it is apparent that only the tetra- and hemi-tetra- domains ($\xi < 1$) exhibit a dipole response---which is appropriate for our model as $E_{01}$ splittings representative of a TLS only appear in these regions.
 Localised oxygen atoms ($\xi > 1$) are also expected to not elicit dipole behaviour.
 With this information, the domain boundaries and bifurcations on each phase map can now be fully explained.
 
@@ -268,7 +268,7 @@ Clusters without as much $z$ confinement (such as $\abs{Z} = 2.75$ \AA) exhibit 
 Tetra-well domains, as discussed in \cref{subsec:phaseanalysis}, are caused when the confining pair of aluminium atoms start interacting with the defect pair (and hence the oxygen as well).
 If we consider the A type, $\abs{\wp_y}$ domain in \cref{fig:dipole275}, it is clear that the dominant dipole direction remains constant as $\abs{X}$ separation is in increased and the tetra-well domain is entered.
 The same $\abs{X},\abs{Y}$ parameters on \cref{fig:dipole225} cross a bifurcation line, changing dipole direction and the model indicates B type defect properties.
-Increased confinement in $z$ induces a deeper potential well in the $xy$ plane and removes any major landscape changing contributions from the confining atom pair -- effectively reducing the model back to a \lin{1D} description.
+Increased confinement in $z$ induces a deeper potential well in the $xy$ plane and removes any major landscape changing contributions from the confining atom pair---effectively reducing the model back to a \lin{1D} description.
 A cluster with a comparatively shallow potential that generates tetra-well domains does so when conditions are advantageous for an A type confinement pair to become a B type defect pair (a dipole direction change is not required for this to occur).
 A trace like the $\abs{Y} = 2.5$ \AA\ (labelled A) on \cref{fig:xiunbound} (and an associated eigenspectrum response similar to \cref{fig:tetraspectrum}) is an example of this behaviour.
 If we do not consider the small portion of quad-degenerate defects in this domain; the measurable properties (\ie $E_{01}$ and dipole strength) tetra-well, B type, $\abs{\wp_y}$ TLSs are identical to B type, $\abs{\wp_y}$ TLSs that reside in a hemi-tetra-well domain.
@@ -323,12 +323,12 @@ As can be seen in \cref{fig:dipole225}, each of these cases are within a $\abs{\
 \caption[Strain Response of TLS Clusters]{\label{fig:strain}\label[figurea]{fig:straina}Strain response of four candidate TLS clusters. (a) Left: depictions of two deformation types that show active responses. A dilation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is stretched from their original position and a translation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is moved from their original position. Right: locations along the $8$ GHz contour from the $\abs{Z} = 2.25$ \AA\ phase maps. Each case is deformed and translated in both $x$ and $y$ directions by $\pm 1$ pm and plotted as (b), (c), (d) and (e). Dilation of $\abs{X}$ \plotline{line width=2pt,color=Set1-5-1}, Translation of $\abs{Y}$ \plotline{line width=2pt,dashed,color=Set1-5-2}, Dilation of $\abs{Y}$ \plotline{line width=2pt,dotted,color=Set1-5-3}. Note that all four cases lie in the $\abs{\wp_x}$ dominant domain (see \cref{fig:dipole225}). Translation of $\abs{X}$ is not shown on any graph as its' $E_{01}$ response is of $\sim\!10^4$ GHz over ($\Delta L$) for all cases.  }
 \end{figure}
 
-Our early investigations in \onlinecite{DuBois2013} focused on $\abs{X}$ translation due to its large, hyperbolic response -- which is also seen in experiments~\cite{Grabovskij2012}.
+Our early investigations in \onlinecite{DuBois2013} focused on $\abs{X}$ translation due to its large, hyperbolic response---which is also seen in experiments~\cite{Grabovskij2012}.
 The cluster configuration considered had a $\abs{Z}$ confinement of $2.5$ \AA\ and the same $\abs{X}$, $\abs{Y}$ separations as discussed in this chapter; thus it is not surprising that $\abs{X}$ translation yields an $E_{01}$ response is of $\sim\!10^4$ GHz for $\abs{Z} = 2.25$ \AA\ also.
 Therefore, translation of $\abs{X}$ has not been included in \cref{fig:strain} or the following discussion.
 
 Clusters (b) and (c) are both identified as A type defects and are relatively insensitive to $\abs{X}$ dilation and $\abs{Y}$ translation.
-Dilation of $\abs{Y}$ for these defects is a different way of saying ``extending the defect pair separation'' -- which has been described in the above sections.
+Dilation of $\abs{Y}$ for these defects is a different way of saying `extending the defect pair separation'---which has been described in the above sections.
 The intensity of the response however is noticeably larger as the confinement distance ($\abs{X}$) is increased.
 
 B type defects, labelled (d) and (e), respond discordantly depending on their configuration.
@@ -356,5 +356,5 @@ Most interestingly we find that the expected qubit-TLS coupling strength and the
 
 A complication that occurs with phenomenological models that attempt to describe TLS behaviour is their free parameter count is high enough to describe all facets of the observed experimental parameters without being distinguishable from other, non-complimentary models~\cite{Cole2010}.
 Whilst this delocalised oxygen model only uses one type of parameter as input (atomic positions), it still requires an $x, y, z$  coordinate set for up to $6$ cage atoms.
-Realistic values for the atomic positions obtained by the junction model in \cref{ch:junctions} are still yet to be applied to the model, which may require more than $6$ atoms and thus even more free parameters. 
+Realistic values for the atomic positions obtained by the junction model in \cref{ch:junctions} are still yet to be applied to the model, which may require more than $6$ atoms and thus even more free parameters.
 A method to account for this parameter runaway is discussed later in the next chapter. 
