@@ -314,7 +314,25 @@ Unusually long coherence times of strongly coupled defects are a key observation
 As our model assumes a charge-neutral defect, coherence times are linked to the dipole element (for charge noise) and the strain response (for phonons).
 Mechanical deformation of a phase-qubit has recently been observed directly~\cite{Grabovskij2012}, which we can mimic in our \lin{2+1D} model by introducing a series of deformations onto the cluster, and subsequently measure the $E_{01}$ response.
 
-Whilst many deformation types were tested~\cite{DuBois2013}, only two types (depicted in \cref{fig:straina} show an active response over a length change ($\Delta L$) of $1$ pm.
+Deformation types that were tested are depicted in \cref{fig:strainxa}.
+All deformations were tested in each of the four hemi-tera- regions discussed in \cref{sec:tls}, not only in the $x$-direction as shown, but also in $y$.
+Of the tested deformations we find the response of one (translation of $\abs{X}$, highlighted in \cref{fig:strainxa}) to be $10^5$ times stronger than the others.
+Such a deformation corresponds to a translation of both aluminium atoms in the same direction and relative to the oxygen, along the axis of the dominant dipole.
+This suggests an explanation for the long TLS coherence times, as a delocalized oxygen is only sensitive to a small subset of available phonon modes (as well as coupling to charge noise only through its electric dipole).
+
+\begin{figure}[htp]
+  \resizebox{\textwidth}{!}{\includestandalone{figures/strainx}}
+  \caption[Model Strain Response]{\label{fig:strainx}\label[figurea]{fig:strainxa}\label[figureb]{fig:strainxb}\label[figurec]{fig:strainxc} (a) Depiction of a number of deformations which were applied to the aluminium atoms in the $x$-$y$ plane. The response of one of the strain types is several orders of magnitude larger than the others (highlighted), which is indicative of an optical phonon mode, generating extremely large frequency splittings for picometer deformations. A deformation range of $10$ fm was applied at points along 8 GHz contours (corresponding to phase qubit-TLS coupling strengths), with $\abs{Z}=2.5$ \AA, yielding responses that are both hyperbolic and symmetric. (b) Over the range $2\!-\!10$ fm the response is linear with a strain gradient, shown in (c) for both the A and B type defects in $\abs{\wp_x}$ domains.}
+\end{figure}
+
+\Cref{fig:strainxb} shows this response for the optical mode (at various positions corresponding to phase qubit-TLS coupling strengths $\sim 8$  GHz where $\abs{Z}=2.5$ \AA), displaying a characteristic hyperbolic response which is typical of a two-level system.
+This compares well with the observed strain response in \onlinecite{Grabovskij2012}.
+Fitting the data in the inset of \cref{fig:strainxb} using the harmonic approximation (assuming an optical mode), we obtain characteristic frequencies in the range $0.3\!-\!1.0$ THz. 
+This is well above the energy of typical qubit experiments, again limiting the coupling of the defect to phonons; although it is still possible that slow noise fluctuations couple to the defect via a similar deformation (\textit{vide infra}).
+Finally, \cref{fig:strainxc} shows the linear strain gradient plotted along the $E_{01}/h = 8$ GHz contour for the tetra- and hemi-tetra- regions in the $\abs{\wp_x} \neq0, \abs{\wp_y}=0$ domains (when $\abs{Z} = 2.5$ \AA)---which may be an important property for a future model describing TLS-phonon coupling.
+
+Whilst the large, hyperbolic response of the $\abs{X}$ translation seems to be observed in experiments, it is not the only strain mode possible.
+Most deformation types in \cref{fig:strainxa} do not exhibit any substantial change to defect properties, although two types (depicted again in \cref{fig:straina}) show an active response over a length change $\Delta L$ of $1$ pm.
 Four clusters are chosen that lie on the $8$ GHz contour when $\abs{Z} = 2.25$ \AA, indicated as (b), (c), (d) and (e) in \cref{fig:straina}.
 As can be seen in \cref{fig:dipole225}, each of these cases are within a $\abs{\wp_x}$ dominant domain.
 
@@ -322,10 +340,6 @@ As can be seen in \cref{fig:dipole225}, each of these cases are within a $\abs{\
 \resizebox{0.75\textwidth}{!}{\includestandalone{figures/strain}}
 \caption[Strain Response of TLS Clusters]{\label{fig:strain}\label[figurea]{fig:straina}Strain response of four candidate TLS clusters. (a) Left: depictions of two deformation types that show active responses. A dilation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is stretched from their original position and a translation: where an $\abs{Y}$ (shown) or $\abs{X}$ pair is moved from their original position. Right: locations along the $8$ GHz contour from the $\abs{Z} = 2.25$ \AA\ phase maps. Each case is deformed and translated in both $x$ and $y$ directions by $\pm 1$ pm and plotted as (b), (c), (d) and (e). Dilation of $\abs{X}$ \plotline{line width=2pt,color=Set1-5-1}, Translation of $\abs{Y}$ \plotline{line width=2pt,dashed,color=Set1-5-2}, Dilation of $\abs{Y}$ \plotline{line width=2pt,dotted,color=Set1-5-3}. Note that all four cases lie in the $\abs{\wp_x}$ dominant domain (see \cref{fig:dipole225}). Translation of $\abs{X}$ is not shown on any graph as its' $E_{01}$ response is of $\sim\!10^4$ GHz over ($\Delta L$) for all cases.  }
 \end{figure}
-
-Our early investigations in \onlinecite{DuBois2013} focused on $\abs{X}$ translation due to its large, hyperbolic response---which is also seen in experiments~\cite{Grabovskij2012}.
-The cluster configuration considered had a $\abs{Z}$ confinement of $2.5$ \AA\ and the same $\abs{X}$, $\abs{Y}$ separations as discussed in this chapter; thus it is not surprising that $\abs{X}$ translation yields an $E_{01}$ response is of $\sim\!10^4$ GHz for $\abs{Z} = 2.25$ \AA\ also.
-Therefore, translation of $\abs{X}$ has not been included in \cref{fig:strain} or the following discussion.
 
 Clusters (b) and (c) are both identified as A type defects and are relatively insensitive to $\abs{X}$ dilation and $\abs{Y}$ translation.
 Dilation of $\abs{Y}$ for these defects is a different way of saying `extending the defect pair separation'---which has been described in the above sections.
