@@ -131,6 +131,9 @@
 \newlength{\smvhleft}
 \newlength{\smvhright}
 \newcounter{smvhcount}
+\newlength{\tlsjjleft}
+\newlength{\tlsjjright}
+\newcounter{tlsjjcount}
 
 \newcommand{\siotwomargins}{
 \whiledo{\thesiotwocount<200}{%
@@ -167,6 +170,18 @@
 \setlength{\smvhright}{0em}
 \fi
 \stepcounter{smvhcount}}}
+
+\newcommand{\tlsjjmargins}{
+\whiledo{\thetlsjjcount<200}{%
+\checkoddpage
+\ifoddpage
+\setlength{\tlsjjleft}{0em}
+\setlength{\tlsjjright}{-\marginparwidth}
+\else
+\setlength{\tlsjjleft}{-\marginparwidth}
+\setlength{\tlsjjright}{0em}
+\fi
+\stepcounter{tlsjjcount}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES

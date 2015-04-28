@@ -1,7 +1,21 @@
 \documentclass[tikz]{standalone}
 %\usepackage{pgfplots}
 %\pgfplotsset{compat=1.11}
+\definecolor{Set1-7-1}{RGB}{228,26,28}
+\definecolor{Set1-7-2}{RGB}{55,126,184}
+\definecolor{Set1-7-3}{RGB}{77,175,74}
+\definecolor{Set1-7-4}{RGB}{152,78,163}
+\definecolor{Set1-7-5}{RGB}{255,127,0}
+\definecolor{Set1-7-6}{RGB}{255,255,51}
+\definecolor{Set1-7-7}{RGB}{166,86,40}
+\usepackage{amsmath}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\usepackage{mathspec}
+\setromanfont[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Minion Pro}
+\setmathrm{Minion Pro}
 
+\usepackage{fix-cm}
 \begin{document}
 \begin{tikzpicture}[level/.style={thick}]
 %\pgftext{\includegraphics[scale=1,angle=90]{vors}};
