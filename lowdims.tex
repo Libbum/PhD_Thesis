@@ -19,7 +19,7 @@ Although in general an oxygen can delocalise in three dimensions, for this inves
 The following sections then apply the \lin{2+1D} model and compare delocalised oxygen responses to experimental TLS data.
 \Cref{sec:smax} discusses qubit--TLS coupling and \cref{sec:strain} observes the effect of mechanical strain.
 
-\section{2D Formalism and Dipole Expression}\label{sec:methdipole}
+\section[\lin{2D} Formalism and Dipole Expression]{2D Formalism and Dipole Expression}\label{sec:methdipole}
 
 To extend the hamiltonian $H$ \cref{eq:OHam} into a two dimensional matrix representation, one must arrange in a way understood by the \sw{eigs} function, which expects a two dimensional sparse matrix.
 
@@ -27,6 +27,7 @@ If $\mathbf{r}=(x,y)$ in \cref{eq:tisemat}, we can treat each dimension separate
 With two sparse matricies, the Kronecker product can be applied to generate a block matrix ready for diagonalisation.
 \begin{equation}
 H = H_x \otimes \mathbb{I}_y + \mathbb{I}_x \otimes H_y.
+\label{eq:h2d}
 \end{equation}
 
 The dipole element is computed using numerical integration of the ground- and first-excited states ($\psi_0$, $\psi_1$), where
@@ -357,7 +358,7 @@ Point (d) on the other hand is interacting with its tighter confinement distance
 Translation of $\abs{Y}$ forces local minima of the potential landscape from points on the $x$ axis to locations off axis, yet still within the minima rings about the aluminium atoms.
 In other words, the wavefunction is slightly rotated around the defect axis.
 
-\section{Chapter Summary}
+\section{Chapter Summary}\label{sec:lowsummary}
 
 Despite the extreme idealisation of this model, it allows the prediction of experimentally measured properties of strongly coupled TLSs with atomic positions as the only input parameters and therefore shows as a proof of concept that these defects can arise in \ce{AlO_x} without any alien species present.
 

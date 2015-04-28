@@ -119,8 +119,8 @@
 \setfloatadjustment{figure}{\centering}
 \newlength{\widefigure}
 \setlength{\widefigure}{\textwidth+\marginparwidth}
-%Wide figures are essentially impossible to work with in memoir at present. 
-%All packages that try (fullwidth etc.) fail here. 
+%Wide figures are essentially impossible to work with in memoir at present.
+%All packages that try (fullwidth etc.) fail here.
 %This is a brutal fix, but it's all I got.
 \newlength{\siotwoleft}
 \newlength{\siotworight}
@@ -131,6 +131,9 @@
 \newlength{\smvhleft}
 \newlength{\smvhright}
 \newcounter{smvhcount}
+\newlength{\tlsjjleft}
+\newlength{\tlsjjright}
+\newcounter{tlsjjcount}
 
 \newcommand{\siotwomargins}{
 \whiledo{\thesiotwocount<200}{%
@@ -167,6 +170,18 @@
 \setlength{\smvhright}{0em}
 \fi
 \stepcounter{smvhcount}}}
+
+\newcommand{\tlsjjmargins}{
+\whiledo{\thetlsjjcount<200}{%
+\checkoddpage
+\ifoddpage
+\setlength{\tlsjjleft}{0em}
+\setlength{\tlsjjright}{-\marginparwidth}
+\else
+\setlength{\tlsjjleft}{-\marginparwidth}
+\setlength{\tlsjjright}{0em}
+\fi
+\stepcounter{tlsjjcount}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TABLES
@@ -368,11 +383,15 @@
 \crefformat{figurec}{#2figure~#1c#3}
 \crefformat{figured}{#2figure~#1d#3}
 \crefformat{figuree}{#2figure~#1e#3}
+\crefformat{figureab}{#2figure~#1a\&b#3}
+\crefformat{figurecd}{#2figure~#1c\&d#3}
 \Crefformat{figurea}{#2Figure~#1a#3}
 \Crefformat{figureb}{#2Figure~#1b#3}
 \Crefformat{figurec}{#2Figure~#1c#3}
 \Crefformat{figured}{#2Figure~#1d#3}
 \Crefformat{figuree}{#2Figure~#1e#3}
+\Crefformat{figureab}{#2Figure~#1a\&b#3}
+\Crefformat{figurecd}{#2Figure~#1c\&d#3}
 
 % controversial: cancel resetting page numbers at end of \frontmatter, for easier pdf navigation:
 \makeatletter

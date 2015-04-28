@@ -520,7 +520,7 @@ As expected, steps with high roundoff error contributions cause fluctuations in 
 \caption[Energy Convergence]{\label{fig:econv}Energy Convergence for step sizes $10^{-8}\!\leq\! h\! \leq\! 10^0$ \plotmarker{0.4}{circle,fill=Set1-5-2}, with $h_{opt}$ labelled as \plotmarker{0.4}{circle,fill=Set1-5-1}. The invalid truncation range from \cref{fig:hopt7pt} is visible in the sense that large step sizes $h\gtrsim2\ten{-1}$ contribute sizable error. The inset shows two decades close to $h_{opt}$, where the energy scale is normalised to $E-E(h_{opt})$. Left of $h_{opt}$ sees roundoff error contributions, and right depicts truncation error.}
 \end{figure}
 
-\subsection{Acceptable Maximum Step Size}
+\subsection{Acceptable Maximum Step Size}\label{sec:hmax}
 
 The 170 Megabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is completely acceptable if one plane was all that was required.
 Below in \cref{sec:hammat,ch:lowdims}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
@@ -567,7 +567,7 @@ A complete description of the hamiltonian \cref{eq:OHam} can now be implemented 
 
 the implementation of which requires the construction of a sparse matrix representation of $H$, which can be fed into the \sw{eigs} function of \sw{Matlab}; computing the wavefunction $\Psi$ and energy $E$ of the system.
 
-In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,ch:threedee} for specifics).\xxx{Make sure I actually go into these details, or otherwise can this sentence}
+In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,sec:ddiagthree} for specifics).
 
 Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{marginfigure}
