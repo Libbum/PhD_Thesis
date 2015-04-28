@@ -21,6 +21,8 @@
     \microtypesetup{protrusion=false} % otherwise an extra dot may sneak in, in dotfill ToC lines
     % must start on the rhs and acknowledge will be on one page
     \versoimage\clearpage
+    \begingroup
+    \hypersetup{linkcolor=black} %Don't have the entire contents painted red
     \tableofcontents
     \checkoddpage
     \ifoddpage\versoimage\fi
@@ -30,6 +32,7 @@
     \ifoddpage\versoimage\fi
     \clearpage
     \listoftables
+    \endgroup
     \microtypesetup{protrusion=true}
     \end{SingleSpace}
     \checkoddpage
