@@ -4,6 +4,7 @@
 \chapterprecis{Derivation of an $n$ dimensional formalism which models a delocalised oxygen atom embedded in a surrounding amorphous region of \ce{AlO_x}.}
 \loftchap{Microscopic TLS Model}
 
+\xxx{Jared suggests that the physics of the model isn't discussed in enough depth here but when changes to sec 1.7.1 are done reference back to that and it will be better}
 \thought{We are interested in what} happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types identified as A and B in \cref{fig:sio2}.
 Type C requires either a complicated many body investigation or some form of pseudo-single body approximation.
 As a result, many assumptions about the defects response to external forces will be compounded which may prove to be drastically misstated.
@@ -17,7 +18,7 @@ If we also ignore any time evolution properties of the system for now, an effect
 
 where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
 
-This chapter discusses the construction of a model based around this hamiltonian.
+This chapter is primarily concerned with the numerical methods used to solve this hamiltonian.
 First, the choice of a suitable potential to describe $V(\mathbf{r})$ is considered in \cref{sec:potential}.
 An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefrange{sec:numder}{sec:catoterr}, then finally an overview of the construction of the hamiltonian matrix and unit conversions in \cref{sec:hammat}.
 
@@ -52,7 +53,7 @@ The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charge
 E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),\label{eq:smeam}
 \end{equation}
 
-with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials\nomdef{Gwphij}{$\phi_{ij}$}{Pair potentials (Buckingham and Rydberg) for Streitz-Mintmire}{eq:smpair}
+with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials\nomdref{Gwphij}{$\phi_{ij}$}{Pair potentials (Buckingham and Rydberg) for Streitz-Mintmire}{eq:smpair}
 \begin{equation}
 \phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],\label{eq:smpair}
 \end{equation}
@@ -110,7 +111,7 @@ Both AD and complex step require access to functions at the source code level, m
 
 For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
 
-\section[Understanding the Central Difference Method][Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for finite differences; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
+\section[Understanding the Central Difference Method][Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for the finite difference approach; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
 
 All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms\nomdref{CxStar}{$x^*$}{Any value of $x$ about which a central difference is applied}{ch:tls}
 \begin{equation}
@@ -192,7 +193,7 @@ C(x,h) = a_1\,f_n^{\;(n+d)}(\zeta), \quad \zeta \in [x-a_2h,x+a_3h],\label{eq:cd
 \end{equation}
 
 with the set of unknown constants $a$ also being dependent on the finite difference formula in question.
-As the truncation coefficient's is dependent on $\zeta$, its dependence on $h$ is removed as $h\!\to\!0$ (because $\zeta\!\to\!x$).
+As the truncation coefficient is dependent on $\zeta$, its dependence on $h$ is removed as $h\!\to\!0$ (because $\zeta\!\to\!x$).
 Hence, for small values of $h$, a simplified coefficient can be defined as
 \begin{equation}
  C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x).
@@ -226,7 +227,9 @@ As mentioned in \cref{sec:numder}, numbers in a computer are represented with a 
 This phenomenon is designated the term roundoff error, as the extra digits that cannot be held in memory must be discarded---rounded to the nearest tolerance.
 
 Roundoff error has been a hot topic of research since the invention of computers.
-Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} and investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; found roundoff via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
+Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} which were paramount to their success.
+Investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; identified the root cause to be numerical in nature.
+Roundoff via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
 These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible---contrary to the truncation requirement of a small step size.
 An upper bound on this error is given by
 \begin{equation}
@@ -286,7 +289,6 @@ A simple method proposed in \citeauthor{Gill1982} suggests minimising an express
 However, this method assumes the condition error $\epsilon$ is known and cancellation error is treated in a trivial manner.
 
 Violation of monotonicity is an algorithm which attempts to ignore actually calculating any estimates for truncation and roundoff errors~\cite{Stepleman1979}. This method breaks down if \cref{eq:cdtrcoeff} doesn't hold and therefore is not a general solution.
-
 Algorithms specifically designed for forward differences have also been discussed in the literature~\cite{Barton1992}, but are of no benefit for purposes herein.
 
 The method which has been chosen to be implemented in this work is the algorithm from the PhD thesis of \textbf{Ravishankar Mathur}, which allows one to calculate an optimal step without \textit{a priori} knowledge of the condition error $\epsilon$.
@@ -349,7 +351,7 @@ Both $\psi_0(x)$ and the associated potential of this harmonic approximation are
 \smvhmargins
 \begin{adjustwidth}{\smvhleft}{\smvhright}
 \resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
-\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz-Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to length scales of experimental results.}
+\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz-Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to typical atomic energy and length scales.}
 \end{adjustwidth}
 \end{figure}
 
@@ -384,7 +386,7 @@ h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
 \section{Memory Concerns}\label{sec:memcons}
 
 The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources.
-Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of one $9$ Å$^\text{\skolarlining 2}$ plane discretised via $h_{opt}$ requires $294,913^2$ double precision floats.
+Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of a \lin{2D} plane, $9$ Å$^\text{\skolarlining 2}$ in area discretised via $h_{opt}$ requires $294,913^2$ double precision floats.
 On a computer with 64 bit architecture, each double requires 8 bytes of memory, meaning our grid has a footprint of just over 695 Gigabytes.
 
 Computational resources of that magnitude are infeasible when a simple solution can both minimise memory requirements and increase the accuracy of the calculation simultaneously.
@@ -549,7 +551,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
 \begin{itemize}
   \item $h_{opt}$ will be considered optimal over a larger range than $0\pm0.375$ Å to avoid iterative and overtly complicated treatments of the eigenvalue equation.
       In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
-      Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values around zero are the most important regardless.
+      Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values close to the centre of the box are the most important regardless.
   \item Step sizes optimised for a range in $x$ are assumed valid in all spatial dimensions $\mathbf{r}$.
   \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.
       Large calculations that require only relative energy values, such as the phase maps in \cref{sec:phasespace,sec:tls,sec:dipole} have been calculated with step sizes close to $h_{max}$.
@@ -559,6 +561,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
 
 
 \section{Hamiltonian Construction}\label{sec:hammat}
+\xxx{summarise chapter and outline}
 
 A complete description of the hamiltonian \cref{eq:OHam} can now be implemented to solve the eigenvalue equation
 \begin{equation}
@@ -584,5 +587,7 @@ Each subsequent position value ($\mathbf{r}=x$) also requires this contribution 
 Off diagonals are also required to fulfil the remaining $~f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $~f_k$ coefficient and the  $\nabla^2$ prefactor.
 
 The resulting matrix can then be diagonalised, obtaining eigenvectors and eigenenergies for the system in question.
-Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz using this method.
+Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz ($4\ten{-5}$ μeV) using this method.
 In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+
+In subsequent chapters we use this approach to ...
