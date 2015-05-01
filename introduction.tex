@@ -27,11 +27,11 @@ The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, wi
 The physical state of the system is not affected by global phase factors, thus in the complex superposition of the basis vectors, the coefficient of $\ket{0}$ can be set as real and non-negative.
 This means the pure state can be represented as
 \begin{equation}
-\ket{\psi} = \cos\left(\theta\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\theta\right) \ket{1},
+\ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} \, + \, e^{i \phi}  \sin\left(\frac{\theta}{2}\right) \ket{1},
 \label{eq:purestate}
 \end{equation}
 
-where $\cramped{0 \leq \theta < \frac{\pi}{2}}$ and $0 \leq \phi < 2 \pi$.
+where $0 \leq \theta < \pi$ and $0 \leq \phi < 2 \pi$.
 
 The interior region of the Bloch sphere represents qubit mixed states: statistical ensembles of pure states.
 As these states cannot be described by ket vectors, a density matrix must be defined
@@ -94,7 +94,7 @@ Ion trapped qubits~\cite{Cirac1995} exploit stable electronic or spin states of 
 Single qubit operations can be invoked by spin-phonon coupling (for example) induced by a laser pulse.
 Multiple entangled qubits can be coupled through internal states and external motion states in a similar fashion.
 
-Ion traps show significant promise for the future of quantum information processing, as architectures with many coupled qubits are already experimentally accessible~\cite{Monroe2013}.\xxx{Ask Jared about a better ref for this}
+Ion traps show significant promise for the future of quantum information processing, as architectures with many coupled qubits are already experimentally accessible~\cite{Nigg2014}.
 Fundamental gating operations such as the C-NOT have also been demonstrated with high fidelity~\cite{Schmidt-Kaler2003}.
 
 \subsection{Nitrogen-Vacancy Center of Diamond}
@@ -134,16 +134,16 @@ Cooling the system to this level is advantageous from a noise argument as well: 
 This frequency is nominally in the $5$--$20$ GHz range, thus the operating temperature $T$ must be around $20$ mK or lower.
 
 There are three basic types of superconducting qubits which form around the Josephson junction.
-Each design is an attempt to minimise the detrimental effect of a `residual offset charge' that manifests as a consequence of a pre-existing charge on the capacitor at the time it is wired to the inductor (\textit{vide infra} \cref{fig:qubit}) in order to fabricate the qubit.\xxx{Apparently not. Talk to Jared}
+Each design is an attempt to minimise the detrimental effect of flux or charge fluctuations introduced into the circuit via the surrounding environment.
 
-The simplest idea to mitigate this issue is the Cooper pair box~\cite{Nakamura1999,Bouchiat1998}, which biases the JJ with a voltage in series with a gate capacitor.
+The simplest idea to mitigate charge fluctuations is the Cooper pair box~\cite{Nakamura1999,Bouchiat1998}, which biases the JJ with a voltage in series with a gate capacitor.
 Circuits derived from this method are commonly called charge qubits~\cite{Makhlin2001,Vion2002} although it's important to note that the name does not imply information is encoded in the charge of the system, but instead refers to the controlling variable of the system.
 The transmon~\cite{Wallraff2004, Schreier2008} is a relatively new qubit design that stems from the original charge qubit ideas, but shrinks the cooper pair box size in an attempt to squelch decoherence sources.
 
 The second circuit type (the RF-SQUID~\cite{Barone1982}) can be considered the dual of the Cooper pair box, employing a superconducting transformer in place of the aforementioned gate capacitor.\nomdef{ASQUID}{SQUID}{Superconducting Quantum Interference Device}
 Designs utilizing this method are referred to as Flux qubits~\cite{Mooij1999,VanderWal2000,Chiorescu2003}, again this is because a controllable external flux field is imposed on a superconducting loop across the JJ rather than the idea that information is stored in the magnetic moment of the qubit.
 
-Another method to minimise the effect of offset charge is to bias the JJ with a fixed DC current source.\nomdef{ADC}{DC}{Direct current}
+Another method to minimise the effect of charge fluctuations is to bias the JJ with a fixed DC current source.\nomdef{ADC}{DC}{Direct current}
 Implementation of this design is referred to as the Phase qubit~\cite{Clarke1988,Martinis2002}, a circuit diagram of which is depicted in \cref{fig:qubit}.
 
 \begin{figure}[htp]
@@ -215,7 +215,7 @@ The literature denotes the name `two-level system' (TLS), or less frequently: tw
 
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/stm}}
-\caption[STM Picture of a TLS]{\label{fig:stmtls}STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$ from the rotating wave hamiltonian $H = \begin{bsmallmatrix*}[r]\Delta & \Omega \\ \Omega & -\Delta \end{bsmallmatrix*}$. Here $\Delta\equiv \epsilon-\omega$ and $\Omega$ is the Rabi frequency.}
+\caption[STM Picture of a TLS]{\label{fig:stmtls}STM representation of a TLS, a quantum mechanical description by wave functions \plotline{line width=1.2pt,color=Set1-5-1} \& \plotline{line width=1.2pt,color=Set1-5-2} in a double well potential \plotline{line width=1.2pt,black}. Excitation energies are calculated via $\cramped{E = \sqrt{\Delta^2+\epsilon^2}}$.}
 \end{marginfigure}
 
 To investigate the possible origin of these TLS baths, we turn to the materials science literature, as bistable defects in glasses and amorphous solids in general have been understood for some time~\cite{Zachariasen1932,Anderson1972}.
@@ -295,26 +295,20 @@ Their characteristic energy splitting ... e01 ... is observed over the full oper
 Ref's for Martinis.\xxx{Need to fix this}
 
 \divtext
-\xxx{Jared thinks these are too bullet pointy}
+
+Other popular models describe a number of alternative mechanisms which may be contributing to environmental noise. 
+
 Direct experimental evidence for surface magnetism in superconducting circuits was observed in only recently in 2008, when unpaired surface spins in thin-film SQUIDs were identified ~\cite{Sendelbach2008}.
 One can consider that these surface spins couple to the magnetic flux of the system as a paramagnetic dipole rather than a charge dipole to the electric field.
-
-\divtext
 
 \citeauthor{DeSousa2009} identify individual trapping centers in the Josepson junction's oxide barrier hybridised with electrons in the attached superconducting leads~\cite{DeSousa2009}.
 These centers cause sharp subgap resonances, which may form pairs of Andreev bound states (entangled electron--hole states).
 
-\divtext
-
-It is understood that a local trap interacting with a Fermi sea gives rise to the Kondo effect: the formation of a many-body singlet with conduction electron spins screening out local trap spin~\cite{Wilson1975}.
+The Kondo effect is  the formation of a many-body singlet with conduction electron spins screening out local trap spin~\cite{Wilson1975}, which occurs due to a local trap interacting with a Fermi sea.
 Electron trapping via this mechanism in shallow subgap states forming at the metal--metal-oxide boundary explains TLS temperature dependencies which other phenomenological models struggle with~\cite{Faoro2007}.
-
-\divtext
 
 A variation in critical current coupled to a qubit results in decoherence.
 \citeauthor{Ku2005} suggest two noise models describing TLS state dependence of the JJ transparency: a qubit in resonance with a high-frequency TLS which decays via phonon emission and a $1/f$ noise modulation of the critical current~\cite{Ku2005}.
-
-\divtext
 
 Detailed fitting of experimental data can place limits on these models~\cite{Cole2010} but the scope of free parameters of each model allows them all to fit experimental results---rendering them presently indistinguishable.
 
