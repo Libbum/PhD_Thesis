@@ -4,6 +4,7 @@
 \lofchap{TLS Parameter Space In Low Dimensions}
 \chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
 
+\xxx{Split chapters. See jared's hardcopy}
 \thought{Equipped with a framework describing} the behaviour of an oxygen atom delocalising in the presence of an external potential, we are now in a position to investigate which atomic configurations may demonstrate TLS characteristics.
 Whilst many other properties have been measured, we will focus on obtaining respectable values for $E_{01}$ and dipole strength, assuming our model defect is embedded inside a fictitious phase qubit.
 Expected values are approximately $E_{01}=8$ GHz and $\wp=1.2$ $e$\AA~\cite{Cole2010}.
@@ -16,6 +17,7 @@ In reality, an oxygen atom in the amorphous layer of a Josephson junction will b
 Moving towards a model representation of this, \cref{sec:2d} extends the model to two dimensions, with four aluminium atoms confining an oxygen in a plane.
 The completed model is then described in \cref{sec:tls}, which extends oxygen confinement into three dimensions (with six aluminum atoms), whilst still projecting oxygen delocalisation on a plane.
 Although in general an oxygen can delocalise in three dimensions, for this investigation we focus on an effective \lin{2+1D} model, minimising both computational and descriptive complexity while still modelling the relevant behaviour of the system.
+\Cref{ch:threedee} will consider possible ambiguities to this approach when juxtaposing it with a \lin{3D} implementation.
 The following sections then apply the \lin{2+1D} model and compare delocalised oxygen responses to experimental TLS data.
 \Cref{sec:smax} discusses qubit--TLS coupling and \cref{sec:strain} observes the effect of mechanical strain.
 
@@ -50,6 +52,7 @@ For example, corundum has an Al--O bond distance of $\sim\!1.85$ \AA.
 If we define the oxygen position to be at an origin, the aluminium atoms can be considered as pairs ($x = -X, \: +X$ = \{$\pm 1.85$ \AA\}) lying on a cardinal axes; which are identified henceforth as $\abs{X}$ or simply the `defect pair'.
 Displacing $\abs{X}$ equidistantly from this origin (\ie moving away from optimal crystalline configuration) will yield either an A or B type defect, depending on the direction of displacement.
 
+\xxx{Add here or in discussion of the model the PRL discussion on quasi-degenerate. See jareds notes}
 An eigenspectrum of the six lowest energy levels of this system over a continuum of values in $\abs{X}$  is depicted in \cref{fig:spectrum}.
 Each energy is measured relative to the ground state, which shows two particular regions where $E_{01}$ (green, solid line) is quasi-degenerate (labelled sections A and B: both associated with the respective defect type).
 There exists a third (an)harmonic region (section C), which reaches a harmonic state at a separation distance of $\abs{X} \sim 1.85$ \AA: the optimal corundum Al--O bond distance.
@@ -88,6 +91,9 @@ This representation is equivalent to the standard two level physics depiction of
 The ideal case discussed in \cref{sec:bonds} ignores many real world complications, in particular any potential constraints from nearest neighbour atoms that undoubtedly surround the TLS.
 In an attempt to add complexity to the model gradually, we start with two additional aluminium atoms on the same plane as \cref{fig:Atype,fig:Btype}, confining the defect in the $\abs{Y}$ direction (\ie $y = -Y, \: +Y$).
 
+Throughout the discussion we use the term \textit{defect pair} to refer to the pair of aluminium atoms which provide the dominant contribution to the potential felt be the oxygen.
+The term \textit{confining pair} in contrast is used to refer to additional neighbouring aluminium atoms which also apply major influence to perturb the symmetries of the potential.
+
 \subsection{Classifying Eigenspectrum Dynamics}
 
 As the values of $\abs{X}$ or $\abs{Y}$ are altered, a complex interplay between the excited states of the model can result.
@@ -97,11 +103,13 @@ Simple two-level degeneracy and harmonic states are no longer the only possibili
 \label{eq:ximetric}
 \end{equation}
 This metric ranges from $0$ to $2$ and can give a qualitative understanding of the eigenspectrum of the defect.
+To understand why this is useful, we need first to consider the new symmetries which are possible in a \lin{2D} potential.
 
 To begin we generate a phase space diagram where $\xi$ is plotted as a function of the distance to the confining aluminium atoms ($\abs{X},\abs{Y}$).
 Each phase diagram is split into at least four domains, where the properties of these domains can be explained through the interplay of potential configuration and dipole alignment (discussed in \cref{sec:dipole}).
 Focusing for now on the influence of potential shape, the \lin{2D} potential can be approximated as two \lin{1D} potentials: one projected in the $x$ direction and the other along $y$.
-There are two relevant configurations, a set of two double wells (tetra-well) or a set of a double and harmonic well (hemi-tetra-well); which are both illustrated in \cref{fig:mexhatproj}.
+A simple harmonic potential in \lin{2D} is quadratic in both $x$ and $y$.
+However, for TLS physics there are two relevant configurations: a set of two double wells (tetra-well) or a set of a double and harmonic well (hemi-tetra-well); which are both illustrated in \cref{fig:mexhatproj}.
 It is clear from the outset potential projections of \cref{fig:Atype,fig:Btype} that both A and B type defects reside in hemi-tetra-wells.
 
 \begin{figure}[htp]
@@ -185,6 +193,7 @@ The final domain yet to be discussed on \cref{fig:xiunbound} is the upper right 
 This region is tetra-well dominated but can be considered as a region where the TLS model breaks down.
 Each of the four potential minima exist localised about the four confining aluminium atoms and as such should not be considered as TLS candidates.
 
+\xxx{Cut chapter here}
 \section{TLS Defect Confined in Three Dimensions}\label{sec:tls}
 
 To understand the properties of a delocalised oxygen, we have considered confining aluminium atoms in both a line and in a plane.
@@ -200,7 +209,7 @@ An illustration of this cluster configuration is displayed in \cref{fig:cage} an
 
 \begin{figure}[p]
 \includegraphics[width=0.85\textwidth]{figures/wfstackA}
-\caption[A Type Energy States]{\label{fig:wfstackA}Cage potential and the lowest three eigenfunctions of a cluster with the values $\abs{X}=1.53, \: \abs{Y} = 2.52, \: \abs{Z} = 2.25$ \AA\. The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. This cluster configuration is representative of an A type defect (see \cref{fig:Atype}); with a ground to first excited state splitting of $E_{01} = 8.1$ GHz and a ground to second excited state splitting of $E_{02} = 202.2$ THz.}
+\caption[A Type Energy States]{\label{fig:wfstackA}Cage potential and the lowest three eigenfunctions of a cluster with the values $\abs{X}=1.53, \: \abs{Y} = 2.52, \: \abs{Z} = 2.25$ \AA. The top image in the stack is presented with the apparent `depth' of the potential well on the $z$-axis and the second excited state $\ket{2}$ scaled accordingly. Ground $\ket{0}$ and first excited $\ket{1}$ states are displayed in a projected representation underneath. This cluster configuration is representative of an A type defect (see \cref{fig:Atype}); with a ground to first excited state splitting of $E_{01} = 8.1$ GHz and a ground to second excited state splitting of $E_{02} = 202.2$ THz.}
 \end{figure}
 
 \begin{figure}[p]
@@ -269,7 +278,7 @@ Clusters without as much $z$ confinement (such as $\abs{Z} = 2.75$ \AA) exhibit 
 Tetra-well domains, as discussed in \cref{subsec:phaseanalysis}, are caused when the confining pair of aluminium atoms start interacting with the defect pair (and hence the oxygen as well).
 If we consider the A type, $\abs{\wp_y}$ domain in \cref{fig:dipole275}, it is clear that the dominant dipole direction remains constant as $\abs{X}$ separation is in increased and the tetra-well domain is entered.
 The same $\abs{X},\abs{Y}$ parameters on \cref{fig:dipole225} cross a bifurcation line, changing dipole direction and the model indicates B type defect properties.
-Increased confinement in $z$ induces a deeper potential well in the $xy$ plane and removes any major landscape changing contributions from the confining atom pair---effectively reducing the model back to a \lin{1D} description.
+Increased confinement in $z$ induces a deeper potential well in the $xy$ plane and removes any major landscape changing contributions from the confining atom pair---\textit{effectively reducing the model back to a \lin{1D} description}.
 A cluster with a comparatively shallow potential that generates tetra-well domains does so when conditions are advantageous for an A type confinement pair to become a B type defect pair (a dipole direction change is not required for this to occur).
 A trace like the $\abs{Y} = 2.5$ \AA\ (labelled A) on \cref{fig:xiunbound} (and an associated eigenspectrum response similar to \cref{fig:tetraspectrum}) is an example of this behaviour.
 If we do not consider the small portion of quad-degenerate defects in this domain; the measurable properties (\ie $E_{01}$ and dipole strength) tetra-well, B type, $\abs{\wp_y}$ TLSs are identical to B type, $\abs{\wp_y}$ TLSs that reside in a hemi-tetra-well domain.
@@ -282,7 +291,7 @@ The measurable signal of a TLS in a phase qubit is the resonance of the TLS and 
 For the phase qubit~\cite{Martinis2005}, the qubit-TLS coupling $S_{max}$ \cref{eq:smax} is a function of $E_{01}$ and $\wp$~\cite{Kofman2007}, the effective dipole moment due to an electric field applied in the direction of delocalization.
 Throughout this discussion we assume a junction width $w = 2$ nm and capacitance $C = 850$ fF.
 
-The dipole magnitudes in \cref{fig:dipole275,fig:dipole225} are calculated against the electron charge for simplicity, although as we are discussing an oxygen atom, the dipole elements may in fact be larger.
+The dipole magnitudes in \cref{fig:dipole275,fig:dipole225} are calculated against the electron charge for simplicity, although as we are discussing an oxygen atom, the effective charge on the atom may in fact be larger.
 Using our Josephson junction DFT models from \cref{ch:junctions}, we partition the charge density associated with atoms across the lattice into Bader volumes~\cite{Tang2009}.
 The charge enclosed within each Bader volume is a good approximation to the total electronic charge of an atom.
 An average value of $1.395\pm0.006 \; e$ is found for oxygen atoms in a junction comprised of \ce{AlO_{1.25}} at a density of 0.8 times that of corundum. We can use this value such that
@@ -293,7 +302,7 @@ An average value of $1.395\pm0.006 \; e$ is found for oxygen atoms in a junction
 
 In \cref{fig:smax225} we plot contour lines representing constant values of $E_{01}$ corresponding to the purview of qubit resonant frequencies observed experimentally  for constant values of $\abs{Z} = 2.25$ \AA.
 The $S_{max}$ \cref{eq:smax} response to these frequencies is plotted as a function of $\abs{X}$, in which we see maximum coupling strengths which correspond exceptionally well with experimental observations~\cite{Lupascu2009, Shalibo2010, Cole2010}.
-The most comprehensive of these studies (\onlinecite{Shalibo2010}) measures $S_{max}$ values of $3$--$45$ MHz, assuming a $1$ $e$\AA\ dipole moment.
+The most comprehensive of these studies (\onlinecite{Shalibo2010}) measures $S_{max}$ values of $3$--$45$ MHz.
 
 \begin{figure}[htp]
 \resizebox{0.9\textwidth}{!}{\includestandalone{figures/smax225}}
@@ -312,7 +321,7 @@ The entire range of $S_{max}$ values is only $60$ MHz wide, which suggests an ex
 \section{Strain Response}\label{sec:strain}
 
 Unusually long coherence times of strongly coupled defects are a key observation of TLS-qubit experiments~\cite{Neeley2008, Lisenfeld2010a}.
-As our model assumes a charge-neutral defect, coherence times are linked to the dipole element (for charge noise) and the strain response (for phonons).
+As our model assumes a charge-neutral defect\footnote{More specifically: the defect is globally charge neutral, whilst the oxygen possess a net charge.}, coherence times are linked to the dipole element (for charge noise) and the strain response (for phonons).
 Mechanical deformation of a phase-qubit has recently been observed directly~\cite{Grabovskij2012}, which we can mimic in our \lin{2+1D} model by introducing a series of deformations onto the cluster, and subsequently measure the $E_{01}$ response.
 
 Deformation types that were tested are depicted in \cref{fig:strainxa}.
