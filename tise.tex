@@ -1,0 +1,593 @@
+\versoquote{Causa latet, vis est notissima.}{Publius Ovidius Naso}
+%The cause is hidden; the effect is visible to all. -―Ovid
+\chapter{Numerical Solution of the TISE}\label{ch:tise}
+\chapterprecis{Derivation of an $n$ dimensional formalism which models a delocalised oxygen atom embedded in a surrounding amorphous region of \ce{AlO_x}.}
+\loftchap{Numerical Solution of the TISE}
+
+\xxx{Jared suggests that the physics of the model isn't discussed in enough depth here but when changes to sec 1.7.1 are done reference back to that and it will be better}
+\thought{We are interested in what} happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types identified as A and B in \cref{fig:sio2}.
+Type C requires either a complicated many body investigation or some form of pseudo-single body approximation.
+As a result, many assumptions about the defects response to external forces will be compounded which may prove to be drastically misstated.
+Hence, we do not include this possible defect type in our considerations henceforth, although detailed literature is available in the event that this defect type is later identified as significant~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
+
+If we also ignore any time evolution properties of the system for now, an effective single particle Hamiltonian can be derived\nomdef{Crvec}{$\mathbf{r}$}{General distance vector. In \lin{1D} $\mathbf{r} = x$ for example}\nomdref{CVr}{$V(\mathbf{r})$}{Potential $V$ at point $\mathbf{r}$. Assumed to be the Streitz-Mintmire potential unless otherwise stated}{eq:OHam}
+\begin{equation}
+    H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
+    \label{eq:OHam}
+\end{equation}
+
+where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
+
+This chapter is primarily concerned with the numerical methods used to solve this hamiltonian.
+First, the choice of a suitable potential to describe $V(\mathbf{r})$ is considered in \cref{sec:potential}.
+An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefrange{sec:numder}{sec:catoterr}, then finally an overview of the construction of the hamiltonian matrix and unit conversions in \cref{sec:hammat}.
+
+\section{Potential Configuration}\label{sec:potential}
+
+A potential which represents the junction, requires a number of capabilities.
+It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate quasi-degenerate states).
+As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
+The trade off here is that whilst any given potential may describe some properties of the system well because of certain fitting parameters, other properties may be well out of range as they were not included in the study that constructed the potential.
+Great care was taken to choose the best potential that accurately represented the junction, in this case the empirical Streitz-Mintmire potential~\cite{Streitz1994}, which describes a myriad of aluminium oxide properties over quite a large range of temperatures and pressures with high accuracy when compared against similar potentials.
+It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential \cref{eq:sm}.
+This capability is particularly important here, as our junction has two metal-oxide interfaces, and our TLS defects may reside close to these boundaries.
+
+The Streitz-Mintmire potential is given by\nomref{CVr}{eq:sm}\nomdref{ZEAM}{EAM}{Embeded Atom Model potential contribution}{eq:sm}
+\begin{equation}
+V(\mathbf{r}) = E_{EAM}+\sum_{i}^{N}q_i\chi_i + \frac{1}{2}\sum_{i,j}^{N}q_{i}q_{j}V_{ij},\label{eq:sm}
+\end{equation}
+
+where $q_{i,j}$ is the atomic charge, and the terms $\cramped{\chi_i = \chi_i^0 + \sum_{j}Z_{j}(\left[j|f_i\right]-\left[f_i|f_j\right])}$ and $\cramped{V_{ij} = J_{i}^{0}\delta_{ij}+\left[f_i|f_j\right]}$.\nomdref{Cqij}{$q_{i,j}$}{Atomic charge contribution to the Streitz-Mintmire potential}{eq:sm}\nomdref{CJ0i}{$J_{i}^{0}$}{Self-Coulomb repulsion. Used in the Streitz-Mintmire potential}{eq:sm}\nomdef{Gdkron}{$\delta_{ij}$}{Kronecker Delta}\nomdref{Bsmbrack}{$\left[f_a|f_b\right]$}{A bracket notation representing Coulomb interaction integrals}{sec:potential}
+$J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb repulsion~\cite{Rappe1991}, $\delta_{ij} = 1$ when $i=j$ and $\delta_{ij} = 0$ when $i\neq j$, and all summation is calculated for $N$ atoms of the target system.
+The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
+\begin{align}
+\left[a|f_b\right] &= \int \frac{f_b(r_b,q_b)}{r_{av}}\,\mathrm{d}V_b\\
+\left[f_a|f_b\right] &= \int\!\!\int \frac{f_a(r_a,q_a)f_b(r_b,q_b)}{r_{vv}}\,\mathrm{d}V_a \mathrm{d}V_b
+\end{align}
+
+with $a=i,j; b=i,j; a\neq b$ in \cref{eq:sm} and $\mathrm{d}V_{a,b}$ are integrating volume units.
+The value $r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
+
+The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdef{AEAM}{EAM}{Embedded Atom Model}\nomref{ZEAM}{eq:smeam}\nomdref{CFeam}{$F_{i}\left[\rho_i\right]$}{Energy required to embed atom $i$ in a local electron density $\rho_i$. A contribution to the Streitz-Mintmire potential}{eq:smpair}
+\begin{equation}
+E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),\label{eq:smeam}
+\end{equation}
+
+with $\cramped{F_{i}\left[\rho_i\right]}$ as the energy required to embed atom $i$ in a local electron density $\rho_i$, and $\phi_{ij}(r_{ij})$ describing the residual pair-pair interactions by way of Buckingham and Rydberg potentials\nomdref{Gwphij}{$\phi_{ij}$}{Pair potentials (Buckingham and Rydberg) for Streitz-Mintmire}{eq:smpair}
+\begin{equation}
+\phi_{ij}(r_{ij}) = A\exp\left(-\frac{r_{ij}}{\rho}\right)-B\left[1+C\left(\frac{r_{ij}}{r_0}-1\right)\right]\exp\left[-C\left(\frac{r_{ij}}{r_0}-1\right)\right],\label{eq:smpair}
+\end{equation}
+where $r_{ij}$ is the interatomic (Euclidean) distance between atoms $i$ and $j$, all other constants are listed in \cref{tab:smconsts}.
+Further formalisms, variable descriptions and parameters can be found in \cite{Streitz1994,Zhou2004}, additional implementation is also discussed in \cite{Gale2003}.
+\begin{table}[h]
+\caption[Streitz-Mintmire Pair Constants]{\label{tab:smconsts} Empirical constants used in the calculation of the Buckingham and Rydberg pair potentials in the Streitz-Mintmire formalism~\cite{Streitz1994,Gale2003}.}
+\centering
+\begin{tabular}{ c*{5}{r@{.}l} } \toprule
+Pair & \multicolumn{2}{c}{A} & \multicolumn{2}{c}{$\rho$} & \multicolumn{2}{c}{B} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{$r_0$}  \\ \midrule
+Al--Al & 4&474755 & 0&991317 & 0&159472 & 5&949144 & 3&365875 \\
+Al--O & 62&933909 & 0&443658 & 0&094594 & 9&985407 & 2&358570 \\
+O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section[Numerical Treatment of the Second Derivative][Second Derivative Treatment]{Numerical Treatment of the Second Derivative}\label{sec:numder}
+The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functions that are not completely analytic over all regions of importance.
+Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
+A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
+Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model which calculates an optimised three-finite-burn lunar escape trajectory~\cite{Ocampo2012}.
+
+On the simpler end of the spectrum, finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
+If a first order ODE (or PDE) of the form $f(x)$ can be evaluated both left and right of $x$, the central difference method can be used where absciss\ae\ are chosen symmetrically about $x$, which takes the form
+\nomdef{AODE}{ODE}{Ordinary Differential Equation}
+\nomdef{APDE}{PDE}{Partial Differential Equation}
+\begin{equation}
+f\,'(x) \approx \frac{f(x+h)-f(x+h)}{2h},\label{eq:simplecdiff}
+\end{equation}
+
+where $h$ is some step size.
+\nomdref{CSTEP}{h}{A step size used in the central difference formalism}{ch:tise}
+The step size controls the accuracy of the computed derivative, which is unfortunately bound by two factors.
+If the step size is too small, numerical roundoff errors cause accuracy issues; on the other hand, step sizes which are too large see mathematical truncation errors dominate.
+Identifying an optimal balance for the step size is also dependent on the specific value of $f\,'(x)$ being calculated, which may not be appropriate for a similar set of values.
+This problem, known as `the step size dilemma' has generated a number of investigations in an attempt to find a middle ground between simple finite difference methods with strong bounding conditions and the highly domain specific models like the variation model described above.
+
+The complex step method (exploiting complex perturbations of the general Taylor series) yields no subtractive cancellation errors (\textit{vide infra} \cref{sec:roundoff})~\cite{Squire1998}, which exist in the real spaced Taylor series finite difference methods; \cref{eq:simplecdiff} is a simple example of this.
+However, for many years this statement was only true for the first order derivative---higher orders were shown to have as many cancellation errors as their finite difference counterparts.
+
+This method was therefore excluded as a candidate for the model designed for this thesis, as it would perform on par with standard finite difference methods for the second order derivative we wish to compute.
+After much of the base code for this model had been constructed, a generalised, arbitrary order derivative complex step algorithm was published~\cite{Lantoine2012}.
+This algorithm may improve the error contribution of the models' final implementation, although this has not been investigated.
+
+A second possible successor to finite difference is automatic differentiation (AD).
+\nomdef{AAD}{AD}{Automatic Differentiation}
+The premise of this algorithm isn't necessarily mathematical in nature, but capitalises on the fact that computers are methodological reductionists and ultimately only execute simple arithmetic operations no matter how complicated the actual computation is.
+Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
+There a two methods to implement this algorithm; neither is straightforward.
+One uses special AD preprocessors that analyse each function call, break it up instruction by instruction and generates a new function that computes derivatives.
+Method two involves operator overloading that can generate code at compile time, which in a JIT accelerated environment like \sw{Matlab} is unfeasible---requiring some hacking of the engine itself.
+\nomdef{AJIT}{JIT}{Just-in-time compilation}
+
+Both AD and complex step require access to functions at the source code level, meaning calls to third party libraries like \sw{BLAS} and \sw{LAPACK} (which are used in this model's implementation) become increasingly over-complicated.
+
+For these reasons, it was decided to implement our model using a finite central difference method, paying close attention to the inherent error in exchange for relative computational simplicity.
+
+\section[Understanding the Central Difference Method][Understanding Central Differences]{Understanding the Central Difference Method\footnote{While most of this and the following section is standard canon information for the finite difference approach; it closely follows sections of \citeauthor{Mathur2012}~\cite{Mathur2012}, which will be formally introduced in \cref{sec:hopt}.}}\label{sec:ucdiff}
+
+All finite difference methods involve truncating a Taylor series expansion of a function $f(x)$ about $x^*$ after a certain number of terms\nomdref{CxStar}{$x^*$}{Any value of $x$ about which a central difference is applied}{ch:tise}
+\begin{equation}
+    f(x) = f(x^*) + f^{\;\prime}(x)(x-x^*) + \cdots + R_n.
+\end{equation}
+
+The discarded, higher order remainder terms $R_n$, are considered to contribute a negligible error to the approximation assuming a sufficiently small step size $h$.\nomdref{CRn}{$R_n$}{High order remainder terms of a Taylor series expansion of $f(x)$ to be truncated when using central difference}{sec:ucdiff}
+\begin{equation}
+    R_n = \sum_{m=n}^\infty \frac{f^{\;(m)}(x^*)}{m!}(x-x^*)^m
+\end{equation}
+
+It can be shown using the integral calculus derivation of the Taylor series that the $d^{th}$ derivative can be bound over the interval $[x^*, x]$, \ie $a\leq f^{\;(d)}(x) \leq~c$ \cite{Greenberg1978}.
+Furthermore, $\exists b \in [a,c]$ such that the remainder can be written as
+\begin{equation}
+   R_d = b \frac{(x-x^*)^d}{d!}.
+\end{equation}
+
+The Intermediate Value Theorem can be invoked at this stage to posit some point $\zeta \in [x^*,x]$ exists for which $f^{\;(d)}(\zeta)$ will equal the unknown parameter $b$.
+$R_d$ in this form is called the Lagrange remainder.\nomdref{Xd}{$(d)$}{The $d^{th}$ derivative used in central difference methods}{ch:tise}\nomdref{Zn}{$n$}{The $n^{th}$ order expansion of the Taylor series used in central difference methods}{ch:tise}
+While there is no known method to determine a value of $\zeta$ exactly for a general function, it is useful to express the $d^{th}$ order Taylor series in terms of the Lagrange remainder:
+\begin{equation}
+    f(x) = \sum_{k=0}^d \frac{f^{\;(k)}(x^*)}{k!}(x-x^*)^k + \frac{f^{\;(d+1)}(\zeta)}{(d+1)!}(x-x^*)^{d+1}, \quad \zeta \in [x^*,x].\label{eq:taylorrem}
+\end{equation}
+
+The most commonly used central difference formula is the first derivative of second order, which can be obtained by applying \cref{eq:taylorrem} at two absciss\ae\ of length $h$ from a sampling point in $f(x)$ and solving the simultaneous equation for $f^{\;\prime}(x)$.
+\begin{align}
+f(x+h) &= f(x) + f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 + \frac{f^{\;(3)}(\zeta^+)}{2}h^3, \quad \zeta^+ \in [x,x+h] \\
+f(x-h) &= f(x) - f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 - \frac{f^{\;(3)}(\zeta^-)}{2}h^3, \quad \zeta^- \in [x-h,x] \\
+f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta^+)+f^{\;(3)}(\zeta^-)}{2}\frac{h^2}{3!}\label{eq:cd12pm}
+\end{align}
+
+The error term in \cref{eq:cd12pm} contains the average of the third derivative evaluated the two unknown points $\zeta^+$ and $\zeta^-$, which are bounded inside the range $[x-h,x+h]$.\nomdref{Gfzeta}{$\zeta$}{An unknown but bounded point used in central difference methods}{ch:tise}
+Applying the Mean Value Theorem and assuming that $f^{\;(3)}(x)$ is smooth over the bounded range, a value $\zeta$ must exist between $\zeta^+$ and $\zeta^-$ which satisfies the average.
+\begin{align}
+f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta)}{3!}h^2, \quad \zeta \in [x-h,x+h]\label{eq:cd12t} \\
+\mathcal{F}_2^{\,(1)}(x,h) &= \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)\label{eq:cd12f}
+\end{align}
+
+Both equations above represent the first derivative of $f(x)$; although they differ in the sense that \cref{eq:cd12t} is still the true derivative and \cref{eq:cd12f} truncates the error term and represents it as an order of magnitude---which is the essence of the finite difference approximation to the derivative.
+The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$, which can formerly be expressed as:\nomdref{CFD}{$\mathcal{F}_n^{\,(d)}(x,h)$}{Finite difference approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$}{ch:tise}\nomdef{BO}{$\mathcal{O}$}{Big-O notation, signifying the order of a value}
+\begin{equation}
+\mathcal{F}_n^{\,(d)}(x,h) = \frac{\Delta f_n^{\;(d)}(x,h)}{h^d} + \mathcal{O}(h^n).\label{eq:cdgeneral}
+\end{equation}
+
+The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.
+Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009} without the need to derive them from first principles, although comprehensive error discussion is uncommon or oversimplified at best~\cite{Mathews2004,Holoborodko2009}.
+
+Solving the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression.
+Truncating the Taylor series at $\mathcal{O}(h^2)$ is the simplest arrangement, which takes the form
+\begin{equation}
+f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\zeta)}{12}h^2, \quad \zeta \in [x-h,x+h]\label{eq:cd22t} \\
+\mathcal{F}_2^{\,(2)}(x,h) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} + \mathcal{O}(h^2).\label{eq:cd22f}
+\end{equation}
+
+Before applying this method, a step size must be chosen; which relies on an accurate description of the competing error contributors.
+
+\section{Contributors to the Step Size Dilemma}
+
+\subsection{Truncation Error}\label{sec:truncerr}
+
+The truncation error in \cref{eq:cd22f} as $h\!\to\!0$ is, not surprisingly $\mathcal{O}(h^2)\!\to\!0$, implying that $h$ should be as small as possible to maximise the accuracy of the calculation.
+Limits can also be put on the true truncation error as well.
+Even though $\zeta$ is an unknown quantity, as the step size decreases, so does range in which $\zeta$ exists.
+Hence the limit of \cref{eq:cd22f} becomes
+\begin{equation}
+\lim_{h \to 0}\mathcal{O}(h^2) =  - \frac{f^{\;(4)}(x)}{12}h^2.
+\end{equation}
+
+This error differs for each formula, depending on the particular values of $n$ and $d$ (for example, the error in \labelcref{eq:cd12t} tends to $\cramped{-\frac{f^{\;(3)}(x)}{3!}h^2}$).
+Using \cref{eq:cdgeneral} and \cref{eq:cd22f}, a general relationship between the true $d^{th}$ derivative and its finite difference approximation\nomdref{CFDT}{$f_n^{\;(d)}(x)$}{True $d^{th}$ derivative of $f(x)$ of order $n$ expressed in terms of a finite difference approximation}{ch:tise}
+\begin{equation}
+ f_n^{\;(d)}(x) = \mathcal{F}_n^{\,(d)}(x,h) + C(x,h)h^n,\label{eq:cdadj}
+\end{equation}
+
+can be expressed with an undetermined truncation coefficient term $C(x,h)$, which is independent of the derivative parameter $d$.
+This coefficient represented in Lagrange form is
+\begin{equation}
+C(x,h) = a_1\,f_n^{\;(n+d)}(\zeta), \quad \zeta \in [x-a_2h,x+a_3h],\label{eq:cdcxh}
+\end{equation}
+
+with the set of unknown constants $a$ also being dependent on the finite difference formula in question.
+As the truncation coefficient is dependent on $\zeta$, its dependence on $h$ is removed as $h\!\to\!0$ (because $\zeta\!\to\!x$).
+Hence, for small values of $h$, a simplified coefficient can be defined as
+\begin{equation}
+ C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x).
+\end{equation}
+
+Simplifying \cref{eq:cdadj} with this new coefficient, it is clear that this relationship takes the form of a Richardson extrapolation, therefore we can evaluate at two different step sizes $h_1$ and $h_2$ (where $h_1 > h_2$)
+\begin{align}
+f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_1) + C_n(x)h_1^n \\
+f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_2) + C_n(x)h_2^n
+\end{align}
+
+and solving for $C_n(x)$ we find\nomdref{CCn}{$C_n$}{Approximate truncation coefficient for small step sizes. Expands to $C_n(x,h)$ for all steps}{ch:tise}
+\begin{equation}
+ C_n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}.\label{eq:cdtrcoeff}
+\end{equation}
+
+This expression still assumes a small step size such that the approximated truncation coefficient stays independent of $h$ (and therefore constant for a valid range of steps).
+The complete estimate for the truncation error of order $n$ can now be found via \cref{eq:cdadj}\nomdref{BTEn}{$\mathcal{TE}_n(x,h)$}{Truncation error of order $n$ for central difference methods}{sec:truncerr}
+\begin{equation}
+\mathcal{TE}_n(x,h_1) = C_n h_1^n = \frac{\mathcal{F}_n^{\,(d)}(x,h_2) - \mathcal{F}_n^{\,(d)}(x,h_1)}{h_1^n - h_2^n}h_1^n.\label{eq:cdte}
+\end{equation}
+
+As much of this derivation requires a `sufficiently small' step size, it's imperative to consider the behaviour of the truncation error at larger values of $h$ as well.
+If $h$ increases, the approximate truncation coefficient can no longer be used and
+the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
+Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values.
+
+\subsection{Roundoff Errors}\label{sec:roundoff}
+
+As mentioned in \cref{sec:numder}, numbers in a computer are represented with a fixed number of binary digits, and operations applied to them have an inherent loss of accuracy.
+This phenomenon is designated the term roundoff error, as the extra digits that cannot be held in memory must be discarded---rounded to the nearest tolerance.
+
+Roundoff error has been a hot topic of research since the invention of computers.
+Notable checks on the accuracy of finite element methods were completed before the moon landings~\cite{Cyrus1968} which were paramount to their success.
+Investigations after a Patriot missile defense system allowed a Scud missile to hit a barracks, killing 28 people; identified the root cause to be numerical in nature.
+Roundoff via the differencing of floating point numbers introduced errors into the timing register when converting representations~\cite{Skeel1992}.
+These relative errors caused by subtraction (called cancellation error) tend to decrease as $h$ is increased, thus to minimise this uncertainty $h$ should be as large as possible---contrary to the truncation requirement of a small step size.
+An upper bound on this error is given by
+\begin{equation}
+ \abs[\big]{(\alpha-\beta)_{true} - (\alpha-\beta)} \leq \delta \max(\abs{\alpha},\abs{\beta}),
+\end{equation}
+
+where $\alpha$ and $\beta$ are two fixed precision numbers, and $\delta$ indicates the precision of the calculation.
+Usually, modern computer languages operate using standard double precision floating point numbers, thus $\delta = 2^{-53}$.\nomdref{Gd}{$\delta$}{Precision of a calculation using floating point numbers. On modern computers using double precision $\delta = 2^{-53}$}{ch:tise}
+
+A second roundoff error type known as condition error creeps in when functions don't use machine precision floating point numbers in their internal routines.
+For example, a third party function may approximate π to 3.14159, which would artificially round the result of whatever operation was being applied to a precision of $10^{-5}$.
+As with cancellation error, an upper bound can also be formulated for condition error:
+\begin{equation}
+\abs{f(x)_{true} - f(x)}\leq \epsilon \abs{f(x)}.
+\end{equation}
+
+Here, $\epsilon$ is the magnitude of the most significant digit affected by the condition error.\nomdref{Ge}{$\epsilon$}{Magnitude of the most significant digit affected by condition error}{ch:tise}
+For elementary operations $\epsilon$ should be equal to machine precision, although this cannot be assumed for all functions hence it is a value that should be calculated in general.
+
+Finally, an error which is also important in this instance is named representational error.
+Not all numbers can be accurately be represented in binary using a fixed number of digits.
+Many people choose their step sizes in base 10 (\eg $1\ten{-2}$, $5\ten{-6}$ \etc), and what's most troubling about this is the fact that no negative power of 10 has an exact binary representation.
+This error is small---usually smaller that machine precision in fact, but it has non-trival and cumulative side effects.
+If one avoids step sizes other than $2^\mathbb{N}$ this error can be avoided completely.
+
+With this information in hand, an upper bound to the total roundoff error can now be calculated:
+\begin{equation}
+ \abs{\mathcal{F}_n^{\,(d)}(x,h)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d}.
+\end{equation}
+
+The functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ are derived from $\Delta f_n^{\;(d)}$ (see \labelcref{eq:cdgeneral}).
+Forms of \cref{eq:cd22f} for instance are\nomdref{BFE}{$\mathcal{F}_\epsilon$}{Condition error coefficient for central difference methods}{ch:tise}\nomdref{BFD}{$\mathcal{F}_\delta$}{Cancellation error coefficient for central difference methods}{ch:tise}
+\begin{align}
+\mathcal{F}_\epsilon &= \abs{f(x+h)} + \abs{2f(x)} + \abs{f(x-h)} \\
+\mathcal{F}_\delta &= \max(\abs{f(x+h) + f(x-h)},\abs{2f(x)}).
+\end{align}
+
+\subsection{Estimation of Total Error}\label{sec:cdtoterr}
+
+Using the equations for truncation and roundoff errors mentioned above, and assuming a small $h$ such that \cref{eq:cdtrcoeff} holds, the total error can be bounded by the expression
+\begin{equation}
+\abs{f^{\;(d)}(x)_{true}-\mathcal{F}_n^{\,(d)}(x,h)} \leq \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n
+\end{equation}
+
+Assuming a worse case scenario, the total error can therefore be described as\nomdref{BEnd}{$\mathcal{E}_n^{\,(d)}(x,h)$}{Total error for a $d^{th}$ derivative central difference method of order $n$}{sec:cdtoterr}
+\begin{equation}
+\mathcal{E}_n^{\,(d)}(x,h) = \frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^d} + \abs{C_n}h^n\label{eq:cnetot}
+\end{equation}
+
+noting the dependence on $x$ comes from the functions $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$, and that $\epsilon$ is still an unknown value.
+
+\section[Optimal Step Size]{Calculating an Optimal Step Size}\label{sec:hopt}
+
+With all of these caveats in mind, finding an optimal step size $h_{opt}$ is a troublesome undertaking; which is why the complex step and AD methods discussed in \cref{sec:numder} were developed.
+
+A simple method proposed in \citeauthor{Gill1982} suggests minimising an expression similar to \cref{eq:cnetot} which trades off the truncation and roundoff errors ~\cite{Gill1982,Mathews2004}.
+However, this method assumes the condition error $\epsilon$ is known and cancellation error is treated in a trivial manner.
+
+Violation of monotonicity is an algorithm which attempts to ignore actually calculating any estimates for truncation and roundoff errors~\cite{Stepleman1979}. This method breaks down if \cref{eq:cdtrcoeff} doesn't hold and therefore is not a general solution.
+Algorithms specifically designed for forward differences have also been discussed in the literature~\cite{Barton1992}, but are of no benefit for purposes herein.
+
+The method which has been chosen to be implemented in this work is the algorithm from the PhD thesis of \textbf{Ravishankar Mathur}, which allows one to calculate an optimal step without \textit{a priori} knowledge of the condition error $\epsilon$.
+Additionally, corrections to the the step size are introduced to account for the approximate nature of the truncation coefficient $C_n$, as well as estimations of step size validity and the maximal appropriate step size for a problem are examined~\cite{Mathur2012}.
+
+As with \citeauthor{Gill1982}, \citeauthor{Mathur2012} starts by minimising the total error expression
+\begin{equation}
+\frac{\partial\mathcal{E}}{\partial h} = -d\frac{\epsilon\abs{\mathcal{F}_\epsilon}+\delta\abs{\mathcal{F}_\delta}}{h^{d+1}} + n\abs{C_n}h^{n-1} = 0
+\end{equation}
+
+and solving for $h$ to find
+\begin{equation}
+h_{opt,\mathcal{TE}} = \left[\frac{d}{n}\frac{1}{\abs{C_n}}\left(\epsilon\abs{\mathcal{F}_\epsilon}+
+\delta\abs{\mathcal{F}_\delta}\right)\right]^{1/(n+d)}.\label{eq:cdhopt}
+\end{equation}
+
+Note that obtaining correct values of $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ require the optimal step size $h_{opt,\mathcal{TE}}$, thus an iterative method is required.
+Once this value is known, \cref{eq:cdhopt} can be rearranged to find the condition error $\epsilon$.
+
+The steps of the algorithm which computes these values (as well as discussions of further optimisations) can be found in Chapter 3 of~\,\onlinecite{Mathur2012}.
+
+\section[A Harmonic Approximation to Streitz-Mintmire][Streitz-Mintmire Harmonic Approximation]{A Harmonic Approximation to Streitz-Mintmire}\label{sec:harmsm}
+
+A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
+This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
+The step size algorithm requires an analytical form of the function to which it is applied.
+Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
+The functional form of the wavefunction for a particle under the influence of the Streitz-Mintmire potential is not one of these systems.
+However, certain configurations of the potential approximate to a parabola-like shape (for example see \cref{fig:smvh,fig:mexhatproj}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
+
+The hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
+\begin{equation}
+\widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}m\omega^2\widehat{x}^2\label{eq:hamho}
+\end{equation}
+
+where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator.\nomdef{Cmass}{$m$}{Mass of a particle}\nomdef{Gz}{$\omega$}{Angular frequency}
+Two operators, $\widehat{x} = x$ for position and $\cramped{\widehat{p} = -i\hbar \frac{\partial}{\partial x}}$ for momentum describe the complete Schr\"{o}dinger equation.
+After separation of variables, the time independent form becomes
+\begin{equation}
+-\frac{\hbar^2}{2m}\frac{\partial^2 \Psi}{\partial x^2}+\frac{1}{2}m\omega^2x^2 \Psi = E\Psi,
+\label{eq:hamti}
+\end{equation}
+
+with the family of solutions for the wavefunctions\nomdef{Bhbar}{$\hbar$}{Reduced Planck constant, $\hbar \simeq 1.055\ten{-34}$ Js}
+\begin{align}\psi_n(x) &= \frac{1}{\sqrt{2^n\,n!}}\left(\frac{m\omega}{\hbar\pi}\right)^{1/4}e^{
+- \frac{m\omega x^2}{2 \hbar}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x \right), &n = 0,1,2,\ldots \\
+H_n(x) &= (-1)^n e^{x^2}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left(e^{-x^2}\right) \\
+\therefore \psi_0(x) &= \left(\frac{m\omega}{\hbar\pi}\right)^{1/4}e^{
+- \frac{m\omega x^2}{2 \hbar}} \label{eq:gshwfn}
+\end{align}
+
+where $\psi_0(x)$ \cref{eq:gshwfn} is the ground state wavefunction. Particle mass $m$ in our case is the mass of an oxygen atom, and the angular frequency $\omega$ is currently unknown.
+
+Using a small step size, the eigenvalue equation is solved for the Streitz-Mintmire case, and a ground state wavefunction is found.
+The functional form of which is shown in the left plot of \cref{fig:smvh} as \plotline{line width=1.5pt,color=Set1-5-1}.
+As the potential form (shown in the right plot) is similar to a parabola, the resultant wavefunction is gaussian-like.
+Using \cref{eq:gshwfn}, a harmonic form of the ground state wavefunction can now be fitted to the calculated Streitz-Mintmire result through the unknown angular frequency, which is found to be $\omega = 2.241\ten{13}$ rad/s.
+Both $\psi_0(x)$ and the associated potential of this harmonic approximation are plotted as \plotline{line width=1.5pt,color=Set1-5-2} to compare with the Streitz-Mintmire result.
+\begin{figure}[htp]
+\smvhmargins
+\begin{adjustwidth}{\smvhleft}{\smvhright}
+\resizebox{\widefigure}{!}{\includestandalone{figures/smvh}}
+\caption[Harmonic Approximation to Strietz Mintmire]{\label{fig:smvh}Calculated Streitz-Mintmire \plotline{line width=1.5pt,color=Set1-5-1} and Harmonic approximations \plotline{line width=1.5pt,color=Set1-5-2} to the ground state wave function $\psi_0(x)$ (left) and potential $V(x)$ (right). The harmonic response is scaled via $\omega = 2.241\ten{13}$ rad/s using \cref{eq:gshwfn}. Units of $V(x)$ in [μeV] with $x$ in [Å] correspond to typical atomic energy and length scales.}
+\end{adjustwidth}
+\end{figure}
+
+The fitted value of $\omega$ yields a complete approximation to the Strietz Mintmire ground state wavefunction, which we can now use in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ to find the eigenvalue $E$.
+
+\Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \plotmarker{0.4}{circle,fill=Set1-5-2}.
+Roundoff errors dominate for small step sizes ($h \lesssim 5\ten{-5}$) with some step sizes resulting in completely invalid results (\ie $\mathcal{TE}_2 = 0$).
+These steps are labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2} and are scaled to $2\ten{-8}$ to be displayed on the graph.
+As the step size increases, truncation error dominates until the region $h \gtrsim 5$, where this error becomes invalid.
+\begin{figure}[htp]
+\centering
+\resizebox{\textwidth}{!}{\includestandalone{figures/hopt3pt}}
+\caption[Step size optimisation of $f_2^{\;(2)}(x)$]{\label{fig:hopt3pt}Step size optimisation of $f_2^{\;(2)}(x)$ for step sizes $10^{-9}\!\leq\! h\! \leq\! 10^1$ \plotmarker{0.4}{circle,fill=Set1-5-2}. Steps which generate an invalid roundoff error (\ie $\mathcal{TE}_2 = 0$) are translated to $2\ten{-8}$ for display purposes and labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \plotmarker{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \plotmarker{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\end{figure}
+
+The step size optimisation algorithm initially chooses an uncorrected optimal step size \plotmarker{0.5}{circle,fill=Set1-5-1} of $h_{opt,\mathcal{TE}} = 5.775\ten{-5}$ Å.
+The truncation error \cref{eq:cdte} overestimates the true roundoff error contribution by a proportional amount given by $\cramped{t^* = (1+(1/t)^d)/(1-t^n)}$~\cite{Mathur2012}.
+The constant $t = 0.65$ is the step size ratio, required by the step size algorithm and is optimal for $d=2$, $n=2$.
+Using this adjustment, the true optimal step is
+\begin{equation}
+h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{eq:hoptt}
+\end{equation}
+
+labelled as \plotmarker{0.5}{circle,fill=Set1-5-3}.
+The value of this corrected step is $h_{opt,true} = 3.717\ten{-5}$ Å, which does not have an accurate power of two representation.
+As stated in \cref{sec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
+Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
+\begin{equation}
+h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
+\end{equation}
+
+\section{Memory Concerns}\label{sec:memcons}
+
+The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources.
+Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of a \lin{2D} plane, $9$ Å$^\text{\skolarlining 2}$ in area discretised via $h_{opt}$ requires $294,913^2$ double precision floats.
+On a computer with 64 bit architecture, each double requires 8 bytes of memory, meaning our grid has a footprint of just over 695 Gigabytes.
+
+Computational resources of that magnitude are infeasible when a simple solution can both minimise memory requirements and increase the accuracy of the calculation simultaneously.
+Recall the total error \cref{eq:cnetot}, which depends on $h$ via\nomref{BEnd}{sec:memcons}
+\begin{equation}
+\mathcal{E}_n^{\,(d)}(x,h) \propto \frac{1}{h^d} + h^n.
+\end{equation}
+
+For our purposes, $d$ is fixed at $2$, and $n$ was also chosen as $2$, but only due to the fact that this generates the simplest second derivative central difference formula.
+Using order of magnitude arguments, a step size $h = 1\ten{-6}$ with an order parameter $n = 2$ contributes $\mathcal{O}(10^{-12})$ to the total error from the $h^n$ term.
+If the order is increased to $n = 6$, a much larger step size $h = 1\ten{-2}$ yields the same $\mathcal{O}(10^{-12})$ contribution.
+
+A back of the envelope calculation for a step size that large over the same range as above only requires $901^2$ doubles, which equates to a much more feasible memory requirement of 6.5 Megabytes.
+
+\section{Second Derivative of Sixth Order}\label{sec:cd6o}
+
+Using the formalism outlined in \cref{sec:ucdiff}, an expression for the second derivative of sixth order can be calculated.
+Starting with the Taylor series of the Lagrange remainder \cref{eq:taylorrem} using six absciss\ae\
+\begin{align}
+\MoveEqLeft f(x\pm h) = \nonumber\\
+&f(x)\pm f\,'(x)h+\frac{f^{\;''}(x)h^2}{2!}\pm \frac{f^{\;(3)}(x)h^3}{3!}+\frac{f^{\;(4)}(x)h^4}{4!}\pm \frac{f^{\;(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{f^{\;(6)}(x)h^6}{6!}\pm \frac{f^{\;(7)}(x)h^7}{7!}+\frac{f^{\;(8)}(\zeta^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \zeta^+ \in [x,x+h], \qquad \zeta^- \in [x-h,x] \displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x\pm 2h) = \nonumber\\
+&f(x)\pm 2f\,'(x)h+\frac{4f^{\;''}(x)h^2}{2!}\pm \frac{8f^{\;(3)}(x)h^3}{3!}+\frac{16f^{\;(4)}(x)h^4}{4!}\pm \frac{32f^{\;(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{64f^{\;(6)}(x)h^6}{6!}\pm \frac{128f^{\;(7)}(x)h^7}{7!}+\frac{256f^{\;(8)}(\zeta^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \zeta^+ \in [x,x+2h], \qquad \zeta^- \in [x-2h,x] \displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x\pm 3h) = \nonumber\\
+&f(x)\pm 3f\,'(x)h+\frac{9f^{\;''}(x)h^2}{2!}\pm \frac{27f^{\;(3)}(x)h^3}{3!}+\frac{81f^{\;(4)}(x)h^4}{4!}\pm \frac{243f^{\;(5)}(x)h^5}{5!}\nonumber\\
+&+\frac{729f^{\;(6)}(x)h^6}{6!}\pm \frac{2187f^{\;(7)}(x)h^7}{7!}+\frac{6561f^{\;(8)}(\zeta^\pm)h^8}{8!}, \nonumber\\
+&\qquad \qquad \zeta^+ \in [x,x+3h], \qquad \zeta^- \in [x-3h,x]
+\end{align}
+
+Followed by removing the odd degree terms
+{\mathindent=0.5cm
+\begin{align}
+\MoveEqLeft f(x+h)+f(x-h) = \nonumber \\ &2f(x)+f^{\;''}(x)h^2+\frac{2f^{\;(4)}(x)h^4}{4!}+\frac{2f^{\;(6)}(x)h^6}{6!}+\frac{2f^{\;(8)}(\zeta^\pm)h^8}{8!}\label{eq:fxh}\displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x+2h)+f(x-2h) = \nonumber \\
+&2f(x)+4f^{\;''}(x)h^2+\frac{32f^{\;(4)}(x)h^4}{4!}+\frac{128f^{\;(6)}(x)h^6}{6!}+\frac{512f^{\;(8)}(\zeta^\pm)h^8}{8!}\label{eq:fx2h}\displaybreak[0]\\[0.2cm]
+\MoveEqLeft f(x+3h)+f(x-3h) = \nonumber \\
+&2f(x)+9f^{\;''}(x)h^2+\frac{162f^{\;(4)}(x)h^4}{4!}+\frac{1458f^{\;(6)}(x)h^6}{6!}+\frac{13122f^{\;(8)}(\zeta^\pm)h^8}{8!}\label{eq:fx3h}
+\end{align}
+}
+
+leaving a set of equations with fourth and sixth degree terms which need be eliminated in order to arrive at an equation similar to \cref{eq:cd22t}.
+The equation $72\times$\cref{eq:fx2h}$-2\times$\cref{eq:fx3h}$-270\times$\cref{eq:fxh} eliminates these terms, arriving at
+{\mathindent=0.3cm
+\begin{equation}
+f^{\;''}(x) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}}-\frac{f^{\;(8)}(\zeta)h^6}{560}\label{eq:cd26t}\\
+\mathcal{F}_2^{\,(6)}(x,h) = \frac{2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}}{180h^{2}} + \mathcal{O}(h^6),\label{eq:cd26f}
+\end{equation}
+}
+
+where $\zeta \in [x-3h,x+3h]$ and both the true and finite difference expressions are displayed in a simplified form.
+The notation can be read as\nomdref{Cfk}{$f_k$}{A short form for the central difference expansions}{sec:cd6o}
+\begin{equation}
+f_k = f(x_k), \quad x_k=x^*+kh, \quad \left\{k \in \mathbb{Z} \vert -(N-1)/2 \leq k \leq  (N-1)/2 \right\}
+\end{equation}
+
+for example $f_{-3} \equiv f(x-3h)$.
+The form of \cref{eq:cd26f} adheres to \cref{eq:cdgeneral}, where
+\begin{equation}
+\Delta f_6^{\;(2)} = \frac{1}{180}2f_{-3}-27f_{-2}+270f_{-1}-490f_{0}+270f_{1}-27f_{2}+2f_{3}.\label{eq:f62x}
+\end{equation}
+
+Applying this equation is no different to \cref{eq:cd22f}, and the only additional overhead is the requirement of six absciss\ae\ rather than two.
+
+An optimal step size for $\nabla^2$ in \cref{eq:OHam} can be found using  \cref{eq:cd26f} and the harmonic approximation of $\Psi_0(x)$ \cref{eq:gshwfn}.
+As with the calculation in \cref{sec:harmsm} using \cref{eq:cd22f}, we will evaluate at $x = 0$ and apply the optimal step size algorithm~\cite{Mathur2012}; the results of which are shown in \cref{fig:hopt7pt}.
+\begin{figure}[htp]
+\centering
+\resizebox{\textwidth}{!}{\includestandalone{figures/hopt7pt}}
+\caption[Step size optimisation of $f_2^{\;(6)}(x)$]{\label{fig:hopt7pt}Step size optimisation of $f_6^{\;(2)}(x)$ for step sizes $10^{-9}\!\leq\! h\! \leq\! 10^1$ \plotmarker{0.4}{circle,fill=Set1-5-2}. Two optimal step sizes are identified: $h_{opt,\mathcal{TE}}$ \plotmarker{0.5}{circle,fill=Set1-5-1}, found using the optimal step algorithm~\cite{Mathur2012}, and $h_{opt,true}$ \plotmarker{0.5}{circle,fill=Set1-5-3}, corrected by \cref{eq:hoptt}.}
+\end{figure}
+
+In comparison to the results of the second order method (see \cref{fig:hopt3pt}), which was calculated over the same step size range, it's clear that the estimations in \cref{sec:memcons} hold.
+The absolute truncation error $\abs{\mathcal{TE}_6}$ minimum is in fact four orders smaller, and the optimal step sizes two orders larger.
+
+The uncorrected step \plotmarker{0.5}{circle,fill=Set1-5-1} was found to be $h_{opt,\mathcal{TE}} = 2.381\ten{-3}$ Å, and corrected using \cref{eq:hoptt} (with $t=0.75$, optimised for $d=2$, $n=6$) to $h_{opt,true} = 2.044\ten{-3}$ Å, again labelled as \plotmarker{0.5}{circle,fill=Set1-5-3}.
+
+Moving this value to a power of two representation, the optimal step size for the central difference second derivative of sixth order applied to \cref{eq:OHam} is
+\begin{equation}
+h_{opt} = 2.044\ten{-3} \simeq 2^{-9} = 1.953\ten{-3}\;\text{Å}.
+\end{equation}
+
+A step of this size for a $9$ Å$^\text{\skolarlining 2}$ grid requires $4,609^2$ doubles with a memory footprint of around 170 Megabytes.
+
+\section[Condition and Total Error]{Condition and Total Error Calculation}\label{sec:catoterr}
+
+The harmonic approximation was useful for finding the optimal step of the Streitz-Mintmire method only because the change in $x$ is equivalent over the calculated range.
+Actual error values on the other hand can not be considered in the same manner.
+The condition error of the harmonic ground state wave function \cref{eq:gshwfn} is dependent on the accuracy of the input variables and the exponential function, which in \sw{Matlab}, is computed by the built-in function \sw{exp}.
+On the other hand, the Streitz-Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \sw{Matlab}, \sw{C++} and \sw{LAPACK} (implemented in \sw{Fortran}) routines to calculate a potential value for a given $x$.
+Then, to obtain $\Psi_0(x)$, the hamiltonian matrix is diagonalised through the \sw{eigs} function, also calling \sw{LAPACK} through a \sw{C++} wrapper.
+
+Many of these steps may contribute to the condition error, which can be calculated by rearranging the optimal step size formula \cref{eq:cdhopt}, now that $h_{opt} = 2^{-9}$ is known
+\begin{equation}
+\epsilon = \frac{1}{\abs{\mathcal{F}_\epsilon}}\left(\frac{n}{d}\abs{C_n}h_{opt}^{n+d}-\delta\abs{\mathcal{F}_\delta}\right).
+\end{equation}
+
+$C_n$ \cref{eq:cdtrcoeff} is calculated during the optimal step algorithm~\cite{Mathur2012} when the steps $h_1$ and $h_2$ are found to be in the valid truncation error range.
+The absolute value of which is $\abs{C_6} = 3.888\ten{5}$ for the sixth order central difference.
+Functional forms of the condition error $\mathcal{F}_\epsilon$ and cancellation error $\mathcal{F}_\delta$ coefficients are generated from \cref{eq:f62x}\nomref{Cfk}{sec:catoterr}
+{\mathindent=0.4cm
+\begin{align}
+\mathcal{F}_\epsilon &= \frac{1}{180}2\abs{f_{-3}} + 27\abs{f_{-2}} + 270\abs{f_{-1}} + 490\abs{f_{0}} + 270\abs{f_{1}} + 27\abs{f_{2}} + 2\abs{f_{3}} \\
+\mathcal{F}_\delta &= \frac{1}{180}\max(\abs{27f_{-2} + 490f_{0} + 27f_{2}},\abs{2f_{-3} + 270f_{-1} + 270f_{1} + 2f_{3}}).
+\end{align}
+}
+
+Applying this formula to the harmonic approximation, the condition error is found to be $\epsilon = 7.958\ten{-19}$.
+This result is beneath machine precision ($\delta = 2^{-53} \simeq 1.110\ten{-16}$), which is expected considering \sw{exp} is a built-in function.
+
+The total error \cref{eq:cnetot} is now a trivial undertaking, using the above values $\mathcal{E}_6^{\,(2)}(0,h_{opt}) = 8.634\ten{-11}$.\nomref{BEnd}{sec:catoterr}
+
+Calculating these values for the Streitz-Mintmire case however is a much more daunting task.
+As the wavefunctions' form is unknown before the eigenvalue problem is solved, computing the required variables: $C_n$, $\mathcal{F}_\epsilon$ and $\mathcal{F}_\delta$ is not possible.
+
+However, estimates of the condition error can be made.
+The sparse matrix eigenvalue solver \sw{eigs} has a documented precision of $2^{-53}$~\cite{Mathworks2014}, in other words: machine precision $\delta$.
+One of the pivotal advances \citeauthor{Mathur2012} accomplishes is the ability to obtain an optimal step without \textit{a priori} knowledge of $\epsilon$ \cite{Mathur2012}.
+Turned on its head: with a known step size for a function one can estimate the condition error.
+Therefore, applying \cref{eq:cd26f} to the Streitz-Mintmire potential to calculate $\cramped{\frac{\mathrm{d}^2V}{\mathrm{d}x^2}}$ can obtain an optimal step, then a condition error for $V(x)$.
+This process yields a value of $\epsilon = 3.054\ten{-19}$, again below machine precision.
+
+Whilst these values cannot quantify the Streitz-Mintmire total error, they generate at least some confidence that the values are in the same order of magnitude as depicted in \cref{fig:hopt7pt}.
+One further test of stability that can be used in this instance is a convergence test of the energy $E$.
+Solving the eigenvalue equation over the range of step sizes used previously, \cref{fig:econv} displays how the energy fluctuates.
+As expected, steps with high roundoff error contributions cause fluctuations in the calculated value of $E$, and invalid truncation errors also generate large deviations from the acceptable value at $h_{opt} = 2^{-9}$.
+\begin{figure}[htp]
+\centering
+\resizebox{0.9\textwidth}{!}{\includestandalone{figures/Econverge}}
+\caption[Energy Convergence]{\label{fig:econv}Energy Convergence for step sizes $10^{-8}\!\leq\! h\! \leq\! 10^0$ \plotmarker{0.4}{circle,fill=Set1-5-2}, with $h_{opt}$ labelled as \plotmarker{0.4}{circle,fill=Set1-5-1}. The invalid truncation range from \cref{fig:hopt7pt} is visible in the sense that large step sizes $h\gtrsim2\ten{-1}$ contribute sizable error. The inset shows two decades close to $h_{opt}$, where the energy scale is normalised to $E-E(h_{opt})$. Left of $h_{opt}$ sees roundoff error contributions, and right depicts truncation error.}
+\end{figure}
+
+\subsection{Acceptable Maximum Step Size}\label{sec:hmax}
+
+The 170 Megabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is completely acceptable if one plane was all that was required.
+Below in \cref{sec:hammat,ch:tlslow}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
+This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
+For instance, the \lin{1D} configuration used to compute energies for \cref{fig:econv} lies within $x \in [-0.6, 0.6]$ Å.
+Although a step of $h = 1\ten{-8}$ Å needs just under 1 Gigabyte of memory to store this line, the total calculation cannot be completed on a machine with 32 GB of RAM and 128 GB of swap space.
+
+Following the argument in \cref{sec:memcons}, an instinctive solution to this issue would be to increase the order of the central difference method to $n=8$ or perhaps even $n=10$.
+This would increase the optimal step size to $\mathcal{O}(10^{-1})$ \AA, and the total error contribution would decrease further.
+Juxtaposing figures \labelcref{fig:hopt3pt} and \labelcref{fig:hopt7pt}, two problems with this solution are elucidated.
+Whilst the optimal step size becomes larger as $n$ increases, this also increases the gradient which obtains $C_n$ and defines the region of valid truncation.
+Also, the region of invalid truncation error remains constant for the system in question (in this case $\Psi_0(x)$).
+If the order is increased to the point at which the optimal step size is almost at the lower bound of the invalid truncation range, $C_n$ will become a large contribution to error.
+\Cref{sec:numder} also discusses the complication that an optimal step size may not be valid for all points in a system.
+Pushing the optimal step to be too large may encounter non-optimal position errors, where one (optimal) point has an error of $10^{-11}$ associated with it, and the next (non-optimal) point contributes $10^1$ from invalid truncation.
+
+It is shown in \citeauthor{Mathur2012} that the optimal step size is valid over the range $x \in [x^*-a_2h_{max},x^*+a_3h_{max}]$ if $f^{\;(n+d)}(x)$ can be shown to be constant over the same range.
+This is in turn proven by showing $f^{\;(n+d)}(\zeta)$ is constant over $[h_{opt},h_{max}]$.
+The derivation is related to \cref{eq:cdcxh}, where $a_2$ and $a_3$ originate.
+The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases.
+Thus $h_{max} = 2^{-3} \simeq 0.125$ Å for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\zeta)$ is constant over $[2^{-9},2^{-3}]$, which is indeed the case if one applies the regression algorithm from \onlinecite{Mathur2012}.
+As a result, the estimated truncation error calculated for $h_{opt}$ is considered to be consistent over the range $x \in [x^*-3\cdot0.125,x^*+3\cdot0.125]$ Å using the sixth order method.
+Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å; require values anywhere else on the grid and a new $h_{opt}$ should be calculated if you're a purist.
+
+Unfortunately, compromises need to be made in practice. So, keeping the above analysis in mind, the following concessions will be made throughout this thesis:
+\begin{itemize}
+  \item $h_{opt}$ will be considered optimal over a larger range than $0\pm0.375$ Å to avoid iterative and overtly complicated treatments of the eigenvalue equation.
+      In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
+      Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values close to the centre of the box are the most important regardless.
+  \item Step sizes optimised for a range in $x$ are assumed valid in all spatial dimensions $\mathbf{r}$.
+  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.
+      Large calculations that require only relative energy values, such as the phase maps in \cref{sec:phasespace,sec:tls,sec:dipole} have been calculated with step sizes close to $h_{max}$.
+      This allows the systems to fit in memory and/or not take the age of the universe to finish computing.
+      However, specific energy values stated herein will still be calculated using $h_{opt}$ unless otherwise stated.
+\end{itemize}
+
+
+\section{Hamiltonian Construction}\label{sec:hammat}
+
+A complete description of the hamiltonian \cref{eq:OHam} can now be implemented to solve the eigenvalue equation
+\begin{equation}
+\left[-\frac{\hbar^2\Lambda}{2m_{oxy}}\nabla^2+V(\mathbf{r})\right]\ket{\Psi(\mathbf{r})} = E\ket{\Psi(\mathbf{r})},\label{eq:tisemat}
+\end{equation}
+
+the implementation of which requires the construction of a sparse matrix representation of $H$, which can be fed into the \sw{eigs} function of \sw{Matlab}; computing the wavefunction $\Psi$ and energy $E$ of the system.
+
+In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,sec:ddiagthree} for specifics).
+
+Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
+\begin{marginfigure}
+\resizebox{\marginparwidth}{!}{\includestandalone{figures/spyham}}
+\caption[Sparsity of the Hamiltonian Matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
+\end{marginfigure}
+\begin{equation}
+    \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.243\ten{46}\label{eq:lambda}
+\end{equation}
+
+describes the system in terms of distance in Å and energy in μeV.
+This prefactor is then multiplied by $-490$, becoming the $f_0$ contribution from \cref{eq:cd26f}.
+Each subsequent position value ($\mathbf{r}=x$) also requires this contribution as well, which are all placed down the diagonal of a sparse matrix once the corresponding $V(x)$ has been added.
+Off diagonals are also required to fulfil the remaining $~f_k$ values in \cref{eq:cd26f}, where the $k^{th}$ off diagonal holds the $~f_k$ coefficient and the  $\nabla^2$ prefactor.
+
+The resulting matrix can then be diagonalised, obtaining eigenvectors and eigenenergies for the system in question.
+Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz ($4\ten{-5}$ μeV) using this method.
+In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+
+In subsequent chapters we use this approach to investigate what affect changes in the local potential landscape impose on an oxygen atom by systematically introducing (initially) aluminium atoms at Al--O bond distances and perturbing their positions.
+With an understanding of the interplay between atomic positions and the energy spectrum of the oxygen, we slowly increase the complexity of the potential environment until the oxygen is embedded in a cluster characterised by the JJ models constructed in \cref{ch:junctions}.
