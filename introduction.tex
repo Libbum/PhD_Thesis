@@ -254,7 +254,11 @@ These defects have comparable resonance frequencies to the qubit circuit and cou
 \subsection{Qubits as Probes of TLSs}\label{sec:probes}
 
 Probing environmental noise with qubits has been a useful tool for the development of the $1/f\,$ and Ohmic spectrum models, as well as solidifying the conjecture that the underlying mechanism is the result of incoherent random TLS transitions~\cite{Shnirman2005}.\nomref{Cf}{sec:probes}
-\xxx{More discussion about Martinis and Wellstood here}
+
+Pioneering work was undertaken in the early 2000's, with new qubit designs insensitive to charge noise (but still susceptible to flux fluctuations), isolating the qubit from dissipation of the bias and measurement leads.
+Rabi oscillations of the qubit were measured, showing coherent manipulation was possible with a fidelity of 85\%~\cite{Martinis2002}.
+Further experiments identified temperature dependencies of the $1/f\,$ noise spectrum at low frequencies in the critical current of SQUIDs~\cite{Wellstood2004}.
+Identifying noise sources within the JJ oxide barrier as a major decohernce channel improved superconducing circuit designs further, moving research toward the fabrication junctions with smaller area and better dielectrics~\cite{Martinis2005}.
 
 More recently the investigation has focused on a new capability: resolving individual TLSs.
 Using a phase qubit, \citeauthor{Lisenfeld2010} developed a coherent single-pulse resonant driving method in which a detuned qubit acts a detection and measurement device to characterise the coherence properties of an individual TLS by applying microwave pulse sequences to the system~\cite{Lisenfeld2010}. \Cref{fig:alc} shows one result of this method: the identification of two individual TLSs coupled to a phase qubit.
@@ -285,14 +289,11 @@ This coupling is described by the expression~\cite{Martinis2005}
 \label{eq:smax}
 \end{equation}
 where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ denoting a dipole in the $x$ direction}{eq:smax}\nomdef{Z01}{$01$}{Or some other integer pair. Denotes a difference between two levels. For example the splitting energy of a first excited state $E_1$ and a ground state $E_0$ is $E_{01} \equiv E_1-E_0$}
-
-The two most striking properties of a strongly coupled TLS, assuming the charge dipole framework is physically representational, are its ground to first excited state splitting $E_{01}$ and a strong electric dipole moment.
-Observed values of $E_{01}$  differ between qubit architectures: approximately $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
-Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA\ \cite{Cole2010,Shalibo2010}.
+This expression was identified by \citeauthor{Martinis2005} in their seminal work discussed above, in which they demonstrate the loss profiles from a range of microwave and qubit measurements can be explained as resonant absorption of two-level defects from within the JJ tunnel barrier~\cite{Martinis2005}.
 
 Strongly coupled TLSs are observed in many different qubit designs.
-Their characteristic energy splitting ... e01 ... is observed over the full operating rang of ... 
-Ref's for Martinis.\xxx{Need to fix this}
+Their characteristic energy splitting $E_{01}$ is observed over the full operating rang of $1$--$10$ GHz for transmons~\cite{Koch2007}, $4$--$5$ GHz for flux qubits~\cite{Lupascu2009} (although recent designs can tune this gap down to the MHz range~\cite{Schwarz2013}) and nominally $7$--$8$ GHz for phase qubits~\cite{Cole2010}.
+Dipole moment strengths also vary, but are usually on the order of $1$ $e$\AA\ \cite{Cole2010,Shalibo2010}.
 
 \divtext
 
@@ -405,7 +406,6 @@ As such, this is a concrete microscopic ensemble of the classic atomic tunneling
 \xxx{Jared suggests extending this idea, including a figure and maybe move it to chapter 2}
 As an illustrative example, consider an interstitial oxygen defect in crystalline silicon: the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Si--Si bond axis~\cite{Artacho1995}.
 This forms an anharmonic potential leading to a system with a quasi-degenerate~\cite{DuBois2013} ground state, even in a `perfect' crystal.
-
 
 \subsection{Thesis Framework}
 
