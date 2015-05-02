@@ -74,11 +74,12 @@ This function was calculated for each stoichiometry and density configuration us
 
 \begin{figure}[htp]
 \resizebox{0.8\textwidth}{!}{\includestandalone{figures/groptis}}
-\caption[Radial Distribution Function]{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum \plotline{line width=1pt,color=gray!50}; Metal--oxide interface reconstruction before \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} and after \plotline{line width=1.5pt,dashed, color=Set1-5-2}; final optimised geometry \plotline{line width=2pt,color=Set1-5-1}.}%
+\caption[Radial Distribution Function]{\label{fig:groptis}Evolution of the oxygen projected radial distribution function $G(r)$. Crystalline corundum \plotline{line width=1pt,color=gray!50}; Metal--oxide interface before \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} and after \plotline{line width=1.5pt,dashed, color=Set1-5-2} reconstruction; final optimised geometry \plotline{line width=2pt,color=Set1-5-1}.}%
 \end{figure}
 
-A major peak is visible centered around $1.85$ \AA, which corresponds to convolution of the two Al--O bond distances, $1.852$ \AA\ and $1.971$ \AA\ of the corundum crystal~\cite{Ishizawa1980}.
-For a crystalline $G(r)$ this peak is deconvolved to two delta functions (see \cref{fig:groptis} and the discussion below), where here we see a broadening of the statistics and hence differences in neighbour distances: diverging from a crystalline form.
+A major peak is visible centered around $1.85$ \AA, which corresponds to contributions from the two Al--O bond distances, $1.852$ \AA\ and $1.971$ \AA\ of the corundum crystal~\cite{Ishizawa1980}.
+For a crystalline $G(r)$ this peak is resolved as to two delta functions (see \cref{fig:groptis} and the discussion below). 
+For the amorphous layers here, we see a broadening of the statistics and hence differences in neighbour distances: diverging from a crystalline form.
 Moving away from this peak to larger distance separations, we see the statistics tending toward a uniform result similar to what a liquid would produce under this analysis.
 These two features represent an amorphous system quite well, as close range order suggests a connection to the crystalline form whilst long range order no longer agrees with such periodic conditions.
 It's also significant to note that we don't observe neighbours closer than $\sim\!1.5$ \AA\ which is a good indication that the models do not have non-physical neighbour forces acting on atoms.
@@ -96,14 +97,15 @@ Finally, the geometry optimisation \plotline{line width=2pt,color=Set1-5-1} yiel
 \phantom{push marginfigure}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/grcomp}}
-\caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing no statistically significant differences.}
+\caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing very little statistically significant difference.}
 \end{marginfigure}
 \vspace{-1em}
 Whilst optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations are very similar (\cref{fig:grcomp}), the \sw{GULP} simulation actually produces a drastically different final structure.
 We find under \sw{GULP} simulation that stoichiometric ratios higher than 1:1 are not stable and oxygen atoms diffuse into the metallic regions until a stoichiometric ratio of at most 1:1 is achieved.
 As a result of this excess oxygen diffusion, the junction width can increase by up to 30\% or more over the course of the simulation.
 At high densities and stoichiometries (than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
-Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential, but we see very little increase in oxide distribution during the optimisation phase---suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
+Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential.  
+However, we see very little increase in oxide distribution during the optimisation phase---suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
 
 \section{Total Energy and Optimal Conditions}
 The total energy of a computational model is a good indication of the structures' electronic stability.
