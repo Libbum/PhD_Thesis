@@ -1,6 +1,6 @@
 \versoquote{\raisebox{-1.5em}{\resizebox{!}{2.15em}{\includestandalone{figures/qabuum}}}}{\raisebox{-0.7em}{\resizebox{!}{1.7em}{\includestandalone{figures/emegir}}}}
 %You are not one who stays in one place, you are one who is everywhere. --Sumerian Saying
-\chapter[TLSs In Low Dimensions]{Delocalised Oxygen TLSs In Low Dimensions}\label{ch:tlslow}
+\chapter[Delocalised Oxygen TLSs In Low Dimensions][TLSs In Low Dimensions]{Delocalised Oxygen TLSs In Low Dimensions}\label{ch:tlslow}
 \lofchap{Delocalised Oxygen TLSs In Low Dimensions}
 \chapterprecis{Investigating the effects of local potential perturbations on an oxygen atom. Calculation of candidate TLS properties such as $E_{01}$ energy splitting and dipole moments.  }
 
@@ -43,12 +43,11 @@ Consider the two simplest cases in \cref{fig:sio2}: defect type A; where the alu
 
 These two defect types can be modelled by solving our system hamiltonian \cref{eq:OHam} for three atoms: an oxygen with two aluminium atoms at a lattice coordinate apart, displaced toward and away from the oxygen.
 For example, corundum has an Al--O bond distance of $\sim\!1.85$ \AA.
-If we define the oxygen position to be at an origin, the aluminium atoms can be considered as pairs ($x = -X, \: +X$ = \{$\pm 1.85$ \AA\}) lying on a cardinal axes; which are identified henceforth as $\abs{X}$ or simply the `defect pair'.
+If we define the oxygen position to be at an origin, the aluminium atoms can be considered as pairs ($x = -X, \: +X$ = \{$\pm 1.85$ \AA\}) lying on a cardinal axes; which are identified henceforth as $\abs{X}$ or simply the \textit{defect pair}.
 Displacing $\abs{X}$ equidistantly from this origin (\ie moving away from optimal crystalline configuration) will yield either an A or B type defect, depending on the direction of displacement.
 
-\xxx{Add here or in discussion of the model the PRL discussion on quasi-degenerate. See jareds notes}
 An eigenspectrum of the six lowest energy levels of this system over a continuum of values in $\abs{X}$  is depicted in \cref{fig:spectrum}.
-Each energy is measured relative to the ground state, which shows two particular regions where $E_{01}$ (green, solid line) is quasi-degenerate (labelled sections A and B: both associated with the respective defect type).
+Each energy is measured relative to the ground state, which shows two particular regions where $E_{01}$ (green, solid line) is degenerate (labelled sections A and B: both associated with the respective defect type).
 There exists a third (an)harmonic region (section C), which reaches a harmonic state at a separation distance of $\abs{X} \sim 1.85$ \AA: the optimal corundum Al--O bond distance.
 At this distance the spatial harmonic approximation holds and the oxygen can be considered to be localised.
 
@@ -131,7 +130,7 @@ The $x$ and $y$ axes show the $\abs{X}$ and $\abs{Y}$ pair separation distances 
 %\plotline{thin,double distance=2pt,dash dot}
 \end{figure}
 
-Regions that are deemed to be unimportant when searching for TLS behaviour are those where $\xi \geq 1$, as these correspond to eigenspectra which do not possess a (quasi-)doubly degenerate ground state.
+Regions that are deemed to be unimportant when searching for TLS behaviour are those where $\xi \geq 1$, as these correspond to eigenspectra which do not possess a doubly degenerate ground state.
 
 As discussed in \cref{sec:bonds}, in the one dimensional confinement case, both A and B type defects exist in a hemi-tetra-well ($\xi = 1/2$).
 This is also the case for the two dimensional landscape---contour lines corresponding to $E_{01} = \{0.5, 2, 4, 6, 8, 10\}$ GHz (red--yellow) on \cref{fig:xiunbound} show the configuration properties that result in TLS $E_{01}$ splittings in various qubit architectures described in \cref{sec:phenom}.
@@ -167,8 +166,8 @@ This is in contrast to larger confining pair values such as $\abs{Y} = 3.6$ \AA\
 \end{figure}
 
 As the $\abs{X}$ separation distance is increased, the effect on $E_{01}$ is negligible on the scale of the higher energy levels (although differs greatly on the TLS splitting energy scale).
-However, the degenerate pair $E_{23}$ (a degenerate second and third excited state pair) rapidly shifts from a level much higher than ground to quasi-degenerate at ground.
-Complete quad-degeneracy is not always extant in the tera-well regime, configurations of $\abs{X}$ and $\abs{Y}$ in these domains usually have two quasi-degenerate pairs which are still observable, akin to the hemi-tetra- domains, with the difference \textit{between} the pairs approaching the difference \textit{of} the pairs: $E_{01} = E_{23} \approx E_{12}$ ($1.95 \lesssim \abs{X} \leq 2$ \AA\ in \cref{fig:tetraspectrum} for example).
+However, the degenerate pair $E_{23}$ (a degenerate second and third excited state pair) rapidly shifts from a level much higher than ground to degenerate at ground.
+Complete quad-degeneracy is not always extant in the tera-well regime, configurations of $\abs{X}$ and $\abs{Y}$ in these domains usually have two degenerate pairs which are still observable, akin to the hemi-tetra- domains, with the difference \textit{between} the pairs approaching the difference \textit{of} the pairs: $E_{01} = E_{23} \approx E_{12}$ ($1.95 \lesssim \abs{X} \leq 2$ \AA\ in \cref{fig:tetraspectrum} for example).
 In other words, when the ground to first excited and second to third excited state differences are equal, the first to second excited state difference trends from a much larger value to one effectively equivalent to the aforementioned pairs in this region.
 
 When considering the influence of higher lying excited states, it's important to keep the fundamental energy scales of the problem in mind.
@@ -178,7 +177,7 @@ For much of the tetra-well domain $E_{12} \geq 100$ GHz and consequently can eff
 
 The B type defects' sudden behaviour change as $\abs{X}\rightarrow\abs{Y}$ is also caused by this response (see \cref{fig:xiunbound}).
 Confinement pairs start interacting with the defect, causing $E_{23}$ to approach the value of $E_{01}$ (again, $1.95 \lesssim \abs{X} \leq 2$ \AA\ in \cref{fig:tetraspectrum} depicts this phenomena).
-The $\xi$ metric does not clearly differentiate between two quasi-degenerate pairs that are marginally separated and two pairs that are actually degenerate.
+The $\xi$ metric does not clearly differentiate between two degenerate pairs that are marginally separated and two pairs that are actually degenerate.
 
 If however, $E_{12} < 100$ GHz, higher lying energy states must still be considered and the model exhibits true quad degenerate behaviour.
 Regions in which this occurs are denoted in \cref{fig:xiunbound} as dotted contours, which over the entirety of phase space are extremely rare---suggesting a reason why quad-level systems are yet to be experimentally observed.

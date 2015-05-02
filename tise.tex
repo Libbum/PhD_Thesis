@@ -25,7 +25,7 @@ An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefra
 \section{Potential Configuration}\label{sec:potential}
 
 A potential which represents the junction, requires a number of capabilities.
-It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate quasi-degenerate states).
+It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate degenerate states).
 As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
 The trade off here is that whilst any given potential may describe some properties of the system well because of certain fitting parameters, other properties may be well out of range as they were not included in the study that constructed the potential.
 Great care was taken to choose the best potential that accurately represented the junction, in this case the empirical Streitz-Mintmire potential~\cite{Streitz1994}, which describes a myriad of aluminium oxide properties over quite a large range of temperatures and pressures with high accuracy when compared against similar potentials.
@@ -587,7 +587,9 @@ Off diagonals are also required to fulfil the remaining $~f_k$ values in \cref{e
 
 The resulting matrix can then be diagonalised, obtaining eigenvectors and eigenenergies for the system in question.
 Assuming that errors are of the same order of those calculated for the harmonic approximation in \cref{sec:catoterr}, differences between energy levels can be acquired with precision better than $10$ kHz ($4\ten{-5}$ μeV) using this method.
-In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+In contrast, the energy scale for JJ defects observed in experiments is $\lesssim 10$ GHz ($40$ μeV)~\cite{Neeley2008, Lupascu2009, Lisenfeld2010}.
+This energy splitting, while large for qubit experiments, is very small when compared to typical electronic structure calculations.
+For comparison, the resolution of \textit{ab initio} methods such as DFT has a lower bound of order $120$ GHz ($5$ meV): above the superconducting gap and therefore too imprecise to be considered useful for JJ defect studies other than providing atomic positions as input.
 
 In subsequent chapters we use this approach to investigate what affect changes in the local potential landscape impose on an oxygen atom by systematically introducing (initially) aluminium atoms at Al--O bond distances and perturbing their positions.
 With an understanding of the interplay between atomic positions and the energy spectrum of the oxygen, we slowly increase the complexity of the potential environment until the oxygen is embedded in a cluster characterised by the JJ models constructed in \cref{ch:junctions}.
