@@ -15,7 +15,7 @@ A quantum bit differs from its classical counterpart (the bit) in a number of wa
 A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
 Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space.
 In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron for example).
-In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.
+In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.\nomdef{Bket}{$\ket{\cdot}$}{Ket vector in Dirac notation. When singular it denotes the wavefunction of a system} 
 
 The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system.
 \Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
@@ -38,7 +38,7 @@ As these states cannot be described by ket vectors, a density matrix must be def
 \rho = \sum_k p_k \ket{\psi_k} \bra{\psi_k},
 \label{eq:densmat}
 \end{equation}
-\nomdref{Gp}{$\rho$}{Density matrix}{eq:densmat}
+\nomdref{Gp}{$\rho$}{Density matrix}{eq:densmat}\nomdef{Zk}{$k$}{Arbitrary summation index}
 where $p_k$ is the fraction of each pure state $\psi_k$ represented in the mixture.
 
 As a qubit state evolves through time, the equation of motion can be written as
@@ -65,7 +65,7 @@ These conditions describe the most general type of Markovian and time homogeneou
 \label{eq:lindblad}
 \end{equation}
 where the Lindblad operators $L_k$ and the rates $\Gamma_k$ determine
-how the environment interacts with the system.\nomref{Gp}{eq:lindblad}\nomdref{CL}{$L_k$}{Lindblad operator}{eq:lindblad}\nomdref{GGam}{$\Gamma_k$}{Rate operator}{eq:lindblad}
+how the environment interacts with the system.\nomref{Gp}{eq:lindblad}\nomdref{CLL}{$L_k$}{Lindblad operator}{eq:lindblad}\nomdref{GGam}{$\Gamma_k$}{Rate operator}{eq:lindblad}
 
 It can be shown that a qubit with energy splitting $\hbar\omega$ damped via environment interaction at temperature $T$ looses coherence on two time scales ~\cite{Stenholm2005}:
 \begin{equation}
@@ -202,7 +202,7 @@ To treat spatial correlations in the noise correctly, one must treat the perturb
 In certain limits, the noise profiles described by Block-Redfield can be mapped to a Linbladian form~\cite{Jeske2013, Jeske2015}, which indicates that the relationship between these two theories is tightly bound.
 
 Extensive experimentation on superconducting qubits has identified that at low frequencies, the spectral density of the noise exhibited be the environment varies approximately as $1/f\,$ over a sampled frequency range $f\,$~\cite{Dutta1981}.
-In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.\nomdref{Cf}{$f$}{Frequency, predominantly used to describe the $1/f\,$ noise spectrum}{sec:invnoise}
+In terms of the decoherence times this noise adds a contribution to the dephasing mechanism $\gamma$ in $T_2$ \cref{eq:t1t2}.\nomdref{Cff}{$f$}{Frequency, predominantly used to describe the $1/f\,$ noise spectrum}{sec:invnoise}
 At higher frequencies, the spectrum is closer to an Ohmic ($\propto \omega$) response, contributing to qubit relaxation ($T_1$ decay), and it appears these two asymptotes cross at $\omega \sim T$ (where $T$ here is temperature)~\cite{Astafiev2004}.
 
 These scaling laws are predominantly explained by a phenomenological ensemble of systems with two distinct, almost degenerate sites of equilibrium.
@@ -252,7 +252,7 @@ These defects have comparable resonance frequencies to the qubit circuit and cou
 
 \subsection{Qubits as Probes of TLSs}\label{sec:probes}
 
-Probing environmental noise with qubits has been a useful tool for the development of the $1/f\,$ and Ohmic spectrum models, as well as solidifying the conjecture that the underlying mechanism is the result of incoherent random TLS transitions~\cite{Shnirman2005}.\nomref{Cf}{sec:probes}
+Probing environmental noise with qubits has been a useful tool for the development of the $1/f\,$ and Ohmic spectrum models, as well as solidifying the conjecture that the underlying mechanism is the result of incoherent random TLS transitions~\cite{Shnirman2005}.\nomref{Cff}{sec:probes}
 
 Pioneering work was undertaken in the early 2000's, with new qubit designs insensitive to charge noise (but still susceptible to flux fluctuations), isolating the qubit from dissipation of the bias and measurement leads.
 Rabi oscillations of the qubit were measured, showing coherent manipulation was possible with a fidelity of 85\%~\cite{Martinis2002}.
@@ -287,7 +287,7 @@ This coupling is described by the expression~\cite{Martinis2005}
     S_{max}=2\frac{\wp}{w}\sqrt{\frac{e^2}{2C}E_{01}},
 \label{eq:smax}
 \end{equation}
-where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ denoting a dipole in the $x$ direction}{eq:smax}\nomdef{Z01}{$01$}{Or some other integer pair. Denotes a difference between two levels. For example the splitting energy of a first excited state $E_1$ and a ground state $E_0$ is $E_{01} \equiv E_1-E_0$}
+where the width of the Josephson junction $w$ and its internal capacitance $C$ can be measured or inferred experimentally; $e$ is the charge of an electron and $\wp$ is the dipole moment of the TLS.\nomdref{BP}{$\wp$}{Electronic dipole moment. May also have a directional subscript \eg $\wp_x$ denoting a dipole in the $x$ direction}{eq:smax}\nomdef{Z01}{$01$}{Or some other integer pair. Denotes a difference between two levels. For example the splitting energy of a first excited state $E_1$ and a ground state $E_0$ is $E_{01} \equiv E_1-E_0$}\nomdref{CW}{$w$}{Junction width (usually of order $1\!-\!2$ nm)}{eq:smax}\nomdef{Ce}{$e$}{Elementary charge, $e = 1.602176565\ten{−19}$ C}
 This expression was identified by \citeauthor{Martinis2005} in their seminal work discussed above, in which they demonstrate the loss profiles from a range of microwave and qubit measurements can be explained as resonant absorption of two-level defects from within the JJ tunnel barrier~\cite{Martinis2005}.
 
 Strongly coupled TLSs are observed in many different qubit designs.

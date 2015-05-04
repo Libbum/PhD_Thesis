@@ -39,7 +39,7 @@ Generating stoichiometry or density gradients across an artificial junction is n
 
 To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT.
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
-Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.
+Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.\nomdef{BA}{\AA}{Ångström, 1 \AA $= 10^{-10}$ m}
 
 Formation of the amorphous \ce{AlO_x} layers required a number of preparation steps to accurately represent experimental results.
 Corundum was used as a basis for all the constructed junction models as it represents the low temperature and pressure phase of aluminium oxide.
@@ -68,8 +68,9 @@ First we must ensure that the oxide layer of the junctions are in fact amorphous
 We employ a projected radial distribution function
 \begin{equation}
 G(r) = \lim_{dr \to 0}\frac{p(r)}{4\pi\left(N_{\mathrm{pairs}}/V\right)r^2dr}
+\label{eq:gr}
 \end{equation}
-where $r$ is the distance between a pair of particles, $p(r)$ is the average number of atom pairs found at a distance between $r$ and $r + dr$, $V$ is the total volume of the system, and $N_{\mathrm{pairs}}$ is the number of unique pairs of atoms~\cite{Levine2011}.
+where $r$ is the distance between a pair of particles, $p(r)$ is the average number of atom pairs found at a distance between $r$ and $r + dr$, $V$ is the total volume of the system, and $N_{\mathrm{pairs}}$ is the number of unique pairs of atoms~\cite{Levine2011}.\nomdref{CN}{$N_{\mathrm{pairs}}$}{Number of unique atomic pairs in a radial distribution function}{eq:gr}\nomdref{CV}{$V$}{Total volume contained in a radial distribution function}{eq:gr}\nomdref{Cpr}{$p(r)$}{Average number of atom pairs found at a distance between $r$ and $r + dr$ in a radial distribution function}{eq:gr}\nomdref{Cgr}{$G(r)$}{Radial distribution function}{eq:gr}
 This function was calculated for each stoichiometry and density configuration using oxygen as the reference species, and aluminium atoms in the amorphous region along with the superconducting bulk as the projection species. \Cref{fig:groptis} depicts the results of this analysis.
 
 \begin{figure}[htp]
@@ -126,7 +127,7 @@ Density changes seem to alter the energy contribution marginally.
 Minimum energies correspond to density multiples between 0.6 and 0.75---slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
 
 \section{Coordination Number}\label{sec:coord}
-Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of hexahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using Nuclear Magnetic Resonance (NMR) are also able to resolve any \ce{AlO_5} coordinations~\cite{Lee2009}.\nomdef{ANMR}{NMR}{Nuclear Magnetic Resonance}
+Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of hexahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using Nuclear Magnetic Resonance are also able to resolve any \ce{AlO_5} coordinations~\cite{Lee2009}.
 
 
 \begin{figure}[htp]

@@ -43,9 +43,9 @@ i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) &= H\Psi(\mathbf{r},t)\lab
 \end{align}
 which yields a general solution to the wavefunctions
 \begin{equation}
-\Psi(\mathbf{r},\tau) = \sum_{n=0}^\infty a_n\psi_n(\mathbf{r})e^{-E_n \tau}.\label{eq:psitau}
+\Psi(\mathbf{r},\tau) = \sum_{k=0}^\infty a_k\psi_k(\mathbf{r})e^{-E_k \tau}.\label{eq:psitau}
 \end{equation}
-Here, ${a_n}$ are coefficients based on initial conditions of the system where $n=0$ indicates the ground state, $n=1$ the first excited state \etc\ and $E_n$ is the corresponding eigenenergy.
+Here, ${a_k}$ are coefficients based on initial conditions of the system where $k=0$ indicates the ground state, $k=1$ the first excited state \etc\ and $E_k$ is the corresponding eigenenergy.
 As $E_0 < E_1 < E_2 < \ldots$, evolving \cref{eq:psitau} to large imaginary time will provide a good approximation to the ground state influenced by the time-independent potential $V(\mathbf{r})$.
 
 This solution is obtained by numerically approximating the spatial derivatives with finite differences.
@@ -239,8 +239,9 @@ This value is calculated as an equivalent isotropic polycrystalline aggregate to
 The relationship
 \begin{equation}
 \left(1+\frac{\Delta L}{L}\right)^{-\nu} = 1-\frac{\Delta L'}{L}
+\label{eq:strain}
 \end{equation}
-can be used to strain our atom cluster for example, with a length increase of $\Delta L$ in the $x$ direction, and a length decrease of $\Delta L'$ in the $y$ and $z$ directions.
+can be used to strain our atom cluster for example, with a length increase of $\Delta L$ in the $x$ direction, and a length decrease of $\Delta L'$ in the $y$ and $z$ directions.\nomdref{CL}{$L$}{Strain length}{eq:strain}
 \Cref{fig:cluststrain} shows the response of two strain ratios ($\cramped{\frac{\Delta L'}{L}}$).
 The left axis represents $(1.5-1.85)/1.85$ and the right $(2.2-1.85)/1.85$ in an attempt to simulate a local strain from the localised Al--O separation distance of $1.85$ \AA\ to the A type ($\sim 1.5$ \AA) and B type ($\sim 2.2$ \AA) distances of \cref{fig:spect3d}.
 

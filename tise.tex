@@ -15,7 +15,7 @@ If we also ignore any time evolution properties of the system for now, an effect
     H = -\frac{\hbar^2}{2m_{oxy}}\nabla^2+V(\mathbf{r}),
     \label{eq:OHam}
 \end{equation}
-where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.
+where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.\nomdef{Zoxy}{$oxy$}{Property pertaining to an oxygen atom}\nomdef{Bdel}{$\nabla$}{Del operator. In Cartesian coordinates, $\nabla = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right)$}
 
 This chapter is primarily concerned with the numerical methods used to solve this hamiltonian.
 First, the choice of a suitable potential to describe $V(\mathbf{r})$ is considered in \cref{sec:potential}.
@@ -45,7 +45,7 @@ The square bracket notation represents Coulomb interaction integrals between val
 with $a=i,j; b=i,j; a\neq b$ in \cref{eq:sm} and $\mathrm{d}V_{a,b}$ are integrating volume units.
 The value $r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
 
-The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdef{AEAM}{EAM}{Embedded Atom Model}\nomref{ZEAM}{eq:smeam}\nomdref{CFeam}{$F_{i}\left[\rho_i\right]$}{Energy required to embed atom $i$ in a local electron density $\rho_i$. A contribution to the Streitz-Mintmire potential}{eq:smpair}
+The first term in \cref{eq:sm}: $E_{EAM}$, does not depend on the partial charges $q_i$ and therefore describes a charge-neutral system, represented here with a quantum mechanical based empirical embedded atom model (EAM) for the \ce{Al}--\ce{Al} and \ce{Al}--\ce{O} interactions\nomdref{AEAM}{EAM}{Embedded Atom Model}{sec:potential}\nomref{ZEAM}{eq:smeam}\nomdref{CFeam}{$F_{i}\left[\rho_i\right]$}{Energy required to embed atom $i$ in a local electron density $\rho_i$. A contribution to the Streitz-Mintmire potential}{eq:smpair}
 \begin{equation}
 E_{EAM} = \sum_{i}^{N}F_{i}\left[\rho_i\right]+\sum_{i<j}^{N}\phi_{ij}(r_{ij}),\label{eq:smeam}
 \end{equation}
@@ -94,7 +94,7 @@ After much of the base code for this model had been constructed, a generalised, 
 This algorithm may improve the error contribution of the models' final implementation, although this has not been investigated.
 
 A second possible successor to finite difference is automatic differentiation (AD).
-\nomdef{AAD}{AD}{Automatic Differentiation}
+\nomdref{AAD}{AD}{Automatic Differentiation}{sec:numder}
 The premise of this algorithm isn't necessarily mathematical in nature, but capitalises on the fact that computers are methodological reductionists and ultimately only execute simple arithmetic operations no matter how complicated the actual computation is.
 Repeatedly applying the chain rule to these operations, AD can compute the derivative to working precision~\cite{Kedem1980}.
 There a two methods to implement this algorithm; neither is straightforward.
@@ -291,7 +291,7 @@ The steps of the algorithm which computes these values (as well as discussions o
 
 \section[A Harmonic Approximation to Streitz-Mintmire][Streitz-Mintmire Harmonic Approximation]{A Harmonic Approximation to Streitz-Mintmire}\label{sec:harmsm}
 
-A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction}
+A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator, corresponding to the total energy of a system}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction in the $x$ direction}
 This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
@@ -302,7 +302,7 @@ The hamiltonian of a particle in a one dimensional quantum harmonic oscillator c
 \begin{equation}
 \widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}m\omega^2\widehat{x}^2\label{eq:hamho}
 \end{equation}
-where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator.\nomdef{Cmass}{$m$}{Mass of a particle}\nomdef{Gz}{$\omega$}{Angular frequency}
+where $m$ is the particle's mass and $ω$ is the angular frequency of the oscillator.\nomdef{Cmass}{$m$}{Mass of a particle}\nomdef{Gz}{$\omega$}{Angular frequency}\nomdef{Bpart}{$\partial$}{Partial derivative}
 Two operators, $\widehat{x} = x$ for position and $\cramped{\widehat{p} = -i\hbar \frac{\partial}{\partial x}}$ for momentum describe the complete Schr\"{o}dinger equation.
 After separation of variables, the time independent form becomes
 \begin{equation}
@@ -352,7 +352,7 @@ h_{opt,true} = \left(\frac{1}{t^*}\right)^{1/(n+d)}h_{opt,\mathcal{TE}},\label{e
 \end{equation}
 labelled as \plotmarker{0.5}{circle,fill=Set1-5-3}.
 The value of this corrected step is $h_{opt,true} = 3.717\ten{-5}$ Å, which does not have an accurate power of two representation.
-As stated in \cref{sec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.
+As stated in \cref{sec:roundoff}, representation error may be smaller than machine precision; although in particular instances this may have a non-trivial cumulative effect.\nomdef{Zopt}{$opt$}{Optimal value of the parameter}
 Hence the optimal step size for the central difference second derivative of second order applied to \cref{eq:OHam} is
 \begin{equation}
 h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
@@ -519,7 +519,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
       In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
       Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values close to the centre of the box are the most important regardless.
   \item Step sizes optimised for a range in $x$ are assumed valid in all spatial dimensions $\mathbf{r}$.
-  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.
+  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.\nomdef{Zmax}{$max$}{Maximum value of parameter}
       Large calculations that require only relative energy values, such as the phase maps in \cref{sec:phasespace,sec:tls,sec:dipole} have been calculated with step sizes close to $h_{max}$.
       This allows the systems to fit in memory and/or not take the age of the universe to finish computing.
       However, specific energy values stated herein will still be calculated using $h_{opt}$ unless otherwise stated.
