@@ -23,9 +23,8 @@ Constructing the Hamiltonian $H$ \cref{eq:OHam} in three dimensions is a quick e
 H = \left[H_x \otimes (\mathbb{I}_y \otimes \mathbb{I}_z)\right] + \left[(\mathbb{I}_x \otimes H_y) \otimes \mathbb{I}_z\right] + \left[(\mathbb{I}_x \otimes \mathbb{I}_y) \otimes H_z\right].
 \label{eq:h3d}
 \end{equation}
-
 The triviality of this extension stops there though.
-As shown in \cref{sec:hmax}, the maximum acceptable step size one can apply to the model is $h_{max} = 2^{-3} \simeq 0.125$ Å.
+As previously established in \cref{sec:hmax}, the maximum acceptable step size one can apply to the model is $h_{max} = 2^{-3} \simeq 0.125$ Å.
 Larger step values will introduce invalid truncation error into the solution and cannot be treated as valid solutions.
 The same machine used to calculate the values required for \cref{fig:econv} and the associated discussion is not capable of fitting a \lin{3D} calculation into its memory and swap space with a step size any smaller than $h \approx 0.7$ Å.
 
@@ -42,12 +41,10 @@ Here we can use the same method to transfer our Schr\"{o}dinger equation to an i
 i \hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) &= H\Psi(\mathbf{r},t)\label{eq:tdse}\\
 \Rightarrow - \hbar \frac{\partial}{\partial \tau}\Psi(\mathbf{r},\tau) &= H\Psi(\mathbf{r},\tau),\label{eq:tdseit}
 \end{align}
-
 which yields a general solution to the wavefunctions
 \begin{equation}
 \Psi(\mathbf{r},\tau) = \sum_{n=0}^\infty a_n\psi_n(\mathbf{r})e^{-E_n \tau}.\label{eq:psitau}
 \end{equation}
-
 Here, ${a_n}$ are coefficients based on initial conditions of the system where $n=0$ indicates the ground state, $n=1$ the first excited state \etc\ and $E_n$ is the corresponding eigenenergy.
 As $E_0 < E_1 < E_2 < \ldots$, evolving \cref{eq:psitau} to large imaginary time will provide a good approximation to the ground state influenced by the time-independent potential $V(\mathbf{r})$.
 
@@ -66,7 +63,6 @@ A new, orthonormal basis for these vectors can by found be first normalising the
 \begin{equation}
 \ket{a^\prime_1} = \frac{\ket{a_1}}{\norm{a_1}},
 \end{equation}
-
 then finding the projection of the second vector along the first and subtracting it.
 This vector is orthogonal to $\ket{a^\prime_1}$ and normalising it obtains
 \begin{equation}
@@ -77,7 +73,6 @@ Similarly, the third vector requires the same treatment, although projections al
 \begin{equation}
 \ket{a^\prime_3} = \frac{\ket{a_3}-\ket{a^\prime_1}\bket{a^\prime_1}{a_3}-\ket{a^\prime_2}\bket{a^\prime_2}{a_3}}{\norm[\big]{\ket{a_3}-\ket{a^\prime_1}\bket{a^\prime_1}{a_3}-\ket{a^\prime_2}\bket{a^\prime_2}{a_3}}}.\label{eq:gs3ex}
 \end{equation}
-
 This process is repeated until the orthonormal vector $\ket{a^\prime_n}$ is calculated.
 
 Applying this procedure to our particular case, consider a converged, orthonormal ground state $\ket{\psi_0}$ and an initial, non-orthonormal guess for the first excited state $\ket{\psi^\prime_1}$.
