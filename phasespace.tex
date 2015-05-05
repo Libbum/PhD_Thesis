@@ -1,4 +1,12 @@
-\versoimage
+\checkoddpage 
+\ifoddpage\cleartoevenpage\fi
+\thispagestyle{empty}
+\vspace*{\fill}
+    \begin{center}
+    \resizebox{0.25\columnwidth}{!}{\includestandalone{figures/confucius}}
+    \end{center}
+\vspace*{\fill}
+%The Master said, 'Look at the means a man employs, observe the path he takes and examine where he feels at home. In what way is a man's true character hidden from view? In what way is a man's true character hidden from view?' -- Confucius (The analects of Confucius book II, verse 9) 
 \chapter[Phase Space and Experimental Comparisons][Phase Space and Experiments]{Phase Space and Experimental Comparisons}\label{ch:tlsphase}
 \lofchap{Phase Space and Experimental Comparisons}
 \chapterprecis{Identifying possible TLS candidates by comparing model results to experimental coupling variables such as the ground to first excited state energy splitting and dipole moment.}
@@ -197,4 +205,4 @@ Most interestingly we find that the expected qubit-TLS coupling strength and the
 A complication that occurs with phenomenological models that attempt to describe TLS behaviour is their free parameter count is high enough to describe all facets of the observed experimental parameters without being distinguishable from other, non-complimentary models~\cite{Cole2010}.
 Whilst this delocalised oxygen model only uses one type of parameter as input (atomic positions), it still requires an $x, y, z$  coordinate set for up to $6$ cage atoms.
 Realistic values for the atomic positions obtained by the junction model in \cref{ch:junctions} are still yet to be applied to the model, which may require more than $6$ atoms and thus even more free parameters.
-A method to account for this parameter runaway is discussed later in the next chapter.
+A method to account for this parameter runaway is discussed later in the next chapter. 
