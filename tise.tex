@@ -7,7 +7,7 @@
 \thought{We are interested in what} happens to the oxygen atom as it responds to an external potential exerted via its nearest neighbours, similar to the oxygen interstitial defects discussed in \cref{sec:conjecture}.
 Particularly if the bonded aluminium atoms are displaced in a manner similar to the defect types identified as A and B in \cref{fig:sio2}.
 Type C requires either a complicated many body investigation or some form of pseudo-single body approximation.
-As a result, many assumptions about the defects response to external forces will be compounded which may prove to be drastically misstated.
+As a result, assumptions about the defects response to external forces will be compounded which may prove to be drastically misstated.
 Hence, we do not include this possible defect type in our considerations henceforth, although detailed literature is available in the event that this defect type is later identified as significant~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
 
 If we also ignore any time evolution properties of the system for now, an effective single particle Hamiltonian can be derived\nomdef{Crvec}{$\mathbf{r}$}{General distance vector. In \lin{1D} $\mathbf{r} = x$ for example}\nomdref{CVr}{$V(\mathbf{r})$}{Potential $V$ at point $\mathbf{r}$. Assumed to be the Streitz-Mintmire potential unless otherwise stated}{eq:OHam}
@@ -69,7 +69,7 @@ O--O & 3322&784218 & 0&291065 & 1&865072 & 16&822405 & 2&005092 \\ \bottomrule
 \section[Numerical Treatment of the Second Derivative][Second Derivative Treatment]{Numerical Treatment of the Second Derivative}\label{sec:numder}
 The Streitz-Mintmire potential \cite{Streitz1994} is an assemblage of many functions that are not completely analytic over all regions of importance.
 Therefore $\nabla^2$ in \cref{eq:OHam} will also require numerical treatment over a discrete grid of spatial coordinates.
-A number of methods exist for this problem; most of which introduce errors from various approximations and platform limitations.
+A number of methods exist for this problem; most of which introduce errors from approximations and platform limitations.
 Models exist that effectively remove these errors, but are usually incredibly mathematically complex and problem specific: for example, a variational model which calculates an optimised three-finite-burn lunar escape trajectory~\cite{Ocampo2012}.
 
 On the simpler end of the spectrum, finite difference algorithms are useful for boundary value problems (where forward and backward methods are usually applied), and for ordinary and partial differential equations.
@@ -162,7 +162,7 @@ Before applying this method, a step size must be chosen; which relies on an accu
 
 \subsection{Truncation Error}\label{sec:truncerr}
 
-The truncation error in \cref{eq:cd22f} as $h\!\to\!0$ is, not surprisingly $\mathcal{O}(h^2)\!\to\!0$, implying that $h$ should be as small as possible to maximise the accuracy of the calculation.
+The truncation error in \cref{eq:cd22f} as $h\!\to\!0$ is $\mathcal{O}(h^2)\!\to\!0$, implying that $h$ should be as small as possible to maximise the accuracy of the calculation.
 Limits can also be put on the true truncation error as well.
 Even though $\zeta$ is an unknown quantity, as the step size decreases, so does range in which $\zeta$ exists.
 Hence the limit of \cref{eq:cd22f} becomes
@@ -204,7 +204,7 @@ The complete estimate for the truncation error of order $n$ can now be found via
 
 As much of this derivation requires a `sufficiently small' step size, it's imperative to consider the behaviour of the truncation error at larger values of $h$ as well.
 If $h$ increases, the approximate truncation coefficient can no longer be used and
-the magnitude of the true coefficient $C(x,h)$ may become very large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
+the magnitude of the true coefficient $C(x,h)$ may become large and unwieldily as there is no restriction of the values over $f^{\;(n+d)}(x\pm h_{large})$.
 Additionally, $h^n$ in \cref{eq:cdte} increases, ultimately suggesting that a step size `too large' will also result in unpredictable truncation error values.
 
 \subsection{Roundoff Errors}\label{sec:roundoff}
@@ -334,7 +334,7 @@ Both $\psi_0(x)$ and the associated potential of this harmonic approximation are
 The fitted value of $\omega$ yields a complete approximation to the Strietz Mintmire ground state wavefunction, which we can now use in conjunction with \cref{eq:cd22f} to compute $\nabla^2$ in \cref{eq:OHam}; evaluating at $x = 0$ to find the eigenvalue $E$.
 
 \Cref{fig:hopt3pt} displays the absolute value of the truncation error \cref{eq:cdte} over a range of possible step sizes \plotmarker{0.4}{circle,fill=Set1-5-2}.
-Roundoff errors dominate for small step sizes ($h \lesssim 5\ten{-5}$) with some step sizes resulting in completely invalid results (\ie $\mathcal{TE}_2 = 0$).
+Roundoff errors dominate for small step sizes ($h \lesssim 5\ten{-5}$) with some step sizes resulting in invalid results (\ie $\mathcal{TE}_2 = 0$).
 These steps are labelled \plotmarker{0.25}{regular polygon, regular polygon sides=3,fill=Set1-5-2} and are scaled to $2\ten{-8}$ to be displayed on the graph.
 As the step size increases, truncation error dominates until the region $h \gtrsim 5$, where this error becomes invalid.
 \begin{figure}[htp]
@@ -361,7 +361,7 @@ h_{opt} = 3.717\ten{-5} \simeq 2^{-15} = 3.052\ten{-5}\;\text{Å}.
 \section{Memory Concerns}\label{sec:memcons}
 
 The complexity of numerical calculations are exacerbated by yet another constraint in the form of finite memory resources.
-Ignoring many technical intricacies, a first order approximation to the required memory footprint just to store the numbers of a \lin{2D} plane, $9$ Å$^\text{\skolarlining 2}$ in area discretised via $h_{opt}$ requires $294,913^2$ double precision floats.
+Ignoring technical intricacies, a first order approximation to the required memory footprint just to store the numbers of a \lin{2D} plane, $9$ Å$^\text{\skolarlining 2}$ in area discretised via $h_{opt}$ requires $294,913^2$ double precision floats.
 On a computer with 64 bit architecture, each double requires 8 bytes of memory, meaning our grid has a footprint of just over 695 Gigabytes.
 
 Computational resources of that magnitude are infeasible when a simple solution can both minimise memory requirements and increase the accuracy of the calculation simultaneously.
@@ -492,7 +492,7 @@ As expected, steps with high roundoff error contributions cause fluctuations in 
 
 The 170 Megabyte memory footprint calculated for a $9$ Å$^\text{\skolarlining 2}$ plane using the sixth order second derivative in \cref{sec:cd6o} is completely acceptable if one plane was all that was required.
 Below in \cref{sec:hammat,ch:tlslow}, the need for calculating at least 6 excited state wavefunctions using direct matrix diagonalisation is presented.
-This, along with many other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
+This, along with other computational overheads sees the memory requirement balloon and the problem again becomes intractable.
 For instance, the \lin{1D} configuration used to compute energies for \cref{fig:econv} lies within $x \in [-0.6, 0.6]$ Å.
 Although a step of $h = 1\ten{-8}$ Å needs just under 1 Gigabyte of memory to store this line, the total calculation cannot be completed on a machine with 32 GB of RAM and 128 GB of swap space.
 
@@ -519,7 +519,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
       In most cases this range will be within $x \in [-3.3, 3.3]$ Å, although some calculations may require $x \in [-4.5, 4.5]$ Å.
       Care has been taken on the choice of box size such that the wavefunction generally tends to zero as $x$ increases, meaning values close to the centre of the box are the most important regardless.
   \item Step sizes optimised for a range in $x$ are assumed valid in all spatial dimensions $\mathbf{r}$.
-  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over many tested configurations.\nomdef{Zmax}{$max$}{Maximum value of parameter}
+  \item Truncation error at $h_{max}$ contributes a consistent $\leq1\ten{-3}$ μeV difference in energy to the value calculated at $h_{opt}$ over tested configurations.\nomdef{Zmax}{$max$}{Maximum value of parameter}
       Large calculations that require only relative energy values, such as the phase maps in \cref{sec:phasespace,sec:tls,sec:dipole} have been calculated with step sizes close to $h_{max}$.
       This allows the systems to fit in memory and/or not take the age of the universe to finish computing.
       However, specific energy values stated herein will still be calculated using $h_{opt}$ unless otherwise stated.
@@ -534,7 +534,7 @@ A complete description of the hamiltonian \cref{eq:OHam} can now be implemented 
 \end{equation}
 the implementation of which requires the construction of a sparse matrix representation of $H$, which can be fed into the \sw{eigs} function of \sw{Matlab}; computing the wavefunction $\Psi$ and energy $E$ of the system.
 
-In one dimension, this matrix is relatively straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,sec:ddiagthree} for specifics).
+In one dimension, this matrix is straightforward to construct (outlined below), although higher dimensions require special treatment (see \cref{sec:methdipole,sec:ddiagthree} for specifics).
 
 Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{marginfigure}

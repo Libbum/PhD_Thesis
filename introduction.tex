@@ -15,7 +15,7 @@ A quantum bit differs from its classical counterpart (the bit) in a number of wa
 A bit can be represented by either 0 or 1, where the state of the system exists in only one of these positions at any given time, and are usually manifestations of a potential difference inside some macroscopic circuit.
 Qubits on the other hand are a two-level quantum mechanical system, existing in a Hilbert space or projective Hilbert space.
 In a given orthonormal basis, the state vectors $\ket{0}$ and $\ket{1}$ represent the two level nature of the system (perhaps corresponding to the spin-up and spin-down states of an electron for example).
-In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.\nomdef{Bket}{$\ket{\cdot}$}{Ket vector in Dirac notation. When singular it denotes the wavefunction of a system} 
+In addition to the state vectors, a qubit may exist in a superposition of the $\ket{0}$ and $\ket{1}$ basis, which is known as a pure state.\nomdef{Bket}{$\ket{\cdot}$}{Ket vector in Dirac notation. When singular it denotes the wavefunction of a system}
 
 The Bloch sphere \cite{Bloch1946} is a useful tool to represent qubit states, with the poles interpreted as the two basis vectors, and the points on the surface of the sphere corresponding to the pure states of the system.
 \Cref{fig:bloch} illustrates this for an arbitrary pure state $\ket{\psi}$.
@@ -154,7 +154,7 @@ This design has a highly capable readout mechanism and multi-qubit scaling arran
 Thus the possibility of a functioning quantum computer using it is encouraging with only one major caveat: the system is mired with decoherence causing defects.
 In fact, much of the superconducting qubit community has transitioned from active phase qubit experimentation to the transmon because of this phenomena.
 
-On the other hand, this design is very useful for studying these decoherence sources (\textit{vide infra} \cref{sec:probes}) and is therefore the most relevant architecture to study throughout this thesis.
+On the other hand, this design is useful for studying these decoherence sources (\textit{vide infra} \cref{sec:probes}) and is therefore the most relevant architecture to study throughout this thesis.
 
 \section{Josephson Junctions}\label{sec:jj}
 The superconducting phase difference across a JJ is the typical degree of freedom of interest in superconducting qubit designs.
@@ -323,7 +323,7 @@ Others suggest polaron dressed electrons~\cite{Agarwal2013} or the accidental in
 Future fabrication techniques or more robust qubit designs may suppress or diminish the response of such noise sources as has been the case historically~\cite{Vion2002, Martinis2005, Koch2007, Schreier2008, Houck2008}, although there are still many open questions to be considered.
 As stated above, it is suggested that a TLS bath is responsible for the weakly coupled, ohmic $1/f$ noise~\cite{Dutta1981}.
 However, it is unclear if the identified strongly coupled TLSs are from the same origin.
-Ultimately many separate microscopic suspects may be identified; although work in this area is not mature enough to speculate further.
+Ultimately, several separate microscopic suspects may be identified; although work in this area is not mature enough to speculate further.
 
 \section{Historical Material Defect Research}
 
@@ -332,7 +332,7 @@ It is therefore important to change tack for a moment and focus on material prop
 Condensed matter defects and their properties have been an active area of research for many decades, we should therefore look at this research body in light of the recent findings and advances of the strongly coupled TLS experiments.
 
 \subsection{Defects in Corundum}\label{sec:cordef}
-Various defects in corundum (the low temperature and pressure phase of aluminium oxide, $\alpha$--\ce{Al_2O_3}) have been thoroughly investigated, both experimentally and theoretically for quite some time.
+Various defects in corundum (the low temperature and pressure phase of aluminium oxide, $\alpha$--\ce{Al_2O_3}) have been thoroughly investigated, both experimentally and theoretically for some time.
 The first \emph{ab initio} corundum papers discussed the partially covalent nature of the aluminium---oxygen bond and the inherent computational complexity of studying this structure~\cite{Causa1987}.
 Experimental identification of defects like the $F$
 \nomdref{CF}{$F$}{An electron sitting in a vacancy defect}{sec:cordef}
@@ -346,11 +346,11 @@ Density Functional Theory (DFT) studies of single oxygen vacancies soon followed
 Singly occupied defect levels (the $F^+$ center) are also discussed by introducing a positive background charge into the calculation.
 
 Further investigations into point defects began to classify systems such as the Schottky-type (two \ce{Al^3+} and three \ce{O^2-} vacancies) and Frenkel-type (\eg one interstitial \ce{Al^3+} and one \ce{Al^3+} vacancy) defects, where the Schottky-type was found to be the dominant class~\cite{Mohapatra1978}.
-However, further theoretical studies found oxygen Frenkel defects to have the lower formation energy~\cite{Catlow1982}, which precipitated many discussions concerning the appropriateness of empirical potentials fitted to bulk properties in describing defects.
+However, further theoretical studies found oxygen Frenkel defects to have the lower formation energy~\cite{Catlow1982}, which precipitated several discussions concerning the appropriateness of empirical potentials fitted to bulk properties in describing defects.
 DFT studies aligned this discussion with experimental data, presenting formation energies of the classes to be Schottky<\ce{Al} Frenkel<\ce{O} Frenkel~\cite{Matsunaga2003}.
 In addition, \citeauthor{Matsunaga2003} calculate formation energies and band structures for aluminium and oxygen, vacancy and interstitial defects; as well as an in-depth discussion on lattice deformation about each defect.
 Formation energies are dependent on the chemical potential of the oxygen in the local environment, although for a wide range of this value it was found that energies were ranked as $V_\ce{Al}^\ce{3-}<\ce{O_$i$^{2-}}<V_\ce{O}^\ce{2+}<\ce{Al_$i$^{3+}}$ (\ie aluminium vacancy, oxygen interstitial, oxygen vacancy, aluminium interstitial).
-All of which are stable in their ionised states, and additional electronic defects compensate defect charges only at very high temperatures.
+All of which are stable in their ionised states, and additional electronic defects compensate defect charges only at high temperatures.
 
 Implanting dopants like \ce{Ti^4+} and \ce{Mg^2+} into corundum to create certain defect classes can be used to investigate this high temperature oxygen diffusion throughout the lattice.
 If bivalent dopant concentrations dominate, the predominant transport method is through oxygen vacancies.
@@ -361,7 +361,7 @@ This suggests surface defects may play an important role as nucleation centers w
 
 \subsection{Deficiency Defects in Amorphous Aluminium}\label{sec:defdef}
 
-It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion (\ie various methods discussed in \cref{sec:formation}), such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
+It has been suggested that an alternative growth process to thermally oxidising aluminum via oxygen diffusion (\ie methods discussed in \cref{sec:formation}), such as Atomic Layer Deposition (ALD), may remove defects such as oxygen vacancies from the Josephson junctions' tunnel barrier.
 \nomdref{AALD}{ALD}{Atomic Layer Deposition}{sec:defdef}
 ALD works by exposing a substrate to a heat source, then alternating pulses of water and trimethylaluminium.
 Each pulse is separated by a nitrogen gas flush to assure no gas phase mixing between the pulses.
@@ -378,7 +378,7 @@ half-filled state, and $V_\ce{O}^\ce{2+}$: an empty state by introducing them in
 The defect was placed at a random site in the amorphous lattice and the density of states was calculated.
 This process was then repeated a number of times to generate an appropriate level of statistics.
 Relative to the bulk valence band edge, these states appear in the band gap between $0.51$--$2.51$, $1.30$--$3.58$, and $2.39$--$3.64$ eV respectively.
-Figure 2 in \onlinecite{Momida2011} is of particular interest: comparing the difference between the relatively stable and localised $V_\ce{O}^\ce{0}$ wavefunction and the $V_\ce{O}^\ce{2+}$ wavefunction---which is delocalised throughout the lattice.
+Figure 2 in \onlinecite{Momida2011} is of particular interest: comparing the difference between the stable and localised $V_\ce{O}^\ce{0}$ wavefunction and the $V_\ce{O}^\ce{2+}$ wavefunction---which is delocalised throughout the lattice.
 Furthermore, lattice configurations for each of the defects are also presented, which may be useful for defect classification.
 
 \section{Chapter Summary and Thesis Outline}\label{sec:introsummary}
@@ -388,7 +388,7 @@ Many properties of the TLS have been probed experimentally, demonstrating relati
 However, identifying their true microscopic nature remains an open problem. Controllable superconducting qubit architectures make it possible to study single strongly coupled TLSs, as opposed to weakly coupled ensembles of TLSs that may be responsible for $1/f$ noise.
 Although the Standard Tunneling Model can be used to explain all existing experimental results, to improve devices we need a detailed microscopic understanding of these defects.
 
-Many microscopic models have now been proposed: surface state interactions, polaron dressed electrons and alien species; all of which are possible decoherence sources and/or explain the origin of strongly coupled TLSs.
+Several microscopic models have now been proposed: surface state interactions, polaron dressed electrons and alien species; all of which are possible decoherence sources and/or explain the origin of strongly coupled TLSs.
 As stated in \cref{sec:micromod}: better fabrication methods, higher vacuums and more robust qubit designs have historically suppressed or diminished the response of such noise sources.
 However, continuing down the path of a perfectly clean but amorphous dielectric may no longer be the optimal direction.
 Whilst crystalline layers are difficult to construct in this environment, they are possible and show a dramatic decrease (of up to 80\%) in visible TLSs over their amorphous counterparts~\cite{Oh2006}.
@@ -427,7 +427,7 @@ These realistic values of atomic positions in an amorphous barrier can then be u
 A simple single particle Hamiltonian is constructed in \cref{ch:tise} to describe the A and B type defects of \cref{fig:sio2} with the interpretation that an oxygen atom is indeed the tunnelling source in a defected (amorphous) lattice of aluminium oxide.
 A model is developed to describe the delocalised oxygen state as it interacts with the localised potential of surrounding aluminium and oxygen atoms in \cref{ch:tlslow}, using \lin{1D} and \lin{2D} constructions to explain some of the fundamental physics of the oxygenic interactions.
 
-This model is then rigourously compared to experimental results in \cref{ch:tlsphase}, applying at a \lin{2+1D} variant to explain the many interaction phenomena presently identified.
+This model is then rigourously compared to experimental results in \cref{ch:tlsphase}, applying at a \lin{2+1D} variant to explain presently identified interaction phenomena.
 A complete \lin{3D} model using a different theoretical approach explores a smaller parameter space in \cref{ch:threedee}, additionally explaining the need to use this computationally intensive approach in some instances, but how in general the \lin{1D} STM model still adequately describes the relevant physics.
 
 Finally, \cref{ch:conclusions} summarises the model and its relevant results, discusses any and all conclusions that can be deduced from the oxygen delocalisation premise, and outlines the outlook for this model and the ramifications it has on strongly coupled TLS research and the wider quantum information community in general.

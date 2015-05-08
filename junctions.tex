@@ -13,7 +13,7 @@ However, forming such atomistic models using molecular mechanics and \textit{ab 
 
 Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
 \Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data.
-Finally a summary in \cref{sec:jjsum} which outlines a few technical uses for these models outside the main scope of this thesis.
+Finally a summary in \cref{sec:jjsum} which outlines some technical uses for these models outside the main scope of this thesis.
 
 \section{Simulating the Junction Formation Process}\label{sec:simjjform}
 
@@ -21,7 +21,7 @@ Josephson junctions may be constructed from any superconducting material with an
 A popular material choice involves the use of aluminium as the superconducting material, and an amorphous oxide layer as an insulating barrier.
 \Cref{sec:formation} discusses the shadow evaporation techniques usually undertaken to grow a $\sim2$ nm amorphous layer which may vary in stoichiometry, density and thickness.
 
-Simulating oxide layer growth is in general a difficult problem as the time scale of the oxide growth ($\sim\,$minutes) is many orders of magnitude greater than typically achievable molecular dynamics timescales (ps--ns).
+Simulating oxide layer growth is in general a difficult problem as the time scale of the oxide growth ($\sim\,$minutes) is orders of magnitude greater than typically achievable molecular dynamics timescales (ps--ns).
 One standard approach is to perform the simulation at elevated temperatures and gas pressures ($\ge 1$ atm)~\cite{Campbell1999, Zhou2005, Hasnaoui2005}.
 This accelerates the oxidation process, making the computation feasible on current high performance computing infrastructure.
 However, it also removes the simulation from the reality of experimental junction formation, where pressures range between $10^{-9}$ and $10^{-3}$ atm~\cite{Morohashi1987, Kohlstedt1993, Jeurgens2002}.
@@ -53,7 +53,7 @@ Using \ce{AlO_{1.25}} with a density multiple of 0.75 as an example, a $6\!\time
 This large superstructure was required due to the trigonal nature of the lattice, as it was then cut down such that the $xy$ plane of the bulk aluminium slab could be covered.
 A non-periodic slab of corundum measuring $16.168\!\times\!16.168\!\times\!11.982$ \AA\ was the result of this process.
 Oxygen atoms were randomly removed from the corundum lattice until the appropriate stoichiometry of \ce{AlO_{1.25}} was obtained and the cell was shortened in the $z$-direction to achieve a 0.75 fractional multiple of the corundum density.
-These changes add quite a lot of force onto the structure, so a geometry optimisation (in \sw{GULP}) was undertaken at this stage to minimise energy contributions.
+These changes add a lot of force onto the structure, so a geometry optimisation (in \sw{GULP}) was undertaken at this stage to minimise energy contributions.
 To simulate the oxygen deposition phase and generate the amorphous nature of these layers, the structure was then annealed using NVT molecular dynamics at $3000$ K for $3$ µs and quenched to $350$ K over a $1.5$ µs period.
 
 The \ce{AlO_{1.25}} layer was inserted between two bulk Al supercells described above with $0.5$ \AA\ of vacuum space on each side.
@@ -91,20 +91,20 @@ An evolution of the important steps in the procedure is depicted in \cref{fig:gr
 The corundum $G(r)$ \plotline{line width=1pt,color=gray!50} is a complicated structure due to the 30 atom unit cell of the crystal, however it is clear from this figure where much of the amorphous structure originates from.
 Specifically the $1.852$ \AA\ and $1.971$ \AA\ Al--O bond distance contributions and the void in the $2$--$3$ \AA\ range.
 After the melt/quench phase of the procedure \plotline{line width=1.5pt,dashdotted, color=Set1-5-3} the lattice still appears liquid-like.
-Whilst the quench cycle minimises the possibility of atoms position very close to one another due to an excess of kinetic energy, it still appears to exhibit liquid behaviour.
+Whilst the quench cycle minimises the possibility of atoms positioning themselves too close to one another due to an excess of kinetic energy, it still appears to exhibit liquid behaviour.
 This may be a shortcoming of the Streitz-Mintmire potentials ability to capture the relevant physics, however this is rectified after the metal--oxide interface reconstruction is completed \plotline{line width=1.5pt,dashed, color=Set1-5-2} using the \textit{ab initio} methods.
 Finally, the geometry optimisation \plotline{line width=2pt,color=Set1-5-1} yields a smoother $1.85$ \AA\ peak and recovers some of the void region around $2$ \AA.
 
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/grcomp}}
-\caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing very little statistically significant difference.}
+\caption[Radial Distribution Function Comparison]{\label{fig:grcomp}Oxygen projected $G(r)$ computed using \textit{ab initio} (\sw{VASP}) \plotline{line width=1.5pt,color=Set1-5-1} and empirical (\sw{GULP}) \plotline{line width=1.5pt,color=Set1-5-2} methods, showing little statistically significant difference.}
 \end{marginfigure}
-Whilst optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations are very similar (\cref{fig:grcomp}), the \sw{GULP} simulation actually produces a drastically different final structure.
+Whilst optimal $G(r)$ results for both the \sw{VASP} and \sw{GULP} simulations are similar (\cref{fig:grcomp}), the \sw{GULP} simulation actually produces a drastically different final structure.
 We find under \sw{GULP} simulation that stoichiometric ratios higher than 1:1 are not stable and oxygen atoms diffuse into the metallic regions until a stoichiometric ratio of at most 1:1 is achieved.
 As a result of this excess oxygen diffusion, the junction width can increase by up to 30\% or more over the course of the simulation.
 At high densities and stoichiometries (than typical amorphous alumina) some expansion of the oxide region is also seen in the \textit{ab initio} simulations, although this effect is much less pronounced.
 Higher oxygen mobility in \sw{GULP} could be attributed to shortcomings of the empirical potential.
-However, we see very little increase in oxide distribution during the optimisation phase---suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
+However, we see little increase in oxide distribution during the optimisation phase---suggesting that the details of the Nos\'{e}-Hoover thermostat routine employed during the MD simulation may play a role.
 
 \section{Total Energy and Optimal Conditions}
 The total energy of a computational model is a good indication of the structures' electronic stability.
