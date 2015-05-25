@@ -9,7 +9,7 @@ One possible way of distinguishing between these options (including the one posi
 
 From a quantum simulation point of view, this is not a trivial problem.
 Crystalline symmetries usually invoked to minimise calculations cannot be used to reduce the state space of the oxide barrier of a junction due to its amorphous nature.
-However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.\footnote{Special thanks must go to Martin Cyster for his contributions to work discussed in this chapter.}
+However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.
 
 Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
 \Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data.
@@ -32,10 +32,6 @@ This method has the advantage of computational simplicity and speed, however the
 Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness is the subject of M. Cyster's PhD dissertation.
 
 \section{Model Construction}\label{sec:jjmodel}
-\begin{figure}[htp]
-\includegraphics[width=0.9\textwidth]{figures/AlO125_075}
-\caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
-\end{figure}
 
 To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT.
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
@@ -46,10 +42,10 @@ Corundum was used as a basis for all the constructed junction models as it repre
 Experimental investigations of stoichiometry suggest, in general, an oxygen deficiency with oxide O/Al ratios varying between 0.6 and 1.4~\cite{Tan2005}, which are highly dependent on the fabrication process.
 In response to this, we construct models with four stoichiometries: \ce{AlO_{0.8}}, \ce{AlO_{1.0}}, \ce{AlO_{1.25}} and \ce{AlO_{1.5}}.
 The oxide density may also be an important formation variable.
-For simplicity we identify oxide density in multiples of the (average) corundum density: $4.05$ g/cm$^\text{3}$, and construct junctions with 0.5, 0.625, 0.75, 0.875 \& 1.0 density multiples for each stoichiometry listed above.
-A value of $3.2$ g/cm$^\text{3}$ is typical~\cite{Barbour1998} (which corresponds to a density multiple of 0.8).
+For simplicity we identify oxide density as a fractional value of the (average) corundum density: $4.05$ g/cm$^\text{3}$, and construct junctions with 0.5, 0.625, 0.75, 0.875 \& 1.0 density fractions for each stoichiometry listed above.
+A value of $3.2$ g/cm$^\text{3}$ is typical~\cite{Barbour1998} (which corresponds to a density fraction of 0.8).
 
-Using \ce{AlO_{1.25}} with a density multiple of 0.75 as an example, a $6\!\times\!6\!\times\!1$ supercell of corundum was geometry optimised in the software package \sw{GULP}~\cite{Gale2003}, employing the empirical Streitz-Mintmire potential~\cite{Streitz1994} which can capture the variable oxygen charge states when present in a predominantly metallic environment. This capability is particularly important here, as a Josephson junction has two metal-oxide interfaces.
+Using \ce{AlO_{1.25}} with a density fraction of 0.75 as an example, a $6\!\times\!6\!\times\!1$ supercell of corundum was geometry optimised in the software package \sw{GULP}~\cite{Gale2003}, employing the empirical Streitz-Mintmire potential~\cite{Streitz1994} which can capture the variable oxygen charge states when present in a predominantly metallic environment. This capability is particularly important here, as a Josephson junction has two metal-oxide interfaces.
 This large superstructure was required due to the trigonal nature of the lattice, as it was then cut down such that the $xy$ plane of the bulk aluminium slab could be covered.
 A non-periodic slab of corundum measuring $16.168\!\times\!16.168\!\times\!11.982$ \AA\ was the result of this process.
 Oxygen atoms were randomly removed from the corundum lattice until the appropriate stoichiometry of \ce{AlO_{1.25}} was obtained and the cell was shortened in the $z$-direction to achieve a 0.75 fractional multiple of the corundum density.
@@ -58,6 +54,11 @@ To simulate the oxygen deposition phase and generate the amorphous nature of the
 
 The \ce{AlO_{1.25}} layer was inserted between two bulk Al supercells described above with $0.5$ \AA\ of vacuum space on each side.
 The junction was further annealed to simulate a metal--metal--oxide interface reconstruction using \sw{VASP} NVT Molecular Dynamics at $300$ K until equilibrium was reached (approximately $250$ ionic steps), then geometry optimised using a $2\!\times\!2\!\times\!1$ $\Gamma$ centered Monkhorst Pack K point mesh and a $450$ eV plane wave cutoff to obtain the final model, depicted in \cref{fig:povray}.
+
+\begin{figure}[htp]
+\includegraphics[width=0.9\textwidth]{figures/AlO125_075}
+\caption[Atomistic Josephson Junction Model]{\label{fig:povray}Model of a Josephson junction comprised of aluminium \resizebox{!}{0.7em}{\includegraphics{figures/jjal}} and oxygen \resizebox{!}{0.5em}{\includegraphics{figures/jjo}}. Two superconducting regions composed only of aluminium, separated by an amorphous AlO$_{1.25}$ barrier with a density 0.75 times that of corundum.}%
+\end{figure}
 
 For comparison, junctions were also modelled without the added computational overhead of DFT by solely employing \sw{GULP} and the Streitz-Mintmire potential.
 The construction process of these models matches the procedure above, but interchanges the \textit{ab initio} optimisations of the oxide layer with an empirical framework.
@@ -124,7 +125,7 @@ It is clear from this figure that stoichiometry plays a larger role in energy mi
 This suggests that fabrication processes that generate oxygen deficiencies may be inviting the inclusion of alien species or oxygenic site hopping in an attempt to rectify this offset.
 
 Density changes seem to alter the energy contribution marginally.
-Minimum energies correspond to density multiples between 0.6 and 0.75---slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density multiple); which may indicate another method of experimentally optimising the junction formation process.
+Minimum energies correspond to density fractions between 0.6 and 0.75---slightly lower than typical constructions of $3.2$ g/cm$^\text{3}$~\cite{Barbour1998} (an 0.8 density fraction); which may indicate another method of experimentally optimising the junction formation process.
 
 \section{Coordination Number}\label{sec:coord}
 Coordination number is a useful metric which allows for some insight into both the crystallinity of the structures being analysed, and their similarity to fabricated junctions. For instance, in the corundum structure every aluminium ion is coordinated with six oxygen ions. In amorphous alumina, the proportion of 6-coordinated aluminium as compared to 4-coordinated aluminium is an experimentally accessible quantity and has been reported on previously~\cite{ElMashri1983}. However, in order to establish this ratio it is assumed that there is a bimodal distribution of hexahedral (\ce{AlO_6}) and tetrahedral (\ce{AlO_4}) coordination. Ratios of \ce{AlO_6}:\ce{AlO_4} are quoted in a range from 80:20 to 30:70, depending on the method by which the oxide layer was formed~\cite{Bourdillon1984}. More modern techniques using Nuclear Magnetic Resonance are also able to resolve any \ce{AlO_5} coordinations~\cite{Lee2009}.
@@ -136,7 +137,7 @@ Coordination number is a useful metric which allows for some insight into both t
 \caption[Oxygen Coordination]{\label{fig:coordinationnumber}Distribution of oxygen coordination about aluminium as a function of density and stoichiometry, showing a tendency to higher coordination number with increasing density or stoichiometry.}%
 \end{figure}
 
-\Cref{fig:coordinationnumber} shows the distribution of oxygen coordination about aluminium as a function of density and stoichiometry. These results are calculated using an Al--O bond length cutoff of $2.5$ \AA, which corresponds to the first minimum after the nearest neighbour peak in the $G(r)$ (see \cref{fig:groptis}). As one would expect, the coordination number (for Al--O bonding) increases with increasing density or stoichiometry. We also note that there exists a reasonable proportion of $2$- and $3$-coordinated aluminium atoms, which persists at high density and stoichiometry. In order to compare directly to previous experimental and theoretical work, we compute the ratio of $4$-, $5$- and $6$-coordination for Al--O bonding, matching the stoichiometry of 1.5 and assuming the density multiple closest to experimental values (0.750). The results are presented in \cref{tab:coord_comp}. We observe excellent agreement, both before and after the \textit{ab initio} optimisation.
+\Cref{fig:coordinationnumber} shows the distribution of oxygen coordination about aluminium as a function of density and stoichiometry. These results are calculated using an Al--O bond length cutoff of $2.5$ \AA, which corresponds to the first minimum after the nearest neighbour peak in the $G(r)$ (see \cref{fig:groptis}). As one would expect, the coordination number (for Al--O bonding) increases with increasing density or stoichiometry. We also note that there exists a reasonable proportion of $2$- and $3$-coordinated aluminium atoms, which persists at high density and stoichiometry. In order to compare directly to previous experimental and theoretical work, we compute the ratio of $4$-, $5$- and $6$-coordination for Al--O bonding, matching the stoichiometry of 1.5 and assuming the density fraction closest to experimental values (0.750). The results are presented in \cref{tab:coord_comp}\footnote{Coordination results were complied by Martin Cyster.}. We observe excellent agreement, both before and after the \textit{ab initio} optimisation.
 
 \begin{table}[h]
 \caption[Aluminium coordinations]{\label{tab:coord_comp} Relative proportions of $4$-, $5$- and $6$-coordinated aluminium atoms within the oxide layer for a density of 0.75 and stoichiometry of 1.5.}
