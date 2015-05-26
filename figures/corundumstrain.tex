@@ -8,6 +8,7 @@
     \node at (-4.2,-4.2,-4.2) {\includegraphics[width=0.5em]{oxygen}};
 }
 \definecolor{Set1-5-1}{RGB}{228,26,28} %Red
+\definecolor{Set1-5-2}{RGB}{55,126,184} %Blue
 
 \usepackage{amsmath}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -19,6 +20,11 @@
 \usepackage{fix-cm}
 \begin{document}
 \begin{tikzpicture}
+\node[scale=0.8] at (2.1,6) {Compression in $x$};
+\node[scale=0.8] at (8.3,6) {Tension in $x$};
+
+\node[scale=0.8] at (4.2,0) {$E_{01} = 35.42$ THz}; %Atype, compress
+\node[scale=0.8] at (10.9,0) {$E_{01} = 34.84$ THz}; %Btype, tension
 
 \begin{axis}[%
 name=atype,
@@ -91,7 +97,7 @@ zticklabels={\empty}
 1.1711282772973	-0.258952012106723	-2.27442240244228\\
 -0.758711048108108	1.18429533225564	2.27442077973078\\
 };
-\addplot3[only marks,mark=x,mark options={},mark size=3.4460pt,color=black] plot table[row sep=crcr,]{%
+\addplot3[only marks,mark=x,mark options={very thick},mark size=4pt,color=Set1-5-2] plot table[row sep=crcr,]{%
 0	0	0\\
 };
 \addplot3 [solid]
@@ -270,7 +276,7 @@ zticklabels={\empty}
 0.858876167243244	-1.4379088687699	-0.765713103804128\\
 -1.97163001913514	2.52068683419349	-0.765713103804128\\
 };
-\addplot3[only marks,mark=x,mark options={},mark size=3.4460pt,color=black] plot table[row sep=crcr,]{%
+\addplot3[only marks,mark=x,mark options={very thick},mark size=4pt,color=Set1-5-2] plot table[row sep=crcr,]{%
 0	0	0\\
 };
 \addplot3 [solid]
@@ -375,5 +381,12 @@ zticklabels={\empty}
 };
  \end{axis}
 
+\begin{scope}[scale=0.35,xshift=12cm]
+    \pgftext{\includegraphics{al2o3a.png}};
+\end{scope}
+
+\begin{scope}[scale=0.35,xshift=31cm]
+    \pgftext{\includegraphics{al2o3b.png}};
+\end{scope}
 \end{tikzpicture}% 
 \end{document}
