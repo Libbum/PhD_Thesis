@@ -17,7 +17,7 @@ Moving towards a model representation of this, \cref{sec:2d} extends the model t
 
 \section[\lin{2D} Formalism and Dipole Expression]{2D Formalism and Dipole Expression}\label{sec:methdipole}
 
-To extend the hamiltonian $H$ \cref{eq:OHam} into a two dimensional matrix representation, one must arrange in a way understood by the \sw{eigs} function, which expects a two dimensional sparse matrix.
+To extend the Hamiltonian $H$ \cref{eq:OHam} into a two dimensional matrix representation, one must arrange data in a way which is understood by the \sw{eigs} function, which expects a two dimensional sparse matrix.
 
 If $\mathbf{r}=(x,y)$ in \cref{eq:tisemat}, we can treat each dimension separately and follow the method outlined in \cref{sec:methdipole} for $x$ then $y$.
 With two sparse matricies, the Kronecker product can be applied to generate a block matrix ready for diagonalisation.
@@ -41,7 +41,7 @@ For comparison with experimental results, energy is expressed in frequency units
 
 Consider the two simplest cases in \cref{fig:sio2}: defect type A; where the aluminium--oxygen bond distance is shortened, forcing the oxygen to occupy two off axis positions, and defect type B; where the opposite occurs: the aluminium--oxygen bond distance is lengthened, allowing two preferred oxygen positions on axis.
 
-These two defect types can be modelled by solving our system hamiltonian \cref{eq:OHam} for three atoms: an oxygen with two aluminium atoms at a lattice coordinate apart, displaced toward and away from the oxygen.
+These two defect types can be modelled by solving our system Hamiltonian \cref{eq:OHam} for three atoms: an oxygen with two aluminium atoms at a lattice coordinate apart, displaced toward and away from the oxygen.
 For example, corundum has an Al--O bond distance of $\sim\!1.85$ \AA.
 If we define the oxygen position to be at an origin, the aluminium atoms can be considered as pairs ($x = -X, \: +X$ = \{$\pm 1.85$ \AA\}) lying on a cardinal axes; which are identified henceforth as $\abs{X}$ or simply the \textit{defect pair}.
 Displacing $\abs{X}$ equidistantly from this origin (\ie moving away from optimal crystalline configuration) will yield either an A or B type defect, depending on the direction of displacement.\nomdref{Babs}{$\abs{\cdot}$}{A pair of atoms displaced equidistantly from an origin, \eg $\abs{X} = -X, \: +X$}{sec:bonds}

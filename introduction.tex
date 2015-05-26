@@ -58,7 +58,7 @@ This (primarily) decreases the quantum coherence of the system and computational
 Qubit dynamics can therefore no longer be considered as a unitary evolution described by the von Neumann equation \cref{eq:tevqubit}, but instead as an open quantum system.
 A master equation approach is therefore required to further describe qubit time evolution as it interacts with the environment.
 For simplicity, we assume that environment perturbations to our qubit come from an arbitrarily large bath of uncorrelated noise sources with a uniform frequency spectrum.
-Also, interactions between the system and environment are weak with respect to ordinary system dynamics determined by the hamiltonian $H$.
+Also, interactions between the system and environment are weak with respect to ordinary system dynamics determined by the Hamiltonian $H$.
 These conditions describe the most general type of Markovian and time homogeneous master equation, the Lindblad form~\cite{Lindblad1976}
 \begin{equation}
 \frac{\mathrm{d}\rho}{\mathrm{d}t} =-\frac{i}{\hbar}\com{H}{\rho}+\sum_{k} \Gamma_k\left(L_k\rho L_k^\dagger-\frac{1}{2}\left\{L_k^\dagger L_k, \rho\right\}\right)
@@ -187,8 +187,7 @@ For further discussion of the theory behind, and the engineering prospects of th
 Shadow evaporation is a common technique used to fabricate systems such as this, where two metallic layers are deposited from different angles with an intervening oxidation step.
 This is usually performed using a Dolan bridge, which obscures part of the substrate during each metal deposition step \cite{Dolan1977}.
 It has more recently been shown that junction fabrication can be performed without the requirement of this bridge \cite{Lecocq2011}.
-Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2014} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
-
+Regardless of the process chosen, the oxidation of the aluminium does not result in a set of crystalline monolayers, but a non-uniform amorphous layer varying in stoichiometry~\cite{Park2002, Tan2005}, density~\cite{Barbour1998} and thickness~\cite{Gloos2003,Aref2014,Zeng2015} (nominally $\sim\!2$ nm).  Although epitaxial growth of aluminium-oxide barriers has been demonstrated~\cite{Oh2006}, this technique is not yet mainstream as it is considerably more difficult than conventional shadow mask evaporation.
 
 \section{Investigating Decoherence Sources}\label{sec:invnoise}
 

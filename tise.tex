@@ -17,15 +17,15 @@ If we also ignore any time evolution properties of the system for now, an effect
 \end{equation}
 where $m_{oxy}$ is the mass of an oxygen atom and $V(\mathbf{r})$ is the potential due to the surrounding (mostly amorphous) lattice.\nomdef{Zoxy}{$oxy$}{Property pertaining to an oxygen atom}\nomdef{Bdel}{$\nabla$}{Del operator. In Cartesian coordinates, $\nabla = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right)$}
 
-This chapter is primarily concerned with the numerical methods used to solve this hamiltonian.
+This chapter is primarily concerned with the numerical methods used to solve this Hamiltonian.
 First, the choice of a suitable potential to describe $V(\mathbf{r})$ is considered in \cref{sec:potential}.
-An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefrange{sec:numder}{sec:catoterr}, then finally an overview of the construction of the hamiltonian matrix and unit conversions in \cref{sec:hammat}.
+An in-depth analysis of the numerical treatment of $\nabla^2$ follows in \crefrange{sec:numder}{sec:catoterr}, then finally an overview of the construction of the Hamiltonian matrix and unit conversions in \cref{sec:hammat}.
 
 \section{Potential Configuration}\label{sec:potential}
 
 A potential which represents the junction, requires a number of capabilities.
 It needs to describe interactions between atomic species (in this case, \ce{Al}--\ce{Al}, \ce{O}--\ce{O} and \ce{Al}--\ce{O} interactions), as well as many body interactions which need to be accurate as possible (a requirement to investigate degenerate states).
-As a complete description of many body interactions does not currently exist; potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
+As a complete description of many body interactions does not currently exist, potentials of this type tend to be empirically fitted to experimental data in order to obtain physico-chemical properties of a studied system to high precision.
 The trade off here is that whilst any given potential may describe some properties of the system well because of certain fitting parameters, other properties may be well out of range as they were not included in the study that constructed the potential.
 Great care was taken to choose the best potential that accurately represented the junction, in this case the empirical Streitz-Mintmire potential~\cite{Streitz1994}, which describes a myriad of aluminium oxide properties over quite a large range of temperatures and pressures with high accuracy when compared against similar potentials.
 It was also chosen over simpler fixed-charge models~\cite{Catlow1982,Dienes1975} due to the complex geometry of the Josephson junction. A variable charge potential such as Streitz-Mintmire can capture the variable oxygen states when present in a predominantly metallic environment through the minimisation of the electrostatic term in the potential \cref{eq:sm}.
@@ -40,7 +40,7 @@ $J_i^0$ is an empirical parameter known as ``atomic hardness'' or a self-Coulomb
 The square bracket notation represents Coulomb interaction integrals between valence charge densities and/or effective core charge densities and take the form \cite{Zhou2004}:
 \begin{align}
 \left[a|f_b\right] &= \int \frac{f_b(r_b,q_b)}{r_{av}}\,\mathrm{d}V_b\\
-\left[f_a|f_b\right] &= \int\!\!\int \frac{f_a(r_a,q_a)f_b(r_b,q_b)}{r_{vv}}\,\mathrm{d}V_a \mathrm{d}V_b
+\left[f_a|f_b\right] &= \iint \frac{f_a(r_a,q_a)f_b(r_b,q_b)}{r_{vv}}\,\mathrm{d}V_a \mathrm{d}V_b
 \end{align}
 with $a=i,j; b=i,j; a\neq b$ in \cref{eq:sm} and $\mathrm{d}V_{a,b}$ are integrating volume units.
 The value $r_{av}$ is therefore the center distance between atom $a$ and $\mathrm{d}V_b$, and $r_{vv}$ is the center distance between $\mathrm{d}V_a$ and $\mathrm{d}V_b$.
@@ -149,7 +149,7 @@ The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the app
 The $\Delta f_n^{\;(d)}$ term describes the appropriate finite difference expression obtained from the set of \cref{eq:taylorrem} for particular values of $n$ and $d$.
 Frequently used constructions of this form can be found in tables in books such as \citeauthor{Mathews2004} and web resources like \citeauthor{Holoborodko2009} without the need to derive them from first principles, although comprehensive error discussion is uncommon or oversimplified at best~\cite{Mathews2004,Holoborodko2009}.
 
-Solving the Schr\"{o}dinger equation using the hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression.
+Solving the Schr\"{o}dinger equation using the Hamiltonian \cref{eq:OHam} requires a second derivative finite difference expression.
 Truncating the Taylor series at $\mathcal{O}(h^2)$ is the simplest arrangement, which takes the form
 \begin{equation}
 f^{\;\prime\prime}(x) = \frac{f(x-h)-2f(x)+f(x+h)}{h^2} - \frac{f^{\;(4)}(\zeta)}{12}h^2, \quad \zeta \in [x-h,x+h]\label{eq:cd22t} \\
@@ -187,7 +187,7 @@ Hence, for small values of $h$, a simplified coefficient can be defined as
  C_n(x) \equiv a_1\,f_n^{\;(n+d)}(x).
 \end{equation}
 
-Simplifying \cref{eq:cdadj} with this new coefficient, it is clear that this relationship takes the form of a Richardson extrapolation, therefore we can evaluate at two different step sizes $h_1$ and $h_2$ (where $h_1 > h_2$)
+Simplifying \cref{eq:cdadj} with this new coefficient, this relationship now takes the form of a Richardson extrapolation, therefore we can evaluate at two different step sizes $h_1$ and $h_2$ (where $h_1 > h_2$)
 \begin{align}
 f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_1) + C_n(x)h_1^n \\
 f_n^{\;(d)}(x) &= \mathcal{F}_n^{\,(d)}(x,h_2) + C_n(x)h_2^n
@@ -292,13 +292,13 @@ The steps of the algorithm which computes these values (as well as discussions o
 \section[A Harmonic Approximation to Streitz-Mintmire][Streitz-Mintmire Harmonic Approximation]{A Harmonic Approximation to Streitz-Mintmire}\label{sec:harmsm}
 
 A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction in the $x$ direction}
-This eigenvalue equation is solved via direct diagonalisation of the hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
+This eigenvalue equation is solved via direct diagonalisation of the Hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
 The functional form of the wavefunction for a particle under the influence of the Streitz-Mintmire potential is not one of these systems.
 However, certain configurations of the potential approximate to a parabola-like shape (for example see \cref{fig:smvh,fig:mexhatproj}), the quantum harmonic oscillator can therefore serve as an analogue in this limit as it has a simple analytic solution.
 
-The hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
+The Hamiltonian of a particle in a one dimensional quantum harmonic oscillator can be described as
 \begin{equation}
 \widehat{H} = \frac{\widehat{p}^2}{2m}+\frac{1}{2}m\omega^2\widehat{x}^2\label{eq:hamho}
 \end{equation}
@@ -448,7 +448,7 @@ The harmonic approximation was useful for finding the optimal step of the Streit
 Actual error values on the other hand can not be considered in the same manner.
 The condition error of the harmonic ground state wave function \cref{eq:gshwfn} is dependent on the accuracy of the input variables and the exponential function, which in \sw{Matlab}, is computed by the built-in function \sw{exp}.
 On the other hand, the Streitz-Mintmire potential is a custom coded implementation built for the purpose of this thesis, and calls \sw{Matlab}, \sw{C++} and \sw{LAPACK} (implemented in \sw{Fortran}) routines to calculate a potential value for a given $x$.
-Then, to obtain $\Psi_0(x)$, the hamiltonian matrix is diagonalised through the \sw{eigs} function, also calling \sw{LAPACK} through a \sw{C++} wrapper.
+Then, to obtain $\Psi_0(x)$, the Hamiltonian matrix is diagonalised through the \sw{eigs} function, also calling \sw{LAPACK} through a \sw{C++} wrapper.
 
 Many of these steps may contribute to the condition error, which can be calculated by rearranging the optimal step size formula \cref{eq:cdhopt}, now that $h_{opt} = 2^{-9}$ is known
 \begin{equation}
@@ -511,7 +511,8 @@ The derivation is related to \cref{eq:cdcxh}, where $a_2$ and $a_3$ originate.
 The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases.
 Thus $h_{max} = 2^{-3} \simeq 0.125$ Å for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\zeta)$ is constant over $[2^{-9},2^{-3}]$, which is indeed the case if one applies the regression algorithm from \onlinecite{Mathur2012}.
 As a result, the estimated truncation error calculated for $h_{opt}$ is considered to be consistent over the range $x \in [x^*-3\cdot0.125,x^*+3\cdot0.125]$ Å using the sixth order method.
-Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å; require values anywhere else on the grid and a new $h_{opt}$ should be calculated if you're a purist.
+Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å. 
+Require values anywhere else on the grid and a new $h_{opt}$ should be calculated if you're a purist.
 
 Unfortunately, compromises need to be made in practice. So, keeping the above analysis in mind, the following concessions will be made throughout this thesis:
 \begin{itemize}
@@ -528,7 +529,7 @@ Unfortunately, compromises need to be made in practice. So, keeping the above an
 
 \section{Hamiltonian Construction}\label{sec:hammat}
 
-A complete description of the hamiltonian \cref{eq:OHam} can now be implemented to solve the eigenvalue equation
+A complete description of the Hamiltonian \cref{eq:OHam} can now be implemented to solve the eigenvalue equation
 \begin{equation}
 \left[-\frac{\hbar^2\Lambda}{2m_{oxy}}\nabla^2+V(\mathbf{r})\right]\ket{\Psi(\mathbf{r})} = E\ket{\Psi(\mathbf{r})},\label{eq:tisemat}
 \end{equation}
@@ -539,7 +540,7 @@ In one dimension, this matrix is straightforward to construct (outlined below), 
 Starting with the prefactor of $\nabla^2$, $m_{oxy}$ is of course the mass of an oxygen atom: $2.657\ten{-26}$ kg, and the unit conversion constant defined as\nomdref{Glamb}{$\Lambda$}{Unit conversion constant measure distance in Å and energy in μeV rather than SI}{eq:lambda}
 \begin{marginfigure}
 \resizebox{\marginparwidth}{!}{\includestandalone{figures/spyham}}
-\caption[Sparsity of the Hamiltonian Matrix $H$]{Sparsity of the hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
+\caption[Sparsity of the Hamiltonian Matrix $H$]{Sparsity of the Hamiltonian matrix $H$ for a simple one dimensional system with 13 discrete points in $x$.}
 \end{marginfigure}
 \begin{equation}
     \Lambda \equiv \frac{\left(1\ten{10}\right)^2\cdot1\ten{6}}{e} = 6.243\ten{46}\label{eq:lambda}
