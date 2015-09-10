@@ -36,7 +36,7 @@ Additionally, many excited state wavefunctions exhibit sign changes on scales mu
 
 \section{An Alternative Method}\label{sec:meth3d}
 
-\citeauthor{Strickland2010} put forward a method which exploits a Wick-rotated time-dependent Schr\"{o}dinger equation to solve for time-independent solutions in three dimensions~\cite{Strickland2010}.
+\citeauthor{Sudiarta2009} introduced a method which exploits a Wick-rotated time-dependent Schr\"{o}dinger equation to solve for time-independent solutions in three dimensions~\cite{Sudiarta2009}.
 
 \Cref{eq:tisemat} ignores any time evolution of our TLS model, although the general case \cref{eq:tdse} includes this description.
 Wick rotations~\cite{Wick1954} are primarily used to find solutions to Minkowski space problems by an Euclidean space mapping.
@@ -53,7 +53,7 @@ Here, ${a_k}$ are coefficients based on initial conditions of the system where $
 As $E_0 < E_1 < E_2 < \ldots$, evolving \cref{eq:psitau} to large imaginary time will provide a good approximation to the ground state influenced by the time-independent potential $V(\mathbf{r})$.
 
 This solution is obtained by numerically approximating the spatial derivatives with finite differences.
-For both stability and precision, we descritise the space using the $7$-point central difference method discussed comprehensively in \cref{ch:tise}.
+For both stability and precision, we discretise the space using the $7$-point central difference method discussed comprehensively in \cref{ch:tise}.
 
 \subsection{Gram-Schmidt Procedure}\label{sec:gsp}
 
@@ -246,7 +246,7 @@ The relationship
 \label{eq:strain}
 \end{equation}
 can be used to strain our atom cluster for example, with a length increase of $\Delta L$ in the $x$ direction, and a length decrease of $\Delta L'$ in the $y$ and $z$ directions.\nomdref{CL}{$L$}{Strain length}{eq:strain}
-\Cref{fig:cluststrain} shows the response of two strain ratios $\cramped{\frac{\Delta L'}{L}} = \mp 0.019$ \AA.
+\Cref{fig:cluststrain} shows the response of two strain ratios $\cramped{\frac{\Delta L'}{L}} = \mp 0.019$.
 The left axis represents a compressive force along the $x$ axis, and the right is a tensile force also along $x$.
 These values attempt to simulate a local strain from the localised Al--O separation distance of $1.85$ \AA\ in the direction of the A type and B type regions respectively (see \cref{fig:spect3d}).
 
@@ -279,7 +279,7 @@ Another conjecture is that an asymmetric cell (obtained by some form of sheer in
 \end{adjustwidth}
 \end{figure}
 
-As with the cluster results of the crystalline and Poisson strain investigations of \cref{sec:corundum} above, the few amorphous clusters studied failed to identify any TLS behaviour. 
+As with the cluster results of the crystalline and Poisson strain investigations of \cref{sec:corundum} above, the few amorphous clusters studied failed to identify any TLS behaviour.
 With such a small sample size it is difficult to draw any direct conclusions from this result, although it is noteworthy that the asymmetric case \begin{tikzpicture}[baseline=-0.7ex]\filldraw [black,fill=Set1-5-1,fill opacity=0.7] (0,-0.1) -- (0.3,-0.1) -- (0.3,0.1) -- (0,0.1) --cycle;\end{tikzpicture} exhibits a smaller $E_{01}$ energy than the clusters with large Voronoi cells as well as the crystalline cluster.
 A comprehensive exploration of this and JJ models with different stoichiometries and densities may yield clusters with further asymmetry, which may in turn identify a TLS-like cluster.
 

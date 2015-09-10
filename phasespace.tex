@@ -46,7 +46,7 @@ Values of $\abs{Z} = 2.75$ \AA\ (\cref{fig:xi275}) and $\abs{Z} = 2.25$ \AA\ (\c
 
 TLS behaviour can be observed on both maps and each value of $\abs{Z}$ has been selected based on model parameters.
 Oxygen confinement occurs for $\abs{Z}$ values lower than $2.25$ \AA\ (\ie $E_{01} \gg 100$ GHz).
-$\abs{Z}$ values larger than $2.75$ \AA\ show similar phase behaviour to that of \cref{fig:xiunbound}, which in completely unbound in $z$.
+$\abs{Z}$ values larger than $2.75$ \AA\ show similar phase behaviour to that of \cref{fig:xiunbound}, which is completely unbound in $z$.
 Large $\abs{Z}$ separation distances also decrease the validity of the \lin{2+1D} model, in addition: the radial distribution analysis in \cref{sec:gr} suggests large separation distances for nearest neighbour atoms have a low probability of occurrence.
 
 \begin{figure}[htp]
@@ -149,17 +149,18 @@ As our model assumes a charge-neutral defect\footnote{More specifically: the def
 Mechanical deformation of a phase-qubit has recently been observed directly~\cite{Grabovskij2012}, which we can mimic in our \lin{2+1D} model by introducing a series of deformations onto the cluster, and subsequently measure the $E_{01}$ response.
 
 Deformation types that were tested are depicted in \cref{fig:strainxa}.
-All deformations were tested in each of the four hemi-tera- regions discussed in \cref{sec:tls}, not only in the $x$-direction as shown, but also in $y$.
+All deformations were tested in each of the four hemi-tetra- regions discussed in \cref{sec:tls}, not only in the $x$-direction as shown, but also in $y$.
 Of the tested deformations we find the response of one (translation of $\abs{X}$, highlighted in \cref{fig:strainxa}) to be $10^5$ times stronger than the others.
 Such a deformation corresponds to a translation of both aluminium atoms in the same direction and relative to the oxygen, along the axis of the dominant dipole.
 This suggests an explanation for the long TLS coherence times, as a delocalized oxygen is only sensitive to a small subset of available phonon modes (as well as coupling to charge noise only through its electric dipole).
 
 \begin{figure}[htp]
   \resizebox{\textwidth}{!}{\includestandalone{figures/strainx}}
-  \caption[Model Strain Response]{\label{fig:strainx}\label[figurea]{fig:strainxa}\label[figureb]{fig:strainxb}\label[figurec]{fig:strainxc} (a) Depiction of a number of deformations which were applied to the aluminium atoms in the $x$-$y$ plane. The response of one of the strain types is orders of magnitude larger than the others (highlighted), which is indicative of an optical phonon mode, generating extremely large frequency splittings for picometer deformations. A deformation range of $10$ fm was applied at points along 8 GHz contours (corresponding to phase qubit-TLS coupling strengths), with $\abs{Z}=2.5$ \AA, yielding responses that are both hyperbolic and symmetric. (b) Over the range $2\!-\!10$ fm the response is linear with a strain gradient, shown in (c) for both the A and B type defects in $\abs{\wp_x}$ domains.}
+  \caption[Model Strain Response]{\label{fig:strainx}\label[figurea]{fig:strainxa}\label[figureb]{fig:strainxb}\label[figurec]{fig:strainxc} (a) Depiction of a number of deformations which were applied to the aluminium atoms in the $x$-$y$ plane. The response of one of the strain types is orders of magnitude larger than the others (highlighted), which is indicative of an optical phonon mode, generating extremely large frequency splittings for picometer deformations. A deformation range of $10$ fm was applied at points along 8 GHz contours (each line colour representing a different starting point, corresponding to phase qubit-TLS coupling strengths), with $\abs{Z}=2.5$ \AA, yielding responses that are both hyperbolic and symmetric. (b) Over the range $2\!-\!10$ fm the response is linear with a strain gradient, shown in (c) for both the A and B type defects in $\abs{\wp_x}$ domains.}
 \end{figure}
 
-\Cref{fig:strainxb} shows this response for the optical mode (at positions corresponding to phase qubit-TLS coupling strengths $\sim 8$  GHz where $\abs{Z}=2.5$ \AA), displaying a characteristic hyperbolic response which is typical of a two-level system.
+\Cref{fig:strainxb} shows this response for the optical mode (at positions corresponding to phase qubit-TLS coupling strengths $\sim 8$  GHz where $\abs{Z}=2.5$ \AA), displaying a characteristically hyperbolic response.
+This is typical of a two-level system in the STM framework: $E_{01}$ is hyperbolically dependent on the asymmetry energy $\epsilon$ (see \cref{sec:glass})~\cite{Anderson1972,Phillips1972,Grabovskij2012}.
 This compares well with the observed strain response in \onlinecite{Grabovskij2012}.
 Fitting the data in the inset of \cref{fig:strainxb} using the harmonic approximation (assuming an optical mode), we obtain characteristic frequencies in the range $0.3\!-\!1.0$ THz.
 This is well above the energy of typical qubit experiments, again limiting the coupling of the defect to phonons; although it is still possible that slow noise fluctuations couple to the defect via a similar deformation (\textit{vide infra}).

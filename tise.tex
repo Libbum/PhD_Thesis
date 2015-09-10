@@ -9,6 +9,10 @@ Particularly if the bonded aluminium atoms are displaced in a manner similar to 
 Type C requires either a complicated many body investigation or some form of pseudo-single body approximation.
 As a result, assumptions about the defects response to external forces will be compounded which may prove to be drastically misstated.
 Hence, we do not include this possible defect type in our considerations henceforth, although detailed literature is available in the event that this defect type is later identified as significant~\cite{Buchenau1984,Heuer1998,Trachenko2000,Reinisch2005}.
+Oxygen is considered as the moving atom throughout this thesis due to its mass of $16$ amu compared to $27$ amu for aluminium. 
+Whilst this mass difference is not huge, the probability of an oxygen atom spatially delocalising over an appropriate distance to yield a dipole strength of order $1\;e$\AA\ is greater.
+In addition to the mass argument, \cref{sec:smax} discusses a Bader charge analysis identifying a Bader volume (which approximates electronic charge) of $1.395\pm0.006 \; e$ for oxygen in a junction.
+Aluminium atoms residing in the amorphous layer have a much smaller volume (on average) of $0.431\pm0.370 \: e$, which decreases the probability of an aluminium atom exhibiting a large dipole response compared to an oxygen atom.
 
 If we also ignore any time evolution properties of the system for now, an effective single particle Hamiltonian can be derived\nomdef{Crvec}{$\mathbf{r}$}{General distance vector. In \lin{1D} $\mathbf{r} = x$ for example}\nomdref{CVr}{$V(\mathbf{r})$}{Potential $V$ at point $\mathbf{r}$. Assumed to be the Streitz-Mintmire potential unless otherwise stated}{eq:OHam}
 \begin{equation}
@@ -129,17 +133,17 @@ While there is no known method to determine a value of $\zeta$ exactly for a gen
     f(x) = \sum_{k=0}^d \frac{f^{\;(k)}(x^*)}{k!}(x-x^*)^k + \frac{f^{\;(d+1)}(\zeta)}{(d+1)!}(x-x^*)^{d+1}, \quad \zeta \in [x^*,x].\label{eq:taylorrem}
 \end{equation}
 
-The most commonly used central difference formula is the first derivative of second order, which can be obtained by applying \cref{eq:taylorrem} at two absciss\ae\ of length $h$ from a sampling point in $f(x)$ and solving the simultaneous equation for $f^{\;\prime}(x)$.
+The most commonly used central difference formula is the first derivative of second order, which can be obtained by applying \cref{eq:taylorrem} at two absciss\ae\ of length $h$ from a sampling point in $f(x)$ and solving the simultaneous equation for $f^{\;\prime}(x)$
 \begin{align}
 f(x+h) &= f(x) + f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 + \frac{f^{\;(3)}(\zeta^+)}{2}h^3, \quad \zeta^+ \in [x,x+h] \\
 f(x-h) &= f(x) - f^{\;\prime}(x)h + \frac{f^{\;\prime\prime}(x)}{2}h^2 - \frac{f^{\;(3)}(\zeta^-)}{2}h^3, \quad \zeta^- \in [x-h,x] \\
-f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta^+)+f^{\;(3)}(\zeta^-)}{2}\frac{h^2}{3!}\label{eq:cd12pm}
+f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta^+)+f^{\;(3)}(\zeta^-)}{2}\frac{h^2}{3!}.\label{eq:cd12pm}
 \end{align}
 The error term in \cref{eq:cd12pm} contains the average of the third derivative evaluated the two unknown points $\zeta^+$ and $\zeta^-$, which are bounded inside the range $[x-h,x+h]$.\nomdref{Gfzeta}{$\zeta$}{An unknown but bounded point used in central difference methods}{ch:tise}
-Applying the Mean Value Theorem and assuming that $f^{\;(3)}(x)$ is smooth over the bounded range, a value $\zeta$ must exist between $\zeta^+$ and $\zeta^-$ which satisfies the average.
+Applying the Mean Value Theorem and assuming that $f^{\;(3)}(x)$ is smooth over the bounded range, a value $\zeta$ must exist between $\zeta^+$ and $\zeta^-$ which satisfies the average
 \begin{align}
 f^{\;\prime}(x) &= \frac{f(x+h)-f(x-h)}{2h} - \frac{f^{\;(3)}(\zeta)}{3!}h^2, \quad \zeta \in [x-h,x+h]\label{eq:cd12t} \\
-\mathcal{F}_2^{\,(1)}(x,h) &= \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)\label{eq:cd12f}
+\mathcal{F}_2^{\,(1)}(x,h) &= \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2).\label{eq:cd12f}
 \end{align}
 Both equations above represent the first derivative of $f(x)$; although they differ in the sense that \cref{eq:cd12t} is still the true derivative and \cref{eq:cd12f} truncates the error term and represents it as an order of magnitude---which is the essence of the finite difference approximation to the derivative.
 The notation $\mathcal{F}_n^{\,(d)}(x,h)$ represents the general form of the approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$, which can formerly be expressed as:\nomdref{CFD}{$\mathcal{F}_n^{\,(d)}(x,h)$}{Finite difference approximation of the $d^{th}$ derivative of $f(x)$ of order $n$ using step size $h$}{ch:tise}\nomdef{BO}{$\mathcal{O}$}{Big-O notation, signifying the order of a value}
@@ -292,7 +296,7 @@ The steps of the algorithm which computes these values (as well as discussions o
 \section[A Harmonic Approximation to Streitz-Mintmire][Streitz-Mintmire Harmonic Approximation]{A Harmonic Approximation to Streitz-Mintmire}\label{sec:harmsm}
 
 A complication arises when attempting to apply this algorithm to $\nabla^2$ in \cref{eq:OHam}, which more specifically should be written as $\cramped{\frac{\mathrm{d}^2\Psi}{\mathrm{d}x^2}}$; where $\Psi(x)$ is an eigenstate of $H$ in the time-independent Schr\"odinger equation $H\ket{\Psi(x)} = E\ket{\Psi(x)}$, defining the spatial coordinate system in this example to be one dimensional for simplicity: $\mathbf{r} \equiv x$.\nomdef{CH}{$H$}{The Hamiltonian operator}\nomdef{CE}{$E$}{Energy of a system}\nomdef{GPsi}{$\Psi_n(x)$}{$n^{th}$ state wavefunction in the $x$ direction}
-This eigenvalue equation is solved via direct diagonalisation of the Hamiltonian matrix - requiring a descretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
+This eigenvalue equation is solved via direct diagonalisation of the Hamiltonian matrix---requiring a discretised treatment of $\nabla^2$ before $\Psi(x)$ can be obtained.
 The step size algorithm requires an analytical form of the function to which it is applied.
 Unfortunately there are very few quantum mechanical systems with analytical solutions, and from that small pool, most are overly simplified constructions that do not exist physically.
 The functional form of the wavefunction for a particle under the influence of the Streitz-Mintmire potential is not one of these systems.
@@ -390,7 +394,7 @@ Starting with the Taylor series of the Lagrange remainder \cref{eq:taylorrem} us
 &\qquad \qquad \zeta^+ \in [x,x+2h], \qquad \zeta^- \in [x-2h,x] \displaybreak[0]\\[0.2cm]
 \MoveEqLeft f(x\pm 3h) = \nonumber\\
 &f(x)\pm 3f\,'(x)h+\frac{9f^{\;''}(x)h^2}{2!}\pm \frac{27f^{\;(3)}(x)h^3}{3!}+\frac{81f^{\;(4)}(x)h^4}{4!}\pm \frac{243f^{\;(5)}(x)h^5}{5!}\nonumber\\
-&+\frac{729f^{\;(6)}(x)h^6}{6!}\pm \frac{2187f^{\;(7)}(x)h^7}{7!}+\frac{6561f^{\;(8)}(\zeta^\pm)h^8}{8!}, \nonumber\\
+&+\frac{729f^{\;(6)}(x)h^6}{6!}\pm \frac{2187f^{\;(7)}(x)h^7}{7!}+\frac{6561f^{\;(8)}(\zeta^\pm)h^8}{8!}. \nonumber\\
 &\qquad \qquad \zeta^+ \in [x,x+3h], \qquad \zeta^- \in [x-3h,x]
 \end{align}
 Followed by removing the odd degree terms
@@ -511,7 +515,7 @@ The derivation is related to \cref{eq:cdcxh}, where $a_2$ and $a_3$ originate.
 The value $h_{max}$ is simply the point at which the truncation error becomes valid as step size decreases.
 Thus $h_{max} = 2^{-3} \simeq 0.125$ Å for the sixth order second derivative from \cref{fig:hopt7pt} so long as $f^{\;(8)}(\zeta)$ is constant over $[2^{-9},2^{-3}]$, which is indeed the case if one applies the regression algorithm from \onlinecite{Mathur2012}.
 As a result, the estimated truncation error calculated for $h_{opt}$ is considered to be consistent over the range $x \in [x^*-3\cdot0.125,x^*+3\cdot0.125]$ Å using the sixth order method.
-Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å. 
+Put another way: the calculated value of $h_{opt} = 2^{-9}$ is only the optimal value at $x=0\pm0.375$ Å.
 Require values anywhere else on the grid and a new $h_{opt}$ should be calculated if you're a purist.
 
 Unfortunately, compromises need to be made in practice. So, keeping the above analysis in mind, the following concessions will be made throughout this thesis:
