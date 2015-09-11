@@ -50,10 +50,37 @@ which yields a general solution to the wavefunctions
 \Psi(\mathbf{r},\tau) = \sum_{k=0}^\infty a_k\psi_k(\mathbf{r})e^{-E_k \tau}.\label{eq:psitau}
 \end{equation}
 Here, ${a_k}$ are coefficients based on initial conditions of the system where $k=0$ indicates the ground state, $k=1$ the first excited state \etc\ and $E_k$ is the corresponding eigenenergy.
-As $E_0 < E_1 < E_2 < \ldots$, evolving \cref{eq:psitau} to large imaginary time will provide a good approximation to the ground state influenced by the time-independent potential $V(\mathbf{r})$.
+As $E_0 < E_1 < E_2 < \ldots$, evolving \cref{eq:psitau} to large imaginary time will provide a good approximation to the ground state influenced by the time-independent potential $V(\mathbf{r})$, where $\mathbf{r}=(x,y,z)$ in this context.
 
 This solution is obtained by numerically approximating the spatial derivatives with finite differences.
-For both stability and precision, we discretise the space using the $7$-point central difference method discussed comprehensively in \cref{ch:tise}.
+The wavefunction is averaged in imaginary time to improve stability~\cite{Taflove1990} and for precision, we discretise the space using the $7$-point central difference method discussed comprehensively in \cref{ch:tise}.
+
+To obtain a function which evolves the system through imaginary time, we start by assuming our grid is uniform in all directions such that $a\equiv\Delta x =\Delta y =\Delta z$, and define a difference vector
+\begin{equation}
+\mathbf{D} = \frac{1}{a^2}\left[2,-27,270,-490,270,-27,2\right]
+\end{equation}
+in line with the coefficients of \cref{eq:cd26f}.
+In conjunction with a matrix-valued wavefunction field
+\begin{equation}
+\mathbf{\widehat{\psi}} = 
+\begin{bmatrix}
+\psi(x-3,y,z,\tau) & \psi(x-2,y,z,\tau) & \cdots & \psi(x+3,y,z,\tau)\\
+\psi(x,y-3,z,\tau) & \psi(x,y-2,z,\tau) & \cdots & \psi(x,y+3,z,\tau)\\
+\psi(x,y,z-3,\tau) & \psi(x,y,z-2,\tau) & \cdots & \psi(x,y,z+3,\tau)
+\end{bmatrix},
+\end{equation}
+an approximate solution to the right hand side of \cref{eq:tdseit} can be obtained:
+{\mathindent=0.1cm
+\begin{align}
+\MoveEqLeft H\Psi(\mathbf{r},\tau) \approx \nonumber \\ 
+&\frac{1}{360a^2 m_{oxy}} \sum_i^3\left(\mathbf{D}\cdot\mathbf{\widehat{\psi}}\right)_i-\frac{1}{2}V(x,y,z)\left[\psi(x,y,z,\tau) + \psi(x,y,z,\tau+\Delta \tau)\right].\label{eq:tauexp}
+\end{align}
+}
+\Cref{eq:tdseit} can now be rearranged using \cref{eq:cd26f} and \cref{eq:tauexp} to produce an expression to step $\psi(x,y,z,\tau)$ through imaginary time
+\begin{align}
+\psi(x,y,z,\tau+\Delta \tau) &= A\psi(x,y,z,\tau)+\frac{B\Delta \tau}{2m}\sum_i^3\left(\mathbf{D}\cdot\mathbf{\widehat{\psi}}\right)_i\\
+A &= \frac{1-\frac{\Delta \tau}{2}V(x,y,z)}{1+\frac{\Delta \tau}{2}V(x,y,z)}, \quad B = \frac{1}{1+\frac{\Delta \tau}{2}V(x,y,z)}.
+\end{align}
 
 \subsection{Gram-Schmidt Procedure}\label{sec:gsp}
 
