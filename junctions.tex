@@ -11,7 +11,7 @@ From a quantum simulation point of view, this is not a trivial problem.
 Crystalline symmetries usually invoked to minimise calculations cannot be used to reduce the state space of the oxide barrier of a junction due to its amorphous nature.
 However, forming such atomistic models using molecular mechanics and \textit{ab initio} methods is the focus of this chapter.
 
-Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
+Initially, we discuss the computational complexities of simulating oxide formation directly in \cref{sec:simjjform,sec:cframe}, followed by the specific methods that have been implemented in \cref{sec:jjmodel}.
 \Crefrange{sec:gr}{sec:coord} examine a number of techniques which assist in validating the resultant models in terms of expected configurational properties and experimental data.
 Finally a summary in \cref{sec:jjsum} which outlines some technical uses for these models outside the main scope of this thesis.
 
@@ -31,11 +31,36 @@ An alternative approach is to form an amorphous layer via direct melt and quench
 This method has the advantage of computational simplicity and speed, however the resulting layers are not necessarily representative of the true physical situation and therefore benchmarking against other methods and experiment is critical.
 Generating stoichiometry or density gradients across an artificial junction is not something that can be simulated directly using this process, so to investigate the effect of these properties, a number of constant density and stoichiometry models were produced. A more sophisticated method, closely mimicking the oxygen deposition process and examining the effects of layer thickness is the subject of M. Cyster's PhD dissertation.
 
-\section{Model Construction}\label{sec:jjmodel}
+\section{Computational Frameworks}\label{sec:cframe}
 
 To obtain realistic, high precision atomic positions, computational models of the junction were created using a combination of molecular mechanics and DFT.
+
+In the molecular mechanics framework, a group of molecules can be considered as \emph{classical} collections of balls and springs rather than \emph{quantum} collections of electrons and nuclei.
+It has been shown that under homogeneous compression, solids can be described by an expression of pair--potentials and contributions from non--pair interactions can be expanded in terms of the pair interactions~\cite{Ogorodnikov1995}.
+This effectively includes any non--pair interactions into the pair terms and therefore the kinetic and potential states of the solid can be described on a unified basis.
+These interactions are mathematically constructed from well known classical mechanics formulae, and are known as \emph{force fields}.
+The Buckingham potential~\cite{Buckingham1938} for example describes the Pauli repulsion energy and van der Waals energy interactions of two unbonded atoms as a function of their distance separation. 
+Three parameters need to be empirically fitted for each atomic species pair the potential wishes to describe.
+
+Density functional theory is a ground state theory which describes an interacting system of fermions via its density rather than its many--body wavefunction
+\begin{equation}
+\rho(\mathbf{r}_1) = N \int \! \Psi^*(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N) \, \mathrm{d}\mathbf{r}_2 \ldots \mathrm{d}\mathbf{r}_N.
+\end{equation}
+In other words, the ground state properties of a system can be expressed as functionals of the ground state electron density.
+Practical applications of DFT are based on approximations of a local, Hermitian, energy independent exchange--correlation potential~\cite{Kohn1965}, which describes the effects of the Pauli principle and the Coulomb potential beyond a pure electrostatic interaction of the electrons.
+Possessing the exact exchange--correlation potential for a system requires the many-body problem to be solved exactly, hence the need for an approximation.
+
+The most common approximation is the local density approximation (LDA), 
+which locally substitutes the exchange--correlation energy density of an inhomogeneous system by that of an electron gas evaluated at the local density.
+While many ground state properties (lattice constants, bulk moduli, \etc) are well described in the LDA, the dielectric constant is overestimated by $10$--$40$\% compared to experiment. 
+This overestimation stems from the neglect of a polarisation dependent exchange--correlation field. 
+This, and other limitations have forced the invention of other exchange--correlation functionals such as the generalised gradient approximation (GGA). 
+Where LDA fails when the density undergoes rapid changes (such as in molecules), GGA considers the gradient of this density; yielding a vast improvement.
+
+\section{Model Construction}\label{sec:jjmodel}
+
 A $4\!\times\!4\!\times\!5$ supercell of bulk aluminium (measuring $16.168\times16.168\times20.183$ \AA) representing both the top and bottom slabs was relaxed in the DFT code \sw{VASP}~\cite{Kresse1994, Kresse1996, Kresse1996a} using a projector-augmented wave (PAW) potential~\cite{Kresse1999, Blochl1994}.
-Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996}; a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.\nomdef{BA}{\AA}{Ångström, 1 \AA $= 10^{-10}$ m}
+Exchange-correlation interactions were evaluated using the PBE functional~\cite{Perdew1996} (which uses the GGA); a $7\!\times\!7\!\times\!7$ $\Gamma$ centered Monkhorst Pack K point mesh and a plane wave cutoff of $250$ eV.\nomdef{BA}{\AA}{Ångström, 1 \AA $= 10^{-10}$ m}
 
 Formation of the amorphous \ce{AlO_x} layers required a number of preparation steps to accurately represent experimental results.
 Corundum was used as a basis for all the constructed junction models as it represents the low temperature and pressure phase of aluminium oxide.
@@ -111,17 +136,21 @@ However, we see little increase in oxide distribution during the optimisation ph
 The total energy of a computational model is a good indication of the structures' electronic stability.
 Due to the stoichiometry changes invoked in the oxygen depleted models, not all structures have the same number of atoms.
 This gives structures with more atoms (such as \ce{AlO_{1.25}}) additional electronegativity which in turn results in a deeper potential well and a large total energy.
-In an attempt to normalise this response, we present a total energy per atom value in \cref{fig:energyperatom}, scaling against stoichiometry (left) and density (right).
+
+In order to be able to validly compare systems of different stoichiometry, we normalise the total energy of each system by a factor $|F|$.
+$F = \sum_{k} \mu_k N_k$ is calculated as the linear combination of the number of atoms of chemical species $k$ ($N_k$) by the chemical potential of that species ($\mu_k$), where $k=\{\mathrm{Al}, \mathrm{O}\}$.
+The chemical potential for aluminium, $\mu_{\mathrm{Al}}$ was obtained by calculating the DFT total energy of a $4\!\times\!4\!\times\!5$ supercell of bulk Al and dividing by the number of atoms in the supercell. Similarly the chemical potential of oxygen was obtained from calculating the DFT total energy of a $2\!\times\!2\!\times\!2$ supercell of bulk \ce{Al_2O_3} using $\mu_{\mathrm{O}} = (\mu_{\mathrm{Al_2O_3}}-2\mu_{\mathrm{Al}})/3$, where $\mu_{\mathrm{Al_2O_3}}$ is the total energy of a molecular unit of \ce{Al_2O_3}.
+The factor $F$ (essentially the free energy at $T = 0$) effectively allows one to partition the total energy of the system using the chemical potentials of each component species, as a means to compare the energies of systems with differing number of chemical components.
 
 \begin{figure}[tbp]
 \peratommargins
 \begin{adjustwidth}{\peratomleft}{\peratomright}
 \resizebox{\widefigure}{!}{\includestandalone{figures/energyperatom}}
-\caption[Energy Comparisons]{\label{fig:energyperatom}Total energy per atom for various junction models with stoichiometry (left) and density (right).  Although the total energy per atom is strongly dependent on stoichiometry, we see a clear tread to optimal densities of approximately 75\% of the density of corundum.}
+\caption[Energy Comparisons]{\label{fig:energyperatom}Normalised total energy for various junction models with stoichiometry (left) and density (right).  Although the energy is strongly dependent on stoichiometry, we see a trend to optimal densities of approximately 75\% of the density of corundum.}
 \end{adjustwidth}
 \end{figure}
 
-It is clear from this figure that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
+It is clear from \cref{fig:energyperatom} that stoichiometry plays a larger role in energy minimisation than density, and that the structures would prefer additional oxygen to minimise internal forces.
 This suggests that fabrication processes that generate oxygen deficiencies may be inviting the inclusion of alien species or oxygenic site hopping in an attempt to rectify this offset.
 
 Density changes seem to alter the energy contribution marginally.

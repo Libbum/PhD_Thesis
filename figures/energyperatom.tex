@@ -28,50 +28,50 @@ name=one,
 xmin=0.8,
 xmax=1.5,
 xlabel={Stoichiometry},
-ymin=-5.1,
-ymax=-4.4,
-ylabel={Energy per atom (eV)},
+ymin=-1.26,
+ymax=-1.12,
+ylabel={Energy/$\left|F\right|$},
 legend style={at={(0.5,1.01)},anchor=south},
 legend columns=5
 ]
-\addplot [color=Set1-5-1,solid,line width=1pt,mark=*,mark options={solid}]
+\addplot [color=Set1-5-1,line width=1pt,solid,mark=*,mark options={solid}]
   table[row sep=crcr]{%
-0.8	-4.42517434806034\\
-1	-4.61782172727273\\
-1.25	-4.803877456\\
-1.5	-4.9492800076555\\
+0.8	-1.13435698998626\\
+1	-1.1724371117034\\
+1.25	-1.20847013054555\\
+1.5	-1.23299491376551\\
 };
 \addlegendentry{0.500}
-\addplot [color=Set1-5-2,solid,line width=1pt,mark=square*,mark options={solid}]
+\addplot [color=Set1-5-2,line width=1pt,solid,mark=square*,mark options={solid}]
   table[row sep=crcr]{%
-0.8	-4.44921720905172\\
-1	-4.64188359504132\\
-1.25	-4.831405076\\
-1.5	-5.04185655502392\\
+0.8	-1.14052017933874\\
+1	-1.17854627494419\\
+1.25	-1.21539501712721\\
+1.5	-1.25605815154523\\
 };
 \addlegendentry{0.625}
-\addplot [color=Set1-5-3,solid,line width=1pt,mark=triangle*,mark options={solid}]
+\addplot [color=Set1-5-3,line width=1pt,solid,mark=triangle*,mark options={solid}]
   table[row sep=crcr]{%
-0.8	-4.44684177801724\\
-1	-4.63831065289256\\
-1.25	-4.845437073\\
-1.5	-5.04805194162679\\
+0.8	-1.13991125716162\\
+1	-1.17763912646152\\
+1.25	-1.2189249259148\\
+1.5	-1.2576015841597\\
 };
 \addlegendentry{0.750}
-\addplot [color=Set1-5-4,solid,line width=1pt,mark=diamond*,mark options={solid}]
+\addplot [color=Set1-5-4,line width=1pt,solid,mark=diamont*,mark options={solid}]
   table[row sep=crcr]{%
-0.8	-4.42699506465517\\
-1	-4.62304965805785\\
-1.25	-4.826316853\\
-1.5	-5.03559175885167\\
+0.8	-1.13482371568647\\
+1	-1.17376445182866\\
+1.25	-1.21411501663399\\
+1.5	-1.25449742719418\\
 };
 \addlegendentry{0.875}
-\addplot [color=Set1-5-5,solid,line width=1pt,mark=pentagon*,mark options={solid}]
+\addplot [color=Set1-5-5,line width=1pt,solid,mark=pentagon*,mark options={solid}]
   table[row sep=crcr]{%
-0.8	-4.40113256788793\\
-1	-4.59943389566116\\
-1.25	-4.800377386\\
-1.5	-5.03120570047847\\
+0.8	-1.12819407769282\\
+1	-1.16776855205376\\
+1.25	-1.20758964804187\\
+1.5	-1.25340474549793\\
 };
 \addlegendentry{1.000}
 \end{axis}
@@ -84,47 +84,46 @@ anchor=left of west,
 xmin=0.5,
 xmax=1,
 xlabel={Fraction of corundum density},
-ymin=-5.1,
-ymax=-4.4,
+ymin=-1.26,
+ymax=-1.12,
 yticklabels={\empty},
 legend style={at={(0.5,1.01)},anchor=south},
 legend columns=4
 ]
 \addplot [color=Dark2-4-1,line width=1pt,solid,mark=*,mark options={solid}]
   table[row sep=crcr]{%
-0.5	-4.42517434806034\\
-0.625	-4.44921720905172\\
-0.75	-4.44684177801724\\
-0.875	-4.42699506465517\\
-1	-4.40113256788793\\
+0.5	-1.13435698998626\\
+0.625	-1.14052017933874\\
+0.75	-1.13991125716162\\
+0.875	-1.13482371568647\\
+1	-1.12819407769282\\
 };
 \addlegendentry{AlO$_{0.8}$}
-\addplot [color=Dark2-4-2,solid,line width=1pt,mark=square*,mark options={solid}]
+\addplot [color=Dark2-4-2,line width=1pt,solid,mark=square*,mark options={solid}]
   table[row sep=crcr]{%
-0.5	-4.61782172727273\\
-0.625	-4.64188359504132\\
-0.75	-4.63831065289256\\
-0.875	-4.62304965805785\\
-1	-4.59943389566116\\
+0.5	-1.1724371117034\\
+0.625	-1.17854627494419\\
+0.75	-1.17763912646152\\
+0.875	-1.17376445182866\\
+1	-1.16776855205376\\
 };
 \addlegendentry{AlO$_{1.0}$}
-\addplot [color=Dark2-4-3,solid,line width=1pt,mark=triangle*,mark options={solid}]
+\addplot [color=Dark2-4-3,line width=1pt,solid,mark=triangle*,mark options={solid}]
   table[row sep=crcr]{%
-0.5	-4.803877456\\
-0.625	-4.831405076\\
-0.75	-4.845437073\\
-%0.8     -4.83450611507\\
-0.875	-4.826316853\\
-1	-4.800377386\\
+0.5	-1.20847013054555\\
+0.625	-1.21539501712721\\
+0.75	-1.2189249259148\\
+0.875	-1.21411501663399\\
+1	-1.20758964804187\\
 };
 \addlegendentry{AlO$_{1.25}$}
-\addplot [color=Dark2-4-4,solid,line width=1pt,mark=pentagon*,mark options={solid}]
+\addplot [color=Dark2-4-4,line width=1pt,solid,mark=pentagon*,mark options={solid}]
   table[row sep=crcr]{%
-0.5	-4.9492800076555\\
-0.625	-5.04185655502392\\
-0.75	-5.04805194162679\\
-0.875	-5.03559175885167\\
-1	-5.03120570047847\\
+0.5	-1.23299491376551\\
+0.625	-1.25605815154523\\
+0.75	-1.2576015841597\\
+0.875	-1.25449742719418\\
+1	-1.25340474549793\\
 };
 \addlegendentry{AlO$_{1.5}$}
 \end{axis}
