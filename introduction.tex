@@ -92,8 +92,9 @@ Ion trapped qubits~\cite{Cirac1995} exploit stable electronic or spin states of 
 
 Two-qubit operations can be invoked by spin-phonon coupling (for example) induced by a laser pulse, and multiple entangled qubits can be coupled through internal states and external motion states in a similar fashion.
 
-Ion traps show significant promise for the future of quantum information processing, as architectures with many coupled qubits are already experimentally accessible~\cite{Nigg2014}.
-Fundamental gating operations such as the C-NOT have also been demonstrated with high fidelity~\cite{Schmidt-Kaler2003}.
+Ion traps show significant promise for the future of quantum information processing, as fundamental gating operations such as the C-NOT have also been demonstrated with high fidelity~\cite{Schmidt-Kaler2003}.
+In fact, entire sets of gating operations can be used to implement algorithms and error correction on a set of coupled qubits~\cite{Schindler2013, Lanyon2013}, and architectures with many coupled qubits are already experimentally accessible~\cite{Monz2011, Nigg2014}.
+
 
 \subsection{Nitrogen-Vacancy Center of Diamond}
 
@@ -105,6 +106,7 @@ Both its bound electrons and nearby nuclear spins can be addressed using optical
 On-chip wiring and waveguides govern fast electrical and magnetic control which exploits the solid state nature of the diamond lattice.
 
 The unique properties of the defect and its host lattice give rise to an electron spin lifetime longer than that of a trapped ion (at low temperatures)~\cite{Jarmola2012} and coherence times larger than a second at room temperature if nearby nuclear spins are utilised~\cite{Maurer2012}.
+Ion implantation techniques can assist in stabilising the NV$^-$ sites~\cite{Yamamoto2014}, charge-state initialisation is now understood~\cite{Doi2014} and individual defects can be addressed~\cite{Hauf2014}.
 
 \subsection{Quantum Dots}
 Quantum dots are made of semiconductor material and are used to contain and manipulate electrons in microcavity modes, which in turn behave as an \textit{artificial} atom.
@@ -112,6 +114,8 @@ Manipulation can come about via electronic~\cite{Chang1974} or optical~\cite{Din
 
 Quantum dots are relatively simple to construct and control with modern semiconductor technology, and their environmental coupling is rather weak providing long coherence times.
 Even early schemes hinted at the possibility of coupling more than 100 qubits using a single cavity mode and laser fields to mediate coherent interactions between distant quantum dot spins~\cite{Imamoglu1999}, although this has proved difficult in practice.
+
+Recent advances have seen some interesting possibilities in this field, such as reconfigurable architectures~\cite{Zajac2015} and non-local control mechanisms~\cite{Stano2015}.
 
 \subsection{Superconducting Circuits}\label{sec:sccircuits}
 
@@ -154,6 +158,10 @@ Thus the possibility of a functioning quantum computer using it is encouraging w
 In fact, much of the superconducting qubit community has transitioned from active phase qubit experimentation to the transmon because of this phenomena.
 
 On the other hand, this design is useful for studying these decoherence sources (\textit{vide infra} \cref{sec:probes}) and is therefore the most relevant architecture to study throughout this thesis.
+
+Architecture differences aside, superconducting qubits share many common positive capabilities---most of which have already been touched upon.
+Recent research has pushed these systems even further, with controllable reset capability~\cite{Geerlings2013}, schemes which are approaching active quantum error correction~\cite{Kelly2015} and the exciting prospect of `autonomously stabilized entanglement', which uses a Bell state as the qubit's steady state and may counteract the detrimental effects of environmental noise~\cite{Shankar2013}.
+An outlook on the future of superconducting circuits can be found in \onlinecite{Devoret2013}. 
 
 \section{Josephson Junctions}\label{sec:jj}
 The superconducting phase difference across a JJ is the typical degree of freedom of interest in superconducting qubit designs.
@@ -228,6 +236,7 @@ We can use this representation in illustrate examples of the types of TLS defect
 \begin{figure}[htp]
 \siotwomargins
 \begin{adjustwidth}{\siotwoleft}{\siotworight}
+%\begin{adjustwidth}{0em}{-\marginparwidth}
 \resizebox{\widefigure}{!}{\includestandalone{figures/sio2}}
 \caption[Quartz-like Crystal Lattice, Pure and Defected]{\label{fig:sio2}Left: Quartz-like crystal lattice, with oxygen \resizebox{!}{0.6em}{\includestandalone{figures/oxygen}} and silicon (or some other metal such as aluminium) \resizebox{!}{0.6em}{\includestandalone{figures/aluminium}} atoms aligned in a hexagonal grid. Right: Defected quartz-like lattice strained to an amorphous state. Three possible defect types are identified, where equivalent lattice positions the oxygen atom can occupy are identified as \resizebox{!}{0.6em}{\includestandalone{figures/oxygenb}}.}
 \end{adjustwidth}
@@ -238,9 +247,10 @@ A: the bond length is shortened causing an oxygen to form a dipole perpendicular
 Ensembles of thousands of such defects govern the acoustic, thermal and dielectric material properties of glassy systems at low temperature.
 Characterisation of the macroscopic response due to these TLS ensembles via a distribution of defect parameters~\cite{Enss2005} has seen the STM applied not only to large systems, but more recently to microfabricated circuits.
 
-Given the central role of Josephson junctions comprised of \ce{AlO_x} in modern
-devices including but not limited to single electron transistors~\cite{Zimmerli1992}, nanomechanical resonators~\cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators~\cite{Gao2007}; it is not surprising that all seemed to suffer from noise channels attributed to TLS behaviour.
 Early superconducting qubits using tunnel junctions such as the Josephson junction in the presence of strong electric fields were often stymied by even just a few two-level defects~\cite{Simmonds2004}.
+Single electron transistors~\cite{Zimmerli1992}, nanomechanical resonators~\cite{Ahn2003}, kinetic inductance single photon detectors and microwave resonators~\cite{Gao2007} also suffer from noise channels attributed to TLS behaviour; indicating that there may be ultimately many fundamentally different noise sources.
+Another possible interpretation is that there is only one microscopic origin, which must take into account the chemical composition of all device types.
+
 
 \section{Strongly Coupled Two Level Systems}
 
@@ -397,7 +407,7 @@ Alien species such as hydrogen are still introduced in the epitaxial process, wh
 
 The premise of this thesis is that positional anharmonicity of oxygen atoms arises within the \ce{AlO_x} barrier of the Josephson junction due to its fundamentally non-crystalline nature.
 This ansatz allows the existence of many different spatial configurations throughout the layer, causing unique TLS properties based solely on atomic positions and rotation in relation to the external electric field.
-Additionally, this hypothesis satisfies the discussion above concerning a solution accounting only for the differences in oxide growth processes.
+Additionally, this hypothesis satisfies the discussion above concerning a solution accounting only for the differences in oxide growth processes and possibly explains TLS existence in the devices discussed in \cref{sec:glass}, as each device requires a large oxide area in their construction.
 As such, this is a concrete microscopic ensemble of the classic atomic tunneling model: typically cited as motivation for the STM (which is more general, as the tunneling object need not be a single atom).
 
 As an illustrative example, consider an interstitial oxygen defect in crystalline germanium: the harmonic approximation for atomic positions cannot be applied due to the rotational symmetry of the defect as oxygen delocalises around the Ge--Ge bond axis~\cite{Artacho1997}.
@@ -410,6 +420,7 @@ A similar effect occurs with oxygen interstitial defects in bulk silicon, formin
 \end{figure}
 
 If similar potential landscape scenarios exist within amorphous aluminium oxides, this phenomena may additionally explain the strongly coupled TLS defects residing within the JJ tunnel barrier, considering experiments also observe a range of qubit-TLS coupling strengths (and therefore different TLS energy scales).
+
 
 \subsection{Thesis Framework}
 
